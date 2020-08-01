@@ -15,6 +15,7 @@ getRequirements();
 function getRequirements() {
   let playersNames = game.actors.entities.filter((t) => t.data.type === "character").map((p=> p.data.name)); 
   let playerNameList = '';
+  let currentHeroPointsList = '';
   let playerSelected;
   if (actor) {   /* get selected token */
     playerSelected = canvas.tokens.controlled[0].actor.name;    
@@ -27,15 +28,26 @@ function getRequirements() {
     }    
   });
   
+  /* Show actual hero points*/
+  let currentHeroPoints = checkHeroPoints();
+  for (let i = 0; i < currentHeroPoints.length; i++) {
+    currentHeroPointsList += '<li>' + currentHeroPoints[i][0] + ': ' + currentHeroPoints[i][1] + '</li>';
+    console.log('<li>' + currentHeroPoints[i][0] + ': ' + currentHeroPoints[i][1] + '</li>');
+  }  
+  
   let template = `
   <p>Player: <select id="playerName">${playerNameList}</select></p>
   <p>
     How much points do you want to give? <input id="heroPoints" type="number" min="1" max="3" style="width: 50px;" value=1>
   </p>  
   <br />
+  <h3>Current Hero Points</h3>
+  <ul>
+    ${currentHeroPointsList}
+  </ul>
+  <br />
   <p>
-    <input type="checkbox" id="reset"/>
-    Reset Hero Points? (this will set each character to 1 hero point)
+    <input type="checkbox" id="reset"/>Reset Hero Points? (this will set each character to 1 hero point)
   </p> 
   `;
   new Dialog({
@@ -82,7 +94,17 @@ function updateHeroPoints(playerName, heroPoints) {
 function resetHeroPoints() {
   let characters = game.actors.entities.filter((t) => t.data.type === "character");
   characters.forEach( (c) => {
-    console.log(c.data.data.attributes.heroPoints.rank);
+    //console.log(c.data.data.attributes.heroPoints.rank);
     c.update({['data.attributes.heroPoints.rank']: 1});  
   }); 
+}
+
+function checkHeroPoints() {
+  let heros = [];
+  let characters = game.actors.entities.filter((t) => t.data.type === "character");
+  characters.forEach( (c) => {
+    //console.log(c.data.name + '/ ' + c.data.data.attributes.heroPoints.rank);    
+    heros.push([c.data.name, c.data.data.attributes.heroPoints.rank]);
+  }); 
+  return heros;
 }
