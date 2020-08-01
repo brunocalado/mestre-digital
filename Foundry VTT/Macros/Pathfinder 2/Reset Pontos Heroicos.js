@@ -1,15 +1,32 @@
-// Reset: set to all chars 1 hero point.
-// Add to a choosen player a hero defined amount of hero points. (max 3)
+/* =======================================
+## Instructions
+# Give one player hero points.
+You can select the token player or choose him from the combobox. 
+Choose the amount of hero points and click Apply. 
+
+# Reset hero points
+If you check this box, all players will have their hero points set to one.
+
+source: https://github.com/brunocalado/mestre-digital/tree/master/Foundry%20VTT/Macros/Pathfinder%202
+*/
 
 getRequirements();
 
 function getRequirements() {
   let playersNames = game.actors.entities.filter((t) => t.data.type === "character").map((p=> p.data.name)); 
   let playerNameList = '';
-  playersNames.map((el) => {
-    playerNameList += `<option value="${el}">${el}</option>`;
+  let playerSelected;
+  if (actor) {   /* get selected token */
+    playerSelected = canvas.tokens.controlled[0].actor.name;    
+  }    
+  playersNames.map((el) => {      
+    if (el===playerSelected) {
+      playerNameList += `<option value="${el}" selected>${el}</option>`;
+    } else {
+      playerNameList += `<option value="${el}">${el}</option>`;      
+    }    
   });
-
+  
   let template = `
   <p>Player: <select id="playerName">${playerNameList}</select></p>
   <p>
@@ -17,7 +34,7 @@ function getRequirements() {
   </p>  
   <br />
   <p>
-    <input type="checkbox" id="reset" checked/>
+    <input type="checkbox" id="reset"/>
     Reset Hero Points? (this will set each character to 1 hero point)
   </p> 
   `;
@@ -59,7 +76,7 @@ function updateHeroPoints(playerName, heroPoints) {
     ui.notifications.warn(`Player [${playerName}] has ${currentHeroPoints}. Maximum allowed is 3.`, {});   
   } else {    
     character.update({['data.attributes.heroPoints.rank']: total});  
-  }      
+  }
 }
 
 function resetHeroPoints() {
