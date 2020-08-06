@@ -50,7 +50,8 @@ if (!actor) {   /* get selected token */
     let weapon = html.find(`[name=weapon]`)[0].value;        
     let playerSelected = canvas.tokens.controlled[0].actor;
     let NumberOfDices = diceByLevel(playerSelected.data.data.details.level.value);
-    
+console.log('---------------------------');
+    console.log(NumberOfDices );
     // Activate Sneak Attack
     playerSelected.addDamageDice({
         selector: 'damage',
@@ -65,9 +66,6 @@ if (!actor) {   /* get selected token */
     });
 
     // Roll Sneak Attack  
-    console.log('-------------------------------');
-    console.log(critical);
-    console.log('-------------------------------');
     let bonusdice = 'sneak-attack';
     if (critical) {
       (playerSelected.data.data.actions ?? []).filter(action => action.type === 'strike').find(strike => strike.name === weapon)?.critical(event, [bonusdice]);  
