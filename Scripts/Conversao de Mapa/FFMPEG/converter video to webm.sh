@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ## Requirements
+# Linux
 # apt install mediainfo
 # apt install ffmpeg
 
