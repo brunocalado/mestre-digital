@@ -1,11 +1,11 @@
 /* Dice Calculator for Our Last Best Hope v1.0
 Features: Role Abilities, harm, threat level, fear, touchstone, asset, support. White and Black 6 account.
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Our%20Last%20Best%20Hope%20Calculator.js
 */
 
 getRequirements();
 
 function getRequirements() {
-  //How Many Cards to Draw
   let template = `  
   <h3>THREAT LEVEL</h3>
   <p>
@@ -92,7 +92,7 @@ function getRequirements() {
  <br />
   `;
   new Dialog({
-    title: "Roll for Humanity",
+    title: "Roll for Humanity v1.0",
     content: template,
     buttons: {
       ok: {
