@@ -1,6 +1,8 @@
-/* Dice Calculator for Our Last Best Hope v1.0
+/* Dice Calculator for Our Last Best Hope v1.1
 Features: Role Abilities, harm, threat level, fear, touchstone, asset, support. White and Black 6 account.
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Our%20Last%20Best%20Hope%20Calculator.js
+
+Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Our%20Last%20Best%20Hope%20Calculator.svg
 */
 
 getRequirements();
@@ -205,26 +207,13 @@ async function rollDice(html) {
   ChatMessage.create({content: msg});
 }
 
-function countSix(dicePool) {
-  b = dicePool;
+function countSix(dicePool) {  
   let count = 0;
-  let size = b.dice[0].rolls.length;
+  let size = dicePool.dice[0].rolls.length;
   for (var i = 0; i < size; i++) {
-    if( b.dice[0].rolls[i].roll==6 ) {
+    if( dicePool.dice[0].rolls[i].roll==6 ) {
       count+=1;
     }
   }
   return count;
 }
-
-/*
-  b = new Roll('4d6').roll();
-  
-  b = new Roll('4d6').roll().dice[0].rolls[0].roll;
-  
-  b = new Roll('4d6').roll();
-  let size = b.dice[0].rolls.length;
-  for (var i = 0; i < size; i++) {
-    console.log(b.dice[0].rolls[i].roll);
-  }  
-*/
