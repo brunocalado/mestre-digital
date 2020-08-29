@@ -1,4 +1,6 @@
-// allows  choice for the exploration activity selected  
+// Exploration Choice v1.1
+// You must select the token. You need GM Screen.
+// allows  choice for the exploration activity selected
 
 if (!actor) { 
   ui.notifications.warn("You must have an actor selected."); 
@@ -19,7 +21,69 @@ let options = [
   {name: "Search", item: "SCH"}, 
 ]; 
 
-let content = `<div class="form-group"><p><label>Select the exploration activity to perform </label><select id="selectTest">`; 
+let content = `
+<p><strong>TABLE: EXPLORATION ACTIVITIES</strong></p>
+<table style="height: 235px; width: 750px;">
+<tbody>
+<tr style="height: 15px;">
+<td style="background: #5d0000; color: white; width: 150px; height: 17px;"><strong>Activity name</strong></td>
+<td style="background: #5d0000; color: white; width: 91px; text-align: center; height: 17px;"><strong>Traits</strong></td>
+<td style="background: #5d0000; color: white; width: 955px; height: 17px;"><strong>Summary</strong></td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #ede3c8; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="IE2nThCmoyhQA0Jn"> Avoid Notice</a></td>
+<td style="background: #ede3c8; width: 91px; text-align: center; height: 17px;">&ndash;</td>
+<td style="background: #ede3c8; width: 955px; height: 17px;">You attempt a Stealth check to avoid notice while traveling at half speed.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #f5efe0; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="cYtYKa1gDEl7y2N0"> Defend</a></td>
+<td style="background: #f5efe0; width: 91px; text-align: center; height: 17px;">&ndash;</td>
+<td style="background: #f5efe0; width: 955px; height: 17px;">You move at half your travel speed with your shield raised.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #ede3c8; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="Yb0C1uLzeHrVLl7a"> Detect Magic</a></td>
+<td style="background: #ede3c8; width: 91px; text-align: center; height: 17px;">concentrate</td>
+<td style="background: #ede3c8; width: 955px; height: 17px;">You cast detect magicat regular intervals.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #f5efe0; width: 150px; height: 65px; vertical-align: top;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="tfa4Sh7wcxCEqL29"> Follow the Expert</a></td>
+<td style="background: #f5efe0; width: 91px; vertical-align: top; text-align: center; height: 65px;">auditory, concentrate, visual</td>
+<td style="background: #f5efe0; width: 955px; height: 65px; vertical-align: top;">Choose an ally attempting a recurring skill check while exploring, such as climbing, or performing a different exploration tactic that requires a skill check (like Avoiding Notice).</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #ede3c8; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="JuqmIAnkL9hVGai8"> Hustle</a></td>
+<td style="background: #ede3c8; width: 91px; text-align: center; height: 17px;">move</td>
+<td style="background: #ede3c8; width: 955px; height: 17px;">You strain yourself to move at double your travel speed.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #f5efe0; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="EwgTZBWsc8qKaViP"> Investigate</a></td>
+<td style="background: #f5efe0; width: 91px; text-align: center; height: 17px;">concentrate</td>
+<td style="background: #f5efe0; width: 955px; height: 17px;">You seek out information about your surroundings while traveling at half speed.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #ede3c8; width: 150px; height: 17px;">Refocus</td>
+<td style="background: #ede3c8; width: 91px; text-align: center; height: 17px;">concentrate</td>
+<td style="background: #ede3c8; width: 955px; height: 17px;">You spend 10 minutes performing deeds to restore your magical connection.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #f5efe0; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="OQaFzDtVEOMWizJJ"> Repeat a Spell</a></td>
+<td style="background: #f5efe0; width: 91px; text-align: center; height: 17px;">concentrate</td>
+<td style="background: #f5efe0; width: 955px; height: 17px;">You repeatedly cast the same spell while moving at half speed.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #ede3c8; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="kV3XM0YJeS2KCSOb"> Scout</a></td>
+<td style="background: #ede3c8; width: 91px; text-align: center; height: 17px;">concentrate</td>
+<td style="background: #ede3c8; width: 955px; height: 17px;">You scout ahead and behind the group to watch danger, moving at half speed.</td>
+</tr>
+<tr style="height: 15px;">
+<td style="background: #f5efe0; width: 150px; height: 17px;"><a class="entity-link" draggable="true" data-pack="pf2e.actionspf2e" data-lookup="TiNDYUGlMmxzxBYU"> Search</a></td>
+<td style="background: #f5efe0; width: 91px; text-align: center; height: 17px;">concentrate</td>
+<td style="background: #f5efe0; width: 955px; height: 17px;">You Seek meticulously for hidden doors ,concealed hazards, and so on.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="form-group"><p><label>Select the exploration activity to perform </label><select id="selectTest">`; 
 
 for (let i = 0 ; i < options.length ; i++) { 
   if (options[i].group !== undefined) 
@@ -118,5 +182,6 @@ let dialog = new Dialog({
   }}} 
 }); 
 
-
+dialog.options.width = 760;
+dialog.position.width = 760;
 dialog.render(true);
