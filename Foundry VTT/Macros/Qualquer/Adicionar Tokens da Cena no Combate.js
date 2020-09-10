@@ -1,12 +1,18 @@
-//// modified from @atnoslen with a little help from @Atropos (thanks!) 
+/* All tokens to Combat v1.0
+* - This macro select all tokens in the scene
+* - Add all of them to the combat tracker
+* - Roll Initiave for all
+* modified from @atnoslen with a little help from @Atropos (thanks!) 
+*/
+
 const scene = game.scenes.entities.filter(scene => scene.active === true)[0];
+  let tokens = [];
 
-let tokens = [];
-
-let startCRoll=function rollAndStart(){
-  game.combat.rollAll();
-  game.combat.startCombat();
+  let startCRoll=function rollAndStart(){
+    game.combat.rollAll();
+    game.combat.startCombat();
 }
+
 
 if (!game.combat){
   scene.data.tokens.forEach(function(token) {
@@ -26,7 +32,5 @@ if (!game.combat){
     }
   });
 
-  game.combat.createCombatant(tokens).then(startCRoll);  
-
+  game.combat.createCombatant(tokens).then(startCRoll);
 }
-
