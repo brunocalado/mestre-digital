@@ -2,6 +2,8 @@
 EN: Gives 1 benny to all PCs or 1 benny to all Wild Card NPCs and the GM
 BR: Distribui 1 bene para os PC ou 1 bene para os NPCs carta slvagem e para o mestre.
 https://gitlab.com/lipefl/foundrymacros/-/raw/master/macros/CuringaSelvagem.js
+
+Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Coringa%20no%20Combate.svg
 */
 
 let actualCombatants=game.combat.turns;
