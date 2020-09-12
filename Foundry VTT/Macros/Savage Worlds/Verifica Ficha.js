@@ -1,6 +1,6 @@
 /* Verifica Ficha - 1.1
-BR: Selecione um token.
-EN: Select a token.
+BR: Conta uso de Perícias, Vantagens, Complicações, Atributos. Verifica se vantagem tem o Estágio Atendido.
+EN: Check Skills, Edges, Hidrances, Atributes. Check edge Advance requirement.
 Fonte: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Verifica%20Ficha.js
 
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Verifica%20Ficha.svg
