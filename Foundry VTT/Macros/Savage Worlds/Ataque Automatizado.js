@@ -1,7 +1,7 @@
 /* Ataque Automatizado v1.1
 
 Fonte: https://gitlab.com/lipefl/foundrymacros/-/blob/master/macros/Atacar.js
-Icon: 
+Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Ataque%20Automatizado.svg
 */
 
 
