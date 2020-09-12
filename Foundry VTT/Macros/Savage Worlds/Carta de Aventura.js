@@ -1,14 +1,15 @@
-/* Carta de Aventura - v1.2
+/* Carta de Aventura - v1.3
 
-Fonte: https://gitlab.com/lipefl/foundrymacros/-/blob/master/macros/CartaDeAventura.js
+Fonte: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Carta%20de%20Aventura.js
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Carta%20de%20Aventura.svg
 TODO:
 - Auto add item.
 - Auto check item.
 */
 
-let itemCard = "Carta de Aventura" // nome do item que guarda a carta
-let defaultTable = "Adventure Deck" // nome da tabela padrão
+let itemCard = "Carta de Aventura"; // nome do item que guarda a carta
+let defaultTable = "Adventure Deck"; // nome da tabela padrão
+let padraoDeImportar = 'journal'; // Origem: journal ou compendium
 
 let chars = game.actors.entities.filter(t => t.data.type === "character"); // todos os personagens
 let optionchars = '';
@@ -29,6 +30,14 @@ if (!optionchars) { // nenhum personagem
 }
 
 function getRequirements() {
+  let origemJournal='';
+  let origemCompendium='';
+  if (padraoDeImportar=='journal') {
+    origemJournal = "checked=\"checked\"";
+  } else {
+    origemCompendium = "checked=\"checked\"";;
+  }
+  
   let rollTableName = ""; // nome da tabela com as cartas
   Array.from(game.tables).map((el) => { 
     if (defaultTable==el.data.name) {
@@ -47,18 +56,19 @@ function getRequirements() {
 <p>Usar a tabela: <select id="tableName">${rollTableName}</select></p>
 <p>
   <h3>Origem</h3>
-  <input type="radio" id="compendium" name="origem" value="compendium">
+  <input type="radio" id="compendium" name="origem" value="compendium" ${origemCompendium}>
   <label for="compendium">Compendium</label>
-  <input type="radio" id="journal" name="origem" value="journal" checked="checked>
+  <input type="radio" id="journal" name="origem" value="journal" ${origemJournal}>
   <label for="journal">Journal</label>
 </p>
 <p>Item: <b>${itemCard}</b></p>
 <h2>Ajuda</h2>
 <p>Cada jogador deve ter um item chamado <b>${itemCard}</b>. O sorteio será realizado e a carta será colocada na descrição desse item. Você pode alterar a tabela e item padrões indo no começo dessa macro e colocando o nome desejado para ser o padrão.</p>
+<p>Origem é como seu baralho foi criado. Tente um, se falhar você descobriu o que funciona. Pode alterar para seu padrão também.</p>
 `;
 
   new Dialog({
-    title: "Cartas de Aventura - v1.2",
+    title: "Cartas de Aventura - v1.3",
     content: template,
     buttons: {
       ok: {
