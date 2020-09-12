@@ -111,7 +111,7 @@ if (!actor) {
   
   // Output  
   message += `<p style="color:#9dab00"><strong>Atributos:</strong> ` + (attpoints - 5) + ` pontos.</p>`;
-  message += `<p style="color:#008f0e"><strong>Perícias:</strong> ` + (skillpoints - 5) + ` (5 básicas)</p>`;
+  message += `<p style="color:#008f0e"><strong>Perícias:</strong> ` + (skillpoints - 5) + ` pontos. (-5 das perícias básicas)</p>`;
   message += `<p style="color:#c70000"><strong>Vantagens:</strong> ` + edgesnum + ` ponto(s) de custo.</p>`;
   message += `<p style="color:#0011d1"><strong>Complicações:</strong> ` + hindpoints + ` ponto(s) ganho(s).</p>`;
   
