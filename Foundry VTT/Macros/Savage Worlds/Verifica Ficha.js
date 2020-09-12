@@ -1,12 +1,12 @@
 /* Verifica Ficha - 1.1
 BR: Conta uso de Perícias, Vantagens, Complicações, Atributos. Verifica se vantagem tem o Estágio Atendido.
-EN: Check Skills, Edges, Hidrances, Atributes. Check edge Advance requirement.
+EN: Check Skills, Edges, Hidrances, Attributes. Check edge Advance requirement.
 Fonte: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Verifica%20Ficha.js
 
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Verifica%20Ficha.svg
 
 TODO
-- Requirement for edge traits
+- attributes requirement for edge
 */
 
 if (!actor) {
@@ -64,23 +64,23 @@ if (!actor) {
         console.log( 'var1: ' + persona.data.data.advances['rank'] );
         console.log( 'var2: ' + rankNameNovice );
         console.log( 'var3: ' + !checkArrayInString(persona.data.data.advances['rank'], rankNameNovice) );
-        console.log( '===================================' );    
-      if (!checkArrayInString(persona.data.data.advances['rank'], rankNameNovice)) {
+        console.log( '===================================' );
+      if ( !checkArrayInString(persona.data.data.advances['rank'], rankNameNovice) && !checkArrayInString(persona.data.data.advances['rank'], rankNameSeasoned) && !checkArrayInString(persona.data.data.advances['rank'], rankNameVeteran) && !checkArrayInString(persona.data.data.advances['rank'], rankNameHeroic) && !checkArrayInString(persona.data.data.advances['rank'], rankNameLegendary) ) {
         messageEdges += `<p><b>` + edges[i].data['name'] + `</b> precisa de <b>` + edges[i].data.data.requirements['value'] + `</b>, mas o personagem é apenas <b>`+ persona.data.data.advances['rank'] + `</b></p>`;        
         messageEdgesNum++;
       }
     } else if ( checkArrayInString(requirement, rankNameSeasoned) ) {  
-      if (!checkArrayInString(persona.data.data.advances['rank'], rankNameSeasoned)) {
+      if (!checkArrayInString(persona.data.data.advances['rank'], rankNameSeasoned) && !checkArrayInString(persona.data.data.advances['rank'], rankNameVeteran) && !checkArrayInString(persona.data.data.advances['rank'], rankNameHeroic) && !checkArrayInString(persona.data.data.advances['rank'], rankNameLegendary) ) {
         messageEdges += `<p><b>` + edges[i].data['name'] + `</b> precisa de <b>` + edges[i].data.data.requirements['value'] + `</b>, mas o personagem é apenas <b>`+ persona.data.data.advances['rank'] + `</b></p>`;        
         messageEdgesNum++;
       }    
     } else if ( checkArrayInString(requirement, rankNameVeteran) ) {  
-      if (!checkArrayInString(persona.data.data.advances['rank'], rankNameVeteran)) {
+      if (!checkArrayInString(persona.data.data.advances['rank'], rankNameVeteran) && !checkArrayInString(persona.data.data.advances['rank'], rankNameHeroic) && !checkArrayInString(persona.data.data.advances['rank'], rankNameLegendary) ) {
         messageEdges += `<p><b>` + edges[i].data['name'] + `</b> precisa de <b>` + edges[i].data.data.requirements['value'] + `</b>, mas o personagem é apenas <b>`+ persona.data.data.advances['rank'] + `</b></p>`;        
         messageEdgesNum++;
       }   
     } else if ( checkArrayInString(requirement, rankNameHeroic) ) {  
-      if (!checkArrayInString(persona.data.data.advances['rank'], rankNameHeroic)) {
+      if (!checkArrayInString(persona.data.data.advances['rank'], rankNameHeroic) && !checkArrayInString(persona.data.data.advances['rank'], rankNameLegendary) ) {
         messageEdges += `<p><b>` + edges[i].data['name'] + `</b> precisa de <b>` + edges[i].data.data.requirements['value'] + `</b>, mas o personagem é apenas <b>`+ persona.data.data.advances['rank'] + `</b></p>`;        
         messageEdgesNum++;
       }    
