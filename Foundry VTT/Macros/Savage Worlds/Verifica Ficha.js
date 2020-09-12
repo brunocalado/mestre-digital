@@ -1,7 +1,12 @@
 /* Verifica Ficha - 1.1
 BR: Selecione um token.
 EN: Select a token.
-Icon: 
+Fonte: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Verifica%20Ficha.js
+
+Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Verifica%20Ficha.svg
+
+TODO
+- Requirement for edge traits
 */
 
 if (!actor) {
