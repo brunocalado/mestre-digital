@@ -1,6 +1,6 @@
 /* Instant NPC - v1.0
-Source: ?
-Icon: ?
+Source: https://github.com/brunocalado/mestre-digital/tree/master/Foundry%20VTT/Macros/Dungeon%20World
+Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Instant%20NPC.svg
 */
 
 const NPCName = drawFromTable('Names')[0].text;
