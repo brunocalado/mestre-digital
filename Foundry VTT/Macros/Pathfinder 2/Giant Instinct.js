@@ -28,9 +28,8 @@ const MAD_HOW = "physical"; // change this to the type of bonus damage dealt by 
         if (token.actor.data.data.attributes.hp.temp < tmpHP) {
           await actor.update({ "data.attributes.hp.temp": tmpHP });
         }
-        await actor.addCustomModifier("ac", "Rage", -1, "untyped");
-        await actor.addCustomModifier("damage", "Rage", HOW_MAD, 'untyped', {}, MAD_HOW); //???
-        //actor.addCustomModifier(choice, bonustext, bonus, bonustype);
+        await actor.addCustomModifier("ac", "Rage", -1, "untyped");        
+        await actor.addCustomModifier("damage", "Rage", HOW_MAD, "untyped");                
         if ( !token.data.effects.includes("systems/pf2e/icons/features/classes/rage.jpg" ) ) {
           token.toggleEffect("systems/pf2e/icons/features/classes/rage.jpg");
         }        
