@@ -1,5 +1,5 @@
-/* Giant Instinct - v1.3
-- Change size, play sound, add clumsy, change ac
+/* Giant Instinct - v1.4
+- Change size, play sound, add clumsy, change ac, add size damage, add rage damage
 
 sound: https://github.com/brunocalado/mestre-digital/raw/master/Foundry%20VTT/Macros/Pathfinder%202/GodzillaRage.ogg
 icon: systems/pf2e/icons/features/classes/giant-instinct.jpg
