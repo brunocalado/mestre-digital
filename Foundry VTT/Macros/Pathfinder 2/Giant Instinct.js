@@ -1,13 +1,15 @@
-/* Giant Instinct - v1.2
+/* Giant Instinct - v1.3
 - Change size, play sound, add clumsy, change ac
 
 sound: https://github.com/brunocalado/mestre-digital/raw/master/Foundry%20VTT/Macros/Pathfinder%202/GodzillaRage.ogg
 icon: systems/pf2e/icons/features/classes/giant-instinct.jpg
 source: https://github.com/brunocalado/mestre-digital/blob/master/Foundry%20VTT/Macros/Pathfinder%202/Giant%20Instinct.js
+
+Rules: https://2e.aonprd.com/Instincts.aspx?ID=4
 */
+const HOW_MAD = 10;          // increase for giant instinct or higher levels
 const rageSound = 'assets/fx/GodzillaRage.ogg';
-const HOW_MAD = 2;          // increase for giant instinct or higher levels
-const MAD_HOW = "physical"; // change this to the type of bonus damage dealt by rage
+const sizeDmg = 2;          // 
 
 (async () => {
     if (actor) { 
@@ -15,7 +17,8 @@ const MAD_HOW = "physical"; // change this to the type of bonus damage dealt by 
       // turn off
       if ( (token.actor.data.data.customModifiers["ac"] || []).some((modifier) => modifier.name === "Rage") ) {
         await actor.removeCustomModifier("ac", "Rage");
-        await actor.removeCustomModifier("damage", "Rage"); // Remove the line below if you do not wish for your character to lose all temp hp when toggled "off".
+        await actor.removeCustomModifier("damage", "Rage");
+        await actor.removeCustomModifier("damage", "Large");
         await actor.update({ "data.attributes.hp.temp": 0 }); // Remove the line above if you do not wish for your character to lose all temp hp when toggled "off".
         if ( token.data.effects.includes("systems/pf2e/icons/features/classes/rage.jpg") ) {
           token.toggleEffect("systems/pf2e/icons/features/classes/rage.jpg");
@@ -30,6 +33,7 @@ const MAD_HOW = "physical"; // change this to the type of bonus damage dealt by 
         }
         await actor.addCustomModifier("ac", "Rage", -1, "untyped");        
         await actor.addCustomModifier("damage", "Rage", HOW_MAD, "untyped");                
+        await actor.addCustomModifier("damage", "Large", sizeDmg, "untyped");        
         if ( !token.data.effects.includes("systems/pf2e/icons/features/classes/rage.jpg" ) ) {
           token.toggleEffect("systems/pf2e/icons/features/classes/rage.jpg");
         }        
