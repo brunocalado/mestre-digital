@@ -1,9 +1,9 @@
-/* Giant Instinct - v1.0
+/* Giant Instinct - v1.2
 - Change size, play sound, add clumsy, change ac
 
 sound: https://github.com/brunocalado/mestre-digital/raw/master/Foundry%20VTT/Macros/Pathfinder%202/GodzillaRage.ogg
 icon: systems/pf2e/icons/features/classes/giant-instinct.jpg
-source: 
+source: https://github.com/brunocalado/mestre-digital/blob/master/Foundry%20VTT/Macros/Pathfinder%202/Giant%20Instinct.js
 */
 const rageSound = 'assets/fx/GodzillaRage.ogg';
 const HOW_MAD = 2;          // increase for giant instinct or higher levels
