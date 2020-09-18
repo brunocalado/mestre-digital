@@ -1,6 +1,6 @@
 /* Sound Link Builder v1.0
-
-Source: 
+Macro for: https://github.com/superseva/sound-link
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Ferramentas/Sound%20Link%20Builder.js
 Icon: 
 */
 
