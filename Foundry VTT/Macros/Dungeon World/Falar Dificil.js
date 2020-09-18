@@ -1,6 +1,6 @@
 /* Falar Difícil - v1.1
-icon: 
-source: 
+icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Falar%20Dificil.svg
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Falar%20Dificil.js
 */
 
 // Settings
