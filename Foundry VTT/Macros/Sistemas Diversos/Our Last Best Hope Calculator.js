@@ -18,7 +18,7 @@ function getRequirements() {
     <label for="threat_lv1">1</label>
     <input type="radio" id="threat_lv2" name="threat" value="2">
     <label for="threat_lv1">2</label>
-    <input type="radio" id="threat_lv3" name="threat" value="3" checked="checked>
+    <input type="radio" id="threat_lv3" name="threat" value="3" checked="checked">
     <label for="threat_lv1">3</label>
     <input type="radio" id="threat_lv4" name="threat" value="4">
     <label for="threat_lv1">4</label>
@@ -94,7 +94,7 @@ function getRequirements() {
  <br />
   `;
   new Dialog({
-    title: "Roll for Humanity v1.0",
+    title: "Roll for Humanity v1.1",
     content: template,
     buttons: {
       ok: {
