@@ -1,5 +1,5 @@
 /* Select Token by Name - v1.0
-fonte:
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Especiais/Rotaciona%20Token.js
 */
 let tokenName = 'Controller'; // Controller name | nome do controlador 
 let tokenRotationStep = 45; // Rotation Step | Quantos graus o tile deve ser rotacionado
