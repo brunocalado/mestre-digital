@@ -1,4 +1,4 @@
-/* Attack Assistant - v0.3
+/* Attack Assistant - v0.4
 Features
 - Rolls damage if success. It can add Expose Yourself Damage.
 - Check for Precise Tag. Uses DEX instead of STR if it is present.
@@ -60,7 +60,7 @@ function main() {
   `;
 
   new Dialog({
-    title: "Available Weapons:",
+    title: "Attack Assistant - v0.4",
     content: dialogTemplate,
     buttons: {
       Attack: {
