@@ -1,10 +1,10 @@
-/* EXP Manager - v0.1 
+/* EXP Manager - v0.2 
 ## Features
 - Select a token  and it'll be selected
 - Choose the amount of experience to give.
 
-source: 
-icon:
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/EXP%20Manager.js
+icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/EXP%20Manager.svg
 */
 
 main();
@@ -44,7 +44,7 @@ function main() {
   </ul>
   `;
   new Dialog({
-    title: "Experience Points Manager v0.1",
+    title: "Experience Points Manager v0.2",
     content: template,
     buttons: {
       ok: {
