@@ -1,4 +1,4 @@
-/* Attack Assistant - v0.4
+/* Attack Assistant - v0.5
 Features
 - Rolls damage if success. It can add Expose Yourself Damage.
 - Check for Precise Tag. Uses DEX instead of STR if it is present.
@@ -8,7 +8,11 @@ Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foun
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Attack%20Assistant.svg
 */
 
-main();
+if (!actor) {  
+  ui.notifications.warn(`Select a token!`); // get selected token 
+} else {  
+  main();
+}
 
 function main() {
   let weapons = canvas.tokens.controlled[0].actor.items.filter(el => el.data.type == "equipment").filter(el => el.data.data.itemType == "weapon");
@@ -94,15 +98,15 @@ async function rollDamage(html) {
   
   // Output
   let msg = `<h2>${weapon.data.name}</h2>`;
-  msg+=`<p>Weapon Tags: ${weapon.data.data.tagsString}</p>`;
+  msg+=`<p><b>Weapon Tags:</b> ${weapon.data.data.tagsString}</p>`;
   if (attributeChange!='Default') { 
     msg+=`<p>Attribute used for the Move Roll is <b>${attributeChange}</b></p>`;
   }
   let dice = new Roll('2d6+' + attribute + '+' + move_mod).roll();
   let outcome = successCheck(dice);
-  //console.log(dice);  
+    
   if (outcome==1) { // 6 or less - failure 
-    msg+=`<h3 style="color:#d40023">You failed!</h3>`;
+    msg+=`<h3 style="color:#b8950d">You failed!</h3>`;
     dice.toMessage({flavor: msg});  
   } else if (outcome==2) { // 7-9 - partial success
     let diceDamage = new Roll(playerDamageDice + '+' + weaponTagDamage + '+' + damage_mod).roll();
