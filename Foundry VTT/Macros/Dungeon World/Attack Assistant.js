@@ -1,34 +1,36 @@
-/* Attack Assistant - v0.5
+/* Attack Assistant - v0.6
 Features
 - Rolls damage if success. It can add Expose Yourself Damage.
 - Check for Precise Tag. Uses DEX instead of STR if it is present.
 - Check for Damage Tag. Adds the number of it to the weapon damage.
 - Change Default Attribute for the move.
+Class Features - Detects class features for attack
+- Backstab
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Attack%20Assistant.js
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Attack%20Assistant.svg
 */
 
-if (!actor) {  
+if (!actor) {
   ui.notifications.warn(`Select a token!`); // get selected token 
-} else {  
+} else {
   main();
 }
 
 function main() {
-  let weapons = canvas.tokens.controlled[0].actor.items.filter(el => el.data.type == "equipment").filter(el => el.data.data.itemType == "weapon");
-
-  console.log(weapons) //Testing to ensure the item is correctly selected
-
-  //Display the Chat Card for the selected item
-  let options = "";
-
+  let weapons = canvas.tokens.controlled[0].actor.items.filter(el => el.data.type == "equipment").filter(el => el.data.data.itemType == "weapon");  
+  let weaponsOptions = ""; //Display the Chat Card for the selected item
   for (let wep of weapons) {
-    options += `<option value=${wep.id}>${wep.data.name}`
+    weaponsOptions += `<option value=${wep.id}>${wep.data.name}`
+  }
+  //  Classes  
+  let extraOptions = ""; //Display the Chat Card for the selected item
+  for (let opt of moveSearch("Backstab") ) {
+    extraOptions += `<li style="display: inline-block;"><input type="checkbox" id="${opt.data.name}"/>${opt.data.name}</li>`;
   }
 
   let dialogTemplate = `
   <h1>Select Weapon</h1>
-  <p style="text-align:center; vertical-align:center"><select id="selectedweapon" style=" width:250px;">${options}</select></p>
+  <p style="text-align:center; vertical-align:center"><select id="selectedweapon" style=" width:250px;">${weaponsOptions}</select></p>
   <h2>Modifiers</h2>  
   <table>
     <tr>
@@ -36,12 +38,13 @@ function main() {
     <td style="text-align:center; vertical-align:center"><b>Damage:</b> <input id="damage_mod" type="number" min="-10" max="10" style="width: 80px" value=0></td>
     </tr>
   </table>  
+  
   <h2>Options</h2>  
-  <table>
-    <tr>
-      <td style="text-align:center; vertical-align:center"><input type="checkbox" id="expose_yourself"/>Expose Yourself?</td>    
-    </tr>
-  </table> 
+  <ul style="display: inline-block; list-style-type: none;  list-style-type: none; text-align: left; margin: 0; padding: 0;">  
+    <li style="display: inline-block;"><input type="checkbox" id="expose_yourself"/>Expose Yourself?</li>
+    ${extraOptions}
+  </ul>
+
   </br>
   <h2>Change Move Attribute</h2>
   <table>
@@ -64,7 +67,7 @@ function main() {
   `;
 
   new Dialog({
-    title: "Attack Assistant - v0.4",
+    title: "Attack Assistant - v0.6",
     content: dialogTemplate,
     buttons: {
       Attack: {
@@ -85,8 +88,11 @@ async function rollDamage(html) {
   let expose_yourself = html.find("#expose_yourself")[0].checked;
   let attributeChange = html.find('input[name="attribute"]:checked').val();  
   let move_mod = html.find("#move_mod")[0].value;
-  let damage_mod = html.find("#damage_mod")[0].value;
-  
+  let damage_mod = html.find("#damage_mod")[0].value; 
+  // Classes
+  let backstab = html.find( "#Backstab" )[0].checked;
+
+ 
   // data
   let playerSelected = canvas.tokens.controlled[0].actor;
   let playerDamageDice = playerSelected.data.data.attributes.damage.value;
@@ -104,13 +110,14 @@ async function rollDamage(html) {
   }
   let dice = new Roll('2d6+' + attribute + '+' + move_mod).roll();
   let outcome = successCheck(dice);
-    
+
   if (outcome==1) { // 6 or less - failure 
     msg+=`<h3 style="color:#b8950d">You failed!</h3>`;
     dice.toMessage({flavor: msg});  
   } else if (outcome==2) { // 7-9 - partial success
     let diceDamage = new Roll(playerDamageDice + '+' + weaponTagDamage + '+' + damage_mod).roll();
-    msg+=`<h3 style="color:#00009c">Partial Success</h3>`
+    msg+=`<h3 style="color:#00009c">Partial Success</h3>`    
+    if (backstab) { msg+= backStab(outcome); }
     dice.toMessage({flavor: msg});                
     diceDamage.toMessage({flavor: `<h3 style="color:#d40023">Damage</h3>`});
   } else if (outcome==3) { // 10+ - success
@@ -121,10 +128,15 @@ async function rollDamage(html) {
       diceDamage = new Roll(playerDamageDice + '+' + weaponTagDamage + '+' + damage_mod).roll();
     }    
     msg+=`<h3 style="color:#249c00">Success</h3>`
+    if (backstab) { msg+= backStab(outcome); }
     dice.toMessage({flavor: msg});                
     diceDamage.toMessage({flavor: `<h3 style="color:#d40023">Damage</h3>`});
   }
 }
+
+// ==============================
+// Common Functions 
+// ==============================
 
 function tagCheckDamage(weapon) {
   let tags = weapon.data.data.tagsString.split(',');
@@ -185,6 +197,39 @@ function successCheck(dicePool) {
   }    
 }
 
+function moveSearch(moveName) {
+  return canvas.tokens.controlled[0].actor.items.filter(el => el.data.type == "move").filter(el => el.data.name == moveName);
+
+}
+
+function addEventListenerOnHtmlElement(element, event, func){    
+    Hooks.once("renderChatMessage", (chatItem, html) => { // Use Hook to add event to chat message html element
+        html[0].querySelector(element).addEventListener(event, func);        
+    });
+} // end addEventListenerOnHtmlElement
+        
+// ==============================
+// Class Functions
+// ==============================
+function backStab(success) {  
+  addEventListenerOnHtmlElement("#backstabButton", 'click', (e) => {    
+            new Roll('1d6').roll().toMessage({flavor:`<h3>Backstab Damage</h3>`});
+        });        
+  let tmp = ``;
+  if(success==2) {
+    tmp = `<h3>Choose one:</h3>`;
+  } else if(success==3) {
+    tmp = `<h3>Choose two:</h3>`;
+  }
+return (tmp+`<ul>
+<li>You don&rsquo;t get into melee with them</li>
+<li>You deal your damage+1d6. [/roll 1d6] or [[/roll 1d6]] or [/r 1d6] or [[/r 1d6]]</li><button style="background:#d10000;color:white" id="backstabButton">Backstab Damage</button>
+<li>You create an advantage, +1 forward to you or an ally acting on it</li>
+<li>Reduce their armor by 1 until they repair it</li>
+</ul>`);   
+}
+
+
 /* test stuff
   
   console.log('----------------------------');
@@ -196,4 +241,5 @@ function successCheck(dicePool) {
 canvas.tokens.controlled[0].actor
 canvas.tokens.controlled[0].actor.data.data.attributes.damage.value;
 
+canvas.tokens.controlled[0].actor.items.filter(el => el.data.type == "move").filter(el => el.data.name == "Backstab");
 */
