@@ -1,4 +1,4 @@
-/* All tokens to Combat v1.2
+/* All tokens to Combat v1.3
 * - This macro select all tokens in the scene
 * - Add all of them to the combat tracker
 * - Roll Initiave for all
