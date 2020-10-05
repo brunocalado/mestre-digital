@@ -3,8 +3,8 @@
 * - Add all of them to the combat tracker
 * - Roll Initiave for all
 * modified from @atnoslen with a little help from @Atropos (thanks!) 
-* source: 
-* icon:
+* source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Qualquer/Tokens%20da%20Cena%20no%20Combate.js
+* icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Qualquer/Tokens%20da%20Cena%20no%20Combate.svg
 */
 
 getRequirements();
