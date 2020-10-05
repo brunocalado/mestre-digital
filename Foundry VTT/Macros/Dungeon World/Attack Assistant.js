@@ -1,4 +1,4 @@
-/* Attack Assistant - v0.6
+/* Attack Assistant - v0.6.0
 Features
 - Rolls damage if success. It can add Expose Yourself Damage.
 - Check for Precise Tag. Uses DEX instead of STR if it is present.
@@ -67,7 +67,7 @@ function main() {
   `;
 
   new Dialog({
-    title: "Attack Assistant - v0.6",
+    title: "Attack Assistant - v0.6.0",
     content: dialogTemplate,
     buttons: {
       Attack: {
@@ -82,6 +82,10 @@ function main() {
     }
   }).render(true);
 }
+
+// ==============================
+// Main
+// ==============================
 async function rollDamage(html) {
   // form data
   let weapon = canvas.tokens.controlled[0].actor.items.filter(el => el.data._id == html.find("#selectedweapon")[0].value )[0];
@@ -137,7 +141,6 @@ async function rollDamage(html) {
 // ==============================
 // Common Functions 
 // ==============================
-
 function tagCheckDamage(weapon) {
   let tags = weapon.data.data.tagsString.split(',');
   let tmp='';

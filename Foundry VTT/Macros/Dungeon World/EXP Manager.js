@@ -51,7 +51,7 @@ function main() {
   `;
   
   new Dialog({
-    title: "Experience Points Manager v0.3",
+    title: "Experience Manager v0.3",
     content: template,
     buttons: {
       ok: {

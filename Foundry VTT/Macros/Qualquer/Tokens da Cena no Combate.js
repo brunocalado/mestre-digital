@@ -3,6 +3,8 @@
 * - Add all of them to the combat tracker
 * - Roll Initiave for all
 * modified from @atnoslen with a little help from @Atropos (thanks!) 
+* source: 
+* icon:
 */
 
 getRequirements();
@@ -35,7 +37,7 @@ function getRequirements() {
     content: template,
     buttons: {
       ok: {
-        label: "Go!",
+        label: "Manda Pau!",
         callback: async (html) => {
           rollForIt(html);
         },
