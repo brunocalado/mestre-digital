@@ -1,14 +1,16 @@
-/* Attack Assistant - v0.6.0
+const macroVersion = 'v0.6.1';
+/* Attack Assistant
 Features
 - Rolls damage if success. It can add Expose Yourself Damage.
 - Check for Precise Tag. Uses DEX instead of STR if it is present.
 - Check for Damage Tag. Adds the number of it to the weapon damage.
 - Change Default Attribute for the move.
 Class Features - Detects class features for attack
-- Backstab
+- Backstab, Herculean Appetites
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Attack%20Assistant.js
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Attack%20Assistant.svg
 */
+//
 
 if (!actor) {
   ui.notifications.warn(`Select a token!`); // get selected token 
@@ -26,6 +28,9 @@ function main() {
   let extraOptions = ""; //Display the Chat Card for the selected item
   for (let opt of moveSearch("Backstab") ) {
     extraOptions += `<li style="display: inline-block;"><input type="checkbox" id="${opt.data.name}"/>${opt.data.name}</li>`;
+  }
+  for (let opt of moveSearch("Herculean Appetites") ) {
+    extraOptions += `<li style="display: inline-block;"><input type="checkbox" id="${opt.data.name.replace(/\s/g, '')}"/>${opt.data.name}</li>`;
   }
 
   let dialogTemplate = `
@@ -66,8 +71,9 @@ function main() {
   </table>  
   `;
 
+
   new Dialog({
-    title: "Attack Assistant - v0.6.0",
+    title: `Attack Assistant - ${macroVersion}`,
     content: dialogTemplate,
     buttons: {
       Attack: {
@@ -88,14 +94,15 @@ function main() {
 // ==============================
 async function rollDamage(html) {
   // form data
+  let dice;
   let weapon = canvas.tokens.controlled[0].actor.items.filter(el => el.data._id == html.find("#selectedweapon")[0].value )[0];
   let expose_yourself = html.find("#expose_yourself")[0].checked;
   let attributeChange = html.find('input[name="attribute"]:checked').val();  
   let move_mod = html.find("#move_mod")[0].value;
   let damage_mod = html.find("#damage_mod")[0].value; 
   // Classes
-  let backstab = html.find( "#Backstab" )[0].checked;
-
+  let backstab = optionExist( html.find( "#Backstab" )[0] );
+  let herculeanAppetites = optionExist( html.find( "#HerculeanAppetites" )[0] );
  
   // data
   let playerSelected = canvas.tokens.controlled[0].actor;
@@ -112,7 +119,12 @@ async function rollDamage(html) {
   if (attributeChange!='Default') { 
     msg+=`<p>Attribute used for the Move Roll is <b>${attributeChange}</b></p>`;
   }
-  let dice = new Roll('2d6+' + attribute + '+' + move_mod).roll();
+  if (herculeanAppetites) { 
+    dice = new Roll('1d6+1d8+' + attribute + '+' + move_mod).roll(); 
+    msg+=`<p><b>HerculeanAppetites</b> used.</p>`;
+  } else {
+    dice = new Roll('2d6+' + attribute + '+' + move_mod).roll();
+  }
   let outcome = successCheck(dice);
 
   if (outcome==1) { // 6 or less - failure 
@@ -141,6 +153,14 @@ async function rollDamage(html) {
 // ==============================
 // Common Functions 
 // ==============================
+function optionExist(val) {
+  if ( typeof(val) == 'undefined' ) {
+    return false;
+  } else {
+    return val.checked;
+  }
+}
+
 function tagCheckDamage(weapon) {
   let tags = weapon.data.data.tagsString.split(',');
   let tmp='';
@@ -197,12 +217,11 @@ function successCheck(dicePool) {
     return 3;
   } else if (total<=6) {
     return 1;
-  }    
+  }
 }
 
 function moveSearch(moveName) {
   return canvas.tokens.controlled[0].actor.items.filter(el => el.data.type == "move").filter(el => el.data.name == moveName);
-
 }
 
 function addEventListenerOnHtmlElement(element, event, func){    
