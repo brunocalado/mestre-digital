@@ -1,8 +1,10 @@
-/* EXP Manager - v0.3
+const macroVersion = 'v0.4.0';
+/* EXP Manager
 ## Features
 - Select a token and it'll be selected in the combo
-- Choose the amount of experience to give.
+- Choose the amount of experience to give or to remove.
 - Send XP for everyone
+- Warn about level available
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/EXP%20Manager.js
 icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/EXP%20Manager.svg
 */
@@ -51,12 +53,12 @@ function main() {
   `;
   
   new Dialog({
-    title: "Experience Manager v0.3",
+    title: `Experience Manager - ${macroVersion}`,
     content: template,
     buttons: {
       ok: {
         label: "Apply",
-        callback: (html) => {
+        callback: async (html) => {
           expmanager(html);
         },
       },
@@ -67,7 +69,7 @@ function main() {
   }).render(true);
 }
 
-function expmanager(html){
+async function expmanager(html){
   let playerName = html.find("#playerName")[0].value;
   let heroPoints = html.find("#heroPoints")[0].value;  
   if (playerName=='everyone') {    
@@ -77,22 +79,31 @@ function expmanager(html){
   }
 }
 
-function updateHeroPoints(playerName, heroPoints) {
+async function updateHeroPoints(playerName, heroPoints) {
   let character = game.actors.entities.filter((t) => t.data.type === "character").filter((v) => v.data.name === playerName)[0];
   let currentHeroPoints = parseInt( character.data.data.attributes.xp.value);
   let total = currentHeroPoints + parseInt( heroPoints );
-  character.update({['data.attributes.xp.value']: total});
+  await character.update({['data.attributes.xp.value']: total});
+  expMessage(character, heroPoints);
 }
 
 function updateAllHerosXP(heroPoints) {
   let players = game.actors.entities.filter((t) => t.data.type === "character");
-  players.map((player) => {
+  /*players.map((player) => {
     let currentHeroPoints = parseInt( player.data.data.attributes.xp.value);
     let total = currentHeroPoints + parseInt( heroPoints );
     player.update({['data.attributes.xp.value']: total});
+    expMessage(player, heroPoints);
+  });*/
+  
+  players.map(async player => {    
+    let currentHeroPoints = parseInt( player.data.data.attributes.xp.value);
+    let total = currentHeroPoints + parseInt( heroPoints );
+    await player.update({['data.attributes.xp.value']: total});
+    expMessage(player, heroPoints);  
   });
 }
-  
+
 function checkHeroExp() {
   let heros = [];
   let characters = game.actors.entities.filter((t) => t.data.type === "character");
@@ -101,4 +112,18 @@ function checkHeroExp() {
     heros.push([c.data.name, c.data.data.attributes.xp.value, c.data.data.attributes.level.value]);
   }); 
   return heros;
+}
+
+function expMessage(player, points) {
+  let message = `<h2>${player.data.name}</h2>`;  
+  message += `<p>received <b>${points}</b> of experience.</p>`;  
+  if ( parseInt(player.data.data.attributes.xp.value)>=(parseInt(player.data.data.attributes.level.value)+7) ) {
+    message += '<p><b style="color:red">Level Available!</b></p>';
+  }    
+  let chatData = {
+    user: game.user._id,
+    speaker: ChatMessage.getSpeaker(),
+    content: message
+  };  
+  ChatMessage.create(chatData, {});
 }
