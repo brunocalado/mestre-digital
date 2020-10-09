@@ -5,8 +5,8 @@ const macroVersion = 'v0.4.1';
 - Choose the amount of experience to give or to remove.
 - Send XP for everyone
 - Warn about level available
-source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/EXP%20Manager.js
-icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/EXP%20Manager.svg
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/EXP%20Manager.js
+icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/EXP%20Manager.svg
 */
 
 main();
