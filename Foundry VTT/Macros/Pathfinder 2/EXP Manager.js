@@ -46,7 +46,7 @@ function main() {
   <h2>Choose</h2>
   <p><b>Hero:</b> <select id="playerName" style="width: 200px">${playerNameList}</select></p>
   <p>
-    <b>How much points do you want to give?</b> <input id="heroPoints" type="number" min="-10" max="10" style="width: 80px; box-sizing: border-box;border: none;background-color: #2d3748;color: white; text-align: center; " value=1>
+    <b>How much points do you want to give?</b> <input id="heroPoints" type="number" min="-1000" max="1000" step="10" style="width: 80px; box-sizing: border-box;border: none;background-color: #2d3748;color: white; text-align: center; " value=1>
   </p>    
   <h2>Current Experience Points</h2>
   <ul>
