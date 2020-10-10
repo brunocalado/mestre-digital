@@ -1,7 +1,7 @@
-const macroVersion = 'v0.6.1';
+const macroVersion = 'v0.6.2';
 /* Attack Assistant
 Features
-- Rolls damage if success. It can add Expose Yourself Damage.
+- Rolls damage if success. Offers Expose Yourself Damage in the chat.
 - Check for Precise Tag. Uses DEX instead of STR if it is present.
 - Check for Damage Tag. Adds the number of it to the weapon damage.
 - Change Default Attribute for the move.
@@ -45,8 +45,7 @@ function main() {
   </table>  
   
   <h2>Options</h2>  
-  <ul style="display: inline-block; list-style-type: none;  list-style-type: none; text-align: left; margin: 0; padding: 0;">  
-    <li style="display: inline-block;"><input type="checkbox" id="expose_yourself"/>Expose Yourself?</li>
+  <ul style="display: inline-block; list-style-type: none;  list-style-type: none; text-align: left; margin: 0; padding: 0;">
     ${extraOptions}
   </ul>
 
@@ -59,7 +58,7 @@ function main() {
     <td></td>
     </tr>
     <tr>
-      <td style="text-align:center; vertical-align:center"><input type="radio" id="attribute" name="attribute" value="Strength"/>Strength</td>
+      <td style="text-align:center; vertical-align:center"><input type="radio" id="attribute" name="attribute" value="Strength" />Strength</td>
       <td style="text-align:center; vertical-align:center"><input type="radio" id="attribute" name="attribute" value="Dexterity"/>Dexterity</td>      
       <td style="text-align:center; vertical-align:center"><input type="radio" id="attribute" name="attribute" value="Constitution"/>Constitution</td>            
     </tr>
@@ -95,8 +94,8 @@ function main() {
 async function rollDamage(html) {
   // form data
   let dice;
-  let weapon = canvas.tokens.controlled[0].actor.items.filter(el => el.data._id == html.find("#selectedweapon")[0].value )[0];
-  let expose_yourself = html.find("#expose_yourself")[0].checked;
+  let weapon = canvas.tokens.controlled[0].actor.items.filter(el => el.data._id == html.find("#selectedweapon")[0].value )[0];  
+  
   let attributeChange = html.find('input[name="attribute"]:checked').val();  
   let move_mod = html.find("#move_mod")[0].value;
   let damage_mod = html.find("#damage_mod")[0].value; 
@@ -110,7 +109,7 @@ async function rollDamage(html) {
   let playerDamageMod = playerSelected.data.data.attributes.damage.misc;
   let attribute;
   let weaponTagDamage = tagCheckDamage(weapon);
-  
+
   attribute = attributeSelect(weapon, attributeChange, playerSelected);
   
   // Output
@@ -121,7 +120,7 @@ async function rollDamage(html) {
   }
   if (herculeanAppetites) { 
     dice = new Roll('1d6+1d8+' + attribute + '+' + move_mod).roll(); 
-    msg+=`<p><b>HerculeanAppetites</b> used.</p>`;
+    msg+=herculeanAppetitesMesssage(dice); 
   } else {
     dice = new Roll('2d6+' + attribute + '+' + move_mod).roll();
   }
@@ -137,13 +136,10 @@ async function rollDamage(html) {
     dice.toMessage({flavor: msg});                
     diceDamage.toMessage({flavor: `<h3 style="color:#d40023">Damage</h3>`});
   } else if (outcome==3) { // 10+ - success
-    let diceDamage;
-    if (expose_yourself) {
-      diceDamage = new Roll(playerDamageDice + '+1d6+' + weaponTagDamage + '+' + damage_mod).roll();
-    } else {
-      diceDamage = new Roll(playerDamageDice + '+' + weaponTagDamage + '+' + damage_mod).roll();
-    }    
+    let diceDamage;    
+    diceDamage = new Roll(playerDamageDice + '+' + weaponTagDamage + '+' + damage_mod).roll();   
     msg+=`<h3 style="color:#249c00">Success</h3>`
+    msg+= exposeYourself();
     if (backstab) { msg+= backStab(outcome); }
     dice.toMessage({flavor: msg});                
     diceDamage.toMessage({flavor: `<h3 style="color:#d40023">Damage</h3>`});
@@ -229,21 +225,39 @@ function addEventListenerOnHtmlElement(element, event, func){
         html[0].querySelector(element).addEventListener(event, func);        
     });
 } // end addEventListenerOnHtmlElement
-        
+   
+// ==============================
+// Extra Functions
+// ==============================
+function exposeYourself() {  
+  addEventListenerOnHtmlElement("#exposeYourselfButton", 'click', (e) => {    
+    new Roll('1d6').roll().toMessage({flavor:`<h3 style="color:#d40023">Expose Yourself Damage</h3>`});
+  });        
+  return `<button style="background:#d10000;color:white" id="exposeYourselfButton">Expose Yourself Damage</button>`;
+}
+   
 // ==============================
 // Class Functions
 // ==============================
+function herculeanAppetitesMesssage(dicePool) {
+  let temp = `<p><b>HerculeanAppetites</b> used.</p>`;
+  if ( dicePool._dice[0].total > dicePool._dice[1].total ) { // d6>d8 
+    temp+=`<p>The GM will also introduce a <b style="color:#d40023">complication or danger</b> that comes about due to your heedless pursuits.</p>`
+  }
+  return temp;
+}
+
 function backStab(success) {  
   addEventListenerOnHtmlElement("#backstabButton", 'click', (e) => {    
-            new Roll('1d6').roll().toMessage({flavor:`<h3>Backstab Damage</h3>`});
-        });        
+    new Roll('1d6').roll().toMessage({flavor:`<h3>Backstab Damage</h3>`});
+  });        
   let tmp = ``;
   if(success==2) {
     tmp = `<h3>Choose one:</h3>`;
   } else if(success==3) {
     tmp = `<h3>Choose two:</h3>`;
   }
-return (tmp+`<ul>
+  return (tmp+`<ul>
 <li>You don&rsquo;t get into melee with them</li>
 <li>You deal your damage+1d6. [/roll 1d6] or [[/roll 1d6]] or [/r 1d6] or [[/r 1d6]]</li><button style="background:#d10000;color:white" id="backstabButton">Backstab Damage</button>
 <li>You create an advantage, +1 forward to you or an ally acting on it</li>
