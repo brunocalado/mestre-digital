@@ -5,8 +5,8 @@ https://gist.githubusercontent.com/EstolanoBeu/ae3f484fd2e496fcd512ab6f1e95eb82/
 Macro original:
 https://gitlab.com/LiquidSonic/pf2e-module-pack
 
-source: 
-icon: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/Condicoes.js
+icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/Condicoes.svg
 */
 
 ////// Error checking user for not having the token selected, an active combat, that the token they are targeting or selecting is in combat or not/////
