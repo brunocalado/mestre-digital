@@ -1,13 +1,10 @@
-/* Instant NPC - v1.1
+/* Instant NPC - v1.2
 Source: https://github.com/brunocalado/mestre-digital/tree/master/Foundry%20VTT/Macros/Dungeon%20World
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Instant%20NPC.svg
+Icon2: icons/environment/people/commoner.webp
 */
 
 (async () => {
-  console.log('=====================================');
-  console.log(await drawFromTable('Names'));
-  console.log('=====================================');
-  
   const NPCName = await drawFromTable('Names');
   const NPCKnack = await drawFromTable('Knacks');
   const NPCInstinct = await drawFromTable('Instincts');
@@ -46,16 +43,15 @@ Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
       }      
     }
   });
-  
-  console.log(instantNPC);
-  //  instantNPC.render(true);
+
+  await instantNPC.sheet.render(true);
   
 })()
 
 /* Functions */
 async function drawFromTable(tableName) {
 
-  let list_compendium = await game.packs.filter(p=>p.entity=='RollTable' );      
+  let list_compendium = await game.packs.filter(p=>p.entity=='RollTable');      
   let inside = await list_compendium.filter( p=>p.metadata.label=='Tables' )[0].getContent();      
   const table = await inside.filter( p=>p._data['name']==tableName )[0];          
   
@@ -63,7 +59,7 @@ async function drawFromTable(tableName) {
     ui.notifications.warn(`Table ${tableName} not found.`, {});
     return;
   }
-  return results = await table.roll().results[0].text;  
+  return await table.roll().results[0].text;  
 }
 
 function treasureCoins(min, max) {

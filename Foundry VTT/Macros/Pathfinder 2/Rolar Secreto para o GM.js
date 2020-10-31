@@ -1,10 +1,12 @@
+/*
+
+source:
+icon: 
+*/
 //player must select token, otherwise they will roll as player instead of character 
 
  
-
-let mustRoll; 
-
- 
+let mustRoll;  
 
 const options = [ 
 
@@ -78,16 +80,11 @@ content += `</div>`;
 
  
 
-let dialog = new Dialog({ 
-
-  title: "Blind GM Roll", 
-
-  content: content, 
-
-  buttons: { 
-
-    roll: { 
-
+let dialog = new Dialog({
+  title: "Blind GM Roll",
+  content: content,
+  buttons: {
+    roll: {
       icon: "<i class='fas fa-check'></i>", 
 
       label: "Roll the die!", 
@@ -302,7 +299,7 @@ function testOutput (name, isPC, rank, mod) {
 
  
 
-  let style=`border: 1px solid darkgrey; 
+  let style=`border: 1px solid darkgrey;
 
              padding: 2px; 
 
@@ -318,7 +315,7 @@ function testOutput (name, isPC, rank, mod) {
 
       <span>1d20 + ${mod} = <strong>${resRoll}</strong></span> 
 
-    </div>` 
+    </div>`; 
 
   return output; 
 
