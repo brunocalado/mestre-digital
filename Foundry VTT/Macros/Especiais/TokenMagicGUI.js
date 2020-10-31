@@ -1,15 +1,22 @@
 const MyCompendium = 'TokenMagic-Fav';
+// put the label of your compendium here ==========
+// ================================================
 
-const macroVersion = 'v0.1';
+const macroVersion = 'v0.2';
 /* Simple GUI - Token Magic
 Features
 - Detect token selected/targered
 - Realtime preview
-Source: 
-Icon: 
+
+TODO
+- multi token
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Especiais/TokenMagicGUI.js
+Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Especiais/TokenMagicGUI.svg
 */
 //
+
 let filterType;
+
 (async () => {
   let msgtoken = ``;
   if (canvas.tokens.controlled != 0) {
