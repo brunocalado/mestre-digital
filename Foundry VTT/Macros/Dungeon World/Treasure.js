@@ -2,7 +2,7 @@ const macroVersion = 'v0.1';
 /* Treasure
 Features
 - Choose damage and monster type to roll the table
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Treasure.js
 icon: icons/containers/chest/chest-simple-walnut.webp
 */
 
