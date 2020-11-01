@@ -111,7 +111,7 @@ function expMessage(player, points) {
   message += `
   <div>
     <img style="vertical-align:middle" src="icons/commodities/currency/coins-plain-gold.webp" width="32" height="32">  
-    <span style="">received <b>${points}</b> ${plural}.</</span>
+    <span>received <b>${points}</b> ${plural}.</</span>
   </div>     
   `;  
   let chatData = {

@@ -1,4 +1,4 @@
-const macroVersion = 'v0.4.0';
+const macroVersion = 'v0.5';
 /* EXP Manager
 ## Features
 - Select a token and it'll be selected in the combo
@@ -115,11 +115,18 @@ function checkHeroExp() {
 }
 
 function expMessage(player, points) {
-  let message = `<h2>${player.data.name}</h2>`;  
-  message += `<p>received <b>${points}</b> of experience.</p>`;  
+  let message = `<h2>${player.data.name}</h2>`;
+  let levelup = '';  
   if ( parseInt(player.data.data.attributes.xp.value)>=(parseInt(player.data.data.attributes.level.value)+7) ) {
-    message += '<p><b style="color:red">Level Available!</b></p>';
+    levelup = '<span style="color:red"><b>Level Available!</b></span>'
   }    
+  message += `
+  <div>
+    <img style="vertical-align:middle" src="systems/dungeonworld/assets/icons/macros/EXP%20Manager.svg" width="32" height="32">  
+    <span>received <b>${points}</b> of experience.</span>
+    ${levelup}
+  </div>     
+  `;  
   let chatData = {
     user: game.user._id,
     speaker: ChatMessage.getSpeaker(),
