@@ -5,7 +5,7 @@ const macroVersion = 'v0.1';
 - Choose the amount of coins to give or to remove.
 - Send coins for everyone
 
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Coin%20Manager.js
 icon: icons/commodities/currency/coins-plain-gold.webp
 */
 
