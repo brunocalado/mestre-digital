@@ -1,7 +1,8 @@
-const macroVersion = 'v0.1';
+const macroVersion = 'v0.2';
 /* Treasure
 Features
-- Choose damage and monster type to roll the table
+- Choose damage and monster type to roll the treasure table
+- Whisper the result to the gm
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Treasure.js
 icon: icons/containers/chest/chest-simple-walnut.webp
 */
@@ -153,18 +154,7 @@ async function treasureRoller(html){
   
   let result = rollDamage(damageDice, damageBonus, options);
   
-  //rollTreasureTable( result, options );
-  
-  rollTreasureTable( 10, options );
-  rollTreasureTable( 14, options );
-  rollTreasureTable( 17, options );
-
-
-  console.log('----------------');
-  console.log( result );
-  console.log( options );
-  
-  console.log('----------------');
+  rollTreasureTable( result, options );
 }
 
 
