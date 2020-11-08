@@ -16,8 +16,8 @@ const macroVersion = 'v0.1';
 ## Features
 - 
 
-source: 
-icon: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/KultMoves.js
+icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/kult_moves_icon.png
 */
 
 main();
@@ -79,7 +79,27 @@ function main() {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-      }      
+      }    
+
+      #kultcss .window-content {    
+        background: #000000;
+      }     
+      #kultcss .dialog-button {
+        height: 40px;
+        background: #000000;
+        color: #ffffff;
+        justify-content: space-evenly;
+        align-items: center;
+        cursor: pointer;
+        border: none;    
+      }  
+      #kultcss header {
+        background: #000000;
+        border-radius: 0;    
+        border: none;    
+        margin-bottom: 2px;
+        font-size: .75rem;
+      }
     </style>    
     
     <div class="divTable purpleHorizon">
@@ -91,7 +111,7 @@ function main() {
       <label>        
         <div class="container">
           <input type="radio" id="attribute" name="attribute" value="vontade"/ checked>
-          <img style="vertical-align:middle" src="worlds/teste-simpleworld/001.png" width="48" height="48">
+          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/001.png" width="48" height="48">
           <div class="centered">${formatAttribute(vontade)}</div>
         </div>
         Vontade
@@ -104,7 +124,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="fortitude"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/002.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/002.png" width="48" height="48">  
             <div class="centered">${formatAttribute(fortitude)}</div>
           </div>
           Fortitude
@@ -115,7 +135,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="reflexos"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/003.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
             <div class="centered">${formatAttribute(reflexos)}</div>
           </div>
           Reflexos
@@ -128,7 +148,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="razao"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/004.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/004.png" width="48" height="48">  
             <div class="centered">${formatAttribute(razao)}</div>
           </div>
           Razão
@@ -141,7 +161,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="intuicao"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/005.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/005.png" width="48" height="48">  
             <div class="centered">${formatAttribute(intuicao)}</div>
           </div>
           Intuição
@@ -155,7 +175,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="percepcao"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/006.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/006.png" width="48" height="48">  
             <div class="centered">${formatAttribute(percepcao)}</div>
           </div>
           Percepção
@@ -169,7 +189,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="firmeza"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/007.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/007.png" width="48" height="48">  
             <div class="centered">${formatAttribute(firmeza)}</div>
           </div>
           Firmeza
@@ -180,7 +200,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="violencia"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/008.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/008.png" width="48" height="48">  
             <div class="centered">${formatAttribute(violencia)}</div>
           </div>
           Violência
@@ -194,7 +214,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="carisma"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/009.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/009.png" width="48" height="48">  
             <div class="centered">${formatAttribute(carisma)}</div>
           </div>
           Carisma
@@ -209,7 +229,7 @@ function main() {
         <label>
           <div class="container">
             <input type="radio" id="attribute" name="attribute" value="alma"/>                
-            <img style="vertical-align:middle" src="worlds/teste-simpleworld/010.png" width="48" height="48">  
+            <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/010.png" width="48" height="48">  
             <div class="centered">${formatAttribute(alma)}</div>
           </div>
           Alma
@@ -240,7 +260,7 @@ function main() {
       }
     },
     default: "ok"
-  }).render(true);
+  }, { id: 'kultcss'}).render(true);
 }
 
 async function coinmanager(html){
@@ -493,5 +513,3 @@ function formatAttribute(val) {
     return val;
   }
 }
-
-
