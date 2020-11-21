@@ -22,7 +22,7 @@ const macroVersion = 'v0.2';
 
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/KultMoves.js
 icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/kult_moves_icon.png
-Actor Sheet Model for Simple World Building System: 
+Actor Sheet Model for Simple World Building System: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/fvtt-Actor-Modelo.json
 */
 
 if (simpleworldsystem) {
