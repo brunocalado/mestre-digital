@@ -1,26 +1,52 @@
+const simpleworldsystem = true; //true= vai usar o ator de simpleworldsystem, false= vai usar os valores abaixo
+
 // Coloque os valores aqui que podem ser apenas: -3 -2 -1 0 1 2 3
-const vontade = 0;
-const fortitude = -1;
-const reflexos = 2;
-const razao = 0;
-const intuicao = 0;
-const percepcao = 0;
-const firmeza = 0;
-const violencia = 0;
-const carisma = 0;
-const alma = 0;
+let vontade = 4;
+let fortitude = -1;
+let reflexos = 2;
+let razao = 0;
+let intuicao = 0;
+let percepcao = 0;
+let firmeza = 0;
+let violencia = 0;
+let carisma = 0;
+let alma = 0;
 // =============================================
 
-const macroVersion = 'v0.1';
+const macroVersion = 'v0.2';
 /* Kult Moves
 ## Features
-- 
+- Read the actor from Simple world building system.
+- You can set the values to the macro.
+- Describe the movement
 
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/KultMoves.js
 icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/kult_moves_icon.png
+Actor Sheet Model for Simple World Building System: 
 */
 
-main();
+if (simpleworldsystem) {
+  if (!actor) {
+    ui.notifications.warn(`Selecione um Token!`); // get selected token  
+  } else {
+    alma = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Alma.value;
+    carisma = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Carisma.value;
+    firmeza = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Firmeza.value;
+    fortitude = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Fortitude.value;
+    intuicao = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Intuição.value;
+    percepcao = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Percepção.value;
+    razao = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Razão.value;
+    reflexos = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Reflexos.value;
+    violencia = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Violência.value;
+    vontade = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Vontade.value;
+    
+    main();
+  }
+} else {
+  main();
+}
+
+
 
 function main() {  
   let template = `  
@@ -65,7 +91,7 @@ function main() {
 
       /* CHECKED STYLES */
       [type=radio]:checked + img {
-      outline: 2px solid #f00;
+      outline: 4px solid #f00;
       }
       
       .container {
@@ -79,6 +105,7 @@ function main() {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        font-size: 18px;
       }    
 
       #kultcss .window-content {    
@@ -114,7 +141,7 @@ function main() {
           <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/001.png" width="48" height="48">
           <div class="centered">${formatAttribute(vontade)}</div>
         </div>
-        Vontade
+        Manter o Controle
       </label>      
     </div>    
     <div class="divTableCell"></div>
@@ -127,7 +154,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/002.png" width="48" height="48">  
             <div class="centered">${formatAttribute(fortitude)}</div>
           </div>
-          Fortitude
+          Suportar Lesão
         </label>       
       </div>
       <div class="divTableCell"></div>
@@ -138,7 +165,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
             <div class="centered">${formatAttribute(reflexos)}</div>
           </div>
-          Reflexos
+          Evitar Dano
         </label>
       </div>
     </div>
@@ -151,7 +178,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/004.png" width="48" height="48">  
             <div class="centered">${formatAttribute(razao)}</div>
           </div>
-          Razão
+          Investigar
         </label>      
       </div>
       
@@ -164,7 +191,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/005.png" width="48" height="48">  
             <div class="centered">${formatAttribute(intuicao)}</div>
           </div>
-          Intuição
+          Ler uma Pessoa
         </label>          
       </div>
     </div>
@@ -178,7 +205,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/006.png" width="48" height="48">  
             <div class="centered">${formatAttribute(percepcao)}</div>
           </div>
-          Percepção
+          Observar uma Situação
         </label>           
       </div>
       <div class="divTableCell"></div>
@@ -192,7 +219,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/007.png" width="48" height="48">  
             <div class="centered">${formatAttribute(firmeza)}</div>
           </div>
-          Firmeza
+          Agir sob Pressão
         </label>        
       </div>
       <div class="divTableCell"></div>
@@ -203,7 +230,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/008.png" width="48" height="48">  
             <div class="centered">${formatAttribute(violencia)}</div>
           </div>
-          Violência
+          Engajar em Combate
         </label>           
       </div>
     </div>
@@ -217,7 +244,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/009.png" width="48" height="48">  
             <div class="centered">${formatAttribute(carisma)}</div>
           </div>
-          Carisma
+          Influenciar Alguém
         </label>        
       </div>
       <div class="divTableCell"></div>
@@ -232,7 +259,7 @@ function main() {
             <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/010.png" width="48" height="48">  
             <div class="centered">${formatAttribute(alma)}</div>
           </div>
-          Alma
+          Ver Através da Ilusão
         </label>      
       </div>
       <div class="divTableCell">
@@ -267,12 +294,6 @@ async function coinmanager(html){
   const attribute = html.find('input[name="attribute"]:checked').val();  
   const modificador = parseInt( html.find("#modificador")[0].value );    
   let dice;
-
-  
-  console.log('-------------------------');
-  console.log(attribute);
-  console.log(modificador);
-  console.log('-------------------------');
   
   // realiza rolagem
   dice = diceRoll(attribute, modificador);  
@@ -299,7 +320,7 @@ function resultados(dice, attribute) {
   let total = dice.total;
   let msg = ``;
   if (attribute=='carisma') {
-    msg+=`<h2>Influenciar Alguém</h2>`
+    msg+=`<h2>Influenciar Alguém (Carisma)</h2>`
    if (total>=15) {
      msg+=`<h3><b>Influenciar um PNJ</b></h3><p>Ele faz o que você pede</p>`;
      msg+=`<h3><b>Influenciar outro PJ</b></h3><p>Ambas as opções abaixo.</p>     
@@ -328,7 +349,7 @@ function resultados(dice, attribute) {
    }     
   }
   if (attribute=='reflexos') {
-    msg+=`<h2>Evitar Dano</h2>`
+    msg+=`<h2>Evitar Dano (Reflexos)</h2>`
    if (total>=15) {
      msg+=`<p>Você sai completamente ileso.</p>`;
    } else if (total>=10 && total<=14) {
@@ -338,7 +359,7 @@ function resultados(dice, attribute) {
    }     
   }  
   if (attribute=='fortitude') {
-    msg+=`<h2>Evitar Dano</h2>`
+    msg+=`<h2>Evitar Dano (Fortitude)</h2>`
    if (total>=15) {
      msg+=`<p>Você engole a dor e segue em frente.</p>`;
    } else if (total>=10 && total<=14) {
@@ -360,7 +381,7 @@ function resultados(dice, attribute) {
    }     
   }  
   if (attribute=='vontade') {
-    msg+=`<h2>Manter o Controle</h2>`
+    msg+=`<h2>Manter o Controle (Vontade)</h2>`
    if (total>=15) {
      msg+=`<p>Você cerra os dentes e segue em frente.</p>`;
    } else if (total>=10 && total<=14) {
@@ -392,7 +413,7 @@ function resultados(dice, attribute) {
   }
   
   if (attribute=='violencia') {
-    msg+=`<h2>Engajar em Combate</h2>`
+    msg+=`<h2>Engajar em Combate (Violência)</h2>`
    if (total>=15) {
      msg+=`<p>Você inflige dano em seu oponente e evita contra-ataques.</p>`;
    } else if (total>=10 && total<=14) {
@@ -427,7 +448,7 @@ function resultados(dice, attribute) {
   }
   
   if (attribute=='intuicao') {
-    msg+=`<h2>Ler uma Pessoa</h2>`
+    msg+=`<h2>Ler uma Pessoa (Intuição)</h2>`
    if (total>=15) {
      msg+=`<p>Você pode fazer duas perguntas.</p>
      <ul>
@@ -452,7 +473,7 @@ function resultados(dice, attribute) {
   }
   
   if (attribute=='percepcao') {
-    msg+=`<h2>Observar uma Situação</h2>`
+    msg+=`<h2>Observar uma Situação (Percepção)</h2>`
    if (total>=15) {
      msg+=`<p>Faça duas perguntas.</p>
      <ul>
@@ -479,7 +500,7 @@ function resultados(dice, attribute) {
   }
   
   if (attribute=='razao') {
-    msg+=`<h2>Investigar</h2>`
+    msg+=`<h2>Investigar (Razão)</h2>`
    if (total>=15) {
      msg+=`<p>Faça duas perguntas.</p>
      <ul>
@@ -498,7 +519,6 @@ function resultados(dice, attribute) {
      msg+=`<p>Você pode obter alguma informação mesmo assim, mas você vai pagar um preço por isso. Você pode ficar exposto a perigos ou custos. A MJ faz um Movimento.</p>`;
    }     
   }
-
   return msg;
 }
 
