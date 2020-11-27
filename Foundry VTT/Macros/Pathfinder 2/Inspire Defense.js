@@ -18,18 +18,18 @@ const icon = 'systems/pf2e/icons/spells/inspire-defense.jpg';
     for (let token of canvas.tokens.controlled) {
       // turn off
       if ( (token.actor.data.data.customModifiers["ac"] || []).some((modifier) => modifier.name === "Inspire Defense") ) {
-        await actor.removeCustomModifier("ac", "Inspire Defense", +1, "untyped"); //AC        
-        await actor.removeCustomModifier("fortitude", "Inspire Defense", +1, "untyped"); //saving-throw        
-        await actor.removeCustomModifier("reflex", "Inspire Defense", +1, "untyped"); //saving-throw        
-        await actor.removeCustomModifier("will", "Inspire Defense", +1, "untyped"); //saving-throw        
+        await actor.removeCustomModifier("ac", "Inspire Defense", +1, "status"); //AC        
+        await actor.removeCustomModifier("fortitude", "Inspire Defense", +1, "status"); //saving-throw        
+        await actor.removeCustomModifier("reflex", "Inspire Defense", +1, "status"); //saving-throw        
+        await actor.removeCustomModifier("will", "Inspire Defense", +1, "status"); //saving-throw        
         if ( token.data.effects.includes(icon) ) {
           token.toggleEffect(icon);
         }
       } else { // turn on        
-        await actor.addCustomModifier("ac", "Inspire Defense", +1, "untyped"); //AC        
-        await actor.addCustomModifier("fortitude", "Inspire Defense", +1, "untyped"); //saving-throw        
-        await actor.addCustomModifier("reflex", "Inspire Defense", +1, "untyped"); //saving-throw        
-        await actor.addCustomModifier("will", "Inspire Defense", +1, "untyped"); //saving-throw        
+        await actor.addCustomModifier("ac", "Inspire Defense", +1, "status"); //AC        
+        await actor.addCustomModifier("fortitude", "Inspire Defense", +1, "status"); //saving-throw        
+        await actor.addCustomModifier("reflex", "Inspire Defense", +1, "status"); //saving-throw        
+        await actor.addCustomModifier("will", "Inspire Defense", +1, "status"); //saving-throw        
 
         if ( !token.data.effects.includes(icon ) ) {
           token.toggleEffect(icon);
