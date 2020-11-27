@@ -4,7 +4,7 @@
 
 sound: 
 icon: systems/pf2e/icons/spells/inspire-defense.jpg
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/Inspire%20Defense.js
 
 Rules: https://2e.aonprd.com/Spells.aspx?ID=387
 */
