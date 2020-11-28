@@ -1,7 +1,7 @@
 const version = 'v0.1';
 /* Crafting v0.1
 Features
-- 
+- s
 
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/Crafting.js
 Icon: icons/tools/smithing/crucible.webp
