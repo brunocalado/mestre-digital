@@ -3,8 +3,8 @@ const version = 'v0.1';
 Features
 - 
 
-Source:
-Icon:
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/Crafting.js
+Icon: icons/tools/smithing/crucible.webp
 */
 
 (async () => {
