@@ -1,14 +1,7 @@
-const version = 'v0.3';
+const version = 'v0.4';
 /* Crafting
 Features
 - Mostra valor da fórmula
-
-TODO
-- A macro parece só faltar o valor da formula que é fixa. Pode colocar um checkbox (incluir preço da formula)
-
-Rules
-Diviner's Sight
-https://2e.aonprd.com/Spells.aspx?ID=525
 
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Pathfinder%202/Crafting.js
 Icon: icons/tools/smithing/crucible.webp
@@ -66,23 +59,11 @@ const tableFormulas = {
   const handleCrits = (roll) => roll === 1 ? -10 : (roll === 20 ? 10 : 0);
   
   let rollCrafting = (args) => {
-    let {itmLevel, cra, charLevel, itmType, itmValue, charName, devinSight} = args;
-    
+    let {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill} = args;
+
     var roll = new Roll(`d20`).roll().total;
-    var roll2 = new Roll(`d20`).roll().total;
     
-    if (devinSight){
-      console.log("Devin's Sight (Before) | Used roll :" + roll + ", Annex roll  :" +roll2);
-      
-      if (roll2 > roll) {
-        roll = roll2;
-      }
-      
-      console.log("Devin's Sight (After) | Used roll :" + roll + ", Annex roll  :" +roll2);
-    }
-    
-    var crit = handleCrits(roll);
-    
+    var crit = handleCrits(roll);    
     
     var DC = 0, taskLevel = charLevel, gp = 0;
     
@@ -153,8 +134,9 @@ const tableFormulas = {
       
     }
     
+    let finalRoll = roll + crit + cra.value + bonusSkill;
     
-    if (roll + crit + cra.value >= DC+10) taskLevel++;
+    if (finalRoll >= DC+10) taskLevel++;
     
     if (cra.rank === 4) {
       switch (taskLevel) {
@@ -438,30 +420,30 @@ const tableFormulas = {
     
     if (itmType === "rare") DC += 5;
     
-    let message = `<h1>Manufatura</h1><p>Manufaturando um item ${itmType} de nível ${itmLevel}. O valor investido foi de ${itmValue/2} po.</p><p>O resultado da rolagem foi [[${roll}+${cra.value}]]</p>`;   
+    let message = `<h1>Manufatura</h1><p>${charName} está manufaturando um item ${itmType} de nível ${itmLevel}. O valor investido foi de ${itmValue/2} po.</p><p>O resultado da rolagem d20+${cra.value}+${bonusSkill} foi [[${roll}+${cra.value}+${bonusSkill}]]</p>`;   
     
-    if (roll + crit + cra.value >= DC+10) {
-      toChat(message+`<h2>Sucesso Crítico</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
+    if (finalRoll >= DC+10) {
+      toChat(message+`<h2 style="color:DarkGreen">Sucesso Crítico</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
       <h3>Resumo</h3>
-      <p>Redução de Custo por Dia: ${gp} po</p>
-      <p>Custo Término Imediato: ${itmValue/2} po</p>
-      <p>Tempo para Terminar: ${Math.ceil((itmValue/2)/gp)} dias</p>
-      <p>Custo da Fórmula: ${tableFormulas[parseInt(itmLevel)]} po</p>
-      <p>Custo de Término + Fórmula: ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
-    } else if (roll+crit + cra.value >= DC) {
-      toChat(message+`<h2>Sucesso</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
+      <p><b>Redução de Custo por Dia:</b> ${gp} po</p>
+      <p><b>Custo Término Imediato:</b> ${itmValue/2} po</p>
+      <p><b>Tempo para Terminar:</b> ${Math.ceil((itmValue/2)/gp)} dias</p>
+      <p><b>Custo da Fórmula:</b> ${tableFormulas[parseInt(itmLevel)]} po</p>
+      <p><b>Custo de Término + Fórmula:</b> ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
+    } else if (finalRoll >= DC) {
+      toChat(message+`<h2 style="color:Green">Sucesso</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
       <h3>Resumo</h3>
-      <p>Redução de Custo por Dia: ${gp} po</p>
-      <p>Custo Término Imediato: ${itmValue/2} po</p>
-      <p>Tempo para Terminar: ${Math.ceil((itmValue/2)/gp)} dias</p>
-      <p>Custo da Fórmula: ${tableFormulas[parseInt(itmLevel)]} po</p>
-      <p>Custo de Término + Fórmula: ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
-    } else if (roll + crit + cra.value < DC-10) {
-      toChat(message+`<h2>Falha Crítica</h2> <p>Você falha em completar o item. Você perde 10% da matéria-prima que supriu, mas pode recuperar o resto. Se quiser tentar novamente, você deve recomeçar do zero.</p>
+      <p><b>Redução de Custo por Dia:</b> ${gp} po</p>
+      <p><b>Custo Término Imediato:</b> ${itmValue/2} po</p>
+      <p><b>Tempo para Terminar:</b> ${Math.ceil((itmValue/2)/gp)} dias</p>
+      <p><b>Custo da Fórmula:</b> ${tableFormulas[parseInt(itmLevel)]} po</p>
+      <p><b>Custo de Término + Fórmula:</b> ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
+    } else if (finalRoll < DC-10) {
+      toChat(message+`<h2 style="color:DarkRed">Falha Crítica</h2> <p>Você falha em completar o item. Você perde 10% da matéria-prima que supriu, mas pode recuperar o resto. Se quiser tentar novamente, você deve recomeçar do zero.</p>
       <h3>Resumo</h3>
-      <p>Perda de Materiais: ${(itmValue/2)*0.1} po</p>`);    
-    } else if (roll+crit + cra.value < DC) {
-      toChat(message+`<h2>Falha</h2> <p>Falha Você falha em completar o item. Você pode recuperar a matéria-prima que supriu em seu valor total. Se quiser tentar novamente, você deve recomeçar do zero.</p>`);
+      <p><b>Perda de Materiais:<b> ${(itmValue/2)*0.1} po</p>`);    
+    } else if (finalRoll < DC) {
+      toChat(message+`<h2 style="color:Red">Falha</h2> <p>Você falha em completar o item. Você pode recuperar a matéria-prima que supriu em seu valor total. Se quiser tentar novamente, você deve recomeçar do zero.</p>`);
     }    
   }
   
@@ -482,13 +464,13 @@ const tableFormulas = {
         <input id="value-item" name="value-item" type="number" min="0"/>
       </div>
       <div class="form-group">
-        <label>Item Raro ?</label>
+        <label>Bônus para Rolagem :</label>
+        <input id="bonus-skill" name="bonus-skill" type="number" min="-20" max="20"/>
+      </div>      
+      <div class="form-group">
+        <label>Item Raro (CD+5) ?</label>
         <input id="rare-item" name="rare-item" type="checkbox" value="rare"/>
       </div>
-      <div class="form-group">
-        <label>Devin's Sight ?</label>
-        <input id="fortune" name="fortune" type="checkbox" value="fortune"/>
-      </div>   
     </form>
     `,
   buttons: {
@@ -509,29 +491,29 @@ const tableFormulas = {
         var {cra} = actor.data.data.skills;
         var charLevel = actor.data.data.details.level.value;
         var charName = actor.data.name;
-        let itmType = html.find('[name="rare-item"]')[0].checked ? "raro" : "comum" ;
-        let devinSight = html.find('[name="fortune"]')[0].checked;
+        let itmType = html.find('[name="rare-item"]')[0].checked ? "raro" : "comum" ;        
         let itmLevel = parseInt(html.find('[name="lvl-item"]')[0].value) || 0;
         let itmValue = parseInt(html.find('[name="value-item"]')[0].value) || 0;
-
-        //console.log(itmType);
+        let bonusSkill = parseInt(html.find('[name="bonus-skill"]')[0].value) || 0;
+      
+        let data = {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill};
 
         if (itmLevel <= charLevel) {
           if (itmLevel >= 0 && itmLevel <= 20) {
             if (cra.rank >= 4) {
-                    return rollCrafting({itmLevel, cra, charLevel, itmType, itmValue, charName, devinSight});
+                    return rollCrafting(data);
             } else if (cra.rank >= 3) {
                 if (itmLevel < 16) {
-                    return rollCrafting({itmLevel, cra, charLevel, itmType, itmValue, charName, devinSight});
+                    return rollCrafting(data);
               } else {
-                ui.notifications.warn("Don't possess the sufficient proficiency to craft this !");
+                ui.notifications.warn("Não possui proficiência suficiente para manufaturar esse item !");
               }
 
             } else if (cra.rank >= 1) {
               if (itmLevel < 9) {
-                    return rollCrafting({itmLevel, cra, charLevel, itmType, itmValue, charName, devinSight});
+                    return rollCrafting(data);
               } else {
-                ui.notifications.warn("Don't possess the sufficient proficiency to craft this !");
+                ui.notifications.warn("Não possui proficiência suficiente para manufaturar esse item !");
               }
             } else {
               ui.notifications.warn("Não é treinado em Manufatura, e não pode manufaturar coisas !");
