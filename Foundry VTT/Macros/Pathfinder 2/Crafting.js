@@ -1,4 +1,4 @@
-const version = 'v0.2';
+const version = 'v0.3';
 /* Crafting
 Features
 - Mostra valor da fórmula
@@ -438,26 +438,28 @@ const tableFormulas = {
     
     if (itmType === "rare") DC += 5;
     
-    let message = `<h1>Manufatura</h1><p>Manufaturando um item ${itmType} de nível ${itmLevel}. O valor investido foi de ${itmValue/2}po.</p><p>O resultado da rolagem foi [[${roll}+${cra.value}]]</p>`;   
+    let message = `<h1>Manufatura</h1><p>Manufaturando um item ${itmType} de nível ${itmLevel}. O valor investido foi de ${itmValue/2} po.</p><p>O resultado da rolagem foi [[${roll}+${cra.value}]]</p>`;   
     
     if (roll + crit + cra.value >= DC+10) {
       toChat(message+`<h2>Sucesso Crítico</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
       <h3>Resumo</h3>
-      <p>Redução de Custo por Dia: ${gp}po</p>
-      <p>Custo Término Imediato: ${itmValue/2}po</p>
+      <p>Redução de Custo por Dia: ${gp} po</p>
+      <p>Custo Término Imediato: ${itmValue/2} po</p>
       <p>Tempo para Terminar: ${Math.ceil((itmValue/2)/gp)} dias</p>
-      <p>Custo da Fórmula: ${tableFormulas[parseInt(itmLevel)]}po</p>`);
+      <p>Custo da Fórmula: ${tableFormulas[parseInt(itmLevel)]} po</p>
+      <p>Custo de Término + Fórmula: ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
     } else if (roll+crit + cra.value >= DC) {
       toChat(message+`<h2>Sucesso</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
       <h3>Resumo</h3>
-      <p>Redução de Custo por Dia: ${gp}po</p>
-      <p>Custo Término Imediato: ${itmValue/2}po</p>
+      <p>Redução de Custo por Dia: ${gp} po</p>
+      <p>Custo Término Imediato: ${itmValue/2} po</p>
       <p>Tempo para Terminar: ${Math.ceil((itmValue/2)/gp)} dias</p>
-      <p>Custo da Fórmula: ${tableFormulas[parseInt(itmLevel)]}po</p>`);
+      <p>Custo da Fórmula: ${tableFormulas[parseInt(itmLevel)]} po</p>
+      <p>Custo de Término + Fórmula: ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
     } else if (roll + crit + cra.value < DC-10) {
       toChat(message+`<h2>Falha Crítica</h2> <p>Você falha em completar o item. Você perde 10% da matéria-prima que supriu, mas pode recuperar o resto. Se quiser tentar novamente, você deve recomeçar do zero.</p>
       <h3>Resumo</h3>
-      <p>Perda de Materiais: ${(itmValue/2)*0.1}po</p>`);    
+      <p>Perda de Materiais: ${(itmValue/2)*0.1} po</p>`);    
     } else if (roll+crit + cra.value < DC) {
       toChat(message+`<h2>Falha</h2> <p>Falha Você falha em completar o item. Você pode recuperar a matéria-prima que supriu em seu valor total. Se quiser tentar novamente, você deve recomeçar do zero.</p>`);
     }    
@@ -532,10 +534,10 @@ const tableFormulas = {
                 ui.notifications.warn("Don't possess the sufficient proficiency to craft this !");
               }
             } else {
-              ui.notifications.warn("Isn't trained in Crafting, and can't craft stuff !");
+              ui.notifications.warn("Não é treinado em Manufatura, e não pode manufaturar coisas !");
             }
           } else ui.notifications.warn("Invalid item level !");
-        } else ui.notifications.warn("Item level above character level !");
+        } else ui.notifications.warn("Nível do Item acima do nível do personagem !");
         return;
       }
     }
