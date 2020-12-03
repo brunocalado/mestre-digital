@@ -24,7 +24,7 @@ if [ $1  ]; then
   rm jitsi-key.gpg.key
   echo "deb https://download.jitsi.org stable/" | sudo tee -a /etc/apt/sources.list.d/jitsi-stable.list
   sudo apt update
-  sudo apt install jitsi-meet
+  sudo apt -y install jitsi-meet
 
   # NOIP
   sudo apt -y install gcc make
@@ -35,11 +35,17 @@ if [ $1  ]; then
   cd noip-2.1.9-1/
   sudo make install
   cd
+  curl -o noip https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/noip/noip.sh
+  chmod +x noip
 
   # Certbot
   sudo apt -y install certbot
+  sudo /usr/local/bin/noip2
   sudo /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
-  
+
+  # Configurar o Jitsi
+  nano "/etc/nginx/sites-available/${DOMINIO}.conf"
+  sudo service nginx restart
   
 else
   echo "Precisa colocar um argumento que seja um dominio!"
