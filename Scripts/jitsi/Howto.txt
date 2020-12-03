@@ -1,0 +1,3 @@
+Comando 1
+curl -o fase01.sh https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/fase01.sh && chmod +x fase01.sh && ./fase01.sh
+
