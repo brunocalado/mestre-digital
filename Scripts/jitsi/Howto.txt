@@ -20,9 +20,6 @@ A SENHA vai ser a senha de acesso ao jitsi.
 Após terminar de executar o comando digite:
 exit
 
-sudo vim /etc/prosody/conf.avail/jitsi.servequake.com.cfg.lua 
-storage = "null"
- 
 Firewall
 tcp: 4443, 10000:20000, 3478, 5349
 udp: 10000:20000, 3478, 5349, 5281

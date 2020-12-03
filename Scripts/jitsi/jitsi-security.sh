@@ -1,5 +1,5 @@
 #!/bin/bash
-https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/apeunit.test.cfg.lua
+
 if [ $1 ]; then
   USER="foundry"
   PASSWORD=$1
@@ -9,7 +9,7 @@ if [ $1 ]; then
   DOMINIO=$(head -n 1 dominio)  
   export JITSI_DOMAIN=$DOMINIO  
 
-curl  https://gist.githubusercontent.com/noandrea/5ff6b212273af95103996c0e71f0cdf2/raw/22965f246c59bc149245554b6079db97794425bd/apeunit.test-config.js -s | \
+curl  https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/apeunit.test-config.js -s | \
 sed  "s/apeunit.test/$JITSI_DOMAIN/g" \
 > /etc/jitsi/meet/$JITSI_DOMAIN-config.js
 
