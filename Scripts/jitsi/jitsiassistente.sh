@@ -25,6 +25,7 @@ if [ $1 ]; then
   echo "deb https://download.jitsi.org stable/" | sudo tee -a /etc/apt/sources.list.d/jitsi-stable.list
   sudo apt update
   sudo apt -y install jitsi-meet
+  curl -o jitsi https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/jitsi.sh
 
   # NOIP
   sudo apt -y install gcc make
@@ -59,8 +60,13 @@ if [ $1 ]; then
   
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
   cat md
-  echo
+  echo  
+  echo "Comandos adicionados: jitsi, noip"
+  
+  rm dominio
+  rm contausuario
+  rm md
+  rm assistente
 else
   echo "Coloque o dominio"
 fi
-

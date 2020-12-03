@@ -2,7 +2,7 @@
 
 if [ $1 ]; then
   USER="foundry"
-  PASSWORD="${1}"
+  PASSWORD=$1
   
   CONTAUSUARIO=$(head -n 1 contausuario)
   
@@ -33,7 +33,7 @@ echo "org.jitsi.jicofo.auth.URL=XMPP:$JITSI_DOMAIN" \
   echo "===================" >> DadosJitsi
   cat DadosJitsi
   chown $CONTAUSUARIO.$CONTAUSUARIO DadosJitsi
-  
+
   service jicofo restart
   service jitsi-videobridge2 restart
   service prosody restart
