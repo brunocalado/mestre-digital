@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+#!/bin/bash
 
 if [ $1 ]; then
   USER="foundry"

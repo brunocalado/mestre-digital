@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $1 ]; then
   DOMINIO=$1
@@ -54,6 +54,7 @@ if [ $1 ]; then
   echo "=== Execute os Comandos Manualmente ==="
   echo "./jitsi-security SENHA"
   echo "exit"
+  echo "export JITSI_DOMAIN=${DOMINIO}"
   sudo su
   
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
