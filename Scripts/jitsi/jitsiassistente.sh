@@ -1,6 +1,6 @@
 #!/bin/sh
- 
-if [ $1  ]; then
+
+if [ $1 ]; then
   DOMINIO=$1
 
   # Atualizacao Inicial
@@ -45,10 +45,20 @@ if [ $1  ]; then
 
   # Configurar o Jitsi
   nano "/etc/nginx/sites-available/${DOMINIO}.conf"
-  sudo service nginx restart
+  sudo service nginx restart   
+  cd
+  echo ${DOMINIO} > dominio  
+  whoami > contausuario  
+  curl -o jitsi-security https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/jitsi-security.sh
+  chmod +x jitsi-security
+  echo "=== Execute os Comandos Manualmente ==="
+  echo "./jitsi-security SENHA"
+  echo "exit"
+  sudo su
   
+  curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
+  cat md
 else
-  echo "Precisa colocar um argumento que seja um dominio!"
+  echo "Coloque o dominio"
 fi
-
 
