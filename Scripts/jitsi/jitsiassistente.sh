@@ -44,7 +44,7 @@ if [ $1 ]; then
   sudo /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
 
   # Configurar o Jitsi
-  nano "/etc/nginx/sites-available/${DOMINIO}.conf"
+  sudo nano "/etc/nginx/sites-available/${DOMINIO}.conf"
   sudo service nginx restart   
   cd
   echo ${DOMINIO} > dominio  
@@ -58,6 +58,7 @@ if [ $1 ]; then
   
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
   cat md
+  echo
 else
   echo "Coloque o dominio"
 fi

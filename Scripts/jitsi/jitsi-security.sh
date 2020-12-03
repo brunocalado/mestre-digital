@@ -3,7 +3,6 @@
 if [ $1 ]; then
   USER="foundry"
   PASSWORD=$1
-
   read -r CONTAUSUARIO<contausuario
 
   read -r DOMINIO<dominio

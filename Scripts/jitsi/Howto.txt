@@ -1,5 +1,8 @@
 Comando 1
-curl -o fase01.sh https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/fase01.sh && chmod +x fase01.sh && ./fase01.sh
+curl -o assistente https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/jitsiassistente.sh && chmod +x assistente
+
+Você deve colocar em DOMINIO o endereço de seu servidor. 
+./assistente DOMINIO
 
 Comando 2
 Quando o comando abrir um editor de textos você deverá adicionar ao local onde está #BOSH as seguintes linhas.
