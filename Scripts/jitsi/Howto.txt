@@ -1,0 +1,29 @@
+Comando 1
+curl -o assistente https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/jitsiassistente.sh && chmod +x assistente
+
+Você deve colocar em DOMINIO o endereço de seu servidor. 
+./assistente DOMINIO
+
+Comando 2
+Quando o comando abrir um editor de textos você deverá adicionar ao local onde está #BOSH as seguintes linhas.
+
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Credentials' 'true';
+add_header 'Access-Control-Allow-Methods' 'GET,HEAD,OPTIONS,POST,PUT';
+add_header 'Access-Control-Allow-Headers' 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers';
+
+Comando 3
+Depois que a mensagem: "=== Execute os Comandos Manualmente ===" aparecer você deve digitar:
+./jitsi-security SENHA
+A SENHA vai ser a senha de acesso ao jitsi.
+
+Após terminar de executar o comando digite:
+exit
+
+sudo vim /etc/prosody/conf.avail/jitsi.servequake.com.cfg.lua 
+storage = "null"
+ 
+Firewall
+tcp: 4443, 10000:20000, 3478, 5349
+udp: 10000:20000, 3478, 5349, 5281
+  
