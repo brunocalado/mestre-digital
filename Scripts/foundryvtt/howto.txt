@@ -1,0 +1,5 @@
+# Comando 1
+curl -o assistente https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/jitsi/jitsiassistente.sh && chmod +x assistente
+
+Você deve colocar em DOWNLOAD o endereço de download que pegou do site do foundry vtt. 
+./assistente DOWNLOAD
