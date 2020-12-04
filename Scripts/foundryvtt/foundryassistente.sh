@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 2 ]; then
+if [ $# -eq 2 ]; then
   DOMINIO=$1
   DOWNLOAD=$2
   
