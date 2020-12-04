@@ -1,4 +1,4 @@
-const version = 'v0.4';
+const version = 'v0.5';
 /* Crafting
 Features
 - Mostra valor da fórmula
@@ -59,7 +59,7 @@ const tableFormulas = {
   const handleCrits = (roll) => roll === 1 ? -10 : (roll === 20 ? 10 : 0);
   
   let rollCrafting = (args) => {
-    let {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill} = args;
+    let {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill, nomeItem} = args;
 
     var roll = new Roll(`d20`).roll().total;
     
@@ -420,24 +420,24 @@ const tableFormulas = {
     
     if (itmType === "rare") DC += 5;
     
-    let message = `<h1>Manufatura</h1><p>${charName} está manufaturando um item ${itmType} de nível ${itmLevel}. O valor investido foi de ${itmValue/2} po.</p><p>O resultado da rolagem d20+${cra.value}+${bonusSkill} foi [[${roll}+${cra.value}+${bonusSkill}]]</p>`;   
+    let message = `<h1>Manufatura</h1><p><b style="color:red">${charName}</b> está manufaturando um <b style="color:red">${nomeItem}</b> <b style="color:red">${itmType}</b> de nível <b style="color:red">${itmLevel}</b>. O valor investido foi de <b style="color:red">${itmValue/2} po</b>.</p><p>O resultado da rolagem <b style="color:red">d20+${cra.value}+${bonusSkill}</b> foi [[${roll}+${cra.value}+${bonusSkill}]]</p>`;   
     
     if (finalRoll >= DC+10) {
       toChat(message+`<h2 style="color:DarkGreen">Sucesso Crítico</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
       <h3>Resumo</h3>
-      <p><b>Redução de Custo por Dia:</b> ${gp} po</p>
-      <p><b>Custo Término Imediato:</b> ${itmValue/2} po</p>
+      <p><b>Redução de Custo por Dia:</b> ${gp} po</p>      
       <p><b>Tempo para Terminar:</b> ${Math.ceil((itmValue/2)/gp)} dias</p>
       <p><b>Custo da Fórmula:</b> ${tableFormulas[parseInt(itmLevel)]} po</p>
-      <p><b>Custo de Término + Fórmula:</b> ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
+      <p><b style="color:Red">Custo Término Imediato:</b> ${itmValue/2} po</p>
+      <p><b style="color:DarkRed">Custo de Término + Fórmula:</b> ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
     } else if (finalRoll >= DC) {
       toChat(message+`<h2 style="color:Green">Sucesso</h2> <p>Sua tentativa é bem-sucedida. Cada dia adicional gasto Manufaturando reduz os materiais necessários para completar o item em uma quantidade ${gp}po e sua graduação de proficiência. </br> ${charName} pode pagar ${itmValue/2}po para terminar imediatamente ou gastar ${Math.ceil((itmValue/2)/gp)} dias extras.</p>
       <h3>Resumo</h3>
-      <p><b>Redução de Custo por Dia:</b> ${gp} po</p>
-      <p><b>Custo Término Imediato:</b> ${itmValue/2} po</p>
+      <p><b>Redução de Custo por Dia:</b> ${gp} po</p>      
       <p><b>Tempo para Terminar:</b> ${Math.ceil((itmValue/2)/gp)} dias</p>
       <p><b>Custo da Fórmula:</b> ${tableFormulas[parseInt(itmLevel)]} po</p>
-      <p><b>Custo de Término + Fórmula:</b> ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
+      <p><b style="color:Red">Custo Término Imediato:</b> ${itmValue/2} po</p>
+      <p><b style="color:DarkRed">Custo de Término + Fórmula:</b> ${itmValue/2+tableFormulas[parseInt(itmLevel)]} po</p>`);
     } else if (finalRoll < DC-10) {
       toChat(message+`<h2 style="color:DarkRed">Falha Crítica</h2> <p>Você falha em completar o item. Você perde 10% da matéria-prima que supriu, mas pode recuperar o resto. Se quiser tentar novamente, você deve recomeçar do zero.</p>
       <h3>Resumo</h3>
@@ -456,19 +456,23 @@ const tableFormulas = {
     <hr/>
     <form>
       <div class="form-group">
-        <label>Nível do Item :</label>
+        <label><b>Nível do Item :</b></label>
         <input id="lvl-item" name="lvl-item" type="number" min="0" max="20"/>
       </div>
       <div class="form-group">
-        <label>Valor do Item (em PO) :</label>
+        <label><b>Valor do Item (PO) :</b></label>
         <input id="value-item" name="value-item" type="number" min="0"/>
       </div>
       <div class="form-group">
-        <label>Bônus para Rolagem :</label>
+        <label><b>Bônus para Rolagem :</b></label>
         <input id="bonus-skill" name="bonus-skill" type="number" min="-20" max="20"/>
       </div>      
       <div class="form-group">
-        <label>Item Raro (CD+5) ?</label>
+        <label><b>Item (opcional) :</b></label>
+        <input id="nome-item" name="nome-item" type="text" value="item"/>
+      </div>      
+      <div class="form-group">
+        <label><b>Item Raro (CD+5) ?</b></label>
         <input id="rare-item" name="rare-item" type="checkbox" value="rare"/>
       </div>
     </form>
@@ -495,8 +499,9 @@ const tableFormulas = {
         let itmLevel = parseInt(html.find('[name="lvl-item"]')[0].value) || 0;
         let itmValue = parseInt(html.find('[name="value-item"]')[0].value) || 0;
         let bonusSkill = parseInt(html.find('[name="bonus-skill"]')[0].value) || 0;
+        let nomeItem = html.find('[name="nome-item"]')[0].value;
       
-        let data = {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill};
+        let data = {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill, nomeItem};
 
         if (itmLevel <= charLevel) {
           if (itmLevel >= 0 && itmLevel <= 20) {
