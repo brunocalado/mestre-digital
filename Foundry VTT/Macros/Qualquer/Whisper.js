@@ -3,7 +3,7 @@ const version = 'v0.1';
 Features
 - whisper to conected players
 
-source:
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Qualquer/Whisper.js
 icon: icons/tools/scribal/ink-quill-pink.webp
 */
 
