@@ -1,3 +1,4 @@
+const version = 'v0.1';
 /* Multi Attack 
 Features
 - 
@@ -5,7 +6,7 @@ Features
 
 TODO
 - Read token data
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/DnD%205e/MultiAtaque.js
 icon: icons/commodities/claws/claw-bear-brown.webp
 */
 
