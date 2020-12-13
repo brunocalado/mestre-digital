@@ -55,8 +55,7 @@ if [ $1 ]; then
   chmod +x jitsi-security
   echo "=== Execute os Comandos Manualmente ==="
   echo "./jitsi-security SENHA"
-  echo "exit"
-  echo "export JITSI_DOMAIN=${DOMINIO}"
+  echo "exit"  
   sudo su
   
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
@@ -64,6 +63,7 @@ if [ $1 ]; then
   echo  
   echo "Comandos adicionados: jitsi, noip"
   
+  rm jitsi-security.sh
   rm dominio
   rm contausuario
   rm md

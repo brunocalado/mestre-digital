@@ -27,7 +27,8 @@ echo "org.jitsi.jicofo.auth.URL=XMPP:$JITSI_DOMAIN" \
   
   touch DadosJitsi
   echo "===================" > DadosJitsi
-  echo "Usuario e Senha da Conta Jitsi" >> DadosJitsi
+  echo "Usuario e Senha da Conta Jitsi" >> DadosJitsi  
+  echo "Endereco: ${JITSI_DOMAIN}" >> DadosJitsi
   echo "Usuario: ${USER}" >> DadosJitsi
   echo "Senha: ${PASSWORD}" >> DadosJitsi
   echo "===================" >> DadosJitsi
