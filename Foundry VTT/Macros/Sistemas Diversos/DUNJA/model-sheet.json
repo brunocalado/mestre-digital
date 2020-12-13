@@ -1,0 +1,82 @@
+{
+  "name": "MODELO de FICHA",
+  "type": "character",
+  "data": {
+    "biography": "",
+    "health": {
+      "value": 10,
+      "min": 0,
+      "max": 10
+    },
+    "power": {
+      "value": 5,
+      "min": 0,
+      "max": 5
+    },
+    "attributes": {
+      "coracao": {
+        "value": 1,
+        "label": "Coração",
+        "dtype": "Number",
+        "group": ""
+      },
+      "musculos": {
+        "value": 0,
+        "label": "Músculos",
+        "dtype": "Number",
+        "group": ""
+      },
+      "cerebro": {
+        "value": 2,
+        "label": "Cérebro",
+        "dtype": "Number",
+        "group": ""
+      }
+    },
+    "groups": {}
+  },
+  "sort": 100001,
+  "flags": {
+    "exportSource": {
+      "world": "dunja",
+      "system": "worldbuilding",
+      "coreVersion": "0.7.8",
+      "systemVersion": 0.4
+    }
+  },
+  "token": {
+    "flags": {},
+    "name": "New Actor",
+    "displayName": 0,
+    "img": "icons/svg/mystery-man.svg",
+    "tint": null,
+    "width": 1,
+    "height": 1,
+    "scale": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "vision": false,
+    "dimSight": 0,
+    "brightSight": 0,
+    "dimLight": 0,
+    "brightLight": 0,
+    "sightAngle": 360,
+    "lightAngle": 360,
+    "lightAlpha": 1,
+    "lightAnimation": {
+      "speed": 5,
+      "intensity": 5
+    },
+    "actorId": "NssHB12viBIsK6OM",
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {},
+    "bar2": {},
+    "randomImg": false
+  },
+  "items": [],
+  "effects": [],
+  "_id": "NssHB12viBIsK6OM",
+  "img": "icons/svg/mystery-man.svg"
+}
