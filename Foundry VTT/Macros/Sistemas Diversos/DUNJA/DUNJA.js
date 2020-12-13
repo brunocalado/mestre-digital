@@ -1,4 +1,4 @@
-const simpleworldsystem = false; //true= vai usar o ator de simpleworldsystem, false= vai usar os valores abaixo
+const simpleworldsystem = true; //true= vai usar o ator de simpleworldsystem, false= vai usar os valores abaixo
 
 // Coloque os valores aqui que podem ser apenas: -3 -2 -1 0 1 2 3
 let coracao = 2;
@@ -12,18 +12,18 @@ const macroVersion = 'v0.1';
 - Read the actor from Simple world building system.
 - You can set the values to the macro.
 
-source: 
-icon: 
-Actor Sheet Model for Simple World Building System: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/DUNJA.js
+icon: icons/containers/chest/chest-reinforced-steel-pink.webp
+Actor Sheet Model for Simple World Building System: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/model-sheet.json
 */
 
 if (simpleworldsystem) {
   if (!actor) {
     ui.notifications.warn(`Selecione um Token!`); // get selected token  
   } else {
-    coracao = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Coracao.value;
-    cerebro = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Cerebro.value;
-    musculos = canvas.tokens.controlled[0].actor.data.data.attributes.Atributos.Musculos.value;    
+    coracao = canvas.tokens.controlled[0].actor.data.data.attributes.coracao.value;
+    cerebro = canvas.tokens.controlled[0].actor.data.data.attributes.cerebro.value;
+    musculos = canvas.tokens.controlled[0].actor.data.data.attributes.musculos.value;    
     main();
   }
 } else {
@@ -119,7 +119,7 @@ function main() {
       <label>        
         <div class="container">
           <input type="radio" id="attribute" name="attribute" value="cerebro" checked>          
-          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
+          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/dunja.png" width="48" height="48">  
           <div class="centered">${formatAttribute(cerebro)}</div>
         </div>
         Cérebro
@@ -129,7 +129,7 @@ function main() {
       <label>        
         <div class="container">
           <input type="radio" id="attribute" name="attribute" value="coracao">          
-          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
+          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/dunja.png" width="48" height="48">  
           <div class="centered">${formatAttribute(coracao)}</div>
         </div>
         Coração
@@ -139,7 +139,7 @@ function main() {
       <label>        
         <div class="container">
           <input type="radio" id="attribute" name="attribute" value="musculos">          
-          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
+          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/dunja.png" width="48" height="48">  
           <div class="centered">${formatAttribute(musculos)}</div>
         </div>
         Músculos
@@ -152,7 +152,7 @@ function main() {
       <label>        
         <div class="container">
           <input type="radio" id="tiporolagem" name="tiporolagem" value="desvantagem">          
-          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
+          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/dunja.png" width="48" height="48">  
           <div class="centered">Desvantagem</div>
         </div>        
       </label>      
@@ -161,7 +161,7 @@ function main() {
       <label>        
         <div class="container">
           <input type="radio" id="tiporolagem" name="tiporolagem" value="normal" checked>          
-          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
+          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/dunja.png" width="48" height="48">  
           <div class="centered">Normal</div>
         </div>        
       </label>     
@@ -170,7 +170,7 @@ function main() {
       <label>        
         <div class="container">
           <input type="radio" id="tiporolagem" name="tiporolagem" value="vantagem">          
-          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Kult/icons/003.png" width="48" height="48">  
+          <img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/DUNJA/dunja.png" width="48" height="48">  
           <div class="centered">Vantagem</div>
         </div>        
       </label>         
@@ -223,9 +223,7 @@ async function coinmanager(html){
 
 function diceRoll(attribute, tipo, modificador) {
   let value = {'cerebro': cerebro, 'coracao': coracao, 'musculos': musculos};    
-console.log(attribute);
-console.log(tipo);
-console.log(modificador);
+
   if (tipo=='normal') {
     return new Roll('1d6+' + value[attribute] + '+' + modificador).roll();
   } else if (tipo=='vantagem') {
@@ -246,11 +244,21 @@ function chatMessage(dice, attribute) {
 function resultados(dice, attribute) {
   let total = dice.total;
   let msg = ``;  
+ 
   if (total>=6) {
     msg+=`<h2>Sucesso!</h2>`;      
   } else {
     msg+=`<h2>Falha!</h2>`;
   }
+
+  if (attribute=='coracao') {
+    msg+=`<b>Coração</b>`;  
+  } else if (attribute=='cerebro') {
+    msg+=`<b>Cérebro</b>`;  
+  } else if (attribute=='musculos') {
+    msg+=`<b>Músculos</b>`;  
+  }  
+  
   return msg;
 }
 
