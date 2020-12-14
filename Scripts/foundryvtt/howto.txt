@@ -1,10 +1,7 @@
 # Comando 1
-sudo apt update && sudo apt -y upgrade && sudo shutdown -r now
-
-# Comando 2
 curl -o assistente https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/foundryassistente.sh && chmod +x assistente
 
-# Comando 3
+# Comando 2
 Você deve colocar em DOWNLOAD o endereço de download que pegou do site do foundry vtt. 
 ./assistente DOMINIO "DOWNLOAD"
 

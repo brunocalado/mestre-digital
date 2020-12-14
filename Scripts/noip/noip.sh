@@ -1,10 +1,11 @@
 #######################################################
 #! /bin/bash
+#version v1.00
 echo "========================================"
 case "$1" in
     start)
         echo "Iniciando o noip2"
-        sudo /usr/local/bin/noip2                
+        sudo /usr/local/bin/noip2
     ;;
     stop)
         echo "Desligando o noip2"

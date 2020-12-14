@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#version v1.00
 if [ $# -eq 2 ]; then
   DOMINIO=$1
   DOWNLOAD=$2
@@ -17,8 +17,8 @@ if [ $# -eq 2 ]; then
   sudo apt -y install zip
 
   echo "===== Instala Gerenciador de NODE ====="
-  # "https://github.com/nvm-sh/nvm"
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+  # Fonte: "https://github.com/nvm-sh/nvm"
+  curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh" | bash
   source ~/.bashrc
 
   # Foundry VTT
@@ -47,7 +47,7 @@ if [ $# -eq 2 ]; then
   echo "===== Instala NOIP ====="
   sudo apt -y install gcc make
   cd /usr/local/src/
-  curl -o noip-duc-linux.tar.gz http://www.noip.com/client/linux/noip-duc-linux.tar.gz
+  sudo curl -o noip-duc-linux.tar.gz http://www.noip.com/client/linux/noip-duc-linux.tar.gz
   sudo tar xf noip-duc-linux.tar.gz
   sudo rm noip-duc-linux.tar.gz
   cd noip-2.1.9-1/
@@ -55,9 +55,9 @@ if [ $# -eq 2 ]; then
   cd
   curl -o noip https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/noip/noip.sh
   chmod +x noip
-
-  # Certbot
   ./noip start
+
+  # Certbot  
   sudo apt -y install snapd
   sudo snap install core
   sudo snap refresh core
@@ -72,6 +72,15 @@ if [ $# -eq 2 ]; then
   # Configura os arquivos do Foundry VTT
   sed -i 's+"sslCert": null+"sslCert": "/etc/letsencrypt/live/'$DOMINIO'/cert.pem"+g' .local/share/FoundryVTT/Config/options.json
   sed -i 's+"sslKey": null+"sslKey": "/etc/letsencrypt/live/'$DOMINIO'/privkey.pem"+g' .local/share/FoundryVTT/Config/options.json
+
+  # Chave para arquivos
+  ssh-keygen -t rsa -f ~/.ssh/arquivoschave -C $(whoami) -N "" 
+  
+  # Dados de Consulta
+  echo "Usuario: $(whoami)" > dadossuporte
+  echo "Maquina: $(hostname)" >> dadossuporte    
+  echo "Local da chave publica: .ssh/arquivoschave.pub" >> dadossuporte    
+  echo "Local da chave privada: .ssh/arquivoschave" >> dadossuporte    
   
   # Assistente
   curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh
