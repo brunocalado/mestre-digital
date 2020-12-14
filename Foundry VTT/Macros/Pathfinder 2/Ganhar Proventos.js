@@ -1,4 +1,4 @@
-const macroVersion = 'v0.3';
+const macroVersion = 'v0.4';
 /*
 Ganhar Proventos 
 
@@ -89,7 +89,7 @@ let applyChanges = false;
 if (actor) {
   if(actor.data.type === 'character') {
     new Dialog({
-      title: `Ganhar Proventos`,
+      title: `Ganhar Proventos - ${macroVersion}`,
       content: `
         <div>Selecione uma perícia e quantos dias para calcular seus ganhos. Lembre-se qeu você precisa ser pelo menos Treinado nesta perícia para Ganhar Proventos!
         </br></br> Se o nível da tarefa ficar em branco,, o nível será ajustado automaticaemnte para o nível do seu personagem.<div>
