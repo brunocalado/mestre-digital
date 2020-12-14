@@ -79,6 +79,7 @@ if [ $# -eq 2 ]; then
   # Dados de Consulta
   echo "Usuario: $(whoami)" > dadossuporte
   echo "Maquina: $(hostname)" >> dadossuporte    
+  echo "Endereco: ${DOMINIO}" >> dadossuporte    
   echo "Local da chave publica: .ssh/arquivoschave.pub" >> dadossuporte    
   echo "Local da chave privada: .ssh/arquivoschave" >> dadossuporte    
   
@@ -94,6 +95,9 @@ if [ $# -eq 2 ]; then
 
   rm md
   rm assistente
+  
+  # Mostra chaves
+  ./jarbas chaves
 else
   echo "Coloque o dominio e o endereco de download do foundry vtt"
 fi
