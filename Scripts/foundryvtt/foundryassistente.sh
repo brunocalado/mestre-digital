@@ -6,12 +6,14 @@ if [ $# -eq 2 ]; then
   
   # Atualizacao Inicial
   echo "===== Atualizacao Inicial ====="  
+  sudo apt update && sudo apt -y upgrade
   
   # Abre interface para acertar a timezone
   echo "===== Corrige a hora ====="
   sudo dpkg-reconfigure tzdata  
   
   # Instala ZIP
+  echo "===== Instala ZIP ====="
   sudo apt -y install zip
 
   echo "===== Instala Gerenciador de NODE ====="
@@ -24,7 +26,7 @@ if [ $# -eq 2 ]; then
   mkdir -p foundry  
   mkdir -p ~/.local/share/FoundryVTT  
   cd foundry/  
-  curl -o fvtt.zip "\"${DOWNLOAD}\""  
+  curl -o fvtt.zip "${DOWNLOAD}"  
   unzip fvtt.zip
 
   echo "===== Instala NODE e Gerenciador de Processos ====="
