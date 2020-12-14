@@ -5,15 +5,13 @@ if [ $# -eq 2 ]; then
   DOWNLOAD=$2
   
   # Atualizacao Inicial
-  echo "===== Atualizacao Inicial ====="
-  sudo apt update 
-  sudo apt -y upgrade
+  echo "===== Atualizacao Inicial ====="  
   sudo apt -y install zip
-  
+
   echo "===== Instala Gerenciador de NODE ====="
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
   source ~/.bashrc
-  
+
   # Foundry VTT
   echo "===== Instala Foundry VTT ====="
   mkdir -p foundry  
@@ -21,11 +19,11 @@ if [ $# -eq 2 ]; then
   cd foundry/  
   curl -o fvtt.zip "${DOWNLOAD}"  
   unzip fvtt.zip
-    
+
   echo "===== Instala NODE e Gerenciador de Processos ====="
   nvm install node  
   npm install pm2@latest -g
-  
+
   echo "===== Criar Pastas Foundry VTT ====="
   pm2 start foundry/resources/app/main.js --name fvtt
   pm2 stop foundry/resources/app/main.js --name fvtt
