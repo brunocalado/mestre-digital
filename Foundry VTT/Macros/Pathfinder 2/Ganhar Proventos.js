@@ -1,4 +1,4 @@
-const macroVersion = 'v0.4';
+const macroVersion = 'v0.5';
 /*
 Ganhar Proventos 
 
@@ -50,7 +50,9 @@ let earnIncome = (taskLevel, charName, skillRank, skillMod, days) => {
     var DC = getDC(taskLevel), gp = 0;
     var critFailure = false;
 
-    var roll = new Roll(`1d20`).roll().total;
+    var roll3d = new Roll(`1d20`).roll();
+    game.dice3d.showForRoll(roll3d);
+    var roll = roll3d.total;
     var crit = handleCrits(roll);
 
     let message = `Começa uma tarefa nível ${taskLevel} durante ${days} dia(s)... [[${roll}+${skillMod}]] ! </br> </br>`;
