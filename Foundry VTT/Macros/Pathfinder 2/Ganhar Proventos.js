@@ -1,3 +1,8 @@
+const macroVersion = 'v0.3';
+/*
+Ganhar Proventos 
+
+*/
 // https://gist.githubusercontent.com/EstolanoBeu/e0e08556d54beaa9b1e38964b47752e9/raw/849e2056227fde55a104b9d3ecfcd6b4bcc5ce68/Ganhar%2520Proventos
 
 let toChat = (content, rollString) => {

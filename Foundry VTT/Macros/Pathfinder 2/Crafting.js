@@ -1,4 +1,4 @@
-const version = 'v0.6';
+const version = 'v0.7';
 /* Crafting
 Features
 - Mostra valor da fórmula
@@ -60,7 +60,9 @@ const tableFormulas = {
   let rollCrafting = (args) => {
     let {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill, nomeItem} = args;
 
-    var roll = new Roll(`1d20`).roll().total;
+    var roll3d = new Roll('1d20').roll();    
+    game.dice3d.showForRoll(roll3d);
+    var roll = roll3d.total;
     
     var crit = handleCrits(roll);    
     
