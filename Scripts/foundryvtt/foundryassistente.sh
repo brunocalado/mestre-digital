@@ -6,9 +6,16 @@ if [ $# -eq 2 ]; then
   
   # Atualizacao Inicial
   echo "===== Atualizacao Inicial ====="  
+  
+  # Abre interface para acertar a timezone
+  echo "===== Corrige a hora ====="
+  sudo dpkg-reconfigure tzdata  
+  
+  # Instala ZIP
   sudo apt -y install zip
 
   echo "===== Instala Gerenciador de NODE ====="
+  # "https://github.com/nvm-sh/nvm"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
   source ~/.bashrc
 
@@ -17,7 +24,7 @@ if [ $# -eq 2 ]; then
   mkdir -p foundry  
   mkdir -p ~/.local/share/FoundryVTT  
   cd foundry/  
-  curl -o fvtt.zip "${DOWNLOAD}"  
+  curl -o fvtt.zip "\"${DOWNLOAD}\""  
   unzip fvtt.zip
 
   echo "===== Instala NODE e Gerenciador de Processos ====="
