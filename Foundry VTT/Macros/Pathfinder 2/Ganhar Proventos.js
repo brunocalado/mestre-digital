@@ -45,7 +45,7 @@ let earnIncome = (taskLevel, charName, skillRank, skillMod, days) => {
     var DC = getDC(taskLevel), gp = 0;
     var critFailure = false;
 
-    var roll = new Roll(`d20`).roll().total;
+    var roll = new Roll(`1d20`).roll().total;
     var crit = handleCrits(roll);
 
     let message = `Começa uma tarefa nível ${taskLevel} durante ${days} dia(s)... [[${roll}+${skillMod}]] ! </br> </br>`;
