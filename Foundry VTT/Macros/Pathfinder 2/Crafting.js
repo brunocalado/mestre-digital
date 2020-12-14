@@ -1,4 +1,4 @@
-const version = 'v0.5';
+const version = 'v0.6';
 /* Crafting
 Features
 - Mostra valor da fórmula
@@ -9,8 +9,7 @@ Icon: icons/tools/smithing/crucible.webp
 
 if (!actor) {
   ui.notifications.warn(`Selecione um token!`); // get selected token 
-  return;
-} 
+} else {
 
 // 
 const tableFormulas = {
@@ -61,7 +60,7 @@ const tableFormulas = {
   let rollCrafting = (args) => {
     let {itmLevel, cra, charLevel, itmType, itmValue, charName, bonusSkill, nomeItem} = args;
 
-    var roll = new Roll(`d20`).roll().total;
+    var roll = new Roll(`1d20`).roll().total;
     
     var crit = handleCrits(roll);    
     
@@ -523,11 +522,17 @@ const tableFormulas = {
             } else {
               ui.notifications.warn("Não é treinado em Manufatura, e não pode manufaturar coisas !");
             }
-          } else ui.notifications.warn("Invalid item level !");
-        } else ui.notifications.warn("Nível do Item acima do nível do personagem !");
+          } else {
+            ui.notifications.warn("Invalid item level !");
+          }
+        } else {
+          ui.notifications.warn("Nível do Item acima do nível do personagem !");
+        }
         return;
       }
     }
   }
 }).render(true);
  })();
+ 
+} // fim do if actor
