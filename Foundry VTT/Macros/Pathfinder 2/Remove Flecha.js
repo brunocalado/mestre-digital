@@ -1,4 +1,6 @@
-const version = 'v0.1';
+const nomeDoItem = 'Arrows';
+
+const version = 'v0.2';
 /* Remove Ammo 
 
 icon: icons/weapons/ammunition/arrows-barbed-white.webp
@@ -13,24 +15,25 @@ if (!actor) {
   let updates = [];
   let consumed = "";
   // Use Bolts
-  let item = actor.items.find(i=> i.name==="Arrows");
+  let item = actor.items.find(i=> i.name===nomeDoItem);
 
-  if (item.data.data.quantity.value < 1) {
-    ui.notifications.warn(`${game.user.name} not enough ${name} remaining`);
+  if (item === null || item.data.data.quantity.value < 1) {
+    ui.notifications.warn(`${game.user.name} não tem flechas disponíveis!`);
   } else {
     updates.push({"_id": item._id, "data.quantity.value": item.data.data.quantity.value - 1});
-      consumed += `${item.data.data.quantity.value - 1} flechas restantes<br>`;
-    }
+    consumed += `<b>${item.data.data.quantity.value - 1}</b> flechas restantes.<br>`;
     
+
     if (updates.length > 0) {
       await actor.updateEmbeddedEntity("OwnedItem", updates);
     }
 
     ChatMessage.create({
-    user: game.user._id,
-    speaker: { actor: actor, alias: actor.name },
-    content: consumed    
+      user: game.user._id,
+      speaker: { actor: actor, alias: actor.name },
+      content: consumed    
     });
-  
+  }
+
   })(); //async end
 }
