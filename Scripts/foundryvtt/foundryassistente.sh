@@ -89,6 +89,7 @@ if [ $# -eq 2 ]; then
 
   # Final
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
+  echo  
   cat md
   echo  
   echo "Comandos adicionados: jarbas, noip"
