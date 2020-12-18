@@ -7,17 +7,19 @@ if [ $# -eq 2 ]; then
   # Atualizacao Inicial
   echo "===== Atualizacao Inicial ====="  
   sudo apt update && sudo apt -y upgrade
-
-  # Instala NODE
-  echo "===== Instala NODE e Gerenciador de Processos ====="
-  curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
-  sudo bash nodesource_setup.sh
-  sudo apt install -y nodejs
-  sudo apt install -y build-essential
+  
+  # Abre interface para acertar a timezone
+  echo "===== Corrige a hora ====="
+  sudo dpkg-reconfigure tzdata  
   
   # Instala ZIP
   echo "===== Instala ZIP ====="
   sudo apt -y install zip
+
+  echo "===== Instala Gerenciador de NODE ====="
+  # Fonte: "https://github.com/nvm-sh/nvm"
+  curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh" | bash
+  source ~/.bashrc
 
   # Foundry VTT
   echo "===== Instala Foundry VTT ====="
@@ -26,8 +28,14 @@ if [ $# -eq 2 ]; then
   cd foundry/  
   curl -o fvtt.zip "${DOWNLOAD}"  
   unzip fvtt.zip
-  chmod +x ./foundry/resources/app/main.js  
+
+  echo "===== Instala NODE e Gerenciador de Processos ====="
+  nvm install node  
+  npm install pm2@latest -g
+
   echo "===== Criar Pastas Foundry VTT ====="
+  pm2 start foundry/resources/app/main.js --name fvtt
+  pm2 stop foundry/resources/app/main.js --name fvtt
 
   echo "===== Cria Atalhos ====="
   cd ..
@@ -90,8 +98,6 @@ if [ $# -eq 2 ]; then
   rm assistente
   
   # Mostra chaves
-  echo 
-  echo
   ./jarbas chaves
 else
   echo "Coloque o dominio e o endereco de download do foundry vtt"

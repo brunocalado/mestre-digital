@@ -3,33 +3,28 @@
 VERSION="v1.00"
 echo "========================================"
 case "$1" in
-    ligar)
+    start)
         echo "Iniciando o Foundry VTT"
-        nohup ./foundry/resources/app/main.js &
+        pm2 start foundry/resources/app/main.js --name fvtt
     ;;
-    desligar)
-        echo "Encerrando o Foundry VTT"        
-        pkill node
+    stop)
+        echo "Encerrando o Foundry VTT"
+        pm2 stop foundry/resources/app/main.js --name fvtt
     ;;
     status)
         echo "Verificando se o Foundry VTT esta executando"        
-        cat nohup.out
-        echo "Se 'node' aparecer, o Foundry estara rodando:"
-        pgrep -f node
+        pm2 list all
     ;;  
-    versao)
+    version)
         echo "Checagem de Versoes"        
-        node --version        
+        node --version
+        nvm --version
     ;;
-    forcar)
+    force)
         echo "Encerra o FVTT, Atualiza o IP, Inicia o FVTT"        
-        pkill node
+        pm2 stop foundry/resources/app/main.js --name fvtt
         sudo /usr/local/bin/noip2
-        nohup ./foundry/resources/app/main.js &
-    ;;    
-    suporte)
-        echo "Dados da Maquina"        
-        cat dadossuporte
+        pm2 start foundry/resources/app/main.js --name fvtt
     ;;    
     chaves)
         echo "Chaves localizadas"        
@@ -49,11 +44,10 @@ case "$1" in
         echo "Exemplo de uso: ./jarbas start"
         echo
         echo "chaves: Mostra chaves de acesso"
-        echo "suporte: Mostra dados da maquina"
-        echo "ligar: Inicia o Foundry VTT"
-        echo "desligar: Para o Foundry VTT"
+        echo "start: Inicia o Foundry VTT"
+        echo "stop: Para o Foundry VTT"
         echo "status: Verifica se o Foundry VTT está rodando"
-        echo "forcar: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
+        echo "force: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
         exit 1
 esac
 echo "========================================"
