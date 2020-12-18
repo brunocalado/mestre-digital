@@ -4,6 +4,26 @@ if [ $# -eq 2 ]; then
   DOMINIO=$1
   DOWNLOAD=$2
   
+  # Instala ZIP
+  echo "===== Instala ZIP ====="
+  sudo apt -y install zip
+  
+  # Foundry VTT
+  echo "===== Instala Foundry VTT ====="
+  mkdir -p foundry  
+  mkdir -p ~/.local/share/FoundryVTT  
+  cd foundry/  
+  curl -o fvtt.zip "${DOWNLOAD}"  
+  unzip fvtt.zip
+  sudo chmod +x ~/foundry/resources/app/main.js    
+  cd
+
+  echo "===== Cria Atalhos ====="
+  cd ..
+  ln -s .local/share/FoundryVTT/Data/ data
+  ln -s .local/share/FoundryVTT/Config/ config
+  ln -s .local/share/FoundryVTT/Logs/ logs
+  
   # Atualizacao Inicial
   echo "===== Atualizacao Inicial ====="  
   sudo apt update && sudo apt -y upgrade
@@ -12,28 +32,9 @@ if [ $# -eq 2 ]; then
   echo "===== Instala NODE e Gerenciador de Processos ====="
   curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
   sudo bash nodesource_setup.sh
+  sudo apt update
   sudo apt install -y nodejs
   sudo apt install -y build-essential
-  
-  # Instala ZIP
-  echo "===== Instala ZIP ====="
-  sudo apt -y install zip
-
-  # Foundry VTT
-  echo "===== Instala Foundry VTT ====="
-  mkdir -p foundry  
-  mkdir -p ~/.local/share/FoundryVTT  
-  cd foundry/  
-  curl -o fvtt.zip "${DOWNLOAD}"  
-  unzip fvtt.zip
-  chmod +x ./foundry/resources/app/main.js  
-  echo "===== Criar Pastas Foundry VTT ====="
-
-  echo "===== Cria Atalhos ====="
-  cd ..
-  ln -s .local/share/FoundryVTT/Data/ data
-  ln -s .local/share/FoundryVTT/Config/ config
-  ln -s .local/share/FoundryVTT/Logs/ logs
 
   # NOIP
   echo "===== Instala NOIP ====="
