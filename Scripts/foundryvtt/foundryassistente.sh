@@ -17,10 +17,10 @@ if [ $# -eq 2 ]; then
   unzip fvtt.zip
   sudo chmod +x ~/foundry/resources/app/main.js    
   rm fvtt.zip
-  cd
-
-  echo "===== Cria Atalhos ====="
-  cd ..
+  cd ~
+  nohup ./foundry/resources/app/main.js &  
+  
+  echo "===== Cria Atalhos ====="  
   ln -s .local/share/FoundryVTT/Data/ data
   ln -s .local/share/FoundryVTT/Config/ config
   ln -s .local/share/FoundryVTT/Logs/ logs
@@ -61,6 +61,7 @@ if [ $# -eq 2 ]; then
   sudo certbot certonly --standalone -d $DOMINIO
   
   # Certificado para o Foundry VTT
+  pkill node
   sudo apt -y install acl  
   sudo setfacl -R -m u:$(whoami):rX /etc/letsencrypt/{live,archive}/$DOMINIO  
   sudo setfacl -m u:$(whoami):rX /etc/letsencrypt/{live,archive}  
