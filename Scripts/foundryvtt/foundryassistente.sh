@@ -81,9 +81,7 @@ if [ $# -eq 2 ]; then
 
   # Final
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
-  echo  
   cat md
-  echo  
   echo "Comandos adicionados: jarbas, noip"
 
   rm md
@@ -92,7 +90,7 @@ if [ $# -eq 2 ]; then
   # Mostra chaves
   echo 
   echo
-  ./jarbas chaves
+  ./jarbas chaves  
 else
   echo "Coloque o dominio e o endereco de download do foundry vtt"
 fi

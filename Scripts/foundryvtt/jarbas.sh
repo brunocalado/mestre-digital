@@ -5,6 +5,7 @@ echo "========================================"
 case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
+        echo "Pressione enter para continuar." 
         nohup ./foundry/resources/app/main.js &
     ;;
     desligar)
@@ -14,6 +15,7 @@ case "$1" in
     status)
         echo "Verificando se o Foundry VTT esta executando"        
         cat nohup.out
+        echo
         echo "Se 'node' aparecer, o Foundry estara rodando:"
         pgrep -f node
     ;;  
@@ -25,6 +27,7 @@ case "$1" in
         echo "Encerra o FVTT, Atualiza o IP, Inicia o FVTT"        
         pkill node
         sudo /usr/local/bin/noip2
+        echo "Pressione enter para continuar." 
         nohup ./foundry/resources/app/main.js &
     ;;    
     suporte)
