@@ -72,7 +72,7 @@ if [ $# -eq 2 ]; then
   # Dados de Consulta
   echo "Usuario: $(whoami)" > dadossuporte
   echo "Maquina: $(hostname)" >> dadossuporte    
-  echo "Endereco: ${DOMINIO}" >> dadossuporte    
+  echo "Endereco: ${DOMINIO}:30000" >> dadossuporte    
   echo "Local da chave publica: .ssh/arquivoschave.pub" >> dadossuporte    
   echo "Local da chave privada: .ssh/arquivoschave" >> dadossuporte    
   

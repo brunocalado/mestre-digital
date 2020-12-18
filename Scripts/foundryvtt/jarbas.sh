@@ -37,14 +37,23 @@ case "$1" in
     chaves)
         echo "Chaves localizadas"        
         ls -la ~/.ssh
+        echo
         echo "No Google Cloud você deve colocar sua chave publica (.pub). Ao copiar a chave publica copie apenas o que esta entre os separadores"
+        echo
+        echo
         echo "===== CHAVE PUBLICA - COMECO - NAO COPIE ESSA LINHA ====="        
         cat .ssh/arquivoschave.pub
         echo "===== CHAVE PUBLICA - FIM - NAO COPIE ESSA LINHA ====="
+        echo
+        echo
         echo "No Filezilla você deve colocar sua chave privada (arquivo sem extensao). Copie o conteudo dele para um arquivo de texto e salve como chave.ppk no seu computador. "
+        echo
+        echo
         echo "===== CHAVE PRIVADA - COMECO - NAO COPIE ESSA LINHA ====="        
         cat .ssh/arquivoschave
         echo "===== CHAVE PRIVADA - FIM - NAO COPIE ESSA LINHA ====="        
+        echo
+        echo
     ;;        
     *)
         echo "Jarbas Versao ${VERSION}"
