@@ -16,6 +16,7 @@ if [ $# -eq 2 ]; then
   curl -o fvtt.zip "${DOWNLOAD}"  
   unzip fvtt.zip
   sudo chmod +x ~/foundry/resources/app/main.js    
+  rm fvtt.zip
   cd
 
   echo "===== Cria Atalhos ====="
@@ -64,8 +65,8 @@ if [ $# -eq 2 ]; then
   sudo setfacl -R -m u:$(whoami):rX /etc/letsencrypt/{live,archive}/$DOMINIO  
   sudo setfacl -m u:$(whoami):rX /etc/letsencrypt/{live,archive}  
   # Configura os arquivos do Foundry VTT
-  sed -i 's+"sslCert": null+"sslCert": "/etc/letsencrypt/live/'$DOMINIO'/cert.pem"+g' .local/share/FoundryVTT/Config/options.json
-  sed -i 's+"sslKey": null+"sslKey": "/etc/letsencrypt/live/'$DOMINIO'/privkey.pem"+g' .local/share/FoundryVTT/Config/options.json
+  sed -i 's+"sslCert": null+"sslCert": "/etc/letsencrypt/live/'$DOMINIO'/cert.pem"+g' ~/.local/share/FoundryVTT/Config/options.json
+  sed -i 's+"sslKey": null+"sslKey": "/etc/letsencrypt/live/'$DOMINIO'/privkey.pem"+g' ~/.local/share/FoundryVTT/Config/options.json
 
   # Chave para arquivos
   ssh-keygen -t rsa -f ~/.ssh/arquivoschave -C $(whoami) -N "" 
