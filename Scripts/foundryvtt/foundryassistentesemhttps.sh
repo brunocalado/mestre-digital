@@ -18,7 +18,8 @@ if [ $# -eq 2 ]; then
   sudo chmod +x ~/foundry/resources/app/main.js    
   rm fvtt.zip
   cd ~
-    
+  nohup ./foundry/resources/app/main.js &  
+  
   echo "===== Cria Atalhos ====="  
   ln -s .local/share/FoundryVTT/Data/ data
   ln -s .local/share/FoundryVTT/Config/ config
@@ -58,11 +59,8 @@ if [ $# -eq 2 ]; then
   sudo snap install --classic certbot
   sudo ln -s /snap/bin/certbot /usr/bin/certbot
   sudo certbot certonly --standalone -d $DOMINIO
-
-  # Liga o Foundry VTT
-  nohup ./foundry/resources/app/main.js &    
   
-  # Certificado para o Foundry VTT  
+  # Certificado para o Foundry VTT
   pkill node
   sudo apt -y install acl  
   sudo setfacl -R -m u:$(whoami):rX /etc/letsencrypt/{live,archive}/$DOMINIO  
@@ -86,12 +84,17 @@ if [ $# -eq 2 ]; then
   chmod +x jarbas
 
   # Final
-  echo "Comandos adicionados: jarbas, noip"
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
-  cat md  
+  cat md
+  echo "Comandos adicionados: jarbas, noip"
 
   rm md
   rm assistente
+  
+  # Mostra chaves
+  echo 
+  echo
+  ./jarbas chaves  
 else
   echo "Coloque o dominio e o endereco de download do foundry vtt"
 fi
