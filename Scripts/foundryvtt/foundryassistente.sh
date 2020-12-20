@@ -92,6 +92,8 @@ if [ $# -eq 2 ]; then
 
   rm md
   rm assistente
+  
+  pkill node
 else
   echo "Coloque o dominio e o endereco de download do foundry vtt"
 fi
