@@ -20,9 +20,9 @@ if [ $# -eq 2 ]; then
   cd ~
     
   echo "===== Cria Atalhos ====="  
-  ln -s .local/share/FoundryVTT/Data/ data
-  ln -s .local/share/FoundryVTT/Config/ config
-  ln -s .local/share/FoundryVTT/Logs/ logs
+  ln -s ~/.local/share/FoundryVTT/Data/ data
+  ln -s ~/.local/share/FoundryVTT/Config/ config
+  ln -s ~/.local/share/FoundryVTT/Logs/ logs
   
   # Atualizacao Inicial
   echo "===== Atualizacao Inicial ====="  
@@ -68,7 +68,7 @@ if [ $# -eq 2 ]; then
   sudo setfacl -R -m u:$(whoami):rX /etc/letsencrypt/{live,archive}/$DOMINIO  
   sudo setfacl -m u:$(whoami):rX /etc/letsencrypt/{live,archive}
   # Configura os arquivos do Foundry VTT
-  curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/options.json
+  curl -o options.json https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/options.json
   sed -i 's+"sslCert": null+"sslCert": "/etc/letsencrypt/live/'$DOMINIO'/cert.pem"+g' options.json
   sed -i 's+"sslKey": null+"sslKey": "/etc/letsencrypt/live/'$DOMINIO'/privkey.pem"+g' options.json
   sed -i 's+mestredigital+'$(whoami)'+g' options.json  
