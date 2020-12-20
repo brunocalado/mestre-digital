@@ -37,6 +37,9 @@ if [ $# -eq 2 ]; then
   sudo apt install -y nodejs
   sudo apt install -y build-essential
 
+  # Liga o Foundry VTT
+  nohup ./foundry/resources/app/main.js &
+  
   # NOIP
   echo "===== Instala NOIP ====="
   sudo apt -y install gcc make
@@ -58,18 +61,18 @@ if [ $# -eq 2 ]; then
   sudo snap install --classic certbot
   sudo ln -s /snap/bin/certbot /usr/bin/certbot
   sudo certbot certonly --standalone -d $DOMINIO
-
-  # Liga o Foundry VTT
-  nohup ./foundry/resources/app/main.js &    
   
   # Certificado para o Foundry VTT  
   pkill node
   sudo apt -y install acl  
   sudo setfacl -R -m u:$(whoami):rX /etc/letsencrypt/{live,archive}/$DOMINIO  
-  sudo setfacl -m u:$(whoami):rX /etc/letsencrypt/{live,archive}  
+  sudo setfacl -m u:$(whoami):rX /etc/letsencrypt/{live,archive}
   # Configura os arquivos do Foundry VTT
-  sed -i 's+"sslCert": null+"sslCert": "/etc/letsencrypt/live/'$DOMINIO'/cert.pem"+g' ~/.local/share/FoundryVTT/Config/options.json
-  sed -i 's+"sslKey": null+"sslKey": "/etc/letsencrypt/live/'$DOMINIO'/privkey.pem"+g' ~/.local/share/FoundryVTT/Config/options.json
+  curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/options.json
+  sed -i 's+"sslCert": null+"sslCert": "/etc/letsencrypt/live/'$DOMINIO'/cert.pem"+g' options.json
+  sed -i 's+"sslKey": null+"sslKey": "/etc/letsencrypt/live/'$DOMINIO'/privkey.pem"+g' options.json
+  sed -i 's+mestredigital+'$(whoami)'+g' options.json  
+  mv options.json ~/.local/share/FoundryVTT/Config
 
   # Chave para arquivos
   ssh-keygen -t rsa -f ~/.ssh/arquivoschave -C $(whoami) -N "" 
