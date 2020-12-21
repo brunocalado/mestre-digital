@@ -1,9 +1,21 @@
+Criar HTTPS com domínio
 # Comando 1
 curl -o assistente https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/foundryassistente.sh && chmod +x assistente
 
 # Comando 2
-Você deve colocar em DOWNLOAD o endereço de download que pegou do site do foundry vtt. 
+Você deve colocar em DOWNLOAD o endereço de download que pegou do site do foundry vtt. Você deve colocar em DOMINIO o endereço que criou no site noip.com.
 ./assistente DOMINIO "DOWNLOAD"
+
+
+Apenas instalar o Foundry VTT
+# Comando 1
+curl -o assistente https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/foundryassistentesemhttps.sh && chmod +x assistente
+
+# Comando 2
+Você deve colocar em DOWNLOAD o endereço de download que pegou do site do foundry vtt. 
+./assistente "DOWNLOAD"
+
+
 
 
 
