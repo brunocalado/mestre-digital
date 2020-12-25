@@ -17,9 +17,13 @@ case "$1" in
     status)
         echo "Verificando o noip2"        
         sudo /usr/local/bin/noip2 -S       
-    ;;    
+    ;;
+    config)
+        echo "Tenta configurar o noip2"
+        sudo /usr/local/bin/noip2 -C
+    ;;
     *)
-        echo "Opcoes: $0 {start|stop|status}"
+        echo "Opcoes: $0 {start|stop|status|config}"
         exit 1
 esac
 echo "========================================"

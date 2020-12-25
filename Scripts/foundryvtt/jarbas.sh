@@ -34,6 +34,12 @@ case "$1" in
         echo "Dados da Maquina"        
         cat dadossuporte
     ;;    
+    https)
+        echo "======================"
+        echo "Verificacao de HTTPS"        
+        sudo certbot renew --dry-run        
+        echo "======================"        
+    ;;    
     chaves)
         echo "Chaves localizadas"        
         ls -la ~/.ssh
@@ -57,7 +63,7 @@ case "$1" in
     ;;        
     *)
         echo "Jarbas Versao ${VERSION}"
-        echo "Opcoes: $0 {start|stop|status|version|force|chaves}"
+        echo "Opcoes: $0 {start|stop|status|version|force|chaves|https}"
         echo "Exemplo de uso: ./jarbas start"
         echo
         echo "chaves: Mostra chaves de acesso"
@@ -66,6 +72,7 @@ case "$1" in
         echo "desligar: Para o Foundry VTT"
         echo "status: Verifica se o Foundry VTT está rodando"
         echo "forcar: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
+        echo "https: Verifica como esta o HTTPS"        
         exit 1
 esac
 echo "========================================"
