@@ -1,7 +1,5 @@
 Treasure
 - Melhorar cores/ revisar layout
-- Permitir rolar aberto
-- Rolar de acordo com a definição do sistema, (aberto, gm, etc)
 
 Instant NPC
 - Permitir rerolar
