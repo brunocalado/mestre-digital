@@ -1,6 +1,6 @@
 /* Instant NPC - v0.1
 
-Source: 
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Mausritter-InstantNPC.js
 Icon: systems/mausritter/images/sample/Portrait_Rat.png
 */
 //test stuff: console.log(canvas.tokens.controlled[0].actor);
