@@ -1,4 +1,4 @@
-/* Instant NPC - v0.1
+/* Instant NPC - v0.2
 
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Mausritter-InstantNPC.js
 Icon: systems/mausritter/images/sample/Portrait_Rat.png
@@ -24,7 +24,7 @@ const compendium_label = 'Tables';
   const health = healthRoll();
   
   let msg = '';
-  msg += `<p><b>Social position and Payment for service: ${Social}</b></p>`;  
+  msg += `<p><b>Social position and Payment for service:</b> ${Social}</p>`;  
   msg += `<p><b>Appearance:</b> ${Appearance}</p>`;  
   msg += `<p><b>Quirk:</b> ${Quirk}</p>`;  
   msg += `<p><b>Wants:</b> ${Wants}</p>`;  
