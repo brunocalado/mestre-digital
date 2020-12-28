@@ -1,4 +1,4 @@
-const macroVersion = 'v0.6.2';
+const macroVersion = 'v0.6.3';
 /* Attack Assistant
 Features
 - Rolls damage if success. Offers Expose Yourself Damage in the chat.
@@ -241,7 +241,7 @@ function exposeYourself() {
 // ==============================
 function herculeanAppetitesMesssage(dicePool) {
   let temp = `<p><b>Herculean Appetites</b> used.</p>`;
-  if ( dicePool._dice[0].total > dicePool._dice[1].total ) { // d6>d8 
+  if ( dicePool.dice[0].total > dicePool.dice[1].total ) { // d6>d8 
     temp+=`<p><b>Herculean Appetites:</b> The GM will also introduce a <b style="color:#d40023">complication or danger</b> that comes about due to your heedless pursuits.</p>`;
   }
   return temp;
