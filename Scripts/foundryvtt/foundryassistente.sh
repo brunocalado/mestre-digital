@@ -72,7 +72,8 @@ if [ $# -eq 2 ]; then
   sed -i 's+"sslCert": null+"sslCert": "/etc/letsencrypt/live/'$DOMINIO'/cert.pem"+g' options.json
   sed -i 's+"sslKey": null+"sslKey": "/etc/letsencrypt/live/'$DOMINIO'/privkey.pem"+g' options.json
   sed -i 's+mestredigital+'$(whoami)'+g' options.json  
-  mv options.json ~/.local/share/FoundryVTT/Config
+  mkdir -p ~/.local/share/FoundryVTT/Config
+  mv options.json ~/.local/share/FoundryVTT/Config/
 
   # Chave para arquivos
   ssh-keygen -t rsa -f ~/.ssh/arquivoschave -C $(whoami) -N "" 
