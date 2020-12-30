@@ -1,9 +1,9 @@
 const nome = "MeuEfeito"; // Troque MeuEfeito pelo nome exato do efeito que você quer ligar ou desligar.
 
-const macroVersion = 'v0.1';
+const macroVersion = 'v0.2';
 
 /* Ativar/Desativar Efeito
-Source: 
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/DnD%205e/ToogleAE.js
 Icon: 
 */
 //
