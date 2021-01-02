@@ -1,6 +1,6 @@
 const nome = "MeuEfeito"; // Troque MeuEfeito pelo nome exato do efeito que você quer ligar ou desligar.
 
-const macroVersion = 'v0.2';
+const macroVersion = 'v0.3';
 
 /* Ativar/Desativar Efeito
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/DnD%205e/ToogleAE.js
@@ -20,7 +20,7 @@ async function main() {
     ui.notifications.warn(`Efeito não localizado!`); // get selected token 
   } else {
     await effect.update({disabled: !effect.data.disabled});            
-    let mensagem = `O efeito <b>${nome}</b> foi <b>${effect.data.disabled?'ligado':'desligado'}</b>`;
+    let mensagem = `O efeito <b>${nome}</b> foi ${effect.data.disabled?'<b style="color:red">desligado</b>':'<b style="color:green">ligado</b>'}</b>`;
     let chatData = {
       user: game.user._id,
       speaker: ChatMessage.getSpeaker(),

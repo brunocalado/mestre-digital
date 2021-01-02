@@ -1,5 +1,5 @@
 #!/bin/bash
-#version v1.00
+#version v1.02
 if [ $# -eq 2 ]; then
   DOMINIO=$1
   DOWNLOAD=$2
