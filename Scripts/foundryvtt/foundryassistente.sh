@@ -84,6 +84,8 @@ if [ $# -eq 2 ]; then
   echo "Endereco: ${DOMINIO}:30000" >> dadossuporte    
   echo "Local da chave publica: .ssh/arquivoschave.pub" >> dadossuporte    
   echo "Local da chave privada: .ssh/arquivoschave" >> dadossuporte    
+  echo "Pasta de logs de execucao: logExecucao/" >> dadossuporte    
+  echo "Pasta de logs do fondry vtt: logs/" >> dadossuporte
   
   # Assistente
   curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh

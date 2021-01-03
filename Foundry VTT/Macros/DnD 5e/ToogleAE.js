@@ -20,7 +20,7 @@ async function main() {
     ui.notifications.warn(`Efeito não localizado!`); // get selected token 
   } else {
     await effect.update({disabled: !effect.data.disabled});            
-    let mensagem = `O efeito <b>${nome}</b> foi ${effect.data.disabled?'<b style="color:red">desligado</b>':'<b style="color:green">ligado</b>'}</b>`;
+    let mensagem = `O efeito <b>${nome}</b> foi ${effect.data.disabled?'<b style="color:red">desativado!</b>':'<b style="color:green">ativado!</b>'}</b>`;
     let chatData = {
       user: game.user._id,
       speaker: ChatMessage.getSpeaker(),

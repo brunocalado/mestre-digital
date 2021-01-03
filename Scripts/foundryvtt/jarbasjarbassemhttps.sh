@@ -1,11 +1,13 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.00"
+VERSION="v1.01"
 echo "========================================"
 case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
         echo "Pressione enter para continuar." 
+        mkdir -p log
+        mv nohup.out 
         nohup ./foundry/resources/app/main.js &
     ;;
     desligar)
@@ -25,9 +27,10 @@ case "$1" in
     ;;
     forcar)
         echo "Encerra o FVTT, Atualiza o IP, Inicia o FVTT"        
-        pkill node        
-        echo "Pressione enter para continuar." 
+        pkill node   
+        rm nohup.out        
         nohup ./foundry/resources/app/main.js &
+        echo "Pressione enter para continuar." 
     ;;    
     suporte)
         echo "Dados da Maquina"        
@@ -56,7 +59,7 @@ case "$1" in
     ;;        
     *)
         echo "Jarbas Versao ${VERSION}"
-        echo "Opcoes: $0 {start|stop|status|version|force|chaves}"
+        echo "Opcoes: $0 {start|stop|status|version|force|chaves|https}"
         echo "Exemplo de uso: ./jarbas start"
         echo
         echo "chaves: Mostra chaves de acesso"
@@ -64,7 +67,7 @@ case "$1" in
         echo "ligar: Inicia o Foundry VTT"
         echo "desligar: Para o Foundry VTT"
         echo "status: Verifica se o Foundry VTT está rodando"
-        echo "forcar: Encerra o FVTT, Inicia o FVTT"
+        echo "forcar: Encerra o FVTT e Inicia o FVTT"        
         exit 1
 esac
 echo "========================================"
