@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.06"
+VERSION="v1.07"
 echo "========================================"
 case "$1" in
     ligar)
@@ -24,7 +24,9 @@ case "$1" in
     ;;  
     versao)
         echo "Checagem de Versoes"        
-        node --version        
+        echo "Versao do NODE: $(node --version)"
+        echo "Versao do jarbas: ${VERSION}"
+        echo "Versao do SO: $(cat /etc/os-release | grep PRETTY_NAME)"
     ;;
     forcar)
         echo "Encerra o FVTT, Atualiza o IP, Inicia o FVTT"        
