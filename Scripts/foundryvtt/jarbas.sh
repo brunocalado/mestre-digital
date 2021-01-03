@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.05"
+VERSION="v1.06"
 echo "========================================"
 case "$1" in
     ligar)
@@ -58,7 +58,7 @@ case "$1" in
         grep "VERSION=" jarbas
         echo "======================"
     ;;     
-    update)
+    node)
         echo "======================"
         echo "Atualizando o NODE para a ultima versao LTS"        
         curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
@@ -103,7 +103,7 @@ case "$1" in
         echo "https: Verifica como esta o HTTPS"        
         echo "limpar: Apaga arquivos de log do nohup. Nao mexe nos arquivos de log do foundry vtt."        
         echo "update: atualiza o jarbas."        
-        echo "nodelts: atualiza o NODE para a ultima versao LTS (recomendado)."        
+        echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
         exit 1
 esac
 echo "========================================"
