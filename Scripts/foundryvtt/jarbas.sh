@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.08"
+VERSION="v1.09"
 echo "========================================"
 case "$1" in
     ligar)
@@ -93,8 +93,8 @@ case "$1" in
     ;;        
     *)
         echo "Jarbas Versao ${VERSION}"
-        echo "Opcoes: $0 {start|stop|status|version|force|chaves|https}"
-        echo "Exemplo de uso: ./jarbas start"
+        echo "Opcoes: $0 {ligar|desligar|forcar|status|chaves|limpar|update|node|suporte}"
+        echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "chaves: Mostra chaves de acesso"
         echo "suporte: Mostra dados da maquina"
