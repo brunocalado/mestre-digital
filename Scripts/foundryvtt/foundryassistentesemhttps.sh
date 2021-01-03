@@ -1,5 +1,5 @@
 #!/bin/bash
-#version v1.00
+#version v1.04
 if [ $# -eq 1 ]; then  
   DOWNLOAD=$1
   
@@ -30,15 +30,16 @@ if [ $# -eq 1 ]; then
   # Instala NODE
   echo "===== Instala NODE e Gerenciador de Processos ====="
   cd ~
-  curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
+  curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
   sudo bash nodesource_setup.sh  
+  rm nodesource_setup.sh  
   sudo apt update
   sudo apt install -y nodejs
   sudo apt install -y build-essential
 
   # Liga o Foundry VTT
   nohup ./foundry/resources/app/main.js &
-
+  
   # Chave para arquivos
   ssh-keygen -t rsa -f ~/.ssh/arquivoschave -C $(whoami) -N "" 
   
@@ -47,9 +48,11 @@ if [ $# -eq 1 ]; then
   echo "Maquina: $(hostname)" >> dadossuporte    
   echo "Local da chave publica: .ssh/arquivoschave.pub" >> dadossuporte    
   echo "Local da chave privada: .ssh/arquivoschave" >> dadossuporte    
+  echo "Pasta de logs de execucao: logExecucao/" >> dadossuporte    
+  echo "Pasta de logs do fondry vtt: logs/" >> dadossuporte
   
   # Assistente
-  curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbasjarbassemhttps.sh
+  curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh
   chmod +x jarbas
 
   # Final
@@ -62,5 +65,5 @@ if [ $# -eq 1 ]; then
   
   pkill node
 else
-  echo "Coloque o dominio e o endereco de download do foundry vtt"
+  echo "Coloque o endereco de download do foundry vtt"
 fi

@@ -1,5 +1,5 @@
 #!/bin/bash
-#version v1.03
+#version v1.04
 if [ $# -eq 2 ]; then
   DOMINIO=$1
   DOWNLOAD=$2
@@ -31,7 +31,7 @@ if [ $# -eq 2 ]; then
   # Instala NODE
   echo "===== Instala NODE e Gerenciador de Processos ====="
   cd ~
-  curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
+  curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
   sudo bash nodesource_setup.sh  
   rm nodesource_setup.sh  
   sudo apt update

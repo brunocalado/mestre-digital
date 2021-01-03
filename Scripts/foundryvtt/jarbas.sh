@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.07"
+VERSION="v1.08"
 echo "========================================"
 case "$1" in
     ligar)
@@ -29,7 +29,7 @@ case "$1" in
         echo "Versao do SO: $(cat /etc/os-release | grep PRETTY_NAME)"
     ;;
     forcar)
-        echo "Encerra o FVTT, Atualiza o IP, Inicia o FVTT"        
+        echo "Encerra o FVTT, Atualiza o IP (se tiver noip), Inicia o FVTT"        
         pkill node
         sudo /usr/local/bin/noip2        
         ./jarbas ligar
