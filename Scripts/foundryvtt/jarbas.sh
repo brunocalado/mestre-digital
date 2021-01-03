@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.02"
+VERSION="v1.03"
 echo "========================================"
 case "$1" in
     ligar)
@@ -52,6 +52,7 @@ case "$1" in
     update)
         echo "======================"
         echo "Atualizando o jarbas."        
+        rm jarbas
         curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh
         chmod +x jarbas
         echo "======================"        

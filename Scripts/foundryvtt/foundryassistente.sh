@@ -1,5 +1,5 @@
 #!/bin/bash
-#version v1.02
+#version v1.03
 if [ $# -eq 2 ]; then
   DOMINIO=$1
   DOWNLOAD=$2
@@ -33,6 +33,7 @@ if [ $# -eq 2 ]; then
   cd ~
   curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
   sudo bash nodesource_setup.sh  
+  rm nodesource_setup.sh  
   sudo apt update
   sudo apt install -y nodejs
   sudo apt install -y build-essential
