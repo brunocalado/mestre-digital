@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.03"
+VERSION="v1.04"
 echo "========================================"
 case "$1" in
     ligar)
@@ -45,7 +45,7 @@ case "$1" in
     ;;    
     limpar)
         echo "======================"
-        echo "Apagando todos os arquivos de log."        
+        echo "Apagando todos os arquivos de log. Nao mexe nos arquivos de log do foundry vtt."        
         rm -f logExecucao/*.log
         echo "======================"        
     ;;    
@@ -53,10 +53,20 @@ case "$1" in
         echo "======================"
         echo "Atualizando o jarbas."        
         rm jarbas
-        curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh
+        curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh?$(date +%s)
         chmod +x jarbas
         echo "======================"        
     ;;     
+    update)
+        echo "======================"
+        echo "Atualizando o NODE para a ultima versao LTS"        
+        curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+        sudo bash nodesource_setup.sh && rm nodesource_setup.sh  
+        sudo apt update
+        sudo apt install -y nodejs
+        sudo apt install -y build-essential        
+        echo "======================"        
+    ;;             
     chaves)
         echo "Chaves localizadas"        
         ls -la ~/.ssh
@@ -92,6 +102,7 @@ case "$1" in
         echo "https: Verifica como esta o HTTPS"        
         echo "limpar: Apaga arquivos de log do nohup. Nao mexe nos arquivos de log do foundry vtt."        
         echo "update: atualiza o jarbas."        
+        echo "nodelts: atualiza o NODE para a ultima versao LTS (recomendado)."        
         exit 1
 esac
 echo "========================================"
