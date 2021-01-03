@@ -1,13 +1,13 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.09"
+VERSION="v1.10"
 echo "========================================"
 case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
         echo "Pressione enter para continuar." 
         mkdir -p logExecucao
-        cat nohup.out >> logExecucao/`date +"%H%-M%_d-%m-%Y"`.log
+        cat nohup.out >> logExecucao/`date +"%H%M-%d%m%Y"`.log
         rm -f nohup.out
         nohup ./foundry/resources/app/main.js &
     ;;
