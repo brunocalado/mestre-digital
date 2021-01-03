@@ -6,6 +6,9 @@ case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
         echo "Pressione enter para continuar." 
+        mkdir -p logExecucao
+        cat nohup.out >> logExecucao/`date +"%H%-M%_d-%m-%Y"`.log
+        rm -f nohup.out
         nohup ./foundry/resources/app/main.js &
     ;;
     desligar)
@@ -26,9 +29,9 @@ case "$1" in
     forcar)
         echo "Encerra o FVTT, Atualiza o IP, Inicia o FVTT"        
         pkill node
-        sudo /usr/local/bin/noip2
+        sudo /usr/local/bin/noip2        
+        ./jarbas ligar
         echo "Pressione enter para continuar." 
-        nohup ./foundry/resources/app/main.js &
     ;;    
     suporte)
         echo "Dados da Maquina"        
@@ -40,6 +43,19 @@ case "$1" in
         sudo certbot renew --dry-run        
         echo "======================"        
     ;;    
+    limpar)
+        echo "======================"
+        echo "Apagando todos os arquivos de log."        
+        rm -f logExecucao/*.log
+        echo "======================"        
+    ;;    
+    update)
+        echo "======================"
+        echo "Atualizando o jarbas."        
+        curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh
+        chmod +x jarbas
+        echo "======================"        
+    ;;     
     chaves)
         echo "Chaves localizadas"        
         ls -la ~/.ssh
@@ -73,6 +89,8 @@ case "$1" in
         echo "status: Verifica se o Foundry VTT está rodando"
         echo "forcar: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
         echo "https: Verifica como esta o HTTPS"        
+        echo "limpar: Apaga arquivos de log do nohup. Nao mexe nos arquivos de log do foundry vtt."        
+        echo "update: atualiza o jarbas."        
         exit 1
 esac
 echo "========================================"
