@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.10"
+VERSION="v1.11"
 echo "========================================"
 case "$1" in
     ligar)
@@ -32,8 +32,7 @@ case "$1" in
         echo "Encerra o FVTT, Atualiza o IP (se tiver noip), Inicia o FVTT"        
         pkill node
         sudo /usr/local/bin/noip2        
-        ./jarbas ligar
-        echo "Pressione enter para continuar." 
+        ./jarbas ligar        
     ;;    
     suporte)
         echo "Dados da Maquina"        
