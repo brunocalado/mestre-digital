@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.11"
+VERSION="v1.12"
 echo "========================================"
 case "$1" in
     ligar)
@@ -19,7 +19,7 @@ case "$1" in
         echo "Verificando se o Foundry VTT esta executando"        
         cat nohup.out
         echo
-        echo "Se 'node' aparecer, o Foundry estara rodando:"
+        echo "Se aparecer um numero na linha abaixo, o Foundry estara rodando:"
         pgrep -f node
     ;;  
     versao)
