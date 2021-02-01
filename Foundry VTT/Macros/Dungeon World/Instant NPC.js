@@ -1,4 +1,4 @@
-/* Instant NPC - v1.2
+/* Instant NPC - v1.4
 Source: https://github.com/brunocalado/mestre-digital/tree/master/Foundry%20VTT/Macros/Dungeon%20World
 Icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/Instant%20NPC.svg
 Icon2: icons/environment/people/commoner.webp
@@ -7,16 +7,26 @@ Icon2: icons/environment/people/commoner.webp
 (async () => {
   const NPCName = await drawFromTable('Names');
   const NPCKnack = await drawFromTable('Knacks');
-  const NPCInstinct = await drawFromTable('Instincts');
-  let msg = '';
-  msg = `<h3>Personality</h3>`;
+  const NPCInstinct = await drawFromTable('Instincts');  
+  const damageDieRolado = damageDie();
+  const randomArmorRolado = randomArmor();
+  
+  
+  let msg = `<h3>Personality</h3>`;
   msg += `<p><b>Instinct:</b> ${NPCInstinct}</p>`;
   msg += `<p><b>Knack:</b> ${NPCKnack}</p>`;
   msg += `<h3>Treasure</h3>`;
   msg += `<p>${treasureCoins(1,10)} coins.</p>`;
-  
+  let message;
   let npchp = randomHP(4,10);
-  let instantNPC = await Actor.create({
+    
+  message = `<h2><b style="color: red">${NPCName}</b></h2>`;    
+  message+=`<p><b>Damage Die:</b> ${damageDieRolado}</p>`;
+  message+=`<p><b>Armor:</b> ${randomArmorRolado}</p>`;
+  message+=msg;
+
+  addEventListenerOnHtmlElement("#createNPC", 'click', (e) => {    
+    createRandomNPC({
     name: NPCName,
     type: "npc",
     img: "",    
@@ -31,10 +41,10 @@ Icon2: icons/environment/people/commoner.webp
       },
       attributes: {
         damage: {
-          value: damageDie()
+          value: damageDieRolado
         },
         ac: {
-          value: randomArmor()
+          value: randomArmorRolado
         },
         hp: {
           max: npchp,
@@ -42,10 +52,18 @@ Icon2: icons/environment/people/commoner.webp
         }           
       }      
     }
-  });
-
-  await instantNPC.sheet.render(true);
+    });    
+  });          
   
+  message+=`<button style="background:#d10000;color:white" id="createNPC">Create NPC</button>`;
+  
+  let chatData = {
+    user: game.user._id,    
+    content: message,
+    whisper : ChatMessage.getWhisperRecipients("GM")
+  };  
+  ChatMessage.create(chatData, {});  
+
 })()
 
 /* Functions */
@@ -77,4 +95,15 @@ function randomArmor() {
 
 function randomHP(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;  
+}
+
+function addEventListenerOnHtmlElement(element, event, func){    
+    Hooks.once("renderChatMessage", (chatItem, html) => { // Use Hook to add event to chat message html element
+        html[0].querySelector(element).addEventListener(event, func);        
+    });
+} // end addEventListenerOnHtmlElement
+
+async function createRandomNPC(data) {  
+  const instantNPC = await Actor.create(data);
+  await instantNPC.sheet.render(true);    
 }
