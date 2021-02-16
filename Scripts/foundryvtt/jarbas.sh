@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.14"
+VERSION="v1.15"
 echo "========================================"
 case "$1" in
     ligar)
@@ -141,6 +141,9 @@ case "$1" in
         ;;
         config)
           echo "===== Configura o Caddy ====="
+          pkill node
+          sudo service caddy stop
+          
           echo "Digite o seu Dominio e pressione Enter: "
           read dominio
           
@@ -152,6 +155,8 @@ case "$1" in
           sed -i 's+"hostname": null+"hostname": "'$dominio'"+g' config/options.json
           sed -i 's+"proxySSL": false+"proxySSL": "true"+g' config/options.json
           sed -i 's+"proxyPort": null+"proxyPort": "443"+g' config/options.json
+          
+          sudo service caddy start
         ;;
         arquivo)
           cat /etc/caddy/Caddyfile
