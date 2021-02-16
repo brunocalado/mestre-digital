@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.13"
+VERSION="v1.12"
 echo "========================================"
 case "$1" in
     ligar)
@@ -89,49 +89,10 @@ case "$1" in
         echo "===== CHAVE PRIVADA - FIM - NAO COPIE ESSA LINHA ====="        
         echo
         echo
-    ;; 
-    noip)               
-        case "$2" in
-            instalar)
-              echo "===== Instala NOIP ====="
-              sudo apt -y update 
-              sudo apt -y upgrade
-              sudo apt -y install gcc make
-              cd /usr/local/src/
-              sudo curl -o noip-duc-linux.tar.gz http://www.noip.com/client/linux/noip-duc-linux.tar.gz
-              sudo tar xf noip-duc-linux.tar.gz
-              sudo rm noip-duc-linux.tar.gz
-              cd noip-2.1.9-1/
-              sudo make install
-              cd              
-            ;;
-            start)
-              echo "Iniciando o noip2"
-              sudo /usr/local/bin/noip2
-            ;;
-            stop)
-              echo "Desligando o noip2"
-              for i in `sudo /usr/local/bin/noip2 -S 2>&1 | grep Process     | awk '{print $2}' | tr -d ','`
-              do
-                sudo /usr/local/bin/noip2 -K $i
-              done
-            ;; 
-            config)
-              echo "Tenta configurar o noip2"
-              sudo /usr/local/bin/noip2 -C
-            ;;  
-            status)
-                echo "Verificando o noip2"        
-                sudo /usr/local/bin/noip2 -S       
-            ;;
-            *)
-            echo "Opcoes: $0 {instalar|start|stop|status|config}"            
-            exit 1
-        esac
-    ;;    
+    ;;        
     *)
         echo "Jarbas Versao ${VERSION}"
-        echo "Opcoes: $0 {ligar|desligar|forcar|status|chaves|limpar|update|node|suporte|noip}"
+        echo "Opcoes: $0 {ligar|desligar|forcar|status|chaves|limpar|update|node|suporte}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "chaves: Mostra chaves de acesso"
@@ -144,7 +105,6 @@ case "$1" in
         echo "limpar: Apaga arquivos de log do nohup. Nao mexe nos arquivos de log do foundry vtt."        
         echo "update: atualiza o jarbas."        
         echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
-        echo "noip: instala e gerencia o noip."        
         exit 1
 esac
 echo "========================================"
