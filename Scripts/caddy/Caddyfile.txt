@@ -1,0 +1,10 @@
+# This replaces the existing content in /etc/caddy/Caddyfile
+
+# A CONFIG SECTION FOR YOUR HOSTNAME
+MEUDOMINIOFOUNDRY {
+    # PROXY ALL REQUEST TO PORT 30000
+    reverse_proxy localhost:30000
+}
+
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile
