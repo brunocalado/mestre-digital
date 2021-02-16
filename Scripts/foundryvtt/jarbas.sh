@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.13"
+VERSION="v1.14"
 echo "========================================"
 case "$1" in
     ligar)
@@ -68,7 +68,7 @@ case "$1" in
         sudo apt install -y nodejs
         sudo apt install -y build-essential        
         echo "======================"        
-    ;;             
+    ;;   
     chaves)
         echo "Chaves localizadas"        
         ls -la ~/.ssh
@@ -128,23 +128,71 @@ case "$1" in
             echo "Opcoes: $0 {instalar|start|stop|status|config}"            
             exit 1
         esac
-    ;;    
+    ;;   
+    caddy)
+      case "$2" in
+        instalar)
+          echo "===== Instala Caddy ====="
+          echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" \
+            | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list
+          sudo apt -y update
+          sudo apt -y install caddy
+          ./jarbas caddy config
+        ;;
+        config)
+          echo "===== Configura o Caddy ====="
+          echo "Digite o seu Dominio e pressione Enter: "
+          read dominio
+          
+          curl -o Caddyfile https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/caddy/Caddyfile.txt
+          sed -i 's+MEUDOMINIOFOUNDRY+'$dominio'+g' Caddyfile  
+          sudo mv Caddyfile /etc/caddy/Caddyfile
+          
+          cp config/options.json `date +"%H%M-%d%m%Y"`options.json.bkp
+          sed -i 's+"hostname": null+"hostname": "'$dominio'"+g' config/options.json
+          sed -i 's+"proxySSL": false+"proxySSL": "true"+g' config/options.json
+          sed -i 's+"proxyPort": null+"proxyPort": "443"+g' config/options.json
+        ;;
+        arquivo)
+          cat /etc/caddy/Caddyfile
+          echo
+          echo
+          echo "Se quiser editar manualmente use o comando: nano /etc/caddy/Caddyfile"
+        ;;        
+        start)
+          sudo service caddy start
+        ;;
+        status)
+          sudo service caddy status
+        ;;
+        stop)
+          sudo service caddy stop
+        ;;
+        restart)
+          sudo service caddy restart
+        ;;                  
+        *)
+          echo "Opcoes: {instalar|start|restart|stop|status|config|arquivo}"            
+          exit 1
+      esac        
+    ;;
     *)
         echo "Jarbas Versao ${VERSION}"
         echo "Opcoes: $0 {ligar|desligar|forcar|status|chaves|limpar|update|node|suporte|noip}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
+        echo "caddy: instala e gerencia o caddy."  
         echo "chaves: Mostra chaves de acesso"
-        echo "suporte: Mostra dados da maquina"
-        echo "ligar: Inicia o Foundry VTT"
         echo "desligar: Para o Foundry VTT"
-        echo "status: Verifica se o Foundry VTT está rodando"
         echo "forcar: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
         echo "https: Verifica como esta o HTTPS"        
+        echo "ligar: Inicia o Foundry VTT"
         echo "limpar: Apaga arquivos de log do nohup. Nao mexe nos arquivos de log do foundry vtt."        
-        echo "update: atualiza o jarbas."        
         echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
         echo "noip: instala e gerencia o noip."        
+        echo "status: Verifica se o Foundry VTT está rodando"
+        echo "suporte: Mostra dados da maquina"
+        echo "update: atualiza o jarbas."                
         exit 1
 esac
 echo "========================================"
