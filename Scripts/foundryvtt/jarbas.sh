@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.15"
+VERSION="v1.16"
 echo "========================================"
 case "$1" in
     ligar)
@@ -37,13 +37,7 @@ case "$1" in
     suporte)
         echo "Dados da Maquina"        
         cat dadossuporte
-    ;;    
-    https)
-        echo "======================"
-        echo "Verificacao de HTTPS"        
-        sudo certbot renew --dry-run        
-        echo "======================"        
-    ;;    
+    ;; 
     limpar)
         echo "======================"
         echo "Apagando todos os arquivos de log. Nao mexe nos arquivos de log do foundry vtt."        
@@ -59,6 +53,12 @@ case "$1" in
         grep "VERSION=" jarbas
         echo "======================"
     ;;     
+    espaco)
+        echo "======================"
+        echo "Espaco Disponivel"        
+        df -h /dev/sda1
+        echo "======================"        
+    ;;
     node)
         echo "======================"
         echo "Atualizando o NODE para a ultima versao LTS"        
@@ -158,7 +158,7 @@ case "$1" in
           
           sudo service caddy start
         ;;
-        arquivo)
+        arquivo)          
           cat /etc/caddy/Caddyfile
           echo
           echo
@@ -168,6 +168,7 @@ case "$1" in
           sudo service caddy start
         ;;
         status)
+          echo "== Para sair pressione a tecla q de quit =="
           sudo service caddy status
         ;;
         stop)
@@ -182,15 +183,15 @@ case "$1" in
       esac        
     ;;
     *)
-        echo "Jarbas Versao ${VERSION}"
+        echo "Jarbas Versao ${VERSION}" 
         echo "Opcoes: $0 {ligar|desligar|forcar|status|chaves|limpar|update|node|suporte|noip}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "caddy: instala e gerencia o caddy."  
         echo "chaves: Mostra chaves de acesso"
         echo "desligar: Para o Foundry VTT"
+        echo "espaco: mostra quanto do disco foi usado"        
         echo "forcar: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
-        echo "https: Verifica como esta o HTTPS"        
         echo "ligar: Inicia o Foundry VTT"
         echo "limpar: Apaga arquivos de log do nohup. Nao mexe nos arquivos de log do foundry vtt."        
         echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        

@@ -1,0 +1,103 @@
+# Configure Rolls
+rollFormula = "2d10"
+
+# Configure stat toggle label and formula modifier.
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "9-"
+    label = "Failure"
+  [rollResults.partial]
+    range = "10-14"
+    label = "Success with Complications"
+  [rollResults.success]
+    range = "15+"
+    label = "Complete Success!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+[character]
+
+  [character.stats]
+    fortitude = "Fortitude"
+    willpower = "Willpower"
+    reflexes = "Reflexes"
+    reason = "Reason"
+    intuition = "Intuition"
+    perception = "Perception"
+    coolness = "Coolness"
+    violence = "Violence"
+    charisma = "Charisma"
+    soul = "Soul"
+
+
+  [character.attributesTop]
+    [character.attributesTop.armor]
+      type = "Number"
+      label = "Armor"
+    [character.attributesTop.harm]
+      type = "Clock"
+      max = 4
+      default = 0
+
+  [character.attributesLeft]
+    [character.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [character.attributesLeft.weight]
+      type = "Resource"
+      label = "Weight"
+    [character.attributesLeft.conditions]
+      type = "ListMany"
+      label = "Conditions"
+      description = "Choose all that apply:"
+      options = [
+        "Afraid",
+        "Angry",
+        "Guilty",
+        "Hopeless",
+        "Insecure"
+      ]
+        
+  [character.moveTypes]
+    basic = "Basic Moves"
+    advanced = "Advanced Moves"
+    class = "Class Moves"
+    
+  [character.equipmentTypes]
+    gear = "Gear"
+    loot = "Loot"
+  
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.harm]
+      type = "Resource"
+      label = "Harm"
+    [npc.attributesTop.damage]
+      type = "Roll"
+      label = "Damage"
+      default = "d6"
+    [npc.attributesTop.loot]
+      type = "Text"
+      label = "Loot"
+  [npc.attributesLeft]
+    [npc.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [npc.attributesLeft.drive]
+      type = "LongText"
+      label = "Drive"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    gm = "GM Moves"
+  
+  
+  

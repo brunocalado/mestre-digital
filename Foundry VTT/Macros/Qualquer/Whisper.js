@@ -1,4 +1,4 @@
-const version = 'v0.1';
+const version = 'v0.2';
 /* Whisper 
 Features
 - whisper to conected players
@@ -20,10 +20,8 @@ if (users.length < 2) {
         <select id="player" name="player">
   `;
 
-  for (let user of users) {
-    if (!user.isGM) {
-      content += `<option value="`+ user.data.name +`">`+ user.data.name +"</option>";
-    }
+  for (let user of users) {  
+    content += `<option value="`+ user.data.name +`">`+ user.data.name +"</option>";    
   }
 
   content += `
