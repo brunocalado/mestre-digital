@@ -1,6 +1,6 @@
 #######################################################
 #! /bin/sh
-VERSION="v1.16"
+VERSION="v1.17"
 echo "========================================"
 case "$1" in
     ligar)
@@ -165,6 +165,7 @@ case "$1" in
           echo "Se quiser editar manualmente use o comando: nano /etc/caddy/Caddyfile"
         ;;        
         start)
+          echo "== Iniciando o Caddy"
           sudo service caddy start
         ;;
         status)
@@ -172,9 +173,11 @@ case "$1" in
           sudo service caddy status
         ;;
         stop)
+          echo "== Encerrando o Caddy"
           sudo service caddy stop
         ;;
         restart)
+          echo "== Reiniciando o Caddy"
           sudo service caddy restart
         ;;                  
         *)
