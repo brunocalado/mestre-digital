@@ -1,4 +1,4 @@
-const macroVersion = 'v0.6';
+const macroVersion = 'v0.5';
 /* EXP Manager
 ## Features
 - Select a token and it'll be selected in the combo
@@ -34,14 +34,10 @@ function main() {
   let currentHeroPoints = checkHeroExp();
   for (let i = 0; i < currentHeroPoints.length; i++) {
     let levelAvailable='';
-    let heroexp = parseInt(currentHeroPoints[i][1]);
-    if (!heroexp) {      
-      heroexp=0;
-    }    
-    if ( heroexp>=(heroexp+7) ) {
+    if ( parseInt(currentHeroPoints[i][1])>=(parseInt(currentHeroPoints[i][2])+7) ) {
       levelAvailable = ' <b style="color:red">(level available)</b>'; 
     }
-    currentHeroPointsList += '<li>' + currentHeroPoints[i][0] + ' - LV:' + currentHeroPoints[i][2]+ ' - XP:' + heroexp + levelAvailable+ '</li>';    
+    currentHeroPointsList += '<li>' + currentHeroPoints[i][0] + ' - LV:' + currentHeroPoints[i][2]+ ' - XP:' + currentHeroPoints[i][1] + levelAvailable+ '</li>';    
   }  
   
   let template = `
@@ -84,29 +80,25 @@ async function expmanager(html){
 }
 
 async function updateHeroPoints(playerName, heroPoints) {
-  let total;
   let character = game.actors.entities.filter((t) => t.data.type === "character").filter((v) => v.data.name === playerName)[0];
-  let currentHeroPoints = parseInt( character.data.data.attributes.xp.value );
-  if (!currentHeroPoints) {
-    total = parseInt( heroPoints );
-  } else {
-    total = currentHeroPoints + parseInt( heroPoints );    
-  }      
+  let currentHeroPoints = parseInt( character.data.data.attributes.xp.value);
+  let total = currentHeroPoints + parseInt( heroPoints );
   await character.update({['data.attributes.xp.value']: total});
   expMessage(character, heroPoints);
 }
 
 function updateAllHerosXP(heroPoints) {
   let players = game.actors.entities.filter((t) => t.data.type === "character");
-  
-  players.map(async player => { 
-    let total;
+  /*players.map((player) => {
     let currentHeroPoints = parseInt( player.data.data.attributes.xp.value);
-    if (!currentHeroPoints) {
-      total = parseInt( heroPoints );
-    } else {
-      total = currentHeroPoints + parseInt( heroPoints );
-    }          
+    let total = currentHeroPoints + parseInt( heroPoints );
+    player.update({['data.attributes.xp.value']: total});
+    expMessage(player, heroPoints);
+  });*/
+  
+  players.map(async player => {    
+    let currentHeroPoints = parseInt( player.data.data.attributes.xp.value);
+    let total = currentHeroPoints + parseInt( heroPoints );
     await player.update({['data.attributes.xp.value']: total});
     expMessage(player, heroPoints);  
   });

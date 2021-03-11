@@ -1,0 +1,113 @@
+# version quickstart 0.1
+
+# Configure Rolls
+rollFormula = "2d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Complications..."
+  [rollResults.partial]
+    range = "7-9"
+    label = "Partial success"
+  [rollResults.success]
+    range = "10+"
+    label = "Success!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+# Define the character group.
+[character]
+
+  # Define stats.
+  [character.stats]    
+  
+  # Define attributes.
+  [character.attributesTop]
+    [character.attributesTop.yourquestion]
+      type = "Text"
+      label = "Your Question"
+
+  # Define sidebar details.
+  [character.attributesLeft]
+    [character.attributesLeft.conditions]
+      type = "ListMany"
+      label = "Conditions"
+      description = "Choose all that apply:"
+      options = [
+        "Cornered",
+        "Defensive",
+        "Dogged",
+        "Driven",
+        "Hopeless",
+        "Introspective",
+        "Lovelorn",
+        "Lustful",
+        "Obsessed",
+        "Preoccupied",
+        "Raging",
+        "Reactive",
+        "Righteous",
+        "Vicious",
+        "Zealous"
+      ]
+    [character.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [character.attributesLeft.relationships]
+      type = "LongText"
+      label = "Relationships"   
+    [character.attributesLeft.lasttimeon]
+      type = "LongText"
+      label = "Last Time On:"
+    [character.attributesLeft.meltdown]
+      type = "LongText"
+      label = "Meltdown:"
+      
+  # Define groups for moves.
+  [character.moveTypes]
+    basic = "Basic Moves"
+    playbook = "Playbook Moves"
+    feature = "Feature"             
+
+  # Define groups for equipment.
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.hook]
+      type = "Text"
+      label = "Hook"
+
+  [npc.attributesLeft]
+    [npc.attributesLeft.conditions]
+      type = "ListMany"
+      label = "Conditions"
+      description = "Choose all that apply:"
+      options = [
+        "Cornered",
+        "Defensive",
+        "Dogged",
+        "Driven",
+        "Hopeless",
+        "Introspective",
+        "Lovelorn",
+        "Lustful",
+        "Obsessed",
+        "Preoccupied",
+        "Raging",
+        "Reactive",
+        "Righteous",
+        "Vicious",
+        "Zealous"
+      ]
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    npcmove = "NPC Moves"
