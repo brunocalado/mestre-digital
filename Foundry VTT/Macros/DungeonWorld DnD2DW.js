@@ -42,7 +42,7 @@ async function drawFromDnDActor() {
       token: {},
       items: [],
       flags: {},
-      folder: "bzdFbnjNQdbrup4s",
+      folder: "EBmCtyEVFNoufvMx",
       data: {
         details: {
           biography: tmp
@@ -82,8 +82,7 @@ async function createRandomNPC(data) {
 /*================================================
 */
 
-JSON.stringify(
- 
+  
     let tmp = `<h3>Atributos</h3>`;
     tmp += `<p>${JSON.stringify(inside[0].data.data.abilities)}</p>`;
     tmp += `<h3>Movimento</h3>`;
@@ -93,10 +92,10 @@ JSON.stringify(
     tmp += `<h3>Condições - Imunidades</h3>`;
     tmp += `<p>${JSON.stringify(inside[0].data.data.traits.ci.value)}</p>`;
     tmp += `<h3>Condições - Resistências</h3>`;
-    tmp += `<p>${JSON.stringify(inside[0].data.data.traits.ci.value)}</p>`;
+    tmp += `<p>${JSON.stringify(inside[0].data.data.traits.di.value)}</p>`;
     tmp += `<h3>Dano - Imunidades</h3>`;
     tmp += `<p>${JSON.stringify(inside[0].data.data.traits.dr.value)}</p>`;
-    tmp += `<h3>Dano - Imunidades</h3>`;
+    tmp += `<h3>Dano - Resistências</h3>`;
     tmp += `<p>${JSON.stringify(inside[0].data.data.traits.dv.value)}</p>`;
     tmp += `<h3>Sentidos</h3>`;
     tmp += `<p>${JSON.stringify(inside[0].data.data.traits.senses)}</p>`;
@@ -116,7 +115,7 @@ JSON.stringify(
       token: {},
       items: [],
       flags: {},
-      folder: "gpr0SvhVWcGR9drC",
+      folder: "bzdFbnjNQdbrup4s",
       data: {
         details: {
           biography: tmp
@@ -137,5 +136,6 @@ JSON.stringify(
           }
         }      
       }
-    });      
+    });    
+    
   
