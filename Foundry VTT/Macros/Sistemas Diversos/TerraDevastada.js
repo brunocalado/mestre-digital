@@ -5,8 +5,8 @@ const macroVersion = 'v0.1';
 ## Features
 - dice so nice
 
-source: 
-icon: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.js
+icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.webp
 */
 let dice = 1; // coloque a quantidade de dados que deseja usar
 
