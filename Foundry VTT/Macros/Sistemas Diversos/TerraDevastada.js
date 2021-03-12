@@ -1,6 +1,6 @@
 //onde em 1D6 contam os pares como sucessos e o número 6 do dado explode!
 
-const macroVersion = 'v0.1';
+const macroVersion = 'v0.2';
 /* Terra Devastada
 ## Features
 - dice so nice
@@ -33,7 +33,7 @@ let dice = 1; // coloque a quantidade de dados que deseja usar
   } // fim for
 
   message+=`<h2 style="color:Red">Terra Devastada</h2>`;
-  message+=`<p>Você rolou ${dice} e teve <b style="color:Red">${sucessos}</b>.</p>`;
+  message+=`<p>Você rolou ${dice} dado(s) e teve <b style="color:Red">${sucessos}</b> sucessos.</p>`;
   
   let chatData = {
     user: game.user._id,    
