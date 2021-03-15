@@ -33,26 +33,8 @@ rollFormula = "2d6"
   # Define sidebar details.
   [character.attributesLeft]
     [character.attributesLeft.conditions]
-      type = "ListMany"
-      label = "Conditions"
-      description = "Choose all that apply:"
-      options = [
-        "Cornered",
-        "Defensive",
-        "Dogged",
-        "Driven",
-        "Hopeless",
-        "Introspective",
-        "Lovelorn",
-        "Lustful",
-        "Obsessed",
-        "Preoccupied",
-        "Raging",
-        "Reactive",
-        "Righteous",
-        "Vicious",
-        "Zealous"
-      ]
+      type = "LongText"
+      label = "Conditions"  
     [character.attributesLeft.look]
       type = "LongText"
       label = "Look"
@@ -87,26 +69,8 @@ rollFormula = "2d6"
 
   [npc.attributesLeft]
     [npc.attributesLeft.conditions]
-      type = "ListMany"
-      label = "Conditions"
-      description = "Choose all that apply:"
-      options = [
-        "Cornered",
-        "Defensive",
-        "Dogged",
-        "Driven",
-        "Hopeless",
-        "Introspective",
-        "Lovelorn",
-        "Lustful",
-        "Obsessed",
-        "Preoccupied",
-        "Raging",
-        "Reactive",
-        "Righteous",
-        "Vicious",
-        "Zealous"
-      ]
+      type = "LongText"
+      label = "Conditions" 
 
   # Define logical groups for moves.
   [npc.moveTypes]

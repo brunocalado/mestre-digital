@@ -1,6 +1,6 @@
 //onde em 1D6 contam os pares como sucessos e o número 6 do dado explode!
 
-const macroVersion = 'v0.5';
+const macroVersion = 'v0.6';
 /* Terra Devastada
 ## Features
 - dice so nice
@@ -20,11 +20,14 @@ const sorte = true;
   let message = '';
   let explosoes=0;
   let sortedice = 1;
+  let rolagens = [];
+  let rolagenssorte = [];
   
   for (var i = 0; i < truedice; i++) {
     roll3d = new Roll('1d6').roll();    
     game.dice3d.showForRoll(roll3d);      
     roll = roll3d.total;
+    rolagens.push(roll);
     
     if(roll==2 || roll==4 || roll==6){
       sucessos+=1;
@@ -40,6 +43,7 @@ const sorte = true;
       roll3d = new Roll('1d6').roll();    
       game.dice3d.showForRoll(roll3d);      
       roll = roll3d.total;
+      rolagenssorte.push(roll);
       
       if(roll==6){
         sucessossorte+=1;
@@ -59,9 +63,16 @@ const sorte = true;
 </tbody>
 </table>`;  
   message+=`<p>Você rolou ${dice} dado(s), e teve <b style="color:Blue">${explosoes}</b> explosões.</p>`;
-  message+=`<p>Você teve <b style="color:Red">${sucessos}</b> sucesso(s).</p>`;
+  
+  message+=`<h3>Rolagens</h3>`;
+  message+=`<p>Você teve <b style="color:Red">${sucessos}</b> sucesso(s).</p>`;  
+  message+=`<p style="background-color: lightgray; text-align: center;"><b>${rolagens.join()}</b></p>`;
+  
   if (sorte) {
+    message+=`<h3>Sorte</h3>`;
     message+=`<p>Sua <b style="color:Green">sorte</b> foi <b style="color:Red">${sucessossorte}</b> sucesso(s).</p>`;
+    message+=`<p style="background-color: lightgray; text-align: center;"><b>${rolagenssorte.join()}</b></p>`;
+    message+=`<h3>Total</h3>`;
     message+=`<p style="background-color: lightgray;">Seu total de sucessos é de <b style="color:Red">${sucessos+sucessossorte}</b> sucesso(s).</p>`;
   }
   
