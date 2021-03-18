@@ -5,7 +5,7 @@ const macroVersion = 'v0.1';
 - Choose the amount of HP to give or to remove.
 - Send HP for everyone
 
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/HP%20Manager.js
 icon: systems/dungeonworld/assets/icons/skills/blood_04.webp
 */
 
@@ -31,7 +31,7 @@ function main() {
   });
   
   /* Show actual xp points*/
-  let currentHeroPoints = checkHeroExp();
+  let currentHeroPoints = checkHeroHP();
   for (let i = 0; i < currentHeroPoints.length; i++) {
     let heroexp = parseInt(currentHeroPoints[i][1]);
     if (!heroexp) {      
@@ -94,12 +94,6 @@ async function updateHP(playerName, recoverType, customhp) {
   let currentHP = parseInt( character.data.data.attributes.hp.value );
   let maxHP = parseInt( character.data.data.attributes.hp.max );
 
-  console.log('-------------------------');
-  console.log('currentHP: ' + currentHP);
-  console.log('maxHP: ' + maxHP);
-  console.log('playerName: ' + playerName);
-  console.log('recoverType: ' + recoverType);
-  console.log('-------------------------');
   if (recoverType=='makecamp') {
     hp = Math.floor(maxHP/2);
   } else if (recoverType=='recover') {
@@ -124,19 +118,11 @@ function updateAllHerosHP(recoverType, customhp) {
   let players = game.actors.entities.filter((t) => t.data.type === "character");
   
   players.map(async player => { 
-    let total;
-    let currentHeroPoints = parseInt( player.data.data.attributes.xp.value);
-    if (!currentHeroPoints) {
-      total = parseInt( heroPoints );
-    } else {
-      total = currentHeroPoints + parseInt( heroPoints );
-    }          
-    await player.update({['data.attributes.xp.value']: total});
-    hpMessage(player, heroPoints);  
+    updateHP(player.name, recoverType, customhp);  
   });
 }
 
-function checkHeroExp() {
+function checkHeroHP() {
   let heros = [];
   let characters = game.actors.entities.filter((t) => t.data.type === "character");
   characters.forEach( (c) => {
@@ -146,9 +132,11 @@ function checkHeroExp() {
   return heros;
 }
 
-function hpMessage(player, points, recoverType) {
-  let message = `<h2>${player.data.name}</h2>`;
+function hpMessage(character, points, recoverType) {
+  let message = `<h2>${character.name}</h2>`;
   let icon;
+  let currentHP = parseInt( character.data.data.attributes.hp.value );
+  let maxHP = parseInt( character.data.data.attributes.hp.max );
 
   if (recoverType=='makecamp') {
     icon = 'icons/environment/settlement/tent.webp';
@@ -161,7 +149,7 @@ function hpMessage(player, points, recoverType) {
   message += `
   <div>
     <img style="vertical-align:middle" src="${icon}" width="32" height="32">  
-    <span>received <b>${points}</b> of HP.</span>    
+    <span>received <b style="color: green">${points}</b> of HP. The current situation is <b style="color: red">${currentHP}/${maxHP}</b>.</span>
   </div>
   `;
   let chatData = {
