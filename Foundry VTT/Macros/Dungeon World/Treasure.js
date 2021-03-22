@@ -1,4 +1,5 @@
-const macroVersion = 'v0.2';
+const macroVersion = 'v0.3';
+
 /* Treasure
 Features
 - Choose damage and monster type to roll the treasure table
@@ -183,33 +184,37 @@ function rollDamage(damageDice, damageBonus, options) {
   } else if (result<1) {
     result = 1;
   } else if (result>18) {
-    result = 18;
+    result = 17;
   } else {
     result = result-1;
   }
+  
+  console.log('-------------');
+  console.log(result);
+  console.log('-------------');
   return result;  
 }
 
 function rollTreasureTable(result, options) { 
   let treasureTb = [
-`A few coins, 2d8 [<b style="color:red">${autoRoll('2d8')}</b>] or so`,
+`A few coins, [[/r 2d8]] [<b style="color:red">${autoRoll('2d8')}</b>] or so`,
   `An item useful to the current situation`,
-  `Several coins, about 4d10 [<b style="color:red">${autoRoll('4d10')}</b>]`,
-  `A small item (gem, art) of considerable value, worth as much as 2d10×10 coins [<b style="color:red">${autoRoll('2d10*10')}</b>], 0 weight`,
+  `Several coins, about [[/r 4d10]] [<b style="color:red">${autoRoll('4d10')}</b>]`,
+  `A small item (gem, art) of considerable value, worth as much as [[/r 2d10*10]] coins [<b style="color:red">${autoRoll('2d10*10')}</b>], 0 weight`,
   `Some minor magical trinket`,
   `Useful information (in the form of clues, notes, etc.)`,
-  `A bag of coins, 1d4×100 [<b style="color:red">${autoRoll('1d4*100')}</b>] or thereabouts. 1 weight per 100.`,
-  `A very valuable small item (gem, art) worth 2d6×100 [<b style="color:red">${autoRoll('2d6*100')}</b>], 0 weight`,
-  `A chest of coins and other small valuables. 1 weight but worth 3d6×100 coins [<b style="color:red">${autoRoll('3d6*100')}</b>].`,
+  `A bag of coins, [[/r 1d4*100]] [<b style="color:red">${autoRoll('1d4*100')}</b>] or thereabouts. 1 weight per 100.`,
+  `A very valuable small item (gem, art) worth [[/r 2d6*100]] [<b style="color:red">${autoRoll('2d6*100')}</b>], 0 weight`,
+  `A chest of coins and other small valuables. 1 weight but worth [[/r 3d6*100]] coins [<b style="color:red">${autoRoll('3d6*100')}</b>].`,
   `A magical item or magical effect`,
-  `Many bags of coins for a total of 2d4×100 [<b style="color:red">${autoRoll('2d4*100')}</b>] or so`,
-  `A sign of office (crown, banner) worth at least 3d4×100 coins [<b style="color:red">${autoRoll('3d4*100')}</b>]`,
-  `A large art item worth 4d4×100 coins [<b style="color:red">${autoRoll('4d4*100')}</b>], 1 weight`,
-  `A unique item worth at least 5d4×100 coins [<b style="color:red">${autoRoll('5d4*100')}</b>]`,
+  `Many bags of coins for a total of [[/r 2d4*100]] [<b style="color:red">${autoRoll('2d4*100')}</b>] or so`,
+  `A sign of office (crown, banner) worth at least [[/r 3d4*100]] coins [<b style="color:red">${autoRoll('3d4*100')}</b>]`,
+  `A large art item worth [[/r 4d4*100]] coins [<b style="color:red">${autoRoll('4d4*100')}</b>], 1 weight`,
+  `A unique item worth at least [[/r 5d4*100]] coins [<b style="color:red">${autoRoll('5d4*100')}</b>]`,
   `All the information needed to learn a new spell and <b>roll again</b>`,
   `A portal or secret path (or directions to one) and <b>roll again</b>`,
   `Something relating to one of the characters and <b>roll again</b>`,
-  `A hoard: 1d10×1000 coins [<b style="color:red">${autoRoll('1d10*100')}</b>] and 1d10×10 [<b style="color:red">${autoRoll('1d10*10')}</b>] gems worth 2d6×100 [<b style="color:red">${autoRoll('2d6*100')}</b>] each`
+  `A hoard: [[/r 1d10*1000]] coins [<b style="color:red">${autoRoll('1d10*100')}</b>] and [[/r 1d10*10]] [<b style="color:red">${autoRoll('1d10*10')}</b>] gems worth [[/r 2d6*100]] [<b style="color:red">${autoRoll('2d6*100')}</b>] each`
   ];
   
   let message = `

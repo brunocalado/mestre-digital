@@ -4,6 +4,8 @@ const macroVersion = 'v0.1';
 - Select a token and it'll be selected in the combo
 - Choose the amount of HP to give or to remove.
 - Send HP for everyone
+- Make Camp
+- Recover
 
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/HP%20Manager.js
 icon: systems/dungeonworld/assets/icons/skills/blood_04.webp

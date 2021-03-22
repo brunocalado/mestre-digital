@@ -47,9 +47,10 @@ rollFormula = "2d6"
     [character.attributesTop.lore]
       type = "Number"
       label = "Lore"      
-    [character.attributesTop.advances]
-      type = "Number"
-      label = "Advances"  
+    [character.attributesTop.hold]
+      type = "Clock"
+      max = 3
+      default = 0   
       
   [character.attributesLeft]
     [character.attributesLeft.physicaldebilities]
@@ -63,19 +64,24 @@ rollFormula = "2d6"
         "Unfortunate: -1 Luck",
         "Disfigured: -1 Affinity"
       ]  
+    [character.attributesLeft.trust]
+      type = "LongText"
+      label = "Trust"   
+    [character.attributesLeft.advances]
+      type = "Number"
+      label = "Advances"       
     [character.attributesLeft.look]
       type = "LongText"
       label = "Look"  
-    [character.attributesLeft.trust]
-      type = "LongText"
-      label = "Trust"
+
 
 
   [character.moveTypes]
     basic = "Basic Moves"
+    extra = "Extra Moves"
     advanced = "Lore Moves"
-    class = "Special Moves"
     mentaldisorders = "Mental Disorders"
+    class = "Special Moves"        
     
   [character.equipmentTypes]
     gear = "Gear"
