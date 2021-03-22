@@ -41,16 +41,16 @@ rollFormula = "2d6"
       type = "Clock"
       max = 6
       default = 0  
-    [character.attributesTop.wealth]
+    [character.attributesTop.ongoing]
       type = "Number"
-      label = "Wealth"       
-    [character.attributesTop.lore]
+      label = "Ongoing"      
+    [character.attributesTop.foward]
       type = "Number"
-      label = "Lore"      
+      label = "Foward"    
     [character.attributesTop.hold]
       type = "Clock"
       max = 3
-      default = 0   
+      default = 0             
       
   [character.attributesLeft]
     [character.attributesLeft.physicaldebilities]
@@ -64,6 +64,12 @@ rollFormula = "2d6"
         "Unfortunate: -1 Luck",
         "Disfigured: -1 Affinity"
       ]  
+    [character.attributesLeft.lore]
+      type = "Number"
+      label = "Lore"          
+    [character.attributesLeft.wealth]
+      type = "Number"
+      label = "Wealth" 
     [character.attributesLeft.trust]
       type = "LongText"
       label = "Trust"   
