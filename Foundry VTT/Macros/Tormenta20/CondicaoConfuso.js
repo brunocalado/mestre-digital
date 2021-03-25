@@ -4,8 +4,9 @@
 	let d6 = new Roll(`1d6`).roll();
 	let action = d6.total;
 	let rolls = [d6];
+	
+  function tabela() {
 
-	function tabela(dado) {
 		if (action == 1) {
 			return tabela2()
 		} //"Movimenta-se em uma direção escolhida por uma rolagem de 1d8"
