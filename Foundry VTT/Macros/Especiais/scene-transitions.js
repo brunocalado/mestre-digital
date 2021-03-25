@@ -3,9 +3,10 @@
 */
 
 const scenename = '454'; // Scene Name | Nome da Cena
-const backgroundImage = 'worlds/cycleofcerberusdw/images/cerberus.webp';
+const backgroundImage = 'worlds/cycleofcerberusdw/images/cerberus.webp'; // Imagem de Fundo | false apenas executa transição
 const content = "<p>Domina, se vive;</p><p>Se morre, descansa</p><p>Dos seus na lembrança,</p><p>Na voz do porvir.</p><p>Não cures da vida!</p><p>Sê bravo, sê forte!</p><p>Não fujas da morte,</p><p>Que a morte há de vir!</p>"; // Text | Texto da Cena
-const audio = 'worlds/cycleofcerberusdw/sounds/cerberus.ogg'; // Sound | Som
+const audio = 'worlds/cycleofcerberusdw/sounds/cerberus.ogg'; // Sound | Som 
+const delay = 5000; // ms = 1000 == 1 second | 1000 == 1 segundo
 
 // -------------------------------------------------------
 //let scene = game.scenes.entries.find(s => s.data.name === scenename);
@@ -22,7 +23,7 @@ let data = {
 		bgColor:'#333333',
 		bgOpacity:0.7,
     audio: audio,
-		delay:5000, //how long for transition to stay up
+		delay: delay, //how long for transition to stay up
 		skippable:true, //Allows players to skip transition with a click before delay runs out.
 		content: content,
 	}

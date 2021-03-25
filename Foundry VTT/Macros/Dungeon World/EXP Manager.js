@@ -9,10 +9,24 @@ source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foun
 icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Dungeon%20World/EXP%20Manager.svg
 */
 
+const selectionType = false;
+
 main();
 
 function main() {
-  let playersNames = game.actors.entities.filter((t) => t.data.type === "character").map((p=> p.data.name)); 
+  let playersNames;
+  if (selectionType) {
+    console.log('');
+    /*
+    playersNames = game.actors.entities.filter((t) => t.data.type === "character").map((p=> p.data.name)); 
+    playersNames = User.collection.entities.filter(it => it.active === true);
+    let users = User.collection.entities.filter(it => it.active === true);
+    game.users is the master list. Each "user" object has a character field
+    */
+    
+  } else {
+    playersNames = game.actors.entities.filter((t) => t.data.type === "character").map((p=> p.data.name)); 
+  }
   let playerNameList;
   let currentHeroPointsList = '';
   let playerSelected;
@@ -21,7 +35,7 @@ function main() {
     playerNameList = `<option value="everyone">Everyone</option>`;  
   } else {
     playerNameList = `<option value="everyone" selected>Everyone</option>`;  
-  }    
+  }
   playersNames.map((el) => {      
     if (el===playerSelected) {
       playerNameList += `<option value="${el}" selected>${el}</option>`;
