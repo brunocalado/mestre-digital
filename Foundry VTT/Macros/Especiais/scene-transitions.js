@@ -1,5 +1,5 @@
 /*
-
+https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Especiais/scene-transitions.js
 */
 
 const scenename = '454'; // Scene Name | Nome da Cena
@@ -7,6 +7,7 @@ const backgroundImage = 'worlds/cycleofcerberusdw/images/cerberus.webp'; // Imag
 const content = "<p>Domina, se vive;</p><p>Se morre, descansa</p><p>Dos seus na lembrança,</p><p>Na voz do porvir.</p><p>Não cures da vida!</p><p>Sê bravo, sê forte!</p><p>Não fujas da morte,</p><p>Que a morte há de vir!</p>"; // Text | Texto da Cena
 const audio = 'worlds/cycleofcerberusdw/sounds/cerberus.ogg'; // Sound | Som 
 const delay = 5000; // ms = 1000 == 1 second | 1000 == 1 segundo
+const bgSize = 'cover'; // Image Size Options/Opções de Tamanho de Imagem: auto contain
 
 // -------------------------------------------------------
 //let scene = game.scenes.entries.find(s => s.data.name === scenename);
@@ -19,7 +20,7 @@ let data = {
 		fontSize:'18px',
 		bgImg: backgroundImage, 
 		bgPos:'center center',
-		bgSize:'cover',
+		bgSize: bgSize,
 		bgColor:'#333333',
 		bgOpacity:0.7,
     audio: audio,
