@@ -44,15 +44,10 @@ if [ $# -eq 1 ]; then
   # Liga o Foundry VTT
   pm2 start "node /home/ubuntu/foundry/resources/app/main.js" --name foundry    
   pm2 save
-
-  # Chave para arquivos
-  ssh-keygen -t rsa -f ~/.ssh/arquivoschave -C $(whoami) -N "" 
   
   # Dados de Consulta
   echo "Usuario: $(whoami)" > dadossuporte
   echo "Maquina: $(hostname)" >> dadossuporte    
-  echo "Local da chave publica: .ssh/arquivoschave.pub" >> dadossuporte    
-  echo "Local da chave privada: .ssh/arquivoschave" >> dadossuporte    
   echo "Pasta de logs do fondry vtt: logs/" >> dadossuporte
   
   # Assistente
@@ -61,11 +56,9 @@ if [ $# -eq 1 ]; then
   echo "Comando(s) adicionado(s): jarbas"
   
   # Final  
-  curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
-  cat md  
-
-  rm md
-  rm assistente  
+  curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt && cat md && rm md
+  
+  rm assistente
 
 else
   echo "Coloque o endereco de download do foundry vtt"

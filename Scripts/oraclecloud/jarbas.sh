@@ -57,27 +57,10 @@ case "$1" in
         sudo apt update && sudo apt -y upgrade
         echo "======================"        
     ;;   
-    chaves)
-        echo "Chaves localizadas"        
-        ls -la ~/.ssh
-        echo
-        echo "No Google Cloud você deve colocar sua chave publica (.pub). Ao copiar a chave publica copie apenas o que esta entre os separadores"
-        echo
-        echo
-        echo "===== CHAVE PUBLICA - COMECO - NAO COPIE ESSA LINHA ====="        
-        cat .ssh/arquivoschave.pub
-        echo "===== CHAVE PUBLICA - FIM - NAO COPIE ESSA LINHA ====="
-        echo
-        echo
-        echo "No Filezilla você deve colocar sua chave privada (arquivo sem extensao). Copie o conteudo dele para um arquivo de texto e salve como chave.ppk no seu computador. "
-        echo
-        echo
-        echo "===== CHAVE PRIVADA - COMECO - NAO COPIE ESSA LINHA ====="        
-        cat .ssh/arquivoschave
-        echo "===== CHAVE PRIVADA - FIM - NAO COPIE ESSA LINHA ====="        
-        echo
-        echo
-    ;; 
+    sobre)
+      curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt && cat md && rm md
+      echo "https://www.mestredigital.online/colabore-com-o-mestre-digital"
+    ;;       
     admin)               
         case "$2" in
             removesenha)
@@ -150,18 +133,18 @@ case "$1" in
     ;;
     *)
         echo "Jarbas Versao ${VERSION}" 
-        echo "Opcoes: $0 {ligar|desligar|forcar|status|chaves|limpar|update|node|suporte|noip|admin}"
+        echo "Opcoes: $0 {ligar|desligar|reiniciar|status|update|node|sobre|suporte|noip|admin}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "admin: funcoes administrativas."  
-        echo "caddy: instala e gerencia o caddy."  
-        echo "chaves: Mostra chaves de acesso"
+        echo "caddy: instala e gerencia o caddy."          
         echo "desligar: Para o Foundry VTT"
         echo "espaco: mostra quanto do disco foi usado"        
-        echo "forcar: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
+        echo "reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
         echo "ligar: Inicia o Foundry VTT"
         echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
         echo "noip: instala e gerencia o noip."        
+        echo "sobre: sobre o desenvolvedor desse script"        
         echo "status: Verifica se o Foundry VTT está rodando"
         echo "suporte: Mostra dados da maquina"
         echo "update: atualiza o jarbas."                
