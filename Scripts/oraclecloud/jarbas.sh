@@ -1,4 +1,5 @@
 #######################################################
+## jarbas Oracle Cloud ################################
 #! /bin/sh
 VERSION="v1.00"
 echo "========================================"
@@ -37,7 +38,7 @@ case "$1" in
         echo "======================"
         echo "Atualizando o jarbas."        
         rm jarbas
-        curl -H 'Cache-Control: no-cache' -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/foundryvtt/jarbas.sh?$(date +%s)
+        curl -H 'Cache-Control: no-cache' -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/oraclecloud/jarbas.sh?$(date +%s)
         chmod +x jarbas
         grep "VERSION=" jarbas
         echo "======================"
@@ -51,11 +52,8 @@ case "$1" in
     node)
         echo "======================"
         echo "Atualizando o NODE para a ultima versao LTS"        
-        curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
-        sudo bash nodesource_setup.sh && rm nodesource_setup.sh  
-        sudo apt update
-        sudo apt install -y nodejs
-        sudo apt install -y build-essential        
+        # curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+        sudo apt update && sudo apt -y upgrade
         echo "======================"        
     ;;   
     chaves)
@@ -79,45 +77,6 @@ case "$1" in
         echo
         echo
     ;; 
-    noip)               
-        case "$2" in
-            instalar)
-              echo "===== Instala NOIP ====="
-              sudo apt -y update 
-              sudo apt -y upgrade
-              sudo apt -y install gcc make
-              cd /usr/local/src/
-              sudo curl -o noip-duc-linux.tar.gz http://www.noip.com/client/linux/noip-duc-linux.tar.gz
-              sudo tar xf noip-duc-linux.tar.gz
-              sudo rm noip-duc-linux.tar.gz
-              cd noip-2.1.9-1/
-              sudo make install
-              cd              
-            ;;
-            start)
-              echo "Iniciando o noip2"
-              sudo /usr/local/bin/noip2
-            ;;
-            stop)
-              echo "Desligando o noip2"
-              for i in `sudo /usr/local/bin/noip2 -S 2>&1 | grep Process     | awk '{print $2}' | tr -d ','`
-              do
-                sudo /usr/local/bin/noip2 -K $i
-              done
-            ;; 
-            config)
-              echo "Tenta configurar o noip2"
-              sudo /usr/local/bin/noip2 -C
-            ;;  
-            status)
-                echo "Verificando o noip2"        
-                sudo /usr/local/bin/noip2 -S       
-            ;;
-            *)
-            echo "Opcoes: $0 {instalar|start|stop|status|config}"            
-            exit 1
-        esac
-    ;; 
     admin)               
         case "$2" in
             removesenha)
@@ -125,10 +84,10 @@ case "$1" in
               ./jarbas desligar
               rm config/admin.txt
               ./jarbas ligar
-              echo "Processo concluido."
+              echo "Processo concluido. Tente acessar o Foundry VTT."
             ;;
             *)
-            echo "Opcoes: $0 {removesenha|}"            
+            echo "Opcoes: $0 {removesenha|?}"            
             exit 1
         esac
     ;;       
@@ -200,7 +159,6 @@ case "$1" in
         echo "espaco: mostra quanto do disco foi usado"        
         echo "forcar: Encerra o FVTT, Atualiza o IP (noip), Inicia o FVTT"
         echo "ligar: Inicia o Foundry VTT"
-        echo "limpar: Apaga arquivos de log do nohup. Nao mexe nos arquivos de log do foundry vtt."        
         echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
         echo "noip: instala e gerencia o noip."        
         echo "status: Verifica se o Foundry VTT está rodando"
