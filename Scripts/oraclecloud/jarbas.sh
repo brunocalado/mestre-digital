@@ -40,7 +40,8 @@ case "$1" in
         rm jarbas
         curl -H 'Cache-Control: no-cache' -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/oraclecloud/jarbas.sh?$(date +%s)
         chmod +x jarbas
-        grep "VERSION=" jarbas
+        echo "----------------------"
+        grep -m1 "VERSION=" jarbas | head 1
         echo "======================"
     ;;     
     espaco)

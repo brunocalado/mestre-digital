@@ -58,9 +58,9 @@ if [ $# -eq 1 ]; then
   # Assistente
   curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/oraclecloud/jarbas.sh
   chmod +x jarbas
-
-  # Final
   echo "Comando(s) adicionado(s): jarbas"
+  
+  # Final  
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
   cat md  
 
