@@ -12,7 +12,7 @@ if [ $# -eq 1 ]; then
   
   # Instala ZIP
   echo "===== Instala ZIP ====="
-  sudo apt -y install zip unzip
+  sudo apt -y install zip unzip vim
   
   # Foundry VTT  
   echo "===== Instala Foundry VTT ====="
