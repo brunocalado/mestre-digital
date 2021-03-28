@@ -1,4 +1,5 @@
 Comando 1
-sudo apt update && sudo apt -y upgrade
+sudo apt update && sudo apt -y upgrade && curl -o assistente https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/oraclecloud/foundryassistenteoraclecloud.sh && chmod +x assistente
 
 Comando 2
+./assistente "DOWNLOAD"
