@@ -60,7 +60,7 @@ if [ $# -eq 1 ]; then
   chmod +x jarbas
 
   # Final
-  echo "Comandos adicionados: jarbas"
+  echo "Comando(s) adicionado(s): jarbas"
   curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt
   cat md  
 
