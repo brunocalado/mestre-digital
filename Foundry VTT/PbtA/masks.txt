@@ -92,23 +92,15 @@ statToggle = "Locked"
     [npc.attributesTop.realName]
       type = "Text"
       label = "Real Name"
-    [npc.attributesTop.generation]
-      type = "Text"
-      label = "Generation"
     [npc.attributesTop.harm]
-      type = "Number"
-      label = "Harm"      
+      type = "Clock"
+      max = 6
+      default = 0      
     [npc.attributesTop.conditions]
       type = "Text"
       label = "Conditions"
 
   [npc.attributesLeft]
-    [npc.attributesLeft.drive]
-      type = "LongText"
-      label = "Drive"
-    [npc.attributesLeft.abilities]
-      type = "LongText"
-      label = "Abilities"
     [npc.attributesLeft.conditions]
       type = "ListMany"
       label = "Conditions"
@@ -119,7 +111,16 @@ statToggle = "Locked"
         "Guilty",
         "Hopeless",
         "Insecure"
-      ]
+      ]  
+    [npc.attributesLeft.drive]
+      type = "LongText"
+      label = "Drive"
+    [npc.attributesLeft.abilities]
+      type = "LongText"
+      label = "Abilities"
+    [npc.attributesLeft.generation]
+      type = "Text"
+      label = "Generation"  
 
   # Define logical groups for moves.
   [npc.moveTypes]

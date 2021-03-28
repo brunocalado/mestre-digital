@@ -1,0 +1,4 @@
+Comando 1
+sudo apt update && sudo apt -y upgrade
+
+Comando 2
