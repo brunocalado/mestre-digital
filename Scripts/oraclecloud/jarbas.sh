@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.02"
+VERSION="v1.03"
 echo "========================================"
 case "$1" in
     ligar)
@@ -78,6 +78,7 @@ case "$1" in
             ;;             
             instalar)
               echo "===== Instala Foundry VTT ====="
+              ./jarbas desligar
               echo "Cole o link de download temporario da instalacao Node.js do site do Foundry VTT "
               read linkdownloadfoundry              
               cd ~
@@ -90,12 +91,14 @@ case "$1" in
               sudo chmod +x ~/foundry/resources/app/main.js    
               rm fvtt.zip
               cd ~
+              ./jarbas ligar
+              pm2 save
             ;;            
             *)
             echo "Opcoes: $0 {removesenha|resetaconfig}"            
             echo "Exemplo de uso: ./jarbas admin removesenha"
             echo
-            echo "instalar: instala uma nova versao do foundry vtt usando o link do site do foundry vtt. Tem que usar o link do node.js."  
+            echo "instalar: instala uma nova versao do foundry vtt usando o link do site do foundry vtt. Tem que usar o link do node.js. Importante: a pasta da instalacao foundry atual sera apagada, isso nao afeta a pasta de dados do foundry."  
             echo "removesenha: remove a senha do foundry vtt"  
             echo "resetaconfig: coloca o arquivo de configuracao do foundry vtt em seu estado padrao."               
             exit 1
