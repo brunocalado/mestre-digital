@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.00"
+VERSION="v1.01"
 echo "========================================"
 case "$1" in
     ligar)
@@ -41,7 +41,7 @@ case "$1" in
         curl -H 'Cache-Control: no-cache' -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/oraclecloud/jarbas.sh?$(date +%s)
         chmod +x jarbas
         echo "----------------------"
-        grep -m1 "VERSION=" jarbas | head 1
+        grep -m1 "VERSION=" jarbas
         echo "======================"
     ;;     
     espaco)
