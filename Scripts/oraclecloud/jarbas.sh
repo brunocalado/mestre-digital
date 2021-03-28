@@ -70,8 +70,18 @@ case "$1" in
               ./jarbas ligar
               echo "Processo concluido. Tente acessar o Foundry VTT."
             ;;
+            resetaconfig)
+              echo "Restaurando o arquivo de configuracao do Foundry VTT para o padrao."
+              ./jarbas desligar
+              rm config/options.json
+              ./jarbas ligar
+            ;;             
             *)
-            echo "Opcoes: $0 {removesenha|?}"            
+            echo "Opcoes: $0 {removesenha|resetaconfig}"            
+            echo "Exemplo de uso: ./jarbas admin removesenha"
+            echo
+            echo "removesenha: remove a senha do foundry vtt"  
+            echo "resetaconfig: coloca o arquivo de configuracao do foundry vtt em seu estado padrao."               
             exit 1
         esac
     ;;       
@@ -87,7 +97,7 @@ case "$1" in
         ;;
         config)
           echo "===== Configura o Caddy ====="
-          pkill node
+          ./jarbas desligar
           sudo service caddy stop
           
           echo "Digite o seu Dominio e pressione Enter: "
@@ -97,18 +107,26 @@ case "$1" in
           sed -i 's+MEUDOMINIOFOUNDRY+'$dominio'+g' Caddyfile  
           sudo mv Caddyfile /etc/caddy/Caddyfile
           
-          cp config/options.json `date +"%H%M-%d%m%Y"`options.json.bkp
+          cp config/options.json config/`date +"%H%M-%d%m%Y"`options.json.bkp
           sed -i 's+"hostname": null+"hostname": "'$dominio'"+g' config/options.json
           sed -i 's+"proxySSL": false+"proxySSL": "true"+g' config/options.json
           sed -i 's+"proxyPort": null+"proxyPort": "443"+g' config/options.json
           
           sudo service caddy start
+          ./jarbas ligar
         ;;
         arquivo)          
+          echo "-------------------------------"
+          echo "Arquivo do Caddy"
           cat /etc/caddy/Caddyfile
-          echo
+          echo "-------------------------------"
           echo
           echo "Se quiser editar manualmente use o comando: nano /etc/caddy/Caddyfile"
+          echo
+          echo "-------------------------------"         
+          echo "Arquivo de configuracao do Foundry VTT"
+          cat config/options.json
+          echo "-------------------------------"
         ;;        
         start)
           echo "== Iniciando o Caddy"
