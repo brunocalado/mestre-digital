@@ -3,3 +3,6 @@ sudo apt update && sudo apt -y upgrade && curl -o assistente https://raw.githubu
 
 Comando 2
 ./assistente "DOWNLOAD"
+
+
+

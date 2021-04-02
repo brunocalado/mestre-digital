@@ -2,8 +2,8 @@
 
 ## Requirements
 # Linux
-# apt install mediainfo
-# apt install ffmpeg
+# apt -y install mediainfo
+# apt -y install ffmpeg
 
 
 ## Usage
@@ -19,13 +19,13 @@ tamanho="hd" # pode ser 4k ou hd
 
 ## Ativação Opcional
 taxadequadros="-framerate 30"
-#escalar="-vf scale=1920x1080" # Apenas ative se você quer que o vídeo tenha seu tamanho alterado
+escalar="-vf scale=1920x1080" # Apenas ative se você quer que o vídeo tenha seu tamanho alterado
 #escalar="-vf scale=3840x2160" # Apenas ative se você quer que o vídeo tenha seu tamanho alterado
 
 
 ### Principal
 echo "====================="
-echo 'Otimizar v0.03'
+echo 'Otimizar v0.04'
 echo "====================="
 
 if [ "$1" != "" ]; then

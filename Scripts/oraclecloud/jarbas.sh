@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.03"
+VERSION="v1.04"
 echo "========================================"
 case "$1" in
     ligar)
@@ -133,6 +133,7 @@ case "$1" in
           
           sudo service caddy start
           ./jarbas ligar
+          pm2 save
         ;;
         arquivo)          
           echo "-------------------------------"
