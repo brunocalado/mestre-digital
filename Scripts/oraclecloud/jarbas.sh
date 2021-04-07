@@ -1,16 +1,18 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.04"
+VERSION="v1.05"
 echo "========================================"
 case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
         echo "Pressione enter para continuar." 
+        pm2 delete all
         pm2 start "node /home/ubuntu/foundry/resources/app/main.js" --name foundry    
     ;;
     desligar)
         echo "Encerrando o Foundry VTT"        
+        pm2 delete all
         pm2 stop foundry    
     ;;
     status)
@@ -60,7 +62,16 @@ case "$1" in
     sobre)
       curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt && cat md && rm md
       echo "https://www.mestredigital.online/colabore-com-o-mestre-digital"
-    ;;       
+    ;;      
+    compactar)
+      echo "Para salvar os seus arquivos a melhor forma e compacta-los antes em um arquivo ZIP. Isso permite que a transferencia de seu computador para nuvem ou vice versa seja muito mais rapida."
+      echo 
+      echo "Compactar: o comando abaixo bai copiar tudo que você tem em data (systems, worlds e modules) e transformar em um arquivo chamado data.zip"
+      echo "zip -r data.zip data/"
+      echo
+      echo "Descompactar: o comando abaixo vai pegar tudo que tem no arquivo data.zip e descompactar dentro do diretorio atual. IMPORTANTE: voce deve saber o diretorio certo para executar isso."
+      echo "unzip data.zip"
+    ;;     
     admin)               
         case "$2" in
             removesenha)
@@ -171,17 +182,17 @@ case "$1" in
     ;;
     *)
         echo "Jarbas Versao ${VERSION}" 
-        echo "Opcoes: $0 {ligar|desligar|reiniciar|status|update|node|sobre|suporte|noip|admin}"
+        echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|caddy|espaco|status|update|node|sobre|suporte}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "admin: funcoes administrativas."  
         echo "caddy: instala e gerencia o caddy."          
+        echo "compactar: aprenda a compactar seus arquivos para ser facil baixar."          
         echo "desligar: Para o Foundry VTT"
         echo "espaco: mostra quanto do disco foi usado"        
         echo "reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
         echo "ligar: Inicia o Foundry VTT"
         echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
-        echo "noip: instala e gerencia o noip."        
         echo "sobre: sobre o desenvolvedor desse script"        
         echo "status: Verifica se o Foundry VTT está rodando"
         echo "suporte: Mostra dados da maquina"
