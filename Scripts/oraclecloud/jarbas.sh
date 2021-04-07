@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.05"
+VERSION="v1.06"
 echo "========================================"
 case "$1" in
     ligar)
@@ -9,11 +9,12 @@ case "$1" in
         echo "Pressione enter para continuar." 
         pm2 delete all
         pm2 start "node /home/ubuntu/foundry/resources/app/main.js" --name foundry    
+        pm2 save
     ;;
     desligar)
         echo "Encerrando o Foundry VTT"        
         pm2 delete all
-        pm2 stop foundry    
+        pm2 stop foundry        
     ;;
     status)
         echo "Verificando se o Foundry VTT esta executando"        
@@ -102,8 +103,7 @@ case "$1" in
               sudo chmod +x ~/foundry/resources/app/main.js    
               rm fvtt.zip
               cd ~
-              ./jarbas ligar
-              pm2 save
+              ./jarbas ligar              
             ;;            
             *)
             echo "Opcoes: $0 {removesenha|resetaconfig}"            
@@ -143,8 +143,7 @@ case "$1" in
           sed -i 's+"proxyPort": null+"proxyPort": "443"+g' config/options.json
           
           sudo service caddy start
-          ./jarbas ligar
-          pm2 save
+          ./jarbas ligar          
         ;;
         arquivo)          
           echo "-------------------------------"
