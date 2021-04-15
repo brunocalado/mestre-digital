@@ -1,15 +1,23 @@
-//onde em 1D6 contam os pares como sucessos e o número 6 do dado explode!
+// OBRIGATÓRIO ATIVAR O MÓDULO DICE SO NICE
 
-const macroVersion = 'v0.6';
+// CONFIGURAÇÕES
+let dice = 1; // coloque a quantidade de dados que deseja usar
+const sorte = true; // true: ativa sorte || false: desativa a sorte
+const secreto = false; // true: rolagem é secreta para o mestre || false: todos veem a rolagem
+const chatImagem = 'https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.webp'; 
+const som = 'https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Zombie_Eating.mp3'; // coloque false para não tocar nada
+
+// ---------------------------------------------------------------
+// NÃO MEXA COM O QUE ESTÁ ABAIXO
+const macroVersion = 'v0.7';
 /* Terra Devastada
 ## Features
 - dice so nice
+- onde em 1D6 contam os pares como sucessos e o número 6 do dado explode!
 
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.js
 icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.webp
 */
-let dice = 1; // coloque a quantidade de dados que deseja usar
-const sorte = true;
 
 (async () => {  
   let truedice = dice;
@@ -22,6 +30,7 @@ const sorte = true;
   let sortedice = 1;
   let rolagens = [];
   let rolagenssorte = [];
+  let chatData; 
   
   for (var i = 0; i < truedice; i++) {
     roll3d = new Roll('1d6').roll();    
@@ -57,7 +66,7 @@ const sorte = true;
   message += `<table>
 <tbody>
 <tr>
-<td><img style="vertical-align:middle" src="https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.webp" width="32" height="32"></td>
+<td><img style="vertical-align:middle" src=${chatImagem} width="32" height="32"></td>
 <td><h2 style="color:Red">Terra Devastada</h2></td>
 </tr>
 </tbody>
@@ -76,11 +85,23 @@ const sorte = true;
     message+=`<p style="background-color: lightgray;">Seu total de sucessos é de <b style="color:Red">${sucessos+sucessossorte}</b> sucesso(s).</p>`;
   }
   
-  let chatData = {
-    user: game.user._id,    
-    content: message,
-    whisper : ChatMessage.getWhisperRecipients("GM")
-  };  
+  if (secreto) {
+    chatData = {
+      user: game.user._id,    
+      content: message,
+      whisper : ChatMessage.getWhisperRecipients("GM")
+    };     
+  } else {
+    chatData = {
+      user: game.user._id,    
+      content: message      
+    };     
+  } 
+  
+  if (som) {
+    AudioHelper.play({src: som, volume: 1.0, autoplay: true, loop: false}, true);
+  }
+  
   ChatMessage.create(chatData, {});  
 
 })(); // fim async
