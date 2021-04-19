@@ -6,11 +6,10 @@ const sorte = true; // true: ativa sorte || false: desativa a sorte
 const secreto = false; // true: rolagem é secreta para o mestre || false: todos veem a rolagem
 const chatImagem = 'https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.webp'; 
 const som = 'https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Zombie_Eating.mp3'; // coloque false para não tocar nada
-const dice3Dflag = true; // true: liga o dado 3D || false: desliga o dado 3D
 
 // ---------------------------------------------------------------
 // NÃO MEXA COM O QUE ESTÁ ABAIXO
-const macroVersion = 'v0.8';
+const macroVersion = 'v1.0';
 /* Terra Devastada
 ## Features
 - dice so nice
@@ -35,9 +34,6 @@ icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
   
   for (var i = 0; i < truedice; i++) {
     roll3d = new Roll('1d6').roll();
-    if (dice3Dflag) {    
-      game.dice3d.showForRoll(roll3d);      
-    }
     roll = roll3d.total;
     rolagens.push(roll);
     
@@ -51,14 +47,11 @@ icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
   } // fim for
 
   if (sorte) {
-    for (var i = 0; i <sortedice; i++) {      
+    for (var i = 0; i<sortedice; i++) {
       roll3d = new Roll('1d6').roll();    
-      if (dice3Dflag) {    
-        game.dice3d.showForRoll(roll3d);      
-      }
       roll = roll3d.total;
       rolagenssorte.push(roll);
-      
+
       if(roll==6){
         sucessossorte+=1;
         if(roll==6){
@@ -89,16 +82,20 @@ icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
     message+=`<h3>Total</h3>`;
     message+=`<p style="background-color: lightgray;">Seu total de sucessos é de <b style="color:Red">${sucessos+sucessossorte}</b> sucesso(s).</p>`;
   }
-  
+
   if (secreto) {
     chatData = {
-      user: game.user._id,    
+      type: CHAT_MESSAGE_TYPES.ROLL,
+      roll: roll3d,
+      rollMode: game.settings.get("core", "rollMode"),
       content: message,
       whisper : ChatMessage.getWhisperRecipients("GM")
     };     
   } else {
     chatData = {
-      user: game.user._id,    
+      type: CHAT_MESSAGE_TYPES.ROLL,
+      roll: roll3d,
+      rollMode: game.settings.get("core", "rollMode"),
       content: message      
     };     
   } 

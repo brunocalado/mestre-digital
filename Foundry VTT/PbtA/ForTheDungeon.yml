@@ -1,0 +1,98 @@
+# Configure Rolls
+rollFormula = "1d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.success]
+    range = "6+"
+    label = "Success!"
+  [rollResults.partial]
+    range = "4-5"
+    label = "Partial success"
+  [rollResults.failure]
+    range = "3-"
+    label = "Miss..."
+
+########################################
+## CHARACTERS ##########################
+########################################
+# Define the character group.
+[character]
+
+  # Define stats.
+  [character.stats]
+  
+  # Define attributes.
+  [character.attributesTop]
+    [character.attributesTop.shiny]
+        type = "Number"
+        label = "Shiny"
+        default = 0
+        description = "Shiny can be spent to gain additional items."
+    [character.attributesTop.zeal]
+      type = "Clock"
+      label = "Zeal"
+      description = "These may be spent to change any roll into an automatic success."
+      max = 5      
+    [character.attributesTop.harm]
+      type = "Clock"
+      label = "Harm"
+      description = "When your character is injured, they receive one Harm and roll a single die."
+      max = 6
+    [character.attributesTop.roll]
+      type = "Roll"
+      label = "Roll"
+      default = "1d6"
+      description = "6: it’s a success. 4 or 5: it’s a complication – you succeed. 3 or less: it’s a failure."
+
+  # Define sidebar details.
+  [character.attributesLeft]
+    [character.attributesLeft.talent]
+        type = "LongText"
+        label = "Talent"
+    [character.attributesLeft.tool]
+        type = "LongText"
+        label = "Tool"
+    [character.attributesLeft.motivation]
+        type = "LongText"
+        label = "Motivation"
+    [character.attributesLeft.scenetrait]
+        type = "LongText"
+        label = "Scene Trait"
+
+  # Define groups for moves.
+  [character.moveTypes]
+    moves = "Moves"    
+    perks = "Perks"
+    experience = "Experience"
+
+  # Define groups for equipment.
+  [character.equipmentTypes]
+    mundane = "Mundane"
+    minor = "Minor"
+    major = "Major"
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.harm]        
+        type = "Resource"
+        label = "Harm"
+    
+  [npc.attributesLeft]
+    [npc.attributesLeft.type]
+        type = "ListMany"
+        label = "NPC Type"
+        options = [
+            "NPC",
+            "Guard/Mercenary",
+            "Adventurer"            
+        ]
+        
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    stunts = "Stunts"

@@ -93,12 +93,8 @@ statToggle = "Locked"
       type = "Text"
       label = "Real Name"
     [npc.attributesTop.harm]
-      type = "Clock"
-      max = 6
-      default = 0      
-    [npc.attributesTop.conditions]
-      type = "Text"
-      label = "Conditions"
+      type = "Resource"
+      label = "Harm"
 
   [npc.attributesLeft]
     [npc.attributesLeft.conditions]
