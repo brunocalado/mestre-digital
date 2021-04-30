@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.06"
+VERSION="v1.07"
 echo "========================================"
 case "$1" in
     ligar)
@@ -56,8 +56,10 @@ case "$1" in
     node)
         echo "======================"
         echo "Atualizando o NODE para a ultima versao LTS"        
+        ./jarbas desligar     
         # curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
         sudo apt update && sudo apt -y upgrade
+        ./jarbas ligar     
         echo "======================"        
     ;;   
     sobre)
@@ -118,10 +120,10 @@ case "$1" in
     caddy)
       case "$2" in
         instalar)
-          echo "===== Instala Caddy ====="
+          echo "===== Instala Caddy ====="                    
           echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" \
             | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list
-          sudo apt -y update
+          sudo apt -y update          
           sudo apt -y install caddy
           ./jarbas caddy config
         ;;

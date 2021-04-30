@@ -15,6 +15,10 @@ const macroVersion = 'v1.1';
 - dice so nice
 - onde em 1D6 contam os pares como sucessos e o número 6 do dado explode!
 
+## TESTAR
+const r = new Roll('1d8').evaluate();
+game.dice3d.showForRoll(r);
+
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.js
 icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.webp
 */
