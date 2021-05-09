@@ -2,7 +2,7 @@
 Features
 - Leva em conta a altura.
 
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Qualquer/DistanciaEntreTokens.js
 icon: icons/sundries/documents/document-symbol-circle-brown.webp
 */
 
