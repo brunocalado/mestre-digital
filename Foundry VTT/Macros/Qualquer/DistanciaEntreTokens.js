@@ -8,11 +8,11 @@ icon: icons/sundries/documents/document-symbol-circle-brown.webp
 
 
 // ===================================
+const token1 = canvas.tokens.controlled[0];
+const token2 = canvas.tokens.controlled[1];
 if(!token1 || !token2) {
   ui.notifications.error("Selecione dois tokens!");
 } else {
-  const token1 = canvas.tokens.controlled[0];
-  const token2 = canvas.tokens.controlled[1];
   const output = tokenDistance(token1, token2);
 
   ChatMessage.create({
