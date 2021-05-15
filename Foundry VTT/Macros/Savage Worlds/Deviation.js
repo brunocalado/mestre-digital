@@ -1,4 +1,5 @@
 const version = 'v1.0';
+const chatimage = "https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/icons/clock.webp";
 
 /* Deviation p99 SWADE
 If a blast template misses, it deviates 1d6″
@@ -13,7 +14,7 @@ deviates. A weapon can never deviate more
 than half the distance to the original target
 (that keeps it from going behind the thrower).
 
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Deviation.js
 icon: icons/weapons/artillery/cannon-engraved-gold.webp
 */
 
@@ -67,19 +68,13 @@ function rollForIt(html) {
 function diceRoll(die, range) {
   const rangeMultiplier = rangeCheck(range);
   let direction = new Roll('1d12').roll();
-  const trueRange = directionCheck(direction);
   let roll = new Roll(die).roll();
-  let message = `
-  <h2>Deviation</h2>
-  <div>
-    <img style="vertical-align:middle" src="icons/containers/chest/chest-simple-walnut.webp" width="64" height="64">  
-    <span><p>Move the blast <b>${roll.total*rangeMultiplier}"</b> to <b style="color:red">${direction.total}</b></p></span>    
-  </div>      
-  `;  
-  
-  if (direction) {
-    message += `<div><b style="color:red">A weapon can never deviate more than half the distance to the original target (that keeps it from going behind the thrower).</b></div>`;
+  let message = `<h2>Deviation</h2>`;  
+  message += `<p>Move the blast <b>${roll.total*rangeMultiplier}"</b> to <b style="color:red">${direction.total}</b> O'Clock.</p>`;
+  if (directionCheck(direction.total)) {
+    message += `<p><b style="color:red">A weapon can never deviate more than half the distance to the original target (that keeps it from going behind the thrower).</b></p>`;
   }
+  message += `<p style="text-align:center"><img style="vertical-align:middle" src=${chatimage} width="200" height="200"><p>`;
   
   let tempChatData = {
     type: CHAT_MESSAGE_TYPES.ROLL,
@@ -104,6 +99,7 @@ function rangeCheck(range) {
 }
 
 function directionCheck(direction) {
+  console.log(direction);
   if (direction==4 || direction==5 || direction==6 || direction==7 || direction==8) {
     return true
   } else {
