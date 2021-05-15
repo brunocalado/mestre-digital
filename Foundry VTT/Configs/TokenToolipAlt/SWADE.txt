@@ -43,15 +43,23 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#e974ce"
+              "color": "#ff80e1"
             },
             {
-              "value": "Correr: {stats.speed.runningDie}+{stats.speed.runningMod}",
+              "value": "Correr: d{stats.speed.runningDie}+{stats.speed.runningMod}",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#fda190"
+              "color": "#ff80ff"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#8ece40"
             },
             {
               "value": "Abalado: {<status.isShaken> ? string(\"Sim\") : string(\"Não\")}",
@@ -59,7 +67,7 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ffff1a"
+              "color": "#ffff00"
             },
             {
               "value": "Distraído: {<status.isDistracted> ? string(\"Sim\") : string(\"Não\")}",
@@ -67,7 +75,7 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ff9500"
+              "color": "#ffff00"
             },
             {
               "value": "Vulnerável: {<status.isVulnerable> ? string(\"Sim\") : string(\"Não\")}",
@@ -75,7 +83,31 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ff0000"
+              "color": "#ffff00"
+            },
+            {
+              "value": "Atordoado: {<status.isStunned> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-flushed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
+            },
+            {
+              "value": "Enredado: {<status.isEntangled> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-link",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
+            },
+            {
+              "value": "Preso: {<status.isBound> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-spider",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
             }
           ]
         },
@@ -120,15 +152,23 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#e974ce"
+              "color": "#ff80e1"
             },
             {
-              "value": "Correr: {stats.speed.runningDie}+{stats.speed.runningMod}",
+              "value": "Correr: d{stats.speed.runningDie}+{stats.speed.runningMod}",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#fda190"
+              "color": "#ff80ff"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#8ece40"
             },
             {
               "value": "Abalado: {<status.isShaken> ? string(\"Sim\") : string(\"Não\")}",
@@ -136,7 +176,7 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ffff1a"
+              "color": "#ffff00"
             },
             {
               "value": "Distraído: {<status.isDistracted> ? string(\"Sim\") : string(\"Não\")}",
@@ -144,7 +184,7 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ff9500"
+              "color": "#ffff00"
             },
             {
               "value": "Vulnerável: {<status.isVulnerable> ? string(\"Sim\") : string(\"Não\")}",
@@ -152,7 +192,31 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ff0000"
+              "color": "#ffff00"
+            },
+            {
+              "value": "Atordoado: {<status.isStunned> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-flushed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
+            },
+            {
+              "value": "Enredado: {<status.isEntangled> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-link",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
+            },
+            {
+              "value": "Preso: {<status.isBound> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-spider",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
             }
           ]
         },
@@ -197,15 +261,23 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#e974ce"
+              "color": "#ff80e1"
             },
             {
-              "value": "Correr: {stats.speed.runningDie}+{stats.speed.runningMod}",
+              "value": "Correr: d{stats.speed.runningDie}+{stats.speed.runningMod}",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#fda190"
+              "color": "#ff80ff"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#8ece40"
             },
             {
               "value": "Abalado: {<status.isShaken> ? string(\"Sim\") : string(\"Não\")}",
@@ -213,7 +285,7 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ffff1a"
+              "color": "#ffff00"
             },
             {
               "value": "Distraído: {<status.isDistracted> ? string(\"Sim\") : string(\"Não\")}",
@@ -221,7 +293,7 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ff9500"
+              "color": "#ffff00"
             },
             {
               "value": "Vulnerável: {<status.isVulnerable> ? string(\"Sim\") : string(\"Não\")}",
@@ -229,7 +301,31 @@
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ff0000"
+              "color": "#ffff00"
+            },
+            {
+              "value": "Atordoado: {<status.isStunned> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-flushed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
+            },
+            {
+              "value": "Enredado: {<status.isEntangled> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-link",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
+            },
+            {
+              "value": "Preso: {<status.isBound> ? string(\"Sim\") : string(\"Não\")}",
+              "icon": "fa-spider",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ffff00"
             }
           ]
         }
@@ -465,11 +561,11 @@
         "useAccentEverywhere": false,
         "accentColor": "#2bf2ff",
         "tokenDispositions": [
-          "OWNED",
           "FRIENDLY",
           "NEUTRAL",
           "HOSTILE"
-        ]
+        ],
+        "useAccentColorForEverything": false
       }
     }
   },
@@ -772,10 +868,12 @@
         "useAccentEverywhere": false,
         "accentColor": "#11377b",
         "tokenDispositions": [
+          "OWNED",
           "FRIENDLY",
           "NEUTRAL",
           "HOSTILE"
-        ]
+        ],
+        "useAccentColorForEverything": false
       }
     }
   }

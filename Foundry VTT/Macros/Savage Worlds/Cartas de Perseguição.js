@@ -1,8 +1,12 @@
-/*
+const version = 'v1.0';
+
+/* Cartas de Perseguição
 Features
 - Draw n cards placing them in the scene
 - This macro can reset the table preventing from the error
 - This macro can line up the cards
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Cartas%20de%20Persegui%C3%A7%C3%A3o.js
+icon: icons/sundries/gaming/playing-cards.webp
 */
 
 getRequirements();
@@ -45,7 +49,7 @@ function getRequirements() {
   </p>
   `;
   new Dialog({
-    title: "Draw Cards To Table",
+    title: `Draw Cards To Table - ${version}`,
     content: template,
     buttons: {
       ok: {

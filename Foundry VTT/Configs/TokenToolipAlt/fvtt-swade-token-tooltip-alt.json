@@ -1,0 +1,740 @@
+https://gist.githubusercontent.com/bloy/cc9a2d787da1b892d66ea3b43e61601e/raw/03fc37b82526db246324105f90009443bc0278c1/fvtt-swade-token-tooltip-alt.json
+
+{
+  "gmSettings": {
+    "default": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{ f=<fatigue.value>; fm=<fatigue.max>; f == 0 ? \"\" : concat(\"Fatigue: \", string(f), \"/\", string(fm)) }",
+              "icon": "fa-bed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "Pace: {stats.speed.value} (run d{stats.speed.runningDie})",
+              "icon": "fa-walking",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#c0c0c0"
+            },
+            {
+              "value": "Parry: {stats.parry.value}",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "Tough: {stats.toughness.value} { a=<stats.toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-hand-rock",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "const statusList=[];\nif (data.status.isShaken) {\n\tstatusList.push(\"Shaken\");\n}\nif (data.status.isDistracted) {\n\tstatusList.push(\"Distracted\");\n}\nif (data.status.isVulnerable) {\n\tstatusList.push(\"Vulnerable\");\n}\nif (data.status.isStunned) {\n\tstatusList.push(\"Stun\");\n}\nif (data.status.isBound) {\n\tstatusList.push(\"Bound\");\n}\nif (data.status.isEntangled) {\n\tstatusList.push(\"Entangled\");\n}\nreturn statusList.join(\", \")",
+              "icon": "fa-stream",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#ffffff"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{ f=<fatigue.value>; fm=<fatigue.max>; f == 0 ? \"\" : concat(\"Fatigue: \", string(f), \"/\", string(fm)) }",
+              "icon": "fa-bed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "Pace: {stats.speed.value} (run d{stats.speed.runningDie})",
+              "icon": "fa-walking",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#c0c0c0"
+            },
+            {
+              "value": "Parry: {stats.parry.value}",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "Tough: {stats.toughness.value} { a=<stats.toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-hand-rock",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "const statusList=[];\nif (data.status.isShaken) {\n\tstatusList.push(\"Shaken\");\n}\nif (data.status.isDistracted) {\n\tstatusList.push(\"Distracted\");\n}\nif (data.status.isVulnerable) {\n\tstatusList.push(\"Vulnerable\");\n}\nif (data.status.isStunned) {\n\tstatusList.push(\"Stun\");\n}\nif (data.status.isBound) {\n\tstatusList.push(\"Bound\");\n}\nif (data.status.isEntangled) {\n\tstatusList.push(\"Entangled\");\n}\nreturn statusList.join(\", \")",
+              "icon": "fa-stream",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#ffffff"
+            }
+          ]
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{ f=<fatigue.value>; fm=<fatigue.max>; f == 0 ? \"\" : concat(\"Fatigue: \", string(f), \"/\", string(fm)) }",
+              "icon": "fa-bed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "Pace: {stats.speed.value} (run d{stats.speed.runningDie})",
+              "icon": "fa-walking",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#c0c0c0"
+            },
+            {
+              "value": "Parry: {stats.parry.value}",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "Tough: {stats.toughness.value} { a=<stats.toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-hand-rock",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "const statusList=[];\nif (data.status.isShaken) {\n\tstatusList.push(\"Shaken\");\n}\nif (data.status.isDistracted) {\n\tstatusList.push(\"Distracted\");\n}\nif (data.status.isVulnerable) {\n\tstatusList.push(\"Vulnerable\");\n}\nif (data.status.isStunned) {\n\tstatusList.push(\"Stun\");\n}\nif (data.status.isBound) {\n\tstatusList.push(\"Bound\");\n}\nif (data.status.isEntangled) {\n\tstatusList.push(\"Entangled\");\n}\nreturn statusList.join(\", \")",
+              "icon": "fa-stream",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "useAccentEverywhere": false,
+        "accentColor": "#573805",
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    },
+    "character": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "accentColor": "#5d088",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "npc": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "accentColor": "#19dc5a",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "vehicle": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "Tough: {toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "Top Speed: {topspeed}",
+              "icon": "fa-tachometer-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#83d417"
+            },
+            {
+              "value": "Handling: {handling}",
+              "icon": "fa-car-crash",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#67943f"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "Tough: {toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "Top Speed: {topspeed}",
+              "icon": "fa-tachometer-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#83d417"
+            },
+            {
+              "value": "Handling: {handling}",
+              "icon": "fa-car-crash",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#67943f"
+            }
+          ]
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "Tough: {toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "Top Speed: {topspeed}",
+              "icon": "fa-tachometer-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#83d417"
+            },
+            {
+              "value": "Handling: {handling}",
+              "icon": "fa-car-crash",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#67943f"
+            }
+          ]
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "useAccentEverywhere": false,
+        "accentColor": "#2bf2ff",
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    }
+  },
+  "playerSettings": {
+    "default": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{ f=<fatigue.value>; fm=<fatigue.max>; f == 0 ? \"\" : concat(\"Fatigue: \", string(f), \"/\", string(fm)) }",
+              "icon": "fa-bed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "Pace: {stats.speed.value} (run d{stats.speed.runningDie})",
+              "icon": "fa-walking",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#c0c0c0"
+            },
+            {
+              "value": "Parry: {stats.parry.value}",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "Tough: {stats.toughness.value} { a=<stats.toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-hand-rock",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "const statusList=[];\nif (data.status.isShaken) {\n\tstatusList.push(\"Shaken\");\n}\nif (data.status.isDistracted) {\n\tstatusList.push(\"Distracted\");\n}\nif (data.status.isVulnerable) {\n\tstatusList.push(\"Vulnerable\");\n}\nif (data.status.isStunned) {\n\tstatusList.push(\"Stun\");\n}\nif (data.status.isBound) {\n\tstatusList.push(\"Bound\");\n}\nif (data.status.isEntangled) {\n\tstatusList.push(\"Entangled\");\n}\nreturn statusList.join(\", \")",
+              "icon": "fa-stream",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#ffffff"
+            }
+          ]
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{ f=<fatigue.value>; fm=<fatigue.max>; f == 0 ? \"\" : concat(\"Fatigue: \", string(f), \"/\", string(fm)) }",
+              "icon": "fa-bed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "Pace: {stats.speed.value} (run d{stats.speed.runningDie})",
+              "icon": "fa-walking",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#c0c0c0"
+            },
+            {
+              "value": "Parry: {stats.parry.value}",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "Tough: {stats.toughness.value} { a=<stats.toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-hand-rock",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "const statusList=[];\nif (data.status.isShaken) {\n\tstatusList.push(\"Shaken\");\n}\nif (data.status.isDistracted) {\n\tstatusList.push(\"Distracted\");\n}\nif (data.status.isVulnerable) {\n\tstatusList.push(\"Vulnerable\");\n}\nif (data.status.isStunned) {\n\tstatusList.push(\"Stun\");\n}\nif (data.status.isBound) {\n\tstatusList.push(\"Bound\");\n}\nif (data.status.isEntangled) {\n\tstatusList.push(\"Entangled\");\n}\nreturn statusList.join(\", \")",
+              "icon": "fa-stream",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#ffffff"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{ f=<fatigue.value>; fm=<fatigue.max>; f == 0 ? \"\" : concat(\"Fatigue: \", string(f), \"/\", string(fm)) }",
+              "icon": "fa-bed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "const statusList=[];\nif (data.status.isShaken) {\n\tstatusList.push(\"Shaken\");\n}\nif (data.status.isDistracted) {\n\tstatusList.push(\"Distracted\");\n}\nif (data.status.isVulnerable) {\n\tstatusList.push(\"Vulnerable\");\n}\nif (data.status.isStunned) {\n\tstatusList.push(\"Stun\");\n}\nif (data.status.isBound) {\n\tstatusList.push(\"Bound\");\n}\nif (data.status.isEntangled) {\n\tstatusList.push(\"Entangled\");\n}\nreturn statusList.join(\", \")",
+              "icon": "fa-stream",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#ffffff"
+            }
+          ]
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{ f=<fatigue.value>; fm=<fatigue.max>; f == 0 ? \"\" : concat(\"Fatigue: \", string(f), \"/\", string(fm)) }",
+              "icon": "fa-bed",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "const statusList=[];\nif (data.status.isShaken) {\n\tstatusList.push(\"Shaken\");\n}\nif (data.status.isDistracted) {\n\tstatusList.push(\"Distracted\");\n}\nif (data.status.isVulnerable) {\n\tstatusList.push(\"Vulnerable\");\n}\nif (data.status.isStunned) {\n\tstatusList.push(\"Stun\");\n}\nif (data.status.isBound) {\n\tstatusList.push(\"Bound\");\n}\nif (data.status.isEntangled) {\n\tstatusList.push(\"Entangled\");\n}\nreturn statusList.join(\", \")",
+              "icon": "fa-stream",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "FRIENDLY",
+        "useAccentEverywhere": false,
+        "accentColor": "#779e7e",
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    },
+    "character": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": []
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "FRIENDLY",
+        "accentColor": "#a547bf",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "npc": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": []
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "FRIENDLY",
+        "accentColor": "#1c2c80",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "vehicle": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "Tough: {toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "Top Speed: {topspeed}",
+              "icon": "fa-tachometer-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#83d417"
+            },
+            {
+              "value": "Handling: {handling}",
+              "icon": "fa-car-crash",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#67943f"
+            }
+          ]
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(\"Wounds: \", string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "fa-user-injured",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "Tough: {toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "Top Speed: {topspeed}",
+              "icon": "fa-tachometer-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#83d417"
+            },
+            {
+              "value": "Handling: {handling}",
+              "icon": "fa-car-crash",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#67943f"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "FRIENDLY",
+        "useAccentEverywhere": false,
+        "accentColor": "#11377b",
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    }
+  }
+}
