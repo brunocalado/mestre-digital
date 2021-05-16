@@ -1,9 +1,9 @@
 const version = 'v1.0';
-const chatimage = "https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/icons/clock.webp";
+const chatimage = "icons/environment/people/charge.webp";
 
 /* Mass Battle p133 SWADE
 
-source: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/MassBattle.js
 icon: icons/environment/people/charge.webp
 */
 
@@ -221,8 +221,8 @@ async function massbattle(html){
   let commanderRolled2=commanderRoll(commanderbonus2);
   let result1=0;
   let result2=0;
-  let message = `<h2 style="color:red">Mass Battle</h1>`;
-
+  let message = `<h2 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Mass Battle</h1>`;
+  
   result1 += forceBonus(force1, force2);
   result2 += forceBonus(force1, force2);
   result1 += tacticaladvantage1;
