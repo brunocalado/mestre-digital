@@ -221,8 +221,8 @@ async function massbattle(html){
   let commanderRolled2=commanderRoll(commanderbonus2);
   let result1=0;
   let result2=0;
-  let message = `<h2 style="color:red">Mass Battle Outcome</h1>`;
-  
+  let message = `<h2 style="color:red">Mass Battle</h1>`;
+
   result1 += forceBonus(force1, force2);
   result2 += forceBonus(force1, force2);
   result1 += tacticaladvantage1;
@@ -333,3 +333,9 @@ function commanderRoll(val) {
   return roll.total;
 }
 
+async function getHelp() {
+  const compendium = 'swade-core-rules.swade-rules';
+  let pack = game.packs.get(compendium);
+  let contents = await pack.getContent();
+  contents.find(i=>i.name === 'Mass Battles').sheet.render(true);
+}
