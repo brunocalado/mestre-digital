@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.08"
+VERSION="v1.09"
 echo "========================================"
 case "$1" in
     ligar)
@@ -102,11 +102,11 @@ case "$1" in
               rm -rf foundry
               mkdir -p foundry  
               mkdir -p ~/.local/share/FoundryVTT  
+              mv foundry.zip foundry/
               cd foundry/  
-              curl -o fvtt.zip "${linkdownloadfoundry}"  
-              unzip fvtt.zip
+              unzip foundry.zip
               sudo chmod +x ~/foundry/resources/app/main.js    
-              rm fvtt.zip
+              rm foundry.zip
               cd ~
               ./jarbas ligar 
             ;;
@@ -119,13 +119,13 @@ case "$1" in
               rm -rf foundry
               mkdir -p foundry  
               mkdir -p ~/.local/share/FoundryVTT  
-              mv fvtt.zip foundry
               cd foundry/  
+              curl -o fvtt.zip "${linkdownloadfoundry}"  
               unzip fvtt.zip
               sudo chmod +x ~/foundry/resources/app/main.js    
               rm fvtt.zip
               cd ~
-              ./jarbas ligar              
+              ./jarbas ligar             
             ;;            
             *)
             echo "Opcoes: $0 {removesenha|resetaconfig}"            
