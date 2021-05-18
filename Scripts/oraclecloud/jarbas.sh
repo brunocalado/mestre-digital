@@ -1,24 +1,23 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.07"
+VERSION="v1.08"
 echo "========================================"
 case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
-        echo "Pressione enter para continuar." 
-        pm2 delete all
+        echo "Pressione enter para continuar."         
         pm2 start "node /home/ubuntu/foundry/resources/app/main.js" --name foundry    
         pm2 save
     ;;
     desligar)
-        echo "Encerrando o Foundry VTT"        
+        echo "Encerrando o Foundry VTT"                
+        pm2 stop foundry
         pm2 delete all
-        pm2 stop foundry        
     ;;
     status)
         echo "Verificando se o Foundry VTT esta executando"        
-        pm2 list        
+        pm2 list
     ;;  
     versao)
         echo "Checagem de Versoes"        
@@ -29,7 +28,7 @@ case "$1" in
         echo "Versao do SO: $(cat /etc/os-release | grep PRETTY_NAME)"
     ;;
     reiniciar)
-        echo "Encerra o FVTT e Inicia o FVTT"        
+        echo "Encerra o FVTT e Inicia o FVTT em seguida"        
         ./jarbas desligar
         ./jarbas ligar        
     ;;    
@@ -65,6 +64,8 @@ case "$1" in
     sobre)
       curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt && cat md && rm md
       echo "https://www.mestredigital.online/colabore-com-o-mestre-digital"
+      echo
+      echo "Ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;;      
     compactar)
       echo "Para salvar os seus arquivos a melhor forma e compacta-los antes em um arquivo ZIP. Isso permite que a transferencia de seu computador para nuvem ou vice versa seja muito mais rapida."
@@ -89,7 +90,26 @@ case "$1" in
               ./jarbas desligar
               rm config/options.json
               ./jarbas ligar
-            ;;             
+            ;;        
+            instalarzip)
+              echo "===== Instala Foundry VTT ====="
+              ./jarbas desligar
+              echo "Voce deve ter feito o upload do arquivo zip do Foundry VTT (node) para a pasta principal atraves do Filezilla." 
+              echo "NOME DO ARQUIVO DEVE SER: fvtt.zip"
+              echo "Se nao fez, cancele esse processo com Control+C. Se teve problemas pode instalar via link com o ./jarbas instalar LINK conforme e ensinado no video: https://youtu.be/Y1Nw2B4NvKM?t=1081"
+              echo "Sua instalacao Foundry VTT esta sendo removida. Seus arquivos de usuario nao serao afetados."
+              cd ~
+              rm -rf foundry
+              mkdir -p foundry  
+              mkdir -p ~/.local/share/FoundryVTT  
+              cd foundry/  
+              curl -o fvtt.zip "${linkdownloadfoundry}"  
+              unzip fvtt.zip
+              sudo chmod +x ~/foundry/resources/app/main.js    
+              rm fvtt.zip
+              cd ~
+              ./jarbas ligar 
+            ;;
             instalar)
               echo "===== Instala Foundry VTT ====="
               ./jarbas desligar
@@ -99,8 +119,8 @@ case "$1" in
               rm -rf foundry
               mkdir -p foundry  
               mkdir -p ~/.local/share/FoundryVTT  
+              mv fvtt.zip foundry
               cd foundry/  
-              curl -o fvtt.zip "${linkdownloadfoundry}"  
               unzip fvtt.zip
               sudo chmod +x ~/foundry/resources/app/main.js    
               rm fvtt.zip
@@ -114,6 +134,7 @@ case "$1" in
             echo "instalar: instala uma nova versao do foundry vtt usando o link do site do foundry vtt. Tem que usar o link do node.js. Importante: a pasta da instalacao foundry atual sera apagada, isso nao afeta a pasta de dados do foundry."  
             echo "removesenha: remove a senha do foundry vtt"  
             echo "resetaconfig: coloca o arquivo de configuracao do foundry vtt em seu estado padrao."               
+            echo
             exit 1
         esac
     ;;       
