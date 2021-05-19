@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.11"
+VERSION="v1.12"
 echo "========================================"
 case "$1" in
     ligar)
@@ -35,6 +35,14 @@ case "$1" in
     suporte)
         echo "Dados da Maquina"        
         cat dadossuporte
+        echo 
+        echo "== Solucao de Problemas =="
+        echo "1. Reinicie a maquina no oracle."
+        echo "2. Reinicie o foundry (./jarbas reiniciar)"
+        echo "3. Tente acessar pelo IP (esta no site da oracle)"
+        echo "4. Se por IP funcionou o problema e com o dominio. Veja se o apontamento esta certo. Refaca o processo conforme o video."        
+        echo
+        echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;; 
     update)
         echo "======================"
