@@ -1,8 +1,9 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.12"
+VERSION="v1.14"
 echo "========================================"
+./jarbas update 
 case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
