@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.15"
+VERSION="v1.16"
 echo "========================================"
 case "$1" in
     ligar)
@@ -232,6 +232,7 @@ case "$1" in
         echo "status: Verifica se o Foundry VTT está rodando"
         echo "suporte: Mostra dados da maquina"
         echo "update: atualiza o jarbas."                
+        echo
         exit 1
 esac
 echo "========================================"
