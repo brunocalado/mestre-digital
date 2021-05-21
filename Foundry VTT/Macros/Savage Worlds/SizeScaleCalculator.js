@@ -1,4 +1,4 @@
-const version = 'v1.0';
+const version = 'v1.1';
 const chatimage = "icons/tools/hand/scale-balances-merchant-brown.webp";
 
 /* Size Scale p106 SWADE
@@ -22,8 +22,8 @@ function rollForIt() {
   let modifier = calc(actorSize, targetSize);
 
   let message = `<h2 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Size/Scale Calculator</h2>`;
-  message += `<ul><li>Size from ${tokenActor.name}: ${actorSize}.</li>`;
-  message += `<li>Size from ${tokenTarget.name}: ${targetSize}.</li></ul>`;
+  message += `<ul><li>${tokenActor.name} Size : ${actorSize}.</li>`;
+  message += `<li>${tokenTarget.name} Size: ${targetSize}.</li></ul>`;
   if (modifier!=0) {
     message += `<ul><li>${tokenActor.name} has <b style="color:red">${modifier}</b> to attack ${tokenTarget.name}.</li>`;
     message += `<li>${tokenTarget.name} has <b style="color:red">${calc(targetSize, actorSize)}</b> to attack ${tokenActor.name}.</li></ul>`;
