@@ -1,4 +1,4 @@
-const version = 'v1.1';
+const version = 'v1.2';
 const chatimage = "icons/tools/hand/scale-balances-merchant-brown.webp";
 
 /* Size Scale p106 SWADE
@@ -18,15 +18,17 @@ if (tokenActor===undefined || tokenTarget===undefined){
 
 function rollForIt() {
   let actorSize = tokenActor.actor.data.data.stats.size;  
-  let targetSize = tokenTarget.actor.data.data.stats.size;  
-  let modifier = calc(actorSize, targetSize);
+  let targetSize = tokenTarget.actor.data.data.stats.size;
+  let actorModifier = sizeToModifier(actorSize);
+  let targetModifier = sizeToModifier(targetSize);
+  let modifier = calc(actorModifier, targetModifier);
 
   let message = `<h2 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Size/Scale Calculator</h2>`;
-  message += `<ul><li>${tokenActor.name} Size : ${actorSize}.</li>`;
-  message += `<li>${tokenTarget.name} Size: ${targetSize}.</li></ul>`;
+  message += `<ul><li>${tokenActor.name}: Size=${actorSize} / Modifier=${actorModifier}</li>`;
+  message += `<li>${tokenTarget.name}: Size=${targetSize} / Modifier=${targetModifier}</li></ul>`;
   if (modifier!=0) {
     message += `<ul><li>${tokenActor.name} has <b style="color:red">${modifier}</b> to attack ${tokenTarget.name}.</li>`;
-    message += `<li>${tokenTarget.name} has <b style="color:red">${calc(targetSize, actorSize)}</b> to attack ${tokenActor.name}.</li></ul>`;
+    message += `<li>${tokenTarget.name} has <b style="color:red">${calc(targetModifier, actorModifier)}</b> to attack ${tokenActor.name}.</li></ul>`;
   } else {
     message += `<p>They have the same size. There is no modifier.</p>`;
   }
@@ -39,15 +41,39 @@ function rollForIt() {
   ChatMessage.create(chatData, {});  
 }
 
-function calc(actorSize, targetSize) {
-  if (actorSize==targetSize) {
+function calc(actorModifier, targetModifier) {
+  let diff;
+  if (actorModifier==targetModifier) {
     return 0;
-  } else {
-    let diff = Math.abs(actorSize) + Math.abs(targetSize);
-    if (actorSize<targetSize) {    
+  } else {    
+    if (actorModifier<targetModifier) {          
+      diff = Math.abs(actorModifier) + Math.abs(targetModifier);
       return diff;
     } else {
+      diff = Math.abs(actorModifier) + Math.abs(targetModifier);
       return -diff;
     }
   }       
 }
+
+function sizeToModifier(size) { //p179 swade core
+  if ( size==-4 ) {
+    return -6;
+  } else if ( size==-3 ) {
+    return -4;
+  } else if ( size==-2 ) {
+    return -2;
+  } else if ( size>=-1 && size<=3 ) {
+    return 0;
+  } else if ( size>=4 && size<=7 ) {
+    return 2;
+  } else if ( size>=8 && size<=11 ) {
+    return 4;
+  } else if ( size>=12 && size<=20 ) {
+    return 6;
+  }  
+}
+
+
+
+
