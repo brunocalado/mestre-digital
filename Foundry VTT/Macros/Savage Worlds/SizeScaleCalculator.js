@@ -1,4 +1,4 @@
-const version = 'v1.3';
+const version = 'v1.4';
 const chatimage = "icons/tools/hand/scale-balances-merchant-brown.webp";
 
 /* Size Scale p106 SWADE
@@ -31,7 +31,7 @@ function rollForIt() {
     message += `<ul><li>${tokenActor.name} has <b style="color:red">${modifier}</b> to attack ${tokenTarget.name}.</li>`;
     message += `<li>${tokenTarget.name} has <b style="color:red">${calc(targetModifier, actorModifier)}</b> to attack ${tokenActor.name}.</li></ul>`;
   } else {
-    message += `<p>They have the same size. There is no modifier.</p>`;
+    message += `<p><b>There is no modifier.</b> They have the same Scale.</p>`;
   }
 
   // send message
