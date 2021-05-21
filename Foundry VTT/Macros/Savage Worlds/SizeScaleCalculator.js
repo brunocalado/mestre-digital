@@ -26,7 +26,7 @@ function rollForIt() {
   let message = `<h2 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Size/Scale Calculator</h2>`;
   message += `<ul><li>${tokenActor.name}: Size=${actorSize} / Modifier=${actorModifier}</li>`;
   message += `<li>${tokenTarget.name}: Size=${targetSize} / Modifier=${targetModifier}</li></ul>`;
-  message += `<h3>Result</h3>`;
+  message += `<h3 style="color:red">Result</h3>`;
   if (modifier!=0) {
     message += `<ul><li>${tokenActor.name} has <b style="color:red">${modifier}</b> to attack ${tokenTarget.name}.</li>`;
     message += `<li>${tokenTarget.name} has <b style="color:red">${calc(targetModifier, actorModifier)}</b> to attack ${tokenActor.name}.</li></ul>`;
