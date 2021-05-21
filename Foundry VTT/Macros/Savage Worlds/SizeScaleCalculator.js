@@ -1,108 +1,53 @@
 const version = 'v1.0';
-const chatimage = "https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/icons/clock.webp";
+const chatimage = "icons/tools/hand/scale-balances-merchant-brown.webp";
 
-/* Deviation p99 SWADE
-If a blast template misses, it deviates 1d6″
-for thrown weapons (such as grenades) and
-2d6″ for fired projectiles. Multiply by 2 if the
-attack was made at Medium Range, 3 if Long,
-and 4 for Extreme.
+/* Size Scale p106 SWADE
 
-Next roll a d12 and read it like a clock
-facing to determine the direction the missile
-deviates. A weapon can never deviate more
-than half the distance to the original target
-(that keeps it from going behind the thrower).
-
-source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Deviation.js
-icon: icons/weapons/artillery/cannon-engraved-gold.webp
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/SizeScaleCalculator.js
+icon: icons/tools/hand/scale-balances-merchant-brown.webp
 */
 
-getRequirements();
+let tokenActor=canvas.tokens.controlled[0];
+let tokenTarget=Array.from(game.user.targets)[0];
 
-function getRequirements() {
-  let template = `
-  <h2>Weapon Type</h2>
-  <table style="width:100%">
-  <tr>
-    <td><input type="radio" id="thrown" name="weapontype" value="thrown"><label for="thrown">Thrown weapon</label></td>
-    <td><input type="radio" id="projectile" name="weapontype" value="projectile" checked="checked><label for="projectile">Projectile</label></td>    
-  </tr>
-  </table>  
-  <h2>Range</h2>
-  <table style="width:100%">
-  <tr>
-    <td><input type="radio" id="short" name="range" value="short" checked="checked><label for="thrown">Short</label></td>
-    <td><input type="radio" id="medium" name="range" value="medium"><label for="projectile">Medium</label></td>    
-    <td><input type="radio" id="long" name="range" value="long"><label for="projectile">Long</label></td>    
-    <td><input type="radio" id="extreme" name="range" value="extreme"><label for="projectile">Extreme</label></td>    
-  </tr>
-  </table>    
-  `;
-  new Dialog({
-    title: "Deviation",
-    content: template,
-    buttons: {
-      ok: {
-        label: "Go!",
-        callback: async (html) => {
-          rollForIt(html);
-        },
-      }
-    },
-  }).render(true);
+if (tokenActor===undefined || tokenTarget===undefined){
+  ui.notifications.warn("You must select a token and target another one!");    
+} else {
+  rollForIt();  
 }
 
-function rollForIt(html) {
-  const weapontype=html.find('input[name="weapontype"]:checked').val();
-  const range=html.find('input[name="range"]:checked').val();
-  let deviation;
-  
-  if (weapontype=='thrown') {
-    deviation = diceRoll('1d6', range);
+function rollForIt() {
+  let actorSize = tokenActor.actor.data.data.stats.size;  
+  let targetSize = tokenTarget.actor.data.data.stats.size;  
+  let modifier = calc(actorSize, targetSize);
+
+  let message = `<h2 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Size/Scale Calculator</h2>`;
+  message += `<ul><li>Size from ${tokenActor.name}: ${actorSize}.</li>`;
+  message += `<li>Size from ${tokenTarget.name}: ${targetSize}.</li></ul>`;
+  if (modifier!=0) {
+    message += `<ul><li>${tokenActor.name} has <b style="color:red">${modifier}</b> to attack ${tokenTarget.name}.</li>`;
+    message += `<li>${tokenTarget.name} has <b style="color:red">${calc(targetSize, actorSize)}</b> to attack ${tokenActor.name}.</li></ul>`;
   } else {
-    deviation = diceRoll('2d6', range);
+    message += `<p>They have the same size. There is no modifier.</p>`;
   }
-}
 
-function diceRoll(die, range) {
-  const rangeMultiplier = rangeCheck(range);
-  let direction = new Roll('1d12').roll();
-  let roll = new Roll(die).roll();
-  let message = `<h2>Deviation</h2>`;  
-  message += `<p>Move the blast <b>${roll.total*rangeMultiplier}"</b> to <b style="color:red">${direction.total}</b> O'Clock.</p>`;
-  if (directionCheck(direction.total)) {
-    message += `<p><b style="color:red">A weapon can never deviate more than half the distance to the original target (that keeps it from going behind the thrower).</b></p>`;
-  }
-  message += `<p style="text-align:center"><img style="vertical-align:middle" src=${chatimage} width="200" height="200"><p>`;
-  
-  let tempChatData = {
-    type: CHAT_MESSAGE_TYPES.ROLL,
-    roll: roll,
-    rollMode: game.settings.get("core", "rollMode"),
+  // send message
+  let chatData = {
+    user: game.user._id,    
     content: message
-  };     
-  ChatMessage.create(tempChatData);  
-  return roll.total;
+  };  
+  ChatMessage.create(chatData, {});  
 }
 
-function rangeCheck(range) {
-  if (range=='short') {
-    return 1;
-  } else if (range=='medium') {
-    return 2;
-  } else if (range=='long') {
-    return 3;
-  } else if (range=='extreme') {
-    return 4;
-  }
-}
-
-function directionCheck(direction) {
-  console.log(direction);
-  if (direction==4 || direction==5 || direction==6 || direction==7 || direction==8) {
-    return true
+function calc(actorSize, targetSize) {
+  if (actorSize==targetSize) {
+    return 0;
   } else {
-    return false
-  } 
+    let diff = Math.abs(actorSize) + Math.abs(targetSize);
+    if (actorSize<targetSize) {    
+      return diff;
+    } else {
+      return -diff;
+    }
+  }       
 }

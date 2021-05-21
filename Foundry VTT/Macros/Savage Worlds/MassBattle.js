@@ -221,7 +221,7 @@ async function massbattle(html){
   let commanderRolled2=commanderRoll(commanderbonus2);
   let result1=0;
   let result2=0;
-  let message = `<h2 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Mass Battle</h1>`;
+  let message = `<h1 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Mass Battle</h1>`;
   
   result1 += forceBonus(force1, force2);
   result2 += forceBonus(force1, force2);
