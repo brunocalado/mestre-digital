@@ -1,9 +1,0 @@
-{
-  "id": "CALLEDSHOTHAND",
-  "name": "Called shot: Hand",
-  "button_name": "Called shot: Hand",
-  "skillMod": "-4",
-  "dmgMod": "+4",
-  "selector_type": "skill",
-  "selector_value": "Shooting"  
-}

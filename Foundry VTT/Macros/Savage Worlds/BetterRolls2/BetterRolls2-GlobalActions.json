@@ -1,0 +1,64 @@
+{
+  "id": "CALLEDSHOTHAND",
+  "name": "Called shot: Hand",
+  "button_name": "Called shot: Hand",
+  "skillMod": "-4",
+  "dmgMod": "+4",
+  "selector_type": "skill",
+  "selector_value": "Shooting"  
+}
+
+// Cover & Obstacles
+−2 Light Cover: A quarter of the target
+is obscured.
+−4 Medium Cover: Half the target is
+obscured, or target is prone.
+−6 Heavy Cover: Three-quarters of the
+target is obscured.
+−8 Near Total Cover: The target is
+barely visible.
+Use item_type weapon.
+
+
+{
+  "id": "LightCover",
+  "name": "Light Cover",
+  "button_name": "Light Cover",
+  "skillMod": "-2",
+  "selector_type": "skill",
+  "selector_value": "Fighting"
+}
+
+
+{
+  "id": "LightCover",
+  "name": "Light Cover",
+  "button_name": "Light Cover",
+  "skillMod": "-2",
+  "selector_type": "skill",
+  "selector_value": "Fighting",
+  "selector_type": "skill",
+  "selector_value": "Shooting"  
+}
+
+{
+  "id": "LightCover",
+  "name": "Light Cover",
+  "button_name": "Light Cover",
+  "skillMod": "-2",
+  "and_selector": [{"selector_type": "skill", "selector_value":"Fighting}, {"selector_type": "skill", "selector_value":"Shooting}] 
+}
+
+
+
+
+{
+"id":"LEG",
+"name":"Called Shot: Leg",
+"button_name":"Leg Remover",
+"skillMod":-4,
+"dmgMod":4,
+"dmgOverride":"",
+"selector_type":"item_type",
+"selector_value":"weapon"
+}
