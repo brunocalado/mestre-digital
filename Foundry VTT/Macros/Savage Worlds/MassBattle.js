@@ -286,7 +286,7 @@ function winnerCheck(result1, result2, name1, name2, force1, force2) {
       force1after -= 1;          
     }    
     message += `<p>Winner: <b>${name1}</b></p>`;
-    message += `<p>Looser: <b>${name2}</b></p>`;        
+    message += `<p>Loser: <b>${name2}</b></p>`;        
   } else if (result2>result1) {
     if ( (result2+4)>=result1 ) { // raise
       message += `<p><b>Victory:</b> The defeated army loses two Force Tokens.</p>`;        
@@ -297,7 +297,7 @@ function winnerCheck(result1, result2, name1, name2, force1, force2) {
       force2after -= 1;          
     }
     message += `<p>Winner: <b>${name2}</b></p>`;
-    message += `<p>Looser: <b>${name1}</b></p>`;    
+    message += `<p>Loser: <b>${name1}</b></p>`;    
   } else {
     message += `<p><b>Draw:</b> Both sides lose one Force Token.</p>`;    
     force1after -= 1; 
