@@ -1,4 +1,4 @@
-const version = 'v1.1';
+const version = 'v1.2';
 const chatimage = "icons/commodities/claws/claw-lizard-white-black.webp";
 
 /* Gang Up p101 SWADE core
@@ -37,7 +37,9 @@ function messageToTheChat() {
 // - Each additional adjacent foe (who isn’t Stunned)
 // - adds +1 to all the attackers’ Fighting rolls, up to a maximum of +4.
 // - Each ally adjacent to the defender cancels out one point
-function gangUp() {    
+function gangUp() {
+  const debug_flag=false;
+  
   let attacker=canvas.tokens.controlled[0];
   let tokenD=Array.from(game.user.targets)[0]; // token will not be count
   
@@ -68,34 +70,35 @@ function gangUp() {
   if ( attacker.data.disposition==1 ) { //friendly   
     if (enemies>allies) {
       modifier = 0; 
-      console.log('CASO 1');
+      if (debug_flag) console.log('CASE 1');
     } else if ((allies+1)>enemies) {
       modifier = (allies-1)-(enemies); 
-      console.log('CASO 2');
+      if (debug_flag) console.log('CASE 2');
     } else {
       modifier = 0; 
-      console.log('CASO 3');
+      if (debug_flag) console.log('CASE 3');
     }
   } else { // neutral/hostile
     if (enemies>allies) {
       modifier = (enemies-1)-(allies); 
-      console.log('CASO 4');
+      if (debug_flag) console.log('CASE 4');
     } else if ((allies+1)>enemies) {
       modifier = 0; 
-      console.log('CASO 5');
+      if (debug_flag) console.log('CASE 5');
     } else {
       modifier = 0; 
-      console.log('CASO 6');
+      if (debug_flag) console.log('CASE 6');
     }
   } 
 
   //debug
-  console.log('-----------------------');
-  console.log('Enemies: ' + withinRangeOfToken.length);
-  console.log('Allies: ' + alliedWithinRangeOfToken.length);
-  console.log('Modifier: ' + modifier);
-  console.log('-----------------------');
-
+  if (debug_flag) {
+    console.log('-----------------------');
+    console.log('Enemies: ' + withinRangeOfToken.length);
+    console.log('Allies: ' + alliedWithinRangeOfToken.length);
+    console.log('Modifier: ' + modifier);
+    console.log('-----------------------');
+  }
   return Math.min( 4, modifier );
 }
 
