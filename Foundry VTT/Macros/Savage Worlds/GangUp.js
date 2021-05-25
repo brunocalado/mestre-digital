@@ -1,4 +1,4 @@
-const version = 'v1.0';
+const version = 'v1.1';
 const chatimage = "icons/commodities/claws/claw-lizard-white-black.webp";
 
 /* Gang Up p101 SWADE core
@@ -13,9 +13,8 @@ icon: icons/commodities/claws/claw-lizard-white-black.webp
 */
 
 // Requires at least 1 target
-if (game.user.targets.size == 0) {
-  //ui.notifications.error('You must target at least one token');
-  messageToTheChat();
+if (canvas.tokens.controlled[0]===undefined || Array.from(game.user.targets)[0]===undefined){
+  ui.notifications.warn("You must select a token and target another one!");    
 } else {
   messageToTheChat();
 }
