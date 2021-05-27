@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.17"
+VERSION="v1.18"
 echo "========================================"
 case "$1" in
     ligar)
@@ -97,7 +97,7 @@ case "$1" in
             resetaconfig)
               echo "Restaurando o arquivo de configuracao do Foundry VTT para o padrao."
               ./jarbas desligar
-              rm config/options.json
+              rm -f config/options.json
               ./jarbas ligar
             ;;        
             instalarzip)
@@ -144,8 +144,8 @@ case "$1" in
             echo "Opcoes: $0 {instalar|instalarzip|removesenha|resetaconfig}"            
             echo "Exemplo de uso: ./jarbas admin removesenha"
             echo
-            echo "- instalar: instala uma nova versao do foundry vtt usando o link do site do foundry vtt. Tem que usar o link do node.js. Importante: a pasta da instalacao foundry atual sera apagada, isso nao afeta a pasta de dados do foundry."  
-            echo "- instalarzip: instala o foundry a partir de um arquivo ZIP cujo nome dever ser foundry.zip e esse arquivo deve estar na pasta inicial no filezilla. Esse processo remove sua instalacao foundry sem afetar os arquivos de usuario."  
+            echo "- instalar: instala uma nova versao do foundry vtt usando o link do site do foundry vtt. Tem que usar o link do linux/node.js. Importante: a pasta da instalacao foundry atual sera apagada, isso nao afeta a pasta de dados do foundry."  
+            echo "- instalarzip: instala o foundry a partir de um arquivo ZIP cujo nome dever ser foundry.zip e esse arquivo deve estar na pasta inicial no filezilla. Esse processo remove sua instalacao foundry sem afetar os arquivos de usuario. O que voce deve baixar do site do foundry e uma versao que seja linux/node.js."  
             echo "- removesenha: remove a senha do foundry vtt"  
             echo "- resetaconfig: coloca o arquivo de configuracao do foundry vtt em seu estado padrao."               
             echo
