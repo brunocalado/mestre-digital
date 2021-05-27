@@ -1,12 +1,12 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.16"
+VERSION="v1.17"
 echo "========================================"
 case "$1" in
     ligar)
         echo "Iniciando o Foundry VTT"
-        echo "Pressione enter para continuar."         
+        ./jarbas desligar
         pm2 start "node /home/ubuntu/foundry/resources/app/main.js" --name foundry    
         pm2 save
     ;;
@@ -35,11 +35,12 @@ case "$1" in
     suporte)
         echo "Dados da Maquina"        
         cat dadossuporte
+        echo "IP: " $(curl -s ifconfig.me)
         echo 
         echo "== Solucao de Problemas =="
         echo "1. Reinicie a maquina no oracle."
         echo "2. Reinicie o foundry (./jarbas reiniciar)"
-        echo "3. Tente acessar pelo IP (esta no site da oracle)"
+        echo "3. Tente acessar pelo IP: $(curl -s ifconfig.me):30000"
         echo "4. Se por IP funcionou o problema e com o dominio. Veja se o apontamento esta certo. Refaca o processo conforme o video."        
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
@@ -140,13 +141,13 @@ case "$1" in
               ./jarbas ligar             
             ;;            
             *)
-            echo "Opcoes: $0 {removesenha|resetaconfig}"            
+            echo "Opcoes: $0 {instalar|instalarzip|removesenha|resetaconfig}"            
             echo "Exemplo de uso: ./jarbas admin removesenha"
             echo
-            echo "instalar: instala uma nova versao do foundry vtt usando o link do site do foundry vtt. Tem que usar o link do node.js. Importante: a pasta da instalacao foundry atual sera apagada, isso nao afeta a pasta de dados do foundry."  
-            echo "instalarzip: instala o foundry a partir de um arquivo ZIP cujo nome dever ser foundry.zip e esse arquivo deve estar na pasta inicial no filezilla. Esse processo remove sua instalacao foundry sem afetar os arquivos de usuario."  
-            echo "removesenha: remove a senha do foundry vtt"  
-            echo "resetaconfig: coloca o arquivo de configuracao do foundry vtt em seu estado padrao."               
+            echo "- instalar: instala uma nova versao do foundry vtt usando o link do site do foundry vtt. Tem que usar o link do node.js. Importante: a pasta da instalacao foundry atual sera apagada, isso nao afeta a pasta de dados do foundry."  
+            echo "- instalarzip: instala o foundry a partir de um arquivo ZIP cujo nome dever ser foundry.zip e esse arquivo deve estar na pasta inicial no filezilla. Esse processo remove sua instalacao foundry sem afetar os arquivos de usuario."  
+            echo "- removesenha: remove a senha do foundry vtt"  
+            echo "- resetaconfig: coloca o arquivo de configuracao do foundry vtt em seu estado padrao."               
             echo
             exit 1
         esac
@@ -220,18 +221,18 @@ case "$1" in
         echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|caddy|espaco|status|update|node|sobre|suporte}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
-        echo "admin: funcoes administrativas."  
-        echo "caddy: instala e gerencia o caddy."          
-        echo "compactar: aprenda a compactar seus arquivos para ser facil baixar."          
-        echo "desligar: Para o Foundry VTT"
-        echo "espaco: mostra quanto do disco foi usado"        
-        echo "reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
-        echo "ligar: Inicia o Foundry VTT"
-        echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
-        echo "sobre: sobre o desenvolvedor desse script"        
-        echo "status: Verifica se o Foundry VTT está rodando"
-        echo "suporte: Mostra dados da maquina"
-        echo "update: atualiza o jarbas."                
+        echo "- admin: funcoes administrativas."  
+        echo "- caddy: instala e gerencia o caddy."          
+        echo "- compactar: aprenda a compactar seus arquivos para ser facil baixar."          
+        echo "- desligar: Para o Foundry VTT"
+        echo "- espaco: mostra quanto do disco foi usado"        
+        echo "- reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
+        echo "- ligar: Inicia o Foundry VTT"
+        echo "- node: atualiza o NODE para a ultima versao LTS (recomendado)."        
+        echo "- sobre: sobre o desenvolvedor desse script"        
+        echo "- status: Verifica se o Foundry VTT está rodando"
+        echo "- suporte: Mostra dados da maquina"
+        echo "- update: atualiza o jarbas."                
         echo
         exit 1
 esac
