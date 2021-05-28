@@ -1,12 +1,16 @@
-const version = 'v1.2';
+const version = 'v1.3';
 const chatimage = "icons/commodities/claws/claw-lizard-white-black.webp";
 
 /* Gang Up p101 SWADE core
 IMPORTANT
 - YOU SHOULD DEFINE TOKEN DISPOSITION: FRIENDLY FOR PCS AND ALLIES. HOSTILE FOR ENEMIES
 
+MODULES
+- OPTIONAL: Token Faction
+
 TODO
 - detect dead
+- JB2A
 
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/GangUp.js
 icon: icons/commodities/claws/claw-lizard-white-black.webp
@@ -36,72 +40,80 @@ function messageToTheChat() {
 // pg 101 swade core
 // - Each additional adjacent foe (who isn’t Stunned)
 // - adds +1 to all the attackers’ Fighting rolls, up to a maximum of +4.
-// - Each ally adjacent to the defender cancels out one point
+// - Each ally adjacent to the defender cancels out one point of Gang Up bonus from an attacker adjacent to both.
 function gangUp() {
-  const debug_flag=false;
+  const debug_flag=true;
   
   let attacker=canvas.tokens.controlled[0];
-  let tokenD=Array.from(game.user.targets)[0]; // token will not be count
+  let defender=Array.from(game.user.targets)[0]; // token will not be count
   
-  let token=tokenD; 
+  let tokenD=defender; // token will be removed 
   let itemRange=1; // dist 1''
   let enemies;
   let allies;
   let modifier=0;
+  
+  let withinRangeOfToken;
+  let alliedWithinRangeOfToken;
+  let alliedWithinRangeOfDefenderAndAttacker;
+  
+  if (attacker.data.disposition===-1) { // NPC (hostile) is attacking PCs (friendly)
+    withinRangeOfToken = canvas.tokens.placeables.filter(t => 
+      t.id !== attacker.id 
+      && t.data.disposition === -1 
+      && t.actor.data.data.status.isStunned === false 
+      && t.visible 
+      && withinRange(defender, t, itemRange)
+    );    
+    alliedWithinRangeOfToken = canvas.tokens.placeables.filter(t => 
+      t.id !== defender.id 
+      && t.data.disposition === 1 
+      && t.actor.data.data.status.isStunned === false 
+      && withinRange(defender, t, itemRange)
+    );    
+    //alliedWithinRangeOfDefenderAndAttacker intersection with attacker and defender
+    alliedWithinRangeOfDefenderAndAttacker = alliedWithinRangeOfToken.filter(t => 
+      t.data.disposition === 1 
+      && t.actor.data.data.status.isStunned === false 
+      && withinRange(attacker, t, itemRange)
+    );    
+  } else if (attacker.data.disposition===1) { // PCs (friendly) is attacking NPC (hostile)
+    withinRangeOfToken = canvas.tokens.placeables.filter(t => 
+      t.id !== attacker.id 
+      && t.data.disposition === 1 
+      && t.actor.data.data.status.isStunned === false 
+      && t.visible 
+      && withinRange(defender, t, itemRange)
+    );    
+    alliedWithinRangeOfToken = canvas.tokens.placeables.filter(t => 
+      t.id !== defender.id 
+      && t.data.disposition === -1 
+      && t.actor.data.data.status.isStunned === false 
+      && withinRange(defender, t, itemRange)
+    );    
+    //alliedWithinRangeOfDefenderAndAttacker intersection with attacker and defender
+    alliedWithinRangeOfDefenderAndAttacker = alliedWithinRangeOfToken.filter(t => 
+      t.data.disposition === -1 
+      && t.actor.data.data.status.isStunned === false 
+      && withinRange(attacker, t, itemRange)
+    ); 
+  }
 
-  let withinRangeOfToken = canvas.tokens.placeables.filter(t => 
-  t.id !== tokenD.id   
-  && t.data.disposition === -1 
-  && t.actor.data.data.status.isStunned === false 
-  && t.visible 
-  && withinRange(token, t, itemRange)
-  );
-  
-  let alliedWithinRangeOfToken = canvas.tokens.placeables.filter(t => 
-  t.id !== tokenD.id 
-  && t.data.disposition === 1 
-  && t.actor.data.data.status.isStunned === false 
-  && withinRange(token, t, itemRange)
-  );
-  
-  enemies = withinRangeOfToken.length;
-  allies = alliedWithinRangeOfToken.length;
-  
-  if ( attacker.data.disposition==1 ) { //friendly   
-    if (enemies>allies) {
-      modifier = 0; 
-      if (debug_flag) console.log('CASE 1');
-    } else if ((allies+1)>enemies) {
-      modifier = (allies-1)-(enemies); 
-      if (debug_flag) console.log('CASE 2');
-    } else {
-      modifier = 0; 
-      if (debug_flag) console.log('CASE 3');
-    }
-  } else { // neutral/hostile
-    if (enemies>allies) {
-      modifier = (enemies-1)-(allies); 
-      if (debug_flag) console.log('CASE 4');
-    } else if ((allies+1)>enemies) {
-      modifier = 0; 
-      if (debug_flag) console.log('CASE 5');
-    } else {
-      modifier = 0; 
-      if (debug_flag) console.log('CASE 6');
-    }
-  } 
+  enemies = withinRangeOfToken.length;   
+  allies = alliedWithinRangeOfDefenderAndAttacker.length;
+  modifier = Math.max(0, (enemies-allies) );  
 
   //debug
   if (debug_flag) {
     console.log('-----------------------');
     console.log('Enemies: ' + withinRangeOfToken.length);
     console.log('Allies: ' + alliedWithinRangeOfToken.length);
+    console.log('Allies Adjacent to Both: ' + alliedWithinRangeOfDefenderAndAttacker.length);
     console.log('Modifier: ' + modifier);
     console.log('-----------------------');
   }
   return Math.min( 4, modifier );
 }
-
 
 // function from Kekilla
 function withinRange(origin, target, range) {
@@ -109,7 +121,3 @@ function withinRange(origin, target, range) {
     let distance = canvas.grid.measureDistances([{ ray }], { gridSpaces: true })[0];
     return range >= distance;
 }
-
-/*
-&& t.actor.data.type === "npc" 
-*/

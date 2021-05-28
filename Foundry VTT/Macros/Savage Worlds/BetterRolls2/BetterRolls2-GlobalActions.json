@@ -9,56 +9,55 @@
 }
 
 // Cover & Obstacles
-−2 Light Cover: A quarter of the target
-is obscured.
-−4 Medium Cover: Half the target is
-obscured, or target is prone.
-−6 Heavy Cover: Three-quarters of the
-target is obscured.
-−8 Near Total Cover: The target is
-barely visible.
-Use item_type weapon.
-
+−2 Light Cover: A quarter of the target is obscured.
+−4 Medium Cover: Half the target is obscured, or target is prone.
+−6 Heavy Cover: Three-quarters of the target is obscured.
+−8 Near Total Cover: The target is barely visible.
 
 {
   "id": "LightCover",
   "name": "Light Cover",
   "button_name": "Light Cover",
   "skillMod": "-2",
-  "selector_type": "skill",
-  "selector_value": "Fighting"
+  "selector_type": "item_type", 
+  "selector_value": "weapon"
+}
+{
+  "id": "MediumCover",
+  "name": "Medium Cover",
+  "button_name": "Medium Cover",
+  "skillMod": "-4",
+  "selector_type": "item_type", 
+  "selector_value": "weapon"
+}
+{
+  "id": "HeavyCover",
+  "name": "Heavy Cover",
+  "button_name": "Heavy Cover",
+  "skillMod": "-6",
+  "selector_type": "item_type", 
+  "selector_value": "weapon"
+}
+{
+  "id": "NearTotalCover",
+  "name": "Near Total Cover",
+  "button_name": "Near Total Cover",
+  "skillMod": "-8",
+  "selector_type": "item_type", 
+  "selector_value": "weapon"
 }
 
+// Cover & Obstacles
+Penalty	Lighting
+-2	Dim: Twilight, light fog, night with a full moon.
+-4	Dark: Typical night conditions with some ambient light from stars, a clouded or partial moon, emergency lights in an office building, a few flickering torches in a large space, etc. Targets aren’t visible outside of 10″.
+-6	Pitch Darkness: Complete and total darkness (or the target is hidden or invisible). Powers that require sight may not be possible.
 
 {
-  "id": "LightCover",
-  "name": "Light Cover",
-  "button_name": "Light Cover",
-  "skillMod": "-2",
-  "selector_type": "skill",
-  "selector_value": "Fighting",
-  "selector_type": "skill",
-  "selector_value": "Shooting"  
-}
-
-{
-  "id": "LightCover",
-  "name": "Light Cover",
-  "button_name": "Light Cover",
-  "skillMod": "-2",
-  "and_selector": [{"selector_type": "skill", "selector_value":"Fighting}, {"selector_type": "skill", "selector_value":"Shooting}] 
-}
-
-
-
-
-{
-"id":"LEG",
-"name":"Called Shot: Leg",
-"button_name":"Leg Remover",
-"skillMod":-4,
-"dmgMod":4,
-"dmgOverride":"",
-"selector_type":"item_type",
-"selector_value":"weapon"
+  "id": "NearTotalCover",
+  "name": "Near Cover",
+  "button_name": "Near Total Cover",
+  "skillMod": "-8",
+  "selector_type": "item_type", 
+  "selector_value": "weapon"
 }
