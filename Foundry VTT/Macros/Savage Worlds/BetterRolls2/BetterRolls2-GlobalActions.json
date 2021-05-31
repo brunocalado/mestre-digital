@@ -47,17 +47,150 @@
   "selector_value": "weapon"
 }
 
-// Cover & Obstacles
-Penalty	Lighting
+// Unarmed Defender
+It’s difficult to parry a blade with one’s bare hands. An attacker armed with a melee
+weapon adds +2 to his Fighting attacks if his foe has no weapon or shield. (This doesn’t
+stack with the Drop.)
+{
+  "id": "UNARMEDDEFENDER",
+  "name": "Unarmed Defender",
+  "button_name": "Unarmed Defender",
+  "skillMod": "+2",
+  "selector_type": "skill",
+  "selector_value": "Fighting"  
+}
+
+// Unstable Platform
+A character attempting to fire or throw a ranged weapon from the back of a horse
+or other mount, a moving vehicle, or other “unstable platform” subtracts 2 from his total.
+{
+  "id": "UNSTABLEPLATFORMS",
+  "name": "Unstable Platform (S)",
+  "button_name": "Unstable Platform",
+  "skillMod": "-2",
+  "selector_type": "skill",
+  "selector_value": "Shooting"  
+}
+{
+  "id": "UNSTABLEPLATFORMA",
+  "name": "Unstable Platform (A)",
+  "button_name": "Unstable Platform",
+  "skillMod": "-2",
+  "selector_type": "skill",
+  "selector_value": "Athletics"  
+}
+
+// Touch Attack
+A character who simply wants to touch a foe (usually to deliver a magical effect of some
+kind) may add +2 to his Fighting roll.
+{
+  "id": "TOUCHATTACK",
+  "name": "Touch Attack",
+  "button_name": "Touch Attack",
+  "skillMod": "+2",
+  "dmgOverride": "0",
+  "selector_type": "skill",
+  "selector_value": "Fighting"  
+}
+
+// Off-Hand Attacks
+Characters are assumed to be right-handed unless the player decides otherwise. Actions
+that require precise eye-hand coordination, such as Fighting or Shooting, suffer a −2
+penalty when done solely with the off-hand.
+{
+  "id": "OFFHANDATTACKS",
+  "name": "Off-Hand Attacks",
+  "button_name": "Off-Hand Attacks",
+  "skillMod": "-2",
+  "selector_type": "item_type", 
+  "selector_value": "weapon"  
+}
+
+// Nonlethal Damage
+This requires the attacker use only his fists or a blunt weapon of some
+sort. Edged weapons may be used if they have a flat side, but this subtracts −1 from the
+attacker’s Fighting rolls.
+{
+  "id": "NONLETHALDAMAGE",
+  "name": "Nonlethal Damage",
+  "button_name": "Nonlethal Damage",
+  "skillMod": "-1",
+  "selector_type": "skill",
+  "selector_value": "Fighting"  
+}
+
+// Two Weapons
+A character armed with two melee weapons adds +1 to his Fighting rolls if his foe has a
+single weapon or is unarmed, and has no shield. It adds no bonus against creatures
+with Natural Weapons (page 104).
+{
+  "id": "Two Weapons",
+  "name": "Two Weapons",
+  "button_name": "Two Weapons",
+  "skillMod": "+1",
+  "selector_type": "skill",
+  "selector_value": "Fighting"  
+}
+
+
+// Edges
+{
+   "id":"NO_MERCY",
+   "name":"No Mercy Edge",
+   "button_name":"BRSW.EdgeName-NoMercy",
+   "rerollDamageMod":"+2",
+   "selector_type":"actor_has_edge",
+   "selector_value":"BRSW.EdgeName-NoMercy",
+   "defaultChecked":"on"
+}
+
+{
+  "id": "OneEye",
+  "name": "One Eye",
+  "button_name": "One Eye",
+  "skillMod": "-2",
+  "selector_type": "actor_has_edge",
+  "selector_value":"One Eye"  
+}
+
+{
+  "id": "OneEye",
+  "name": "One Eye",
+  "button_name": "One Eye",
+  "skillMod": "-2",
+  "and_selector": [
+  {"selector_type": "actor_has_edge", "selector_value":"One Eye"}, 
+  {"selector_type":"item_type", "selector_value": "skill"}
+  ]
+}
+
+
+// Penalty	Lighting
 -2	Dim: Twilight, light fog, night with a full moon.
 -4	Dark: Typical night conditions with some ambient light from stars, a clouded or partial moon, emergency lights in an office building, a few flickering torches in a large space, etc. Targets aren’t visible outside of 10″.
 -6	Pitch Darkness: Complete and total darkness (or the target is hidden or invisible). Powers that require sight may not be possible.
 
 {
-  "id": "NearTotalCover",
-  "name": "Near Cover",
-  "button_name": "Near Total Cover",
-  "skillMod": "-8",
+  "id": "DIMLIGHTINGPenalty",
+  "name": "Dim Light",
+  "button_name": "Dim Light",
+  "skillMod": "-2",
+  "selector_type": "item_type", 
+  "selector_value": "weapon"
+}
+{
+  "id": "DarkLIGHTINGPenalty",
+  "name": "Dark",
+  "button_name": "Dark",
+  "skillMod": "-4",
+  "selector_type": "item_type", 
+  "selector_value": "weapon"
+}
+{
+  "id": "DarknessLIGHTINGPenalty",
+  "name": "Pitch Darkness",
+  "button_name": "Pitch Darkness",
+  "skillMod": "-6",
   "selector_type": "item_type", 
   "selector_value": "weapon"
 }
