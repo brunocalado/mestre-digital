@@ -13,47 +13,46 @@ source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foun
 icon: icons/commodities/biological/tentacle-purple-white.webp
 */
 
-let attacker;
-let target;  
-
 // Requires at least 1 target
 if (canvas.tokens.controlled[0]===undefined || Array.from(game.user.targets)[0]===undefined){
   ui.notifications.warn("You must select a token and target another one!");    
 } else {
-  attacker=canvas.tokens.controlled[0];
-  target=Array.from(game.user.targets)[0];    
-  messageToTheChat();
+  let attacker=canvas.tokens.controlled[0];
+  let target=Array.from(game.user.targets)[0];    
+  messageToTheChat(attacker, target);
 }
 
-function messageToTheChat() {
-  const gangupbonus = gangUp();
-  const sizebonus = -calc();
+function messageToTheChat(attacker, target) {
+  let gangupbonus = gangUp(attacker, target);
+  let sizebonus = calc(attacker, target);
   let attackerRolled;
   let targetRolled;
   let rolls3D=[];
   
-  let message = `<h2><img style="vertical-align:middle" src=${chatimage} width="28" height="28"> Grappling</h2>`;
+  let message;
   if (coreRules) {
-      message = `<div class="swade-core"><h2><img style="vertical-align:middle" src=${chatimage} width="28" height="28"> @Compendium[swade-core-rules.swade-rules.od3tHNJTS8Ma4n2o]{Grappling} Grappling</h2>`;
-  }  
+      message = `<div class="swade-core"><h2><img style="vertical-align:middle" src=${chatimage} width="28" height="28"> @Compendium[swade-core-rules.swade-rules.od3tHNJTS8Ma4n2o]{Grappling}</h2>`;
+  } else {
+     message = `<div><h2><img style="vertical-align:middle" src=${chatimage} width="28" height="28"> Grappling</h2>`;
+  }    
   
   let attackerAthletics = attacker.actor.items.find(i => i.name === 'Athletics');
   let attackerAthleticsMod = attackerAthletics.data.data.die.modifier;
   if(!attackerAthleticsMod) { attackerAthleticsMod = 0; }
-  let attackerDiceRoll = '1d'+attackerAthletics.data.data.die.sides + 'x+' + attackerAthleticsMod + '+' + gangupbonus + '+' + sizebonus;
+  let attackerDiceRoll = '1d'+attackerAthletics.data.data.die.sides + 'x+' + attackerAthleticsMod + '+' + gangupbonus + '-' + Math.abs(sizebonus);
   attackerRolled = new Roll(attackerDiceRoll).roll();  
   rolls3D.push(attackerRolled);
   
   let targetAthletics = target.actor.items.find(i => i.name === 'Athletics');
   let targetAthleticsMod = targetAthletics.data.data.die.modifier;
   if(!targetAthleticsMod) { targetAthleticsMod = 0; }
-  let targetDiceRoll = '1d'+targetAthletics.data.data.die.sides + 'x+' + targetAthleticsMod + '+' + gangupbonus + '+' + sizebonus;;
-  targetRolled = new Roll(attackerDiceRoll).roll();  
+  let targetDiceRoll = '1d'+targetAthletics.data.data.die.sides + 'x+' + targetAthleticsMod;;
+  targetRolled = new Roll(targetDiceRoll).roll();  
   rolls3D.push(targetRolled);
   
   message += `<p>${attacker.name} is trying to grab ${target.name}.</p>`;
   if (coreRules) {
-    message += `<ul><li>The @Compendium[swade-core-rules.swade-rules.hdXOHCe38O8KGyUz]{Ganging Up} bonus is: ${sizebonus}</li>`;
+    message += `<ul><li>The @Compendium[swade-core-rules.swade-rules.hdXOHCe38O8KGyUz]{Ganging Up} bonus is: ${gangupbonus}</li>`;
   } else {
     message += `<ul><li>The Gang Up bonus is: ${gangupbonus}</li>`;  
   }   
@@ -62,7 +61,7 @@ function messageToTheChat() {
   } else {
     message += `<li>The Size/Scale penalty is: ${sizebonus}</li></ul>`;    
   }  
-        
+
   //outcome
   if ( attackerRolled.total>=targetRolled.total ) {
     if ( (attackerRolled.total+4)>=targetRolled.total ) {
@@ -82,29 +81,17 @@ function messageToTheChat() {
     message += `<p>${attacker.name} failed.</p>`;
   }  
   
+  message+=`</div>`;
+  
   // send message
   let chatData = {
     user: game.user._id,    
     content: message
   };  
   ChatMessage.create(chatData, {});  
-  
-  let tempChatData = {
-    type: CHAT_MESSAGE_TYPES.ROLL,
-    roll: rolls3D[0],
-    rollMode: game.settings.get("core", "rollMode"),
-    content: `<p>${attacker.name}: ${rolls3D[0].total}</p>`
-  };     
-  ChatMessage.create(tempChatData);  
-  tempChatData = {
-    type: CHAT_MESSAGE_TYPES.ROLL,
-    roll: rolls3D[1],
-    rollMode: game.settings.get("core", "rollMode"),
-    content: `<p>${target.name}: ${rolls3D[1].total}</p>`
-  };     
-  ChatMessage.create(tempChatData);  
-
-
+     
+  rolls3D[0].toMessage({flavor: `<h3 style="color:red">${attacker.name}</h3>`});
+  rolls3D[1].toMessage({flavor: `<h3 style="color:red">${target.name}</h3>`});  
   
 }
 
@@ -112,13 +99,9 @@ function messageToTheChat() {
 // - Each additional adjacent foe (who isn’t Stunned)
 // - adds +1 to all the attackers’ Fighting rolls, up to a maximum of +4.
 // - Each ally adjacent to the defender cancels out one point of Gang Up bonus from an attacker adjacent to both.
-function gangUp() {
+function gangUp(attacker, target) {
   const debug_flag=true;
-  
-  let attacker=canvas.tokens.controlled[0];
-  let defender=Array.from(game.user.targets)[0]; // token will not be count
-  
-  let tokenD=defender; // token will be removed 
+
   let itemRange=1; // dist 1''
   let enemies;
   let allies;
@@ -126,7 +109,7 @@ function gangUp() {
   
   let withinRangeOfToken;
   let alliedWithinRangeOfToken;
-  let alliedWithinRangeOfDefenderAndAttacker;
+  let alliedWithinRangeOfTargetAndAttacker;
   
   if (attacker.data.disposition===-1) { // NPC (hostile) is attacking PCs (friendly)
     withinRangeOfToken = canvas.tokens.placeables.filter(t => 
@@ -134,44 +117,46 @@ function gangUp() {
       && t.data.disposition === -1 
       && t.actor.data.data.status.isStunned === false 
       && t.visible 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
     alliedWithinRangeOfToken = canvas.tokens.placeables.filter(t => 
-      t.id !== defender.id 
+      t.id !== target.id 
       && t.data.disposition === 1 
       && t.actor.data.data.status.isStunned === false 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
-    //alliedWithinRangeOfDefenderAndAttacker intersection with attacker and defender
-    alliedWithinRangeOfDefenderAndAttacker = alliedWithinRangeOfToken.filter(t => 
+    //alliedWithinRangeOfTargetAndAttacker intersection with attacker and target
+    alliedWithinRangeOfTargetAndAttacker = alliedWithinRangeOfToken.filter(t => 
       t.data.disposition === 1 
       && t.actor.data.data.status.isStunned === false 
       && withinRange(attacker, t, itemRange)
-    );    
+    );   
+    console.log('case 1')
   } else if (attacker.data.disposition===1) { // PCs (friendly) is attacking NPC (hostile)
     withinRangeOfToken = canvas.tokens.placeables.filter(t => 
       t.id !== attacker.id 
       && t.data.disposition === 1 
       && t.actor.data.data.status.isStunned === false 
       && t.visible 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
     alliedWithinRangeOfToken = canvas.tokens.placeables.filter(t => 
-      t.id !== defender.id 
+      t.id !== target.id 
       && t.data.disposition === -1 
       && t.actor.data.data.status.isStunned === false 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
-    //alliedWithinRangeOfDefenderAndAttacker intersection with attacker and defender
-    alliedWithinRangeOfDefenderAndAttacker = alliedWithinRangeOfToken.filter(t => 
+    //alliedWithinRangeOfTargetAndAttacker intersection with attacker and target
+    alliedWithinRangeOfTargetAndAttacker = alliedWithinRangeOfToken.filter(t => 
       t.data.disposition === -1 
       && t.actor.data.data.status.isStunned === false 
       && withinRange(attacker, t, itemRange)
     ); 
+    console.log('case 2')
   }
 
   enemies = withinRangeOfToken.length;   
-  allies = alliedWithinRangeOfDefenderAndAttacker.length;
+  allies = alliedWithinRangeOfTargetAndAttacker.length;
   modifier = Math.max(0, (enemies-allies) );  
 
   //debug
@@ -179,8 +164,9 @@ function gangUp() {
     console.log('-----------------------');
     console.log('Enemies: ' + withinRangeOfToken.length);
     console.log('Allies: ' + alliedWithinRangeOfToken.length);
-    console.log('Allies Adjacent to Both: ' + alliedWithinRangeOfDefenderAndAttacker.length);
+    console.log('Allies Adjacent to Both: ' + alliedWithinRangeOfTargetAndAttacker.length);
     console.log('Modifier: ' + modifier);
+    console.log('Output: ' + Math.min( 4, modifier ));
     console.log('-----------------------');
   }
   return Math.min( 4, modifier );
@@ -194,7 +180,7 @@ function withinRange(origin, target, range) {
 }
 
 // ======================
-function calc() {
+function calc(attacker, target) {
   let actorSize = attacker.actor.data.data.stats.size;
   let targetSize = target.actor.data.data.stats.size;
   let actorModifier = sizeToModifier(actorSize);

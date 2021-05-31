@@ -1,4 +1,4 @@
-const version = 'v1.6';
+const version = 'v1.7';
 const chatimage = "icons/tools/hand/scale-balances-merchant-brown.webp";
 
 /* Size Scale p106 SWADE
@@ -29,8 +29,7 @@ if (tokenActor === undefined || tokenTarget === undefined) {
         let targetSize = tokenTarget.actor.data.data.stats.size;
         let actorModifier = sizeToModifier(actorSize);
         let targetModifier = sizeToModifier(targetSize);
-        let modifier = calc(actorModifier, targetModifier, actorSwat);
-        let modifier2 = calc(targetModifier, actorModifier, targetSwat);
+        let modifier = calc(actorModifier, targetModifier);
 
         let message = `<h2><img style="vertical-align:middle" src=${chatimage} width="28" height="28"> Size & Scale Calculator</h2>`;
         if (coreRules === true) {
@@ -39,16 +38,15 @@ if (tokenActor === undefined || tokenTarget === undefined) {
         message += `<ul><li><b>${tokenActor.name}:</b> Size = ${actorSize} / Modifier = ${actorModifier}</li>`;
         message += `<li><b>${tokenTarget.name}:</b> Size = ${targetSize} / Modifier = ${targetModifier}</li></ul>`;
         message += `<h3>Result:</h3>`;
-        if ( modifier!=0 || modifier2!=0 ) {
+        if (modifier != 0) {
             message += `<ul><li>${tokenActor.name} has <b style="color:red">${modifier}</b> to attack ${tokenTarget.name}`;
             if (actorSwat) {
                 message += ` and has Swat*.</li>`;
             } else { message += `.</li>` }
-            message += `<li>${tokenTarget.name} has <b style="color:red">${modifier2}</b> to attack ${tokenActor.name}`;
+            message += `<li>${tokenTarget.name} has <b style="color:red">${calc(targetModifier, actorModifier)}</b> to attack ${tokenActor.name}`;
             if (targetSwat) {
                 message += ` and has Swat*.</li></ul>`;
             } else { message += `.</li></ul>` }
-            
             if ((actorSwat && targetSwat) || (actorSwat || targetSwat)) {
                 if (coreRules === true) {
                     message += `<p>*<b>@Compendium[swade-core-rules.swade-rules.q5sk5hEw6TED0FOU]{Swat}:</b> Ignore up to 4 points of penalties from Scale for the specified action(s).</p>`;
@@ -71,26 +69,16 @@ if (tokenActor === undefined || tokenTarget === undefined) {
         ChatMessage.create(chatData, {});
     }
 
-    function calc(actorModifier, targetModifier, swat=false) {
+    function calc(actorModifier, targetModifier) {
         let diff;
         if (actorModifier == targetModifier) {
             return 0;
         } else {
             if (actorModifier < targetModifier) {
-                if (swat) {
-                  diff = Math.abs(actorModifier) + Math.abs(targetModifier);
-                  diff = Math.max( (diff-4), 0);
-                } else {                  
-                  diff = Math.abs(actorModifier) + Math.abs(targetModifier);
-                }
+                diff = Math.abs(actorModifier) + Math.abs(targetModifier);
                 return diff;
             } else {
-                if (swat) {
-                  diff = Math.abs(actorModifier) + Math.abs(targetModifier);                  
-                  diff = Math.max( (diff-4), 0);
-                } else {
-                  diff = Math.abs(actorModifier) + Math.abs(targetModifier);
-                }                
+                diff = Math.abs(actorModifier) + Math.abs(targetModifier);
                 return -diff;
             }
         }

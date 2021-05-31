@@ -1,4 +1,4 @@
-const version = 'v1.3';
+const version = 'v1.4';
 const chatimage = "icons/commodities/claws/claw-lizard-white-black.webp";
 
 /* Gang Up p101 SWADE core
@@ -20,14 +20,14 @@ icon: icons/commodities/claws/claw-lizard-white-black.webp
 if (canvas.tokens.controlled[0]===undefined || Array.from(game.user.targets)[0]===undefined){
   ui.notifications.warn("You must select a token and target another one!");    
 } else {
-  messageToTheChat();
+  let target=Array.from(game.user.targets)[0]; // token will not be count
+  let attacker=canvas.tokens.controlled[0];  
+  messageToTheChat(attacker, target);
 }
 
-function messageToTheChat() {
-  let target=Array.from(game.user.targets)[0]; // token will not be count
-  let attacker=canvas.tokens.controlled[0];
+function messageToTheChat(attacker, target) {
   let message = `<h2 style="color:red"><img style="vertical-align:middle" src=${chatimage} width="28" height="28">Gang Up</h2>`;
-  message += `<p><b style="color:red">${attacker.name}</b> will receive ${gangUp()} to attack <b style="color:darkblue">${target.name}</b></p>`;
+  message += `<p><b style="color:red">${attacker.name}</b> will receive ${gangUp(attacker, target)} to attack <b style="color:darkblue">${target.name}</b></p>`;
   
   // send message
   let chatData = {
@@ -41,13 +41,9 @@ function messageToTheChat() {
 // - Each additional adjacent foe (who isn’t Stunned)
 // - adds +1 to all the attackers’ Fighting rolls, up to a maximum of +4.
 // - Each ally adjacent to the defender cancels out one point of Gang Up bonus from an attacker adjacent to both.
-function gangUp() {
+function gangUp(attacker, target) {
   const debug_flag=true;
-  
-  let attacker=canvas.tokens.controlled[0];
-  let defender=Array.from(game.user.targets)[0]; // token will not be count
-  
-  let tokenD=defender; // token will be removed 
+
   let itemRange=1; // dist 1''
   let enemies;
   let allies;
@@ -55,7 +51,7 @@ function gangUp() {
   
   let withinRangeOfToken;
   let alliedWithinRangeOfToken;
-  let alliedWithinRangeOfDefenderAndAttacker;
+  let alliedWithinRangeOfTargetAndAttacker;
   
   if (attacker.data.disposition===-1) { // NPC (hostile) is attacking PCs (friendly)
     withinRangeOfToken = canvas.tokens.placeables.filter(t => 
@@ -63,16 +59,16 @@ function gangUp() {
       && t.data.disposition === -1 
       && t.actor.data.data.status.isStunned === false 
       && t.visible 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
     alliedWithinRangeOfToken = canvas.tokens.placeables.filter(t => 
-      t.id !== defender.id 
+      t.id !== target.id 
       && t.data.disposition === 1 
       && t.actor.data.data.status.isStunned === false 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
-    //alliedWithinRangeOfDefenderAndAttacker intersection with attacker and defender
-    alliedWithinRangeOfDefenderAndAttacker = alliedWithinRangeOfToken.filter(t => 
+    //alliedWithinRangeOfTargetAndAttacker intersection with attacker and target
+    alliedWithinRangeOfTargetAndAttacker = alliedWithinRangeOfToken.filter(t => 
       t.data.disposition === 1 
       && t.actor.data.data.status.isStunned === false 
       && withinRange(attacker, t, itemRange)
@@ -83,16 +79,16 @@ function gangUp() {
       && t.data.disposition === 1 
       && t.actor.data.data.status.isStunned === false 
       && t.visible 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
     alliedWithinRangeOfToken = canvas.tokens.placeables.filter(t => 
-      t.id !== defender.id 
+      t.id !== target.id 
       && t.data.disposition === -1 
       && t.actor.data.data.status.isStunned === false 
-      && withinRange(defender, t, itemRange)
+      && withinRange(target, t, itemRange)
     );    
-    //alliedWithinRangeOfDefenderAndAttacker intersection with attacker and defender
-    alliedWithinRangeOfDefenderAndAttacker = alliedWithinRangeOfToken.filter(t => 
+    //alliedWithinRangeOfTargetAndAttacker intersection with attacker and target
+    alliedWithinRangeOfTargetAndAttacker = alliedWithinRangeOfToken.filter(t => 
       t.data.disposition === -1 
       && t.actor.data.data.status.isStunned === false 
       && withinRange(attacker, t, itemRange)
@@ -100,7 +96,7 @@ function gangUp() {
   }
 
   enemies = withinRangeOfToken.length;   
-  allies = alliedWithinRangeOfDefenderAndAttacker.length;
+  allies = alliedWithinRangeOfTargetAndAttacker.length;
   modifier = Math.max(0, (enemies-allies) );  
 
   //debug
@@ -108,7 +104,7 @@ function gangUp() {
     console.log('-----------------------');
     console.log('Enemies: ' + withinRangeOfToken.length);
     console.log('Allies: ' + alliedWithinRangeOfToken.length);
-    console.log('Allies Adjacent to Both: ' + alliedWithinRangeOfDefenderAndAttacker.length);
+    console.log('Allies Adjacent to Both: ' + alliedWithinRangeOfTargetAndAttacker.length);
     console.log('Modifier: ' + modifier);
     console.log('-----------------------');
   }
