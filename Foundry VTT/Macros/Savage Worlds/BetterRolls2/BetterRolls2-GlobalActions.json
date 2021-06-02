@@ -164,6 +164,31 @@ with Natural Weapons (page 104).
   ]
 }
 
+{
+  "id":"MONKRAISE",
+  "name":"Monk attack",
+  "button_name":"Monk",
+  "defaultChecked":"on",
+  "raiseDamageFormula": "+1d10x",
+  "and_selector": [
+    {"selector_type": "actor_has_edge", "selector_value":"Monk"}, 
+    {"selector_type": "skill", "selector_value": "Fighting"}
+  ] 
+}
+
+{
+  "id":"TRADEMARKWEAPON",
+  "name":"Trademark Weapon",
+  "button_name":"Trademark Weapon",
+  "defaultChecked":"on",
+  "skillMod": "+1",
+  "and_selector": [
+    {"selector_type": "actor_has_edge", "selector_value":"Trademark Weapon"}, 
+    {"selector_type": "item_type", "selector_value": "weapon"}
+  ] 
+}
+
+and_selector: [{'selector_type': 'skill', 'selector_value':'figthing}, {'selector_type':'actor', 'selector_value': 'Jhon'}] 
 
 // Penalty	Lighting
 -2	Dim: Twilight, light fog, night with a full moon.
@@ -194,3 +219,7 @@ with Natural Weapons (page 104).
   "selector_type": "item_type", 
   "selector_value": "weapon"
 }
+
+
+
+{"id":"unarmed_defender","name":"Unarmed Defender","button_name":"Unarmed Defender","skillMod":-2,"and_selector":[{"selector_type": "skill", "selector_value":"Fighting"}, {"selector_type":"item_type","selector_value":"weapon"}]}
