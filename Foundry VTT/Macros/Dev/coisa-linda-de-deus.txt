@@ -1,0 +1,170 @@
+//Thanks to Codimu36 for the GUHE refactor here and Freeze for teach me the basic
+//Thanks for Chris Normand for the inspiration! 
+if(canvas.tokens.controlled.length == 0) ui.notifications.error("I don't have a crystal ball, please select one token!");
+
+let dialogTemplate = `<style>
+                            .window-content {
+                                        display: flex;
+                                        flex-direction: row;
+                            }
+                           
+                           #buttons-dialog .dialog-content { 
+                                        text-align: center;
+                                        font-size: 20px;
+                                        padding-bottom: 8px;
+                                        padding-top: 8px; 
+                                        font-family: "Signika";
+                                        Background-color: Orange;
+                                        Color:White;
+
+}
+                            #buttons-dialog .dialog-buttons { 
+                                        border-style: groove;
+                                        padding-top: 5px;
+                                        padding-right: 5px;
+                                        padding-bottom: 5px;
+                                        padding-left: 5px;
+                                        
+}
+                          #buttons-dialog .dialog-buttons .reset {
+                                        background-color: white;
+                                        border-style: groove;
+                                        margin: 0 auto;
+                                        width: 100%;
+
+                          }
+                          #buttons-dialog .dialog-buttons .step {
+                                        background-color: white;
+                                        margin: 0 auto;
+                                        width: 100%;
+                          }
+                          #buttons-dialog .dialog-buttons .prepare {
+                                        background-color: white;
+                                        margin: 0 auto;
+                                        width: 100%;
+                          }
+                          #buttons-dialog .dialog-buttons .stun {
+                                        background-color: white;
+                                        margin: 0 auto;
+                                        width: 100%;
+                          }
+                          #buttons-dialog .dialog-buttons .aim {
+                                        background-color: white;
+                                        margin: 0 auto;
+                                        width: 100%;
+                          }
+                          #buttons-dialog .dialog-buttons .nodef {
+                                        background-color: white;
+                                        margin: 0 auto;
+                                        width: 100%;
+                          }
+                          #buttons-dialog .dialog-buttons .fp {
+                                        background-color: white;
+                                        margin: 0 auto;
+                                        width: 100%;
+                          }
+                          #buttons-dialog .dialog-buttons .stop {
+                                        background-color: white;
+                                        margin: 0 auto;
+                                        width: 100%;
+                          }
+                          
+
+
+                          
+                    </style>
+`;
+
+var input = [
+  {
+    title: 'reset',
+    name: 'Reset',
+    icon: 'power-off',
+    otf: '/st clear',
+    audio_src: 'reset.wav'
+ 
+  },
+  {
+    title: 'step',
+    name: 'Step',
+    icon: 'shoe-prints',
+    otf: '/st t sprint',
+    audio_src: 'pop.mp3'
+  },
+  {
+    title: 'prepare',
+    name: 'Ready',
+    icon: 'hand-spock',
+    otf: '/st t grapple',
+    audio_src: 'pop.mp3'
+  },
+  {
+    title: 'stun',
+    name: 'Stun',
+    icon: 'star',
+    otf: '/st t stun',
+    audio_src: 'pop.mp3'
+  },
+  {
+    title: 'aim',
+    name: 'Aim',
+    icon: 'crosshairs',
+    otf: '/st t aim',
+    audio_src: 'pop.mp3'
+  },
+  {
+    title: 'nodef',
+    name: 'Def',
+    icon: 'exclamation-circle',
+    otf: '/st t agony',
+    audio_src: 'pop.mp3'
+  },
+  {
+    title: 'fp',
+    name: 'FP',
+    icon: 'battery-quarter',
+    otf: '/fp -1',
+    audio_src: 'pop.mp3'
+  },
+
+]
+
+var buttons = input.reduce((buttonObj, buttonData) => {
+    buttonObj[buttonData.title] = {
+      icon: `<i class='fas fa-${buttonData.icon}'></i>`,
+      label: buttonData.name,
+      callback: () => {
+        GURPS.executeOTF(buttonData.otf);
+        dialogEditor.render(true);
+        AudioHelper.play({
+          src: `modules/gurps-instant-defaults/packs/${buttonData.audio_src}`,
+          volume: 0.8,
+          autoplay: true,
+          loop: false,
+        }, true);
+      }
+    }
+  return buttonObj;
+}, {});
+
+//*buttons.stop = {
+//    label: "Close",
+//}
+
+let dialogEditor = new Dialog({
+  title: `Instant Status Defaults`,
+  content: dialogTemplate + `Choose your status!` ,
+  buttons: buttons,
+//  default: "close",
+//  close: () => {}
+  
+  
+},
+{
+     id: "buttons-dialog",
+}
+);
+
+
+
+dialogEditor.render(true)

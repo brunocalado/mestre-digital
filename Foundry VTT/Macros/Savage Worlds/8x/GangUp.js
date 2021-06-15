@@ -1,5 +1,5 @@
 const version = 'v1.5';
-const chatimage = "icons/commodities/claws/claw-lizard-white-black.webp";
+const chatimage = "icons/creatures/mammals/wolf-shadow-black.webp";
 
 /* Gang Up p101 SWADE core
 IMPORTANT
@@ -13,7 +13,7 @@ TODO
 - JB2A
 
 source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/GangUp.js
-icon: icons/commodities/claws/claw-lizard-white-black.webp
+icon: icons/creatures/mammals/wolf-shadow-black.webp
 */
 
 // Requires at least 1 target

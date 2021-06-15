@@ -40,13 +40,7 @@ rollFormula = "2d6"
     [character.attributesTop.sanity]
       type = "Clock"
       max = 6
-      default = 0  
-    [character.attributesTop.ongoing]
-      type = "Number"
-      label = "Ongoing"      
-    [character.attributesTop.foward]
-      type = "Number"
-      label = "Foward"    
+      default = 0    
     [character.attributesTop.hold]
       type = "Clock"
       max = 3

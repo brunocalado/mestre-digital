@@ -1,0 +1,93 @@
+function tokenUpdate(data) {
+  canvas.tokens.controlled.map(token => token.update(data));
+}
+
+
+
+let dialogEditor = new Dialog({
+  title: `Instant Status Defaults`,
+  content: `Choose your status!`,
+  
+  buttons: {
+    reset: {
+      icon: "<i class='fas fa-power-off'></i>",
+      label: `Reset`,
+      callback: () => {
+        GURPS.executeOTF('/st clear') 
+        dialogEditor.render(true);
+        AudioHelper.play({src: "modules/gurps-instant-defaults/packs/reset.wav", volume: 0.8, autoplay: true, loop: false}, true);
+        }
+    },
+    step: {
+      icon: "<i class='fas fa-shoe-prints'></i>",
+      label: `Step`,
+      callback: () => {
+        GURPS.executeOTF('/st t sprint')
+        dialogEditor.render(true);
+        AudioHelper.play({src: "modules/gurps-instant-defaults/packs/pop.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+      }
+    },
+    prepare: {
+      label: `Ready`,
+            icon: "<i class='fas fa-hand-spock'></i>",
+
+      callback: () => {
+            GURPS.executeOTF('/st t grapple')
+            dialogEditor.render(true);
+            AudioHelper.play({src: "modules/gurps-instant-defaults/packs/pop.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+      }
+    },
+    stun: {
+      label: `Stun`,
+            icon: "<i class='fas fa-star'></i>",
+            callback: () => {
+            GURPS.executeOTF('/st t stun')
+            dialogEditor.render(true);
+            AudioHelper.play({src: "modules/gurps-instant-defaults/packs/pop.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+      }
+    },
+    aim: {
+      label: `Aim`,
+            icon: "<i class='fas fa-crosshairs'></i>",
+
+      callback: () => {
+                  GURPS.executeOTF('/st t aim')
+        dialogEditor.render(true);
+        AudioHelper.play({src: "modules/gurps-instant-defaults/packs/pop.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+      }
+    },
+    nodef: {
+      label: `Def`,
+            icon: "<i class='fas fa-exclamation-circle'></i>",
+
+      callback: () => {
+                            GURPS.executeOTF('/st t agony')
+
+        dialogEditor.render(true);
+        AudioHelper.play({src: "modules/gurps-instant-defaults/packs/pop.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+      }
+    },
+   
+    fatigue: {
+      label: `FP`,
+            icon: "<i class='fas fa-battery-quarter'></i>",
+
+      callback: () => {
+                                      GURPS.executeOTF('/fp -1'),
+
+        dialogEditor.render(true);
+        AudioHelper.play({src: "modules/gurps-instant-defaults/packs/pop.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+      }
+    },
+    
+
+    close: {
+      icon: "<i class='fas fa-tick'></i>",
+      label: `Close`
+    },
+  },
+  default: "close",
+  close: () => {}
+});
+
+dialogEditor.render(true)

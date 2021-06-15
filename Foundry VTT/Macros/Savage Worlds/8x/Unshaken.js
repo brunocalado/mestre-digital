@@ -10,6 +10,7 @@ icon: icons/magic/control/fear-fright-white.webp
 let bennies;
 let token;
 let bv;
+
 if (canvas.tokens.controlled[0]===undefined) {
   ui.notifications.error("Please select a token."); // No Token is Selected
 } else {
@@ -19,7 +20,7 @@ if (canvas.tokens.controlled[0]===undefined) {
 
 async function main() {
   if (token.actor.data.data.status.isShaken === true) {
-    rollUnshake()
+    rollUnshake();
   } else if (token) {
     token.actor.update({ "data.status.isShaken": true });
     ChatMessage.create({

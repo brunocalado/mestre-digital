@@ -223,3 +223,22 @@ and_selector: [{'selector_type': 'skill', 'selector_value':'figthing}, {'selecto
 
 
 {"id":"unarmed_defender","name":"Unarmed Defender","button_name":"Unarmed Defender","skillMod":-2,"and_selector":[{"selector_type": "skill", "selector_value":"Fighting"}, {"selector_type":"item_type","selector_value":"weapon"}]}
+
+
+{
+   "id":"SNEAKATTACK",
+   "name":"Sneak Attack",
+   "button_name":"Sneak Attack",
+   "defaultChecked":"off",
+   "dmgMod":"+1d6x",
+   "and_selector":[
+      {
+         "selector_type":"actor_has_edge",
+         "selector_value":"Rogue"
+      },
+      {
+         "selector_type":"skill",
+         "selector_value":"Fighting"
+      }
+   ]
+}

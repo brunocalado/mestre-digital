@@ -7,7 +7,8 @@ source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foun
 icon: icons/tools/scribal/ink-quill-pink.webp
 */
 
-let users = User.collection.entities.filter(it => it.active === true);
+//let users = User.collection.entities.filter(it => it.active === true);
+let users = User.collectionName.entities.filter(it => it.active === true);
 
 if (users.length < 2) {
   ui.notifications.error("Nenhum jogador online.");

@@ -1,19 +1,17 @@
-const version = 'v1.0';
+const version = 'v1.1';
 
-/* Cartas de Perseguição
+/* Chase
 Features
 - Draw n cards placing them in the scene
 - This macro can reset the table preventing from the error
 - This macro can line up the cards
-source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Savage%20Worlds/Cartas%20de%20Persegui%C3%A7%C3%A3o.js
+source: 
 icon: icons/sundries/gaming/playing-cards.webp
 */
 
-getRequirements();
+main();
 
-//console.warn("You are calling PlaceableObject.create which has been deprecated in favor of Document.create or Scene#createEmbeddedDocuments. Support will be removed in 0.9.0");
-
-function getRequirements() {
+function main() {
   //How Many Cards to Draw
   //Width/Height
   //Which Table to Draw From
@@ -76,8 +74,8 @@ async function makeTiles(html) {
   const stackupcards = html.find("#stackupcards")[0].checked;
   let tableName = html.find("#tableName")[0].value;
   let cardsToDraw = dogFightLines*dogFightColumns;
-  let _height = html.find("#height")[0].value;
-  let _width = html.find("#width")[0].value;
+  let height = html.find("#height")[0].value;
+  let width = html.find("#width")[0].value;
 
   if (resetTable=='on') {
     await game.tables.find((el) => el.data.name == tableName).reset();
@@ -88,54 +86,39 @@ async function makeTiles(html) {
       .find((el) => el.data.name == tableName)
       .drawMany(cardsToDraw)
   ).results;
-      
-  let centerX = game.scenes.active.data.width / 3;
-  let centerY = game.scenes.active.data.height / 2;
+/*
+let cardDraws = ( await game.tables.find((el) => el.data.name == 'Action Cards').drawMany(5).results );
+*/
+
+  let centerX = Math.round(game.scenes.active.data.width/3);
+  let centerY = Math.round(game.scenes.active.data.height/2);
   
   let deltaX = 0;
   let deltaY = 0;
   let counter = 0;
   
   //console.log(spacingx + '/' + spacingy + ' stackupcards:' + (stackupcards!='on'));
+  let tData;
   for (let y = 0; y < dogFightLines; y++) {
-    deltaY = ( _height*y + _height*spacingy*y );
+    deltaY = Math.round( height*y + height*spacingy*y );
     for (let x = 0; x < dogFightColumns; x++) {                
-      deltaX = ( _width*x + _width*spacingx*x );            
+      deltaX = Math.round( width*x + width*spacingx*x );            
       if (stackupcards) {
         deltaX = 0;
         deltaY = 0;        
       }
-      await TileDocument.create({
-        img: cardDraws[counter].img,
-        width: _width,
-        height: _height,
-        x: centerX + deltaX,
-        y: centerY + deltaY
-      });      
+      tData = {
+        img: cardDraws[counter].data.img,
+        width: parseInt(width),
+        height: parseInt(height),
+        x: parseInt(centerX + deltaX),
+        y: parseInt(centerY + deltaY)
+      };
+      console.log(tData);
+      await TileDocument.create(tData, {parent: canvas.scene});      
       //console.log('x:' + x + ' y:' + y + ' counter:' + counter + ' deltaX:' + deltaX + ' deltaY:' + deltaY);
       counter = counter + 1;
       //console.log('centerX: ' + centerX + ' / deltaX: ' + deltaX + ' / centerX+deltaX:' + (centerX+deltaX) ); 
     }      
   }
 }
-/*
-
-      TileDocument.create({
-        img: 'systems/swade/assets/pokerDeck/10_of_clubs.svg',
-        width: 400,
-        height: 800,
-        x: 400,
-        y: 400
-      })
-      
-
-
-      Tile.create({
-        img: 'systems/swade/assets/pokerDeck/10_of_clubs.svg',
-        width: 400,
-        height: 800,
-        x: 400,
-        y: 400
-      }, {parent : canvas.scene.id})
-      
-      oh.  But Tile.create is deprecated.  Your {parent: canvas.scene.id} is probably thrown away.  If you're using TileDocument.create, it needs to be {parent: canvas.scene}
