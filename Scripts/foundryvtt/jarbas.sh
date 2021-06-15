@@ -52,7 +52,10 @@ case "$1" in
         chmod +x jarbas
         grep "VERSION=" jarbas
         echo "======================"
-    ;;     
+    ;;
+    arrumar)
+        echo "Adicionando permissoes para executar foundry/resources/app/main.js"
+        chmod +x foundry/resources/app/main.js
     espaco)
         echo "======================"
         echo "Espaco Disponivel"        
@@ -187,7 +190,7 @@ case "$1" in
     ;;
     *)
         echo "Jarbas Versao ${VERSION}" 
-        echo "Opcoes: $0 {ligar|desligar|forcar|status|chaves|limpar|update|node|suporte|noip}"
+        echo "Opcoes: $0 {ligar|desligar|forcar|status|arrumar|chaves|limpar|update|node|suporte|noip}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "caddy: instala e gerencia o caddy."  
@@ -200,6 +203,7 @@ case "$1" in
         echo "node: atualiza o NODE para a ultima versao LTS (recomendado)."        
         echo "noip: instala e gerencia o noip."        
         echo "status: Verifica se o Foundry VTT está rodando"
+        echo "arrumar: Adiciona permissoes para rodar o foundry apos um update do FVTT"
         echo "suporte: Mostra dados da maquina"
         echo "update: atualiza o jarbas."                
         exit 1
