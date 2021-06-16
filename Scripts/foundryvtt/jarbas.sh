@@ -56,6 +56,7 @@ case "$1" in
     arrumar)
         echo "Adicionando permissoes para executar foundry/resources/app/main.js"
         chmod +x foundry/resources/app/main.js
+    ;;
     espaco)
         echo "======================"
         echo "Espaco Disponivel"        
