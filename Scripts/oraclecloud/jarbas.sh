@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.18"
+VERSION="v1.19"
 echo "========================================"
 case "$1" in
     ligar)
@@ -35,7 +35,7 @@ case "$1" in
     suporte)
         echo "Dados da Maquina"        
         cat dadossuporte
-        echo "IP: " $(curl -s ifconfig.me)
+        echo "IP: " $(curl -s ifconfig.me)        
         echo 
         echo "== Solucao de Problemas =="
         echo "1. Reinicie a maquina no oracle."

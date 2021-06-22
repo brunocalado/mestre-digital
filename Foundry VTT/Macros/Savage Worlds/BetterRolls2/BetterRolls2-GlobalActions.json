@@ -20,7 +20,8 @@
   "button_name": "Light Cover",
   "skillMod": "-2",
   "selector_type": "item_type", 
-  "selector_value": "weapon"
+  "selector_value": "weapon",
+  "group": "cover"
 }
 {
   "id": "MediumCover",
@@ -28,7 +29,8 @@
   "button_name": "Medium Cover",
   "skillMod": "-4",
   "selector_type": "item_type", 
-  "selector_value": "weapon"
+  "selector_value": "weapon",
+  "group": "cover"
 }
 {
   "id": "HeavyCover",
@@ -36,7 +38,8 @@
   "button_name": "Heavy Cover",
   "skillMod": "-6",
   "selector_type": "item_type", 
-  "selector_value": "weapon"
+  "selector_value": "weapon",
+  "group": "cover"
 }
 {
   "id": "NearTotalCover",
@@ -44,7 +47,8 @@
   "button_name": "Near Total Cover",
   "skillMod": "-8",
   "selector_type": "item_type", 
-  "selector_value": "weapon"
+  "selector_value": "weapon",
+  "group": "cover"
 }
 
 // Unarmed Defender

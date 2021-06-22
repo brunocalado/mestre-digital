@@ -6,22 +6,6 @@
           "disposition": "FRIENDLY",
           "items": [
             {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
-            {
-              "value": "Fadiga: {fatigue.value}/{fatigue.max}",
-              "icon": "fa-bed",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#d6b300"
-            },
-            {
               "value": "Aparar: {\naparar=<stats.parry.value>;\napararmod=<stats.parry.modifier>;\naparar+apararmod\n} ({stats.parry.value}+{stats.parry.modifier})",
               "icon": "fa-shield-alt",
               "isFunction": false,
@@ -59,22 +43,6 @@
           "disposition": "NEUTRAL",
           "items": [
             {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
-            {
-              "value": "Fadiga: {fatigue.value}/{fatigue.max}",
-              "icon": "fa-bed",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#d6b300"
-            },
-            {
               "value": "Aparar: {\naparar=<stats.parry.value>;\napararmod=<stats.parry.modifier>;\naparar+apararmod\n} ({stats.parry.value}+{stats.parry.modifier})",
               "icon": "fa-shield-alt",
               "isFunction": false,
@@ -111,22 +79,6 @@
         {
           "disposition": "HOSTILE",
           "items": [
-            {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
-            {
-              "value": "Fadiga: {fatigue.value}/{fatigue.max}",
-              "icon": "fa-bed",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#d6b300"
-            },
             {
               "value": "Aparar: {\naparar=<stats.parry.value>;\napararmod=<stats.parry.modifier>;\naparar+apararmod\n} ({stats.parry.value}+{stats.parry.modifier})",
               "icon": "fa-shield-alt",
@@ -167,11 +119,11 @@
         "useAccentEverywhere": false,
         "accentColor": "#ff0000",
         "tokenDispositions": [
+          "OWNED",
           "FRIENDLY",
           "NEUTRAL",
           "HOSTILE"
-        ],
-        "useAccentColorForEverything": false
+        ]
       }
     },
     "character": {
@@ -232,14 +184,6 @@
           "disposition": "FRIENDLY",
           "items": [
             {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
-            {
               "value": "Manobrab.: {handling}",
               "icon": "fa-car-crash",
               "isFunction": false,
@@ -285,14 +229,6 @@
           "disposition": "NEUTRAL",
           "items": [
             {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
-            {
               "value": "Manobrab.: {handling}",
               "icon": "fa-car-crash",
               "isFunction": false,
@@ -337,14 +273,6 @@
         {
           "disposition": "HOSTILE",
           "items": [
-            {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
             {
               "value": "Manobrab.: {handling}",
               "icon": "fa-car-crash",
@@ -393,11 +321,11 @@
         "useAccentEverywhere": false,
         "accentColor": "#2bf2ff",
         "tokenDispositions": [
+          "OWNED",
           "FRIENDLY",
           "NEUTRAL",
           "HOSTILE"
-        ],
-        "useAccentColorForEverything": false
+        ]
       }
     }
   },
@@ -407,22 +335,6 @@
         {
           "disposition": "OWNED",
           "items": [
-            {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
-            {
-              "value": "Fadiga: {fatigue.value}/{fatigue.max}",
-              "icon": "fa-bed",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#d6b300"
-            },
             {
               "value": "Aparar: {\naparar=<stats.parry.value>;\napararmod=<stats.parry.modifier>;\naparar+apararmod\n} ({stats.parry.value}+{stats.parry.modifier})",
               "icon": "fa-shield-alt",
@@ -440,44 +352,20 @@
               "color": "#6001d5"
             },
             {
-              "value": "Moviment.: {stats.speed.value}",
-              "icon": "fa-shoe-prints",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#e974ce"
-            },
-            {
-              "value": "Correr: {stats.speed.runningDie}+{stats.speed.runningMod}",
+              "value": "{stats.speed.value} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#fda190"
+              "color": "#ff80ff"
             },
             {
-              "value": "Abalado: {<status.isShaken> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-surprise",
-              "isFunction": false,
-              "expression": true,
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
               "isNumber": false,
-              "color": "#ffff1a"
-            },
-            {
-              "value": "Distraído: {<status.isDistracted> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-low-vision",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ff9500"
-            },
-            {
-              "value": "Vulnerável: {<status.isVulnerable> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-exclamation-triangle",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ff0000"
+              "color": "#8ece40"
             }
           ]
         },
@@ -485,23 +373,7 @@
           "disposition": "FRIENDLY",
           "items": [
             {
-              "value": "Ferimentos: {wounds.value}/{wounds.max}",
-              "icon": "fa-user-injured",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#a70101"
-            },
-            {
-              "value": "Fadiga: {fatigue.value}/{fatigue.max}",
-              "icon": "fa-bed",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#d6b300"
-            },
-            {
-              "value": "Aparar: {stats.parry.value}",
+              "value": "Aparar: {\naparar=<stats.parry.value>;\napararmod=<stats.parry.modifier>;\naparar+apararmod\n} ({stats.parry.value}+{stats.parry.modifier})",
               "icon": "fa-shield-alt",
               "isFunction": false,
               "expression": true,
@@ -509,7 +381,7 @@
               "color": "#0161df"
             },
             {
-              "value": "Resistência: {stats.toughness.value}({stats.toughness.armor})",
+              "value": "Resistên.: {stats.toughness.value}({stats.toughness.armor})",
               "icon": "fa-hand-rock",
               "isFunction": false,
               "expression": true,
@@ -517,88 +389,30 @@
               "color": "#6001d5"
             },
             {
-              "value": "Abalado: {<status.isShaken> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-surprise",
+              "value": "{stats.speed.value} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
+              "icon": "fa-running",
               "isFunction": false,
               "expression": true,
               "isNumber": false,
-              "color": "#ffff1a"
+              "color": "#ff80ff"
             },
             {
-              "value": "Distraído: {<status.isDistracted> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-low-vision",
-              "isFunction": false,
-              "expression": true,
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"PP: \" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "fa-hand-sparkles",
+              "isFunction": true,
+              "expression": false,
               "isNumber": false,
-              "color": "#ff9500"
-            },
-            {
-              "value": "Vulnerável: {<status.isVulnerable> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-exclamation-triangle",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ff0000"
+              "color": "#8ece40"
             }
           ]
         },
         {
           "disposition": "NEUTRAL",
-          "items": [
-            {
-              "value": "Abalado: {<status.isShaken> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-surprise",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ffff1a"
-            },
-            {
-              "value": "Distraído: {<status.isDistracted> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-low-vision",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ff9500"
-            },
-            {
-              "value": "Vulnerável: {<status.isVulnerable> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-exclamation-triangle",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ff0000"
-            }
-          ]
+          "items": []
         },
         {
           "disposition": "HOSTILE",
-          "items": [
-            {
-              "value": "Abalado: {<status.isShaken> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-surprise",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ffff1a"
-            },
-            {
-              "value": "Distraído: {<status.isDistracted> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-low-vision",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ff9500"
-            },
-            {
-              "value": "Vulnerável: {<status.isVulnerable> ? string(\"Sim\") : string(\"Não\")}",
-              "icon": "fa-exclamation-triangle",
-              "isFunction": false,
-              "expression": true,
-              "isNumber": false,
-              "color": "#ff0000"
-            }
-          ]
+          "items": []
         }
       ],
       "static": {
@@ -606,12 +420,10 @@
         "useAccentEverywhere": false,
         "accentColor": "#ff0000",
         "tokenDispositions": [
-          "OWNED",
           "FRIENDLY",
           "NEUTRAL",
           "HOSTILE"
-        ],
-        "useAccentColorForEverything": false
+        ]
       }
     },
     "character": {
@@ -680,11 +492,93 @@
       "items": [
         {
           "disposition": "OWNED",
-          "items": []
+          "items": [
+            {
+              "value": "Manobrab.: {handling}",
+              "icon": "fa-car-crash",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "Resistên.: {toughness.total}",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "Armadur.: {toughness.armor}",
+              "icon": "fa-hand-rock",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "Moviment.: {topspeed}",
+              "icon": "fa-tachometer-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#e974ce"
+            },
+            {
+              "value": "Perícia: {driver.skill}",
+              "icon": "fa-book",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ff0000"
+            }
+          ]
         },
         {
           "disposition": "FRIENDLY",
-          "items": []
+          "items": [
+            {
+              "value": "Manobrab.: {handling}",
+              "icon": "fa-car-crash",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#d6b300"
+            },
+            {
+              "value": "Resistên.: {toughness.total}",
+              "icon": "fa-shield-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "Armadur.: {toughness.armor}",
+              "icon": "fa-hand-rock",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "Moviment.: {topspeed}",
+              "icon": "fa-tachometer-alt",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#e974ce"
+            },
+            {
+              "value": "Perícia: {driver.skill}",
+              "icon": "fa-book",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#ff0000"
+            }
+          ]
         },
         {
           "disposition": "NEUTRAL",
@@ -700,12 +594,10 @@
         "useAccentEverywhere": false,
         "accentColor": "#11377b",
         "tokenDispositions": [
-          "OWNED",
           "FRIENDLY",
           "NEUTRAL",
           "HOSTILE"
-        ],
-        "useAccentColorForEverything": false
+        ]
       }
     }
   }
