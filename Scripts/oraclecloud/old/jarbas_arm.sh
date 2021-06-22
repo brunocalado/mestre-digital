@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.20"
+VERSION="v1.19"
 echo "========================================"
 case "$1" in
     ligar)
@@ -40,7 +40,7 @@ case "$1" in
         echo "== Solucao de Problemas =="
         echo "1. Reinicie a maquina no oracle."
         echo "2. Reinicie o foundry (./jarbas reiniciar)"
-        echo "3. Tente acessar pelo IP: http://$(curl -s ifconfig.me):30000"
+        echo "3. Tente acessar pelo IP: $(curl -s ifconfig.me):30000"
         echo "4. Se por IP funcionou o problema e com o dominio. Veja se o apontamento esta certo. Refaca o processo conforme o video."        
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
@@ -155,7 +155,7 @@ case "$1" in
     caddy)
       case "$2" in
         instalar)
-          echo "===== Instala Caddy ====="                    
+          echo "===== Instala Caddy ====="
           sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
           curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo apt-key add -
           curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list

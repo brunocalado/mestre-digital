@@ -51,7 +51,7 @@ if [ $# -eq 1 ]; then
   echo "Pasta de logs do fondry vtt: logs/" >> dadossuporte
   
   # Assistente
-  curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/oraclecloud/jarbas.sh
+  curl -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/oraclecloud/jarbas_arm.sh
   chmod +x jarbas
   echo "Comando(s) adicionado(s): jarbas"
   
