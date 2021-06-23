@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.20"
+VERSION="v1.21"
 echo "========================================"
 case "$1" in
     ligar)
@@ -29,19 +29,20 @@ case "$1" in
     ;;
     reiniciar)
         echo "Encerra o FVTT e Inicia o FVTT em seguida"        
-        ./jarbas desligar
         ./jarbas ligar        
     ;;    
     suporte)
         echo "Dados da Maquina"        
         cat dadossuporte
         echo "IP: " $(curl -s ifconfig.me)        
+        echo "Dominio: " $(grep hostname config/options.json | awk '{print $2}' | sed 's/\"//g' | sed 's/,//g')
         echo 
         echo "== Solucao de Problemas =="
         echo "1. Reinicie a maquina no oracle."
         echo "2. Reinicie o foundry (./jarbas reiniciar)"
-        echo "3. Tente acessar pelo IP: http://$(curl -s ifconfig.me):30000"
-        echo "4. Se por IP funcionou o problema e com o dominio. Veja se o apontamento esta certo. Refaca o processo conforme o video."        
+        echo "3. Tente acessar pelo dominio: https://$(grep hostname config/options.json | awk '{print $2}' | sed 's/\"//g' | sed 's/,//g')"
+        echo "4. Tente acessar pelo IP: http://$(curl -s ifconfig.me):30000"
+        echo "5. Se por IP funcionou o problema e com o dominio. Veja se o apontamento esta certo. Refaca o processo conforme o video."        
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;; 
