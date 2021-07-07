@@ -1,0 +1,124 @@
+# Version: 0.1
+
+# Configure Rolls
+rollFormula = "2d6"
+
+# Configure stat toggle label and formula modifier.
+[statToggle]
+  label = "Star Power"
+  
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Failure"
+  [rollResults.partial]
+    range = "7-9"
+    label = "Partial Success"
+  [rollResults.success]
+    range = "10+"
+    label = "Success!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+[character]
+
+  [character.stats]
+    agility = "Agility"
+    drama = "Drama"
+    muscles = "Muscles"
+    magnetism = "Magnetism"
+    swagger = "Swagger"
+
+  [character.attributesTop]
+    [character.attributesTop.charactername]
+      type = "Text"
+      label = "Character Name"  
+    [character.attributesTop.harm]
+      type = "Clock"
+      max = 5
+      default = 0
+    [character.attributesTop.xp]
+      type = "Xp"
+      label = "Experience"
+      max = 5 
+    [character.attributesTop.hold]
+      type = "Clock"
+      max = 3
+      default = 0             
+
+  [character.attributesLeft]  
+    [character.attributesLeft.starpower]
+      type = "Text"
+      label = "Star Power"  
+  [character.attributesLeft.lead]
+    type = "Checkbox"
+    label = "Lead"
+    checkboxLabel = "Untreated wounds"
+    default = false      
+
+  [character.moveTypes]
+    basic = "Basic Moves"
+    extra = "Extra Moves"
+    script = "Script Moves"
+    
+  [character.equipmentTypes]
+    gear = "Gear"
+    loot = "Loot"
+  
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.armor]
+      type = "ListMany"
+      label = "Armor"      
+      options = [
+        "None",
+        "Light",
+        "Medium",
+        "Heavy",
+        "Incredible",
+        "Monstrous"
+      ]  
+    [npc.attributesTop.shock]
+      type = "ListMany"
+      label = "Shock"      
+      options = [
+        "None",
+        "Spooky",
+        "Scary",
+        "Frightening",
+        "Terrifying",
+        "Horrifying"
+      ]    
+    [npc.attributesTop.harm]
+      type = "ListMany"
+      label = "Harm"      
+      options = [
+        "No attack/grappling",
+        "Fist/kick/head-butt",
+        "Small claws/bites",
+        "Acid/claws/tentacles/strength",
+        "Fangs/strong tentacles/great strength",
+        "Great claws/powerful tentacles/incredible strength"
+      ] 
+  [npc.attributesLeft]
+    [npc.attributesLeft.damage]
+      type = "Clock"
+      max = 5
+      default = 0      
+    [npc.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [npc.attributesLeft.extra]
+      type = "LongText"
+      label = "Extra"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    sm = "Special Moves"
