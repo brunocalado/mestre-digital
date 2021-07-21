@@ -22,7 +22,7 @@
               "color": "#6001d5"
             },
             {
-              "value": "{stats.speed.value} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
+              "value": "{stats.speed.adjusted} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
@@ -59,7 +59,7 @@
               "color": "#6001d5"
             },
             {
-              "value": "{stats.speed.value} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
+              "value": "{stats.speed.adjusted} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
@@ -96,7 +96,7 @@
               "color": "#6001d5"
             },
             {
-              "value": "{stats.speed.value} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
+              "value": "{stats.speed.adjusted} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
@@ -352,7 +352,7 @@
               "color": "#6001d5"
             },
             {
-              "value": "{stats.speed.value} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
+              "value": "{stats.speed.adjusted} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,
@@ -389,7 +389,7 @@
               "color": "#6001d5"
             },
             {
-              "value": "{stats.speed.value} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
+              "value": "{stats.speed.adjusted} + (d{stats.speed.runningDie}+{stats.speed.runningMod})",
               "icon": "fa-running",
               "isFunction": false,
               "expression": true,

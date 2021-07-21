@@ -1,0 +1,126 @@
+# Configure Rolls
+rollFormula = "2d6"
+statToggle = "Locked"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Complications..."
+  [rollResults.partial]
+    range = "7-9"
+    label = "Partial success"
+  [rollResults.success]
+    range = "10+"
+    label = "Success!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+# Define the character group.
+[character]
+
+  # Define stats.
+  [character.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+
+  # Define attributes.
+  [character.attributesTop]
+    [character.attributesTop.growth]
+      type = "Xp"
+      label = "Growth"
+      max = 3  
+    [character.attributesTop.balance]
+      type = "Number"
+      default = 0
+    [character.attributesTop.fatigue]
+      type = "Clock"
+      max = 5
+      default = 0
+
+  # Define sidebar details.
+  [character.attributesLeft]
+    [character.attributesLeft.training]
+      type = "ListMany"
+      label = "Training"
+      options = [
+        "Waterbending",
+        "Firebending",
+        "Earthbending",
+        "Airbending",
+        "Weapons",
+        "Technology"
+      ]    
+    [character.attributesLeft.conditions]
+      type = "ListMany"
+      label = "Conditions"
+      options = [
+        "Afraid",
+        "Angry",
+        "Foolish",
+        "Guilty",
+        "Insecure"
+      ]        
+    [character.attributesLeft.demeanors]
+      type = "LongText"
+      label = "Demeanors"
+    [character.attributesLeft.background]
+      type = "LongText"
+      label = "Background"
+    [character.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+    [character.attributesLeft.moment]
+      type = "LongText"
+      label = "Moment of Balance"
+
+  # Define groups for moves.
+  [character.moveTypes]
+    basic = "Basic Moves"
+    playbook = "Playbook Moves"
+    fighting_techniques = "Fighting Techniques"
+
+  # Define groups for equipment.
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.realName]
+      type = "Text"
+      label = "Real Name"
+    [npc.attributesTop.harm]
+      type = "Resource"
+      label = "Harm"
+
+  [npc.attributesLeft]
+    [npc.attributesLeft.conditions]
+      type = "ListMany"
+      label = "Training"
+      options = [
+        "Waterbending",
+        "Firebending",
+        "Earthbending",
+        "Airbending",
+        "Weapons",
+        "Technology"
+      ]  
+    [npc.attributesLeft.demeanors]
+      type = "LongText"
+      label = "Look"
+    [npc.attributesLeft.background]
+      type = "LongText"
+      label = "Background"
+    [npc.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+      
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    fighting_techniques = "Fighting Techniques"

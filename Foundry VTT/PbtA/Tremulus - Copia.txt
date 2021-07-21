@@ -1,0 +1,144 @@
+# Version: 0.4
+
+# Configure Rolls
+rollFormula = "2d6"
+
+# Configure stat toggle label and formula modifier.
+[statToggle]
+  label = "Debility"
+  modifier = "-1"
+  
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Failure"
+  [rollResults.partial]
+    range = "7-9"
+    label = "Partial Success"
+  [rollResults.success]
+    range = "10+"
+    label = "Success!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+[character]
+
+  [character.stats]
+    affinity = "Affinity"
+    luck = "Luck"
+    might = "Might"
+    passion = "Passion"
+    reason = "Reason"
+
+  [character.attributesTop]
+    [character.attributesTop.health]
+      type = "Clock"
+      max = 6
+      default = 0
+    [character.attributesTop.sanity]
+      type = "Clock"
+      max = 6
+      default = 0    
+    [character.attributesTop.hold]
+      type = "Clock"
+      max = 3
+      default = 0             
+      
+  [character.attributesLeft]
+    [character.attributesLeft.physicaldebilities]
+      type = "ListMany"
+      label = "Physical Debilities"
+      description = "Choose all that apply:"
+      options = [
+        "Shattered: -1 Reason",
+        "Broken: -1 Passion",
+        "Crippled: -1 Might",
+        "Unfortunate: -1 Luck",
+        "Disfigured: -1 Affinity"
+      ]  
+    [character.attributesLeft.lore]
+      type = "Number"
+      label = "Lore"          
+    [character.attributesLeft.wealth]
+      type = "Number"
+      label = "Wealth" 
+    [character.attributesLeft.trust]
+      type = "LongText"
+      label = "Trust"   
+    [character.attributesLeft.advances]
+      type = "Number"
+      label = "Advances"       
+    [character.attributesLeft.look]
+      type = "LongText"
+      label = "Look"  
+
+
+
+  [character.moveTypes]
+    basic = "Basic Moves"
+    extra = "Extra Moves"
+    advanced = "Lore Moves"
+    mentaldisorders = "Mental Disorders"
+    class = "Special Moves"        
+    
+  [character.equipmentTypes]
+    gear = "Gear"
+    loot = "Loot"
+  
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.armor]
+      type = "ListMany"
+      label = "Armor"      
+      options = [
+        "None",
+        "Light",
+        "Medium",
+        "Heavy",
+        "Incredible",
+        "Monstrous"
+      ]  
+    [npc.attributesTop.shock]
+      type = "ListMany"
+      label = "Shock"      
+      options = [
+        "None",
+        "Spooky",
+        "Scary",
+        "Frightening",
+        "Terrifying",
+        "Horrifying"
+      ]    
+    [npc.attributesTop.harm]
+      type = "ListMany"
+      label = "Harm"      
+      options = [
+        "No attack/grappling",
+        "Fist/kick/head-butt",
+        "Small claws/bites",
+        "Acid/claws/tentacles/strength",
+        "Fangs/strong tentacles/great strength",
+        "Great claws/powerful tentacles/incredible strength"
+      ] 
+  [npc.attributesLeft]
+    [npc.attributesLeft.damage]
+      type = "Clock"
+      max = 5
+      default = 0      
+    [npc.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [npc.attributesLeft.extra]
+      type = "LongText"
+      label = "Extra"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    sm = "Special Moves"
