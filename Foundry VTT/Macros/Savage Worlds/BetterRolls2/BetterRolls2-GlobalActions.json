@@ -61,28 +61,31 @@ stack with the Drop.)
   "button_name": "Unarmed Defender",
   "skillMod": "+2",
   "selector_type": "skill",
-  "selector_value": "Fighting"  
+  "selector_value": "Fighting",
+  "group": "Situational Modifiers"  
 }
 
 // Unstable Platform
 A character attempting to fire or throw a ranged weapon from the back of a horse
 or other mount, a moving vehicle, or other “unstable platform” subtracts 2 from his total.
 {
-  "id": "UNSTABLEPLATFORMS",
-  "name": "Unstable Platform (S)",
+  "id": "UNSTABLEPLATFORM",
+  "name": "Unstable Platform",
   "button_name": "Unstable Platform",
   "skillMod": "-2",
-  "selector_type": "skill",
-  "selector_value": "Shooting"  
+  "or_selector":[
+    {
+       "selector_type":"skill",
+       "selector_value":"Shooting"
+    },
+    {
+       "selector_type":"skill",
+       "selector_value":"Athletics"
+    }
+  ],  
+  "group": "Combat"  
 }
-{
-  "id": "UNSTABLEPLATFORMA",
-  "name": "Unstable Platform (A)",
-  "button_name": "Unstable Platform",
-  "skillMod": "-2",
-  "selector_type": "skill",
-  "selector_value": "Athletics"  
-}
+
 
 // Touch Attack
 A character who simply wants to touch a foe (usually to deliver a magical effect of some
@@ -94,7 +97,8 @@ kind) may add +2 to his Fighting roll.
   "skillMod": "+2",
   "dmgOverride": "0",
   "selector_type": "skill",
-  "selector_value": "Fighting"  
+  "selector_value": "Fighting",
+  "group": "Combat"
 }
 
 // Off-Hand Attacks
@@ -107,7 +111,8 @@ penalty when done solely with the off-hand.
   "button_name": "Off-Hand Attacks",
   "skillMod": "-2",
   "selector_type": "item_type", 
-  "selector_value": "weapon"  
+  "selector_value": "weapon",
+  "group": "Combat"  
 }
 
 // Nonlethal Damage
@@ -120,7 +125,8 @@ attacker’s Fighting rolls.
   "button_name": "Nonlethal Damage",
   "skillMod": "-1",
   "selector_type": "skill",
-  "selector_value": "Fighting"  
+  "selector_value": "Fighting",
+  "group": "Combat"    
 }
 
 // Two Weapons
@@ -133,7 +139,8 @@ with Natural Weapons (page 104).
   "button_name": "Two Weapons",
   "skillMod": "+1",
   "selector_type": "skill",
-  "selector_value": "Fighting"  
+  "selector_value": "Fighting",
+  "group": "Combat"      
 }
 
 
@@ -194,36 +201,6 @@ with Natural Weapons (page 104).
 
 and_selector: [{'selector_type': 'skill', 'selector_value':'figthing}, {'selector_type':'actor', 'selector_value': 'Jhon'}] 
 
-// Penalty	Lighting
--2	Dim: Twilight, light fog, night with a full moon.
--4	Dark: Typical night conditions with some ambient light from stars, a clouded or partial moon, emergency lights in an office building, a few flickering torches in a large space, etc. Targets aren’t visible outside of 10″.
--6	Pitch Darkness: Complete and total darkness (or the target is hidden or invisible). Powers that require sight may not be possible.
-
-{
-  "id": "DIMLIGHTINGPenalty",
-  "name": "Dim Light",
-  "button_name": "Dim Light",
-  "skillMod": "-2",
-  "selector_type": "item_type", 
-  "selector_value": "weapon"
-}
-{
-  "id": "DarkLIGHTINGPenalty",
-  "name": "Dark",
-  "button_name": "Dark",
-  "skillMod": "-4",
-  "selector_type": "item_type", 
-  "selector_value": "weapon"
-}
-{
-  "id": "DarknessLIGHTINGPenalty",
-  "name": "Pitch Darkness",
-  "button_name": "Pitch Darkness",
-  "skillMod": "-6",
-  "selector_type": "item_type", 
-  "selector_value": "weapon"
-}
-
 
 
 {"id":"unarmed_defender","name":"Unarmed Defender","button_name":"Unarmed Defender","skillMod":-2,"and_selector":[{"selector_type": "skill", "selector_value":"Fighting"}, {"selector_type":"item_type","selector_value":"weapon"}]}
@@ -245,4 +222,23 @@ and_selector: [{'selector_type': 'skill', 'selector_value':'figthing}, {'selecto
          "selector_value":"Fighting"
       }
    ]
+}
+
+
+{
+   "id":"GIANTKILLER",
+   "name":"Giant Killer",
+   "button_name":"Giant Killer",
+   "dmgMod":"+1d6x",
+   "and_selector":[
+      {
+         "selector_type":"actor_has_edge",
+         "selector_value":"Giant Killer"
+      },
+      {
+         "selector_type":"item_type",
+         "selector_value":"weapon"
+      }
+   ],
+   "group": "Edges"
 }
