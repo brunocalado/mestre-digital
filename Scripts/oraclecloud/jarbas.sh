@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.23"
+VERSION="v1.25"
 echo "========================================"
 case "$1" in
     ligar)
@@ -45,7 +45,7 @@ case "$1" in
         echo "5. Se por IP funcionou o problema e com o dominio. Veja se o apontamento esta certo. Refaca o processo conforme o video."        
         echo
         echo "=== Inicio do Teste de Portas ==="
-        echo "Voce deve ver tres mensagens com as portas abertas. Se nao ver, seu firewall na oracle nao esta configurado corretamente."
+        echo "Voce deve ver mensagens dizendo que as portas 80,443 e 30000 estao abertas. Se nao ver, seu firewall na oracle nao esta configurado corretamente."
         MYIP=$(curl -s ifconfig.me)
         timeout 1 bash -c "</dev/tcp/$MYIP/80 &>/dev/null" &&  echo "Porta 80 ABERTA"
         timeout 1 bash -c "</dev/tcp/$MYIP/443 &>/dev/null" &&  echo "Porta 443 ABERTA"
@@ -64,10 +64,14 @@ case "$1" in
         grep -m1 "VERSION=" jarbas
         echo "======================"
     ;;     
-    espaco)
+    hardware)
         echo "======================"
-        echo "Espaco Disponivel"        
+        echo "= Espaco de Disco ="        
         df -h /dev/sda1
+        echo "= Memoria RAM ="        
+        free -mh
+        echo "= Processador(es) ="        
+        lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'
         echo "======================"        
     ;;
     node)
@@ -229,14 +233,14 @@ case "$1" in
     ;;
     *)
         echo "Jarbas Versao ${VERSION}" 
-        echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|caddy|espaco|status|update|node|sobre|suporte}"
+        echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|caddy|hardware|status|update|node|sobre|suporte}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "- admin: funcoes administrativas."  
         echo "- caddy: instala e gerencia o caddy."          
         echo "- compactar: aprenda a compactar seus arquivos para ser facil baixar."          
         echo "- desligar: Para o Foundry VTT"
-        echo "- espaco: mostra quanto do disco foi usado"        
+        echo "- hardware: mostra dados de hardware"        
         echo "- reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
         echo "- ligar: Inicia o Foundry VTT"
         echo "- node: atualiza o NODE para a ultima versao LTS (recomendado)."        
