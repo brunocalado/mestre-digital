@@ -1,0 +1,7 @@
+You simply add the code below after the last line of your file: 
+
+foundry/resources/app/public/css/style.css
+
+Win: 
+C:\Program Files\FoundryVTT\resources\app\public\css
+

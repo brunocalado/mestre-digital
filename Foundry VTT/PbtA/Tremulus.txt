@@ -1,13 +1,8 @@
-# Version: 0.4
+# Version: 0.5
 
 # Configure Rolls
 rollFormula = "2d6"
 
-# Configure stat toggle label and formula modifier.
-[statToggle]
-  label = "Debility"
-  modifier = "-1"
-  
 # Define roll result ranges.
 [rollResults]
   [rollResults.failure]
@@ -50,6 +45,7 @@ rollFormula = "2d6"
     [character.attributesLeft.physicaldebilities]
       type = "ListMany"
       label = "Physical Debilities"
+      condition = true      
       description = "Choose all that apply:"
       options = [
         "Shattered: -1 Reason",
@@ -74,19 +70,17 @@ rollFormula = "2d6"
       type = "LongText"
       label = "Look"  
 
-
-
   [character.moveTypes]
     basic = "Basic Moves"
     extra = "Extra Moves"
     advanced = "Lore Moves"
     mentaldisorders = "Mental Disorders"
     class = "Special Moves"        
-    
+
   [character.equipmentTypes]
     gear = "Gear"
     loot = "Loot"
-  
+
 ########################################
 ## NPCS ################################
 ########################################

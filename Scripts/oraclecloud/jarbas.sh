@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.22"
+VERSION="v1.23"
 echo "========================================"
 case "$1" in
     ligar)
@@ -44,11 +44,13 @@ case "$1" in
         echo "4. Tente acessar pelo IP: http://$(curl -s ifconfig.me):30000"
         echo "5. Se por IP funcionou o problema e com o dominio. Veja se o apontamento esta certo. Refaca o processo conforme o video."        
         echo
-        echo "Voce deve ver mensagens com as portas abertas. Se nao ver, seu firewall na oracle nao esta configurado corretamente."
+        echo "=== Inicio do Teste de Portas ==="
+        echo "Voce deve ver tres mensagens com as portas abertas. Se nao ver, seu firewall na oracle nao esta configurado corretamente."
         MYIP=$(curl -s ifconfig.me)
         timeout 1 bash -c "</dev/tcp/$MYIP/80 &>/dev/null" &&  echo "Porta 80 ABERTA"
         timeout 1 bash -c "</dev/tcp/$MYIP/443 &>/dev/null" &&  echo "Porta 443 ABERTA"
         timeout 1 bash -c "</dev/tcp/$MYIP/30000 &>/dev/null" &&  echo "Porta 30000 ABERTA"        
+        echo "=== Fim do Teste de Portas ==="
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;; 
