@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.25"
+VERSION="v1.26"
 echo "========================================"
 case "$1" in
     ligar)
@@ -68,8 +68,12 @@ case "$1" in
         echo "======================"
         echo "= Espaco de Disco ="        
         df -h /dev/sda1
+        echo
+        echo
         echo "= Memoria RAM ="        
         free -mh
+        echo
+        echo
         echo "= Processador(es) ="        
         lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'
         echo "======================"        
