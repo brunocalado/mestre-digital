@@ -1,0 +1,96 @@
+/**
+==========================NICER CSS SETUP=============================
+**/
+
+/* Hide world description */
+.vtt.players #setup #join-game .join-body .right #world-description{
+  display: none;
+}
+
+/* Hide game details (session appointment) */
+.vtt.players #setup #join-game .join-body .left .app:nth-of-type(2) {
+  display: none;
+}
+
+/* Hide an empty box that breaks alignment */
+.vtt.players #setup #join-game .join-body .right {
+  display: none;
+}
+
+/* Hide the subtitles that are identical with the text inside the buttons */
+/* Methinks it looks pretty intuitive like this. If you want the text back delete this section. */
+.vtt.players #setup #join-game .join-body .left .app h1 {
+  display: none;
+}
+
+/* Hide the rest of the labels (player name, password etc) */
+.vtt.players #setup #join-game .join-body .app .form-group label{
+  display: none;
+}
+
+/* Hide watermark \ version number */
+.vtt.players .watermark {
+  display: none;
+}
+
+/* Hide default background textures, frames */
+.vtt.players #setup #join-game .app {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Set the layout model we'll be working with */
+.vtt.players #setup {
+  align-items: flex-start;
+}
+
+/* Set the width and position for the box(es).*/
+.vtt.players #setup #join-game {
+/* If you want to make the box(es) wider (to fit a bigger title), change width here. */
+  width: 220px;
+  top: calc(50% - 200px);
+/* Make the box(es) hug left side */
+  margin: 50px;
+/* Center all the text */
+  text-align: center;
+}
+
+/* Set the background */
+.vtt.players #setup #join-game .app {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.vtt.players #setup #join-game #world-title {
+  display: none;
+}
+
+/* Keep the lines in the tile close together. Default: 2 */
+.vtt.players #setup #join-game #world-title h1 {
+  line-height: 1;
+}
+
+/* Unify the "Join Game Session" box with the "Setup" box. */
+.vtt.players #setup #join-game .join-body .app {
+  margin-bottom: 0;
+}
+
+/* Make the input fields a bit shorter */
+.vtt.players #setup #join-game .join-body .app .form-group input,
+.vtt.players #setup #join-game .join-body .app .form-group select {
+  height: 25px;
+  width: 100%;
+}
+
+/* Center, color, resize the buttons */
+.vtt.players #setup #join-game .join-body button {
+  margin: 0;
+  background-color: #7c2829;
+  color: white;
+  border-color: #491718;
+  height: 40px;
+}
+.vtt.players #setup #join-game .join-body button:hover {
+  background-color: #952f30;
+}

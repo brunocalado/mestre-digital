@@ -1,14 +1,6 @@
 /**
 ==========================NICER CSS SETUP=============================
 **/
-#join-game, .watermark {
-  /* Replace "url(data:image...)" with "url("PATH_TO YOUR_IMAGE")".
-     Keep as is if you don't want to add images. */
-  --login-world-logo: url("https://dl.dropbox.com/s/ut2593e891t5bme/deadlands-logo.webp");
-  /* Change to "inherit" if you want to keep the text title.
-     You then also need to remove the "World Logo" declaration. */
-  --login-show-text-title: none;
-}
 
 /* Hide world description */
 .vtt.players #setup #join-game .join-body .right #world-description{
@@ -65,16 +57,6 @@
   text-align: center;
 }
 
-.vtt.players #setup #join-game #world-title {
-  background: var(--login-world-logo);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  height: 120px !important;
-  border: none;
-  box-shadow: none;
-}
-
 /* Set the background */
 .vtt.players #setup #join-game .app {
   background: rgba(0, 0, 0, 0.35);
@@ -87,12 +69,12 @@
   display: flex;
   align-items: center;
 /* Unify the "title" box with the "join game session" box */
-  margin-bottom: 0;
+  margin-bottom: 0;  
 }
 
 /* Keep the lines in the tile close together. Default: 2 */
 .vtt.players #setup #join-game #world-title h1 {
-  display: none;
+  line-height: 1;
 }
 
 /* Unify the "Join Game Session" box with the "Setup" box. */

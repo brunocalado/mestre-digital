@@ -5,3 +5,13 @@ foundry/resources/app/public/css/style.css
 Win: 
 C:\Program Files\FoundryVTT\resources\app\public\css
 
+
+-- Fontes
+https://github.com/TheEpicSnowWolf/Foundry-VTT-Prettier-Login-Screen
+
+
+
+-- links de logo
+https://i.imgur.com/YkvMPQB.png
+https://dl.dropbox.com/s/jbpmazcrjihrey0/cyberpunk.webp
+
