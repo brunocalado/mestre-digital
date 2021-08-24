@@ -28,6 +28,11 @@ rollFormula = "2d6"
     reason = "Reason"
 
   [character.attributesTop]
+    [character.attributesTop.armor]
+      type = "Number"
+      label = "Armor"
+      description = "Remove this from damage"
+      default = 0  
     [character.attributesTop.health]
       type = "Clock"
       max = 6

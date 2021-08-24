@@ -9,7 +9,7 @@ await Folder.createDocuments([{name: "Test", type: "Scene"}])
 so lets say you type for Folder Name: Meadows then that becomes a string variable via html.find(blah blah)[0].value... which you can then find... let folder = game.folders.getName(variable) followed by if(!folder) await Folder.createDocuments([{name: "Test", type: "Scene"}]) so if the folder is undefined, it makes it. then continue as you would in your macro
 */
 
-const version = '1.0';
+const version = '1.1';
 const debug = true;
 
 main();
@@ -53,7 +53,9 @@ async function createImageFolder(html) {
   const folderName = html.find("#folderName")[0].value;  
   const folderPath = html.find("#folderPath")[0].value;  
   
-  const folderID = game.folders.getName(folderName).id;
+  const createdFolder = await Folder.createDocuments([{name: folderName, type: "Scene"}]);
+  const folderID = createdFolder[0].id;  
+
   let {files} = await FilePicker.browse("data", folderPath);
 
   for (let img of files) {
