@@ -1,18 +1,17 @@
 # Configure Rolls
 rollFormula = "2d6"
-statToggle = "Locked"
 
 # Define roll result ranges.
 [rollResults]
   [rollResults.failure]
     range = "6-"
-    label = "Complications..."
+    label = "Ocorrerá Complicações..."
   [rollResults.partial]
     range = "7-9"
-    label = "Partial success"
+    label = "Sucesso Parcial"
   [rollResults.success]
     range = "10+"
-    label = "Success!"
+    label = "Sucesso!"
 
 ########################################
 ## CHARACTERS ##########################
@@ -22,66 +21,66 @@ statToggle = "Locked"
 
   # Define stats.
   [character.stats]
-    creativity = "Creativity"
-    focus = "Focus"
-    harmony = "Harmony"
-    passion = "Passion"
-
+    creativity = "Criatividade"
+    focus = "Foco"
+    harmony = "Harmonia"
+    passion = "Paixão"
+    balance_white = "Yang"
+    balance_black = "Yin"
+    
   # Define attributes.
   [character.attributesTop]
-    [character.attributesTop.growth]
-      type = "Xp"
-      label = "Growth"
-      max = 3  
-    [character.attributesTop.balance]
-      type = "Number"
-      default = 0
-    [character.attributesTop.fatigue]
+    [character.attributesTop.estilo]
+      type = "Text"
+      label = "Estilo de Luta"
+    [character.attributesTop.fadiga]
       type = "Clock"
       max = 5
       default = 0
-
+    [character.attributesTop.growth]
+      type = "Xp"
+      label = "Crescimento"
+      max = 3      
   # Define sidebar details.
   [character.attributesLeft]
-    [character.attributesLeft.training]
-      type = "ListMany"
-      label = "Training"
-      options = [
-        "Waterbending",
-        "Firebending",
-        "Earthbending",
-        "Airbending",
-        "Weapons",
-        "Technology"
-      ]    
     [character.attributesLeft.conditions]
       type = "ListMany"
-      label = "Conditions"
+      label = "Condição"
+      condition = true
       options = [
-        "Afraid",
-        "Angry",
-        "Foolish",
-        "Guilty",
-        "Insecure"
-      ]        
-    [character.attributesLeft.demeanors]
-      type = "LongText"
-      label = "Demeanors"
-    [character.attributesLeft.background]
-      type = "LongText"
-      label = "Background"
+        "Medo (-2)",
+        "Zangado (-2)",
+        "Tolo (-2)",
+        "Culpado (-2)",
+        "Inseguro (-2)"
+      ]  
+    [character.attributesLeft.treinamento]
+      type = "Text"
+      label = "Treinamento"
+    [character.attributesLeft.avanco]
+      type = "ListMany"
+      label = "Avanço de Crescimento"
+      options = [
+        "Dê um novo passo em seu manual",
+        "Faça uma nova jogada em outro manual",
+        "Tolo (-2 em truque e resistir a alterar seu equilíbrio)",
+        "Mude o seu centro um passo",
+        "Desbloqueie seu momento de equilibrio"
+      ]
     [character.attributesLeft.connections]
       type = "LongText"
-      label = "Connections"
+      label = "Conexões"
     [character.attributesLeft.moment]
       type = "LongText"
-      label = "Moment of Balance"
+      label = "Momento de Equilíbrio"
 
   # Define groups for moves.
   [character.moveTypes]
-    basic = "Basic Moves"
-    playbook = "Playbook Moves"
-    fighting_techniques = "Fighting Techniques"
+    basic = "Básicos"
+    basic_fighting_techniques = "Técnicas Básicas de Luta"
+    fighting_techniques = "Técnicas de Luta"
+    playbook = "Arquétipo"    
+    balance = "Balanço"
 
   # Define groups for equipment.
 
@@ -90,37 +89,43 @@ statToggle = "Locked"
 ########################################
 # Define stats.
 [npc]
+
   # Define attributes.
   [npc.attributesTop]
-    [npc.attributesTop.realName]
+    [npc.attributesTop.guia]
       type = "Text"
-      label = "Real Name"
-    [npc.attributesTop.harm]
-      type = "Resource"
-      label = "Harm"
-
+      label = "Guia"
+    [npc.attributesTop.fadiga]
+      type = "Clock"
+      max = 10
+      default = 0
   [npc.attributesLeft]
+		[npc.attributesLeft.status]
+      type = "ListMany"
+      label = "Princípio"
+      condition = true
+      options = [
+        "Menor (+1)",
+        "Moderado (+2)",
+        "Maior (+3)",
+      ]
     [npc.attributesLeft.conditions]
       type = "ListMany"
-      label = "Training"
+      label = "Condição"
+      condition = true
       options = [
-        "Waterbending",
-        "Firebending",
-        "Earthbending",
-        "Airbending",
-        "Weapons",
-        "Technology"
-      ]  
+        "Medo (-2)",
+        "Zangado (-2)",
+        "Tolo (-2)",
+        "Culpado (-2)",
+        "Inseguro (-2)"
+      ]
     [npc.attributesLeft.demeanors]
       type = "LongText"
-      label = "Look"
+      label = "Apararência"
     [npc.attributesLeft.background]
       type = "LongText"
-      label = "Background"
-    [npc.attributesLeft.connections]
-      type = "LongText"
-      label = "Connections"
-      
+      label = "Histórico"   
   # Define logical groups for moves.
   [npc.moveTypes]
-    fighting_techniques = "Fighting Techniques"
+    fighting_techniques = "Técnicas de Luta"
