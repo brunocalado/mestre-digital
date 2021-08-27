@@ -57,16 +57,6 @@ rollFormula = "2d6"
     [character.attributesLeft.treinamento]
       type = "Text"
       label = "Treinamento"
-    [character.attributesLeft.avanco]
-      type = "ListMany"
-      label = "Avanço de Crescimento"
-      options = [
-        "Dê um novo passo em seu manual",
-        "Faça uma nova jogada em outro manual",
-        "Tolo (-2 em truque e resistir a alterar seu equilíbrio)",
-        "Mude o seu centro um passo",
-        "Desbloqueie seu momento de equilibrio"
-      ]
     [character.attributesLeft.connections]
       type = "LongText"
       label = "Conexões"
@@ -81,6 +71,7 @@ rollFormula = "2d6"
     fighting_techniques = "Técnicas de Luta"
     playbook = "Arquétipo"    
     balance = "Balanço"
+    advances = "Avanços"
 
   # Define groups for equipment.
 
