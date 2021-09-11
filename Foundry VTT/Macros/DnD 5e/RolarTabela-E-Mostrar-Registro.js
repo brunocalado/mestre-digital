@@ -15,7 +15,7 @@ async function drawFromTable(tableName) {
   }
   const output = await table.roll();
   const result = output.results[0].data.img;
-  await ChatMessage.create({content: `<img src:${result}>`});
+  await ChatMessage.create({content: `<img src="${result}">`});
   //await table.draw({flavor:""}); // joga no chat, mas tem que comentar abaixo
 
   
