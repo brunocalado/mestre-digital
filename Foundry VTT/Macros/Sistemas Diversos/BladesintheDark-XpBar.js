@@ -35,7 +35,7 @@ async function main() {
     `,
     buttons: {
       roll: {
-        label: "Create",
+        label: "Change",
         callback: (html) => {
           createImageFolder(html);
         }
