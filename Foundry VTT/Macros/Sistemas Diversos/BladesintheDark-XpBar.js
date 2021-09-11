@@ -1,7 +1,7 @@
 const version = '1.0';
 
 /*
-source:
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/BladesintheDark-XpBar.js
 icon: icons/sundries/misc/lock-open-yellow.webp
 */
 
