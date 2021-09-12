@@ -1,4 +1,4 @@
-/* Instant NPC - v0.2
+/* Instant NPC - v0.3
 
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Mausritter-InstantNPC.js
 Icon: systems/mausritter/images/sample/Portrait_Rat.png
@@ -34,12 +34,6 @@ const compendium_label = 'Tables';
   let instantNPC = await Actor.create({
     name: Birthname + " " + Matriname,
     type: "hireling",
-    img: "",    
-    sort: 12000,
-    data: {},
-    token: {},
-    items: [],
-    flags: {},
     data: {
       description: {
         disposition: Birthsign
@@ -72,15 +66,18 @@ const compendium_label = 'Tables';
 
 /* Functions */
 async function drawFromTable(tableName) {
-  let list_compendium = await game.packs.filter(p=>p.entity=='RollTable');      
-  let inside = await list_compendium.filter( p=>p.metadata.label==compendium_label)[0].getContent();      
-  const table = await inside.filter( p=>p._data['name']==tableName )[0];          
+  let list_compendium = await game.packs.filter(p=>p.documentName=='RollTable');      
+  let inside = await list_compendium.filter( p=>p.metadata.label==compendium_label)[0].getDocuments();      
+  let table = await inside.filter( p=>p.data['name']==tableName )[0];
   
   if (!table) {
     ui.notifications.warn(`Table ${tableName} not found.`, {});
     return;
   }
-  return await table.roll().results[0].text;  
+  
+  let buffer = await table.roll(); 
+ 
+  return buffer.results[0].data.text;  
 }
 
 function treasureCoins(min, max) {
@@ -88,13 +85,15 @@ function treasureCoins(min, max) {
 }
 
 function attrRoll() {
-  return new Roll('3d6kh2').roll().total;
+  return new Roll('3d6kh2').roll({ async : false }).total;
 }
 
 function healthRoll() {
-  return new Roll('1d6').roll().total;
+  return new Roll('1d6').roll({ async : false }).total;
 }
 
 function randomHP(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;  
 }
+
+

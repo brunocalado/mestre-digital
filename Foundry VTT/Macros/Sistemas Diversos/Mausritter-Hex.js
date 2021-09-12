@@ -1,7 +1,10 @@
 //Generate Hex
 
+/*
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/Mausritter-Hex.js
+*/
 
-
+const version = '1.0';
 const compendium_label = 'Tables';
 
 (async () => {
