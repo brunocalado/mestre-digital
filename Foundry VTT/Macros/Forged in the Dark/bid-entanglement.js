@@ -2,7 +2,7 @@ const tableHeatA = 'Entanglements - Heat 0-3';  // Entanglements - Heat 0-3
 const tableHeatB = 'Entanglements - Heat 4/5';  // Entanglements - Heat 4/5
 const tableHeatC = 'Entanglements - Heat 6+';   // Entanglements - Heat 6+
 const compendiumTables = 'Entanglements';       // Compendium name 
-const version = '1.1';
+const version = '1.2';
 main();
 
 /*
@@ -26,8 +26,8 @@ async function main() {
   new Dialog({
     title: `Entanglement - v${version}`,
     content: `
-    <h2>Choose</h2>
-    <p><b>Crew:</b> <select id="playerName" style="width: 200px">${playerNameList}</select></p>
+    <h2>Crew</h2>
+    <p><select id="playerName" style="width: 100%">${playerNameList}</select></p>
     <br>
     <p>
       <input type="checkbox" id="whisper" checked/>Whisper?
@@ -98,6 +98,5 @@ async function drawFromTable(tableName, compendiumName) {
     ui.notifications.warn(`Table ${tableName} not found.`, {});
     return;
   }
-  //return await table.draw({rollMode: 'gmroll'});
   return await table;
 }
