@@ -1,7 +1,6 @@
-/* - v1.1
-Source:
+/* - v1.2
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Forged%20in%20the%20Dark/scum-villainy_work.js
 Icon: 
-Icon2: icons/environment/people/commoner.webp
 */
 
 (async () => {

@@ -1,5 +1,5 @@
-/* - v1.0
-Source:
+/* - v1.1
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Forged%20in%20the%20Dark/scum-villainy_people.js
 Icon: 
 */
 

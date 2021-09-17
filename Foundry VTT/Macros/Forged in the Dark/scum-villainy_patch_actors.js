@@ -5,8 +5,8 @@ const version = 'v1.0';
 TODO 
 - 
 
-source: 
-icon: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Forged%20in%20the%20Dark/scum-villainy_patch_actors.js
+icon: icons/tools/smithing/hammer-sledge-steel-grey.webp
 */
 
 let message=``;
@@ -27,9 +27,13 @@ if (characters==undefined) {
       if (effect!=undefined) {
         let changes = duplicate(effect.data.changes);        
         const playbookName = changes[0].value;
-        changes[0].value = translatePlaybook(playbookName);
-        message += `<h2>${character.name}</h2><p>${playbookName} foi trocado por ${translatePlaybook(playbookName)}</p>`;
-        await effect.update({changes});                        
+        if ( playbooks.includes(playbookName) ) {
+          changes[0].value = translatePlaybook(playbookName);
+          message += `<h2>${character.name}</h2><p>${playbookName} foi trocado por ${translatePlaybook(playbookName)}</p>`;
+          await effect.update({changes});          
+        } else {
+          message += `<h2>${character.name}</h2><p>Nada foi feito. Tudo certo.</p>`;
+        }          
       }      
     }
   }
