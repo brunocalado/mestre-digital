@@ -1,0 +1,126 @@
+# Version: 0.1
+
+# Configure Rolls
+rollFormula = "2d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Falha"
+  [rollResults.partial]
+    range = "7-9"
+    label = "Sucesso Parcial"
+  [rollResults.success]
+    range = "10+"
+    label = "Sucesso!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+[character]
+
+  [character.stats]
+    corpo = "Corpo"
+    coracao = "Coração"
+    mente = "Mente"
+    tecnologia = "Tecnologia"
+
+    [character.attributesTop.exp]
+      type = "Clock"
+      max = 5
+      default = 0
+    [character.attributesTop.sorte]
+      type = "Clock"
+      description = "Suba um nível de sucesso."
+      max = 3
+      default = 3    
+      
+  [character.attributesLeft]
+    [character.attributesLeft.condicoes]
+      type = "ListMany"
+      label = "Condições"
+      condition = true      
+      description = "Na hora de rolar marque todas."
+      options = [
+        "Chateado: -1",
+        "Assustado: -1",
+        "Exausto: -1",
+        "Machucado: -1",
+        "Acabado: -1"
+      ]  
+    [character.attributesLeft.orgulho]
+      type = "Text"
+      description = "Uma vez por sessão você tem sucesso se fizer o motivo de seu orgulho."
+      label = "Orgulho"   
+    [character.attributesLeft.item]    
+      type = "Text"
+      description = "Se conseguir usar esse item em uma ação tenha +2."
+      label = "Item Icônico"   
+    [character.attributesLeft.ancora]
+      type = "Text"
+      description = "Pode limpar uma condição."
+      label = "Âncora"   
+
+  [character.moveTypes]
+    basic = "Movimentos"
+    relacionamentos = "Relacionamentos"
+
+  [character.equipmentTypes]
+    gear = "Tranqueiras"
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.armor]
+      type = "ListMany"
+      label = "Armor"      
+      options = [
+        "None",
+        "Light",
+        "Medium",
+        "Heavy",
+        "Incredible",
+        "Monstrous"
+      ]  
+    [npc.attributesTop.shock]
+      type = "ListMany"
+      label = "Shock"      
+      options = [
+        "None",
+        "Spooky",
+        "Scary",
+        "Frightening",
+        "Terrifying",
+        "Horrifying"
+      ]    
+    [npc.attributesTop.harm]
+      type = "ListMany"
+      label = "Harm"      
+      options = [
+        "No attack/grappling",
+        "Fist/kick/head-butt",
+        "Small claws/bites",
+        "Acid/claws/tentacles/strength",
+        "Fangs/strong tentacles/great strength",
+        "Great claws/powerful tentacles/incredible strength"
+      ] 
+  [npc.attributesLeft]
+    [npc.attributesLeft.damage]
+      type = "Clock"
+      max = 5
+      default = 0      
+    [npc.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [npc.attributesLeft.extra]
+      type = "LongText"
+      label = "Extra"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    sm = "Special Moves"
