@@ -1,6 +1,6 @@
 /*
-source: 
-icon: 
+source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Animation/hyperspace.js
+icon: modules/sequencer/samples/Hyperspace/first_background.jpg
 */
 
 // mp4
