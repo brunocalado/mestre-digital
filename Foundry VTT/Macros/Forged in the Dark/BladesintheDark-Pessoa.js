@@ -1,7 +1,6 @@
-/* Instant NPC - v1.0
-Source:
-Icon: 
-Icon2: icons/environment/people/commoner.webp
+/* Gerar Pessoa - v1.1
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Forged%20in%20the%20Dark/BladesintheDark-Pessoa.js
+Icon: icons/environment/people/commoner.webp
 */
 
 (async () => {
@@ -29,15 +28,8 @@ Icon2: icons/environment/people/commoner.webp
   msg += `<li>Métodos de Ação: <b>${metodosAcao}</b></li>`;
   msg += `<li>Interesse: <b>${interesse}</b></li>`;
   msg += `<li>Peculiaridades: <b>${peculiaridades}</b></li>`;
-  msg += `<li>Profissão: <b>${peculiaridades}</b></li></ul>`;
+  msg += `<li>Profissão: <b>${profissao}</b></li></ul><br>`;
   
-//  msg += `<p><b>${nome} ${sobrenome}</b> é <b>${traco}</b> e suas origens são <b>${raizes}</b>. Sua aparência é <b>${aparencia}</b> e está com <b>${estilo}</b>.</p>`;
-//  msg += `<p><b>O objetivo de ${nome}</b> é <b>${objetivo}</b> e prefere tratar as situações com ${metodosAcao}.</p>`;
-
-  //Grimoult is most interested in Pets (dogs) and is Holding their current position due to blackmail.
-  //msg += `<p><p><b>O maior interesse de ${nome} é ${interesse}. Ele ${peculiaridades} </p>`;
-
-
   let message=msg;
 
   let data = {
