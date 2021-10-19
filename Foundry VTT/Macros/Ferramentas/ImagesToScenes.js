@@ -9,7 +9,7 @@ await Folder.createDocuments([{name: "Test", type: "Scene"}])
 so lets say you type for Folder Name: Meadows then that becomes a string variable via html.find(blah blah)[0].value... which you can then find... let folder = game.folders.getName(variable) followed by if(!folder) await Folder.createDocuments([{name: "Test", type: "Scene"}]) so if the folder is undefined, it makes it. then continue as you would in your macro
 */
 
-const version = '1.1';
+const version = '1.2';
 const debug = true;
 
 main();
@@ -20,9 +20,6 @@ async function main() {
     content: `
     <h3>Important</h3>
     <ul>
-      <li>The folder name must be unique.</li>
-      <li>You need to create the folder manually.</li>
-      <li>The folder name must match what you type in here. It's case sensitive.</li>
       <li>To get the folder path right, you can drop a tile from it in the canvas and copy the path.</li>
     </ul>
     <h3>Form</h3>
@@ -32,7 +29,15 @@ async function main() {
     </div>
     <div>
       <p>Folder Path: </p>
-      <input type="text" id="folderPath" value='modules/mymaps/images/cyberpunk/Alley/'/>
+      <input type="text" id="folderPath" value='modules/mymaps/animated/AnimatedDungeon'/>
+    </div>    
+    <div>
+      <p>Width: </p>
+      <input type="number" id="width" value='1920'/>
+    </div>
+    <div>
+      <p>Height: </p>
+      <input type="number" id="height" value='1080'/>
     </div>    
     `,
     buttons: {
@@ -53,14 +58,21 @@ async function createImageFolder(html) {
   const folderName = html.find("#folderName")[0].value;  
   const folderPath = html.find("#folderPath")[0].value;  
   
+  const widthCustom = html.find("#width")[0].value;  
+  const heightCustom = html.find("#height")[0].value;  
+  
   const createdFolder = await Folder.createDocuments([{name: folderName, type: "Scene"}]);
   const folderID = createdFolder[0].id;  
 
   let {files} = await FilePicker.browse("data", folderPath);
 
   for (let img of files) {
-    if (debug) { console.log('File: ' + img); } 
-    const myScene = await createScene(img, folderID, 50);
+    if (debug) { console.log('File: ' + img); }    
+    if (widthCustom==0) {
+      const myScene = await createScene(img, folderID, 50);
+    } else {
+      const myScene = await createScene(img, folderID, 50, widthCustom, heightCustom);
+    }
   }
   
 }
@@ -68,6 +80,9 @@ async function createImageFolder(html) {
 // --------------------------------
 // Functions
 async function getDimensions(path) {
+  const fileExtension = path.split('.').pop(); 
+  console.log( fileExtension );
+  
   let img = new Image();
   return await new Promise(resolve => { 
     img.onload = function() {
@@ -77,11 +92,32 @@ async function getDimensions(path) {
   });
 }
 
-async function createScene(imgPath, folderID, gridSize=70) {
+function Video(src, append) {
+  var v = document.createElement("video");
+  if (src != "") {
+    v.src = src;
+  }
+  if (append == true) {
+    document.body.appendChild(v);
+  }
+  return v;
+}
+
+async function createScene(imgPath, folderID, gridSize=70, widthCustom=0, heightCustom=0) {
   //const imgPath = "assets/art/map/Fey Woods.jpg";
-  let dimensions = await getDimensions(imgPath);
-  console.log(dimensions);
-  
+  let dimensions;
+  let sceneWidth;
+  let sceneHeight;
+  if (widthCustom==0) {
+    dimensions = await getDimensions(imgPath);
+    sceneWidth = dimensions.width;
+    sceneHeight = dimensions.height;    
+    console.log(dimensions);
+  } else {
+    sceneWidth = parseInt(widthCustom);
+    sceneHeight = parseInt(heightCustom);
+  }  
+
   var splitPath = function (str) {
     let imageName = str.split('\\').pop().split('/').pop(); // remove path
     imageName = imageName.split('.').slice(0, -1).join('.'); // remove extension
@@ -93,8 +129,8 @@ async function createScene(imgPath, folderID, gridSize=70) {
   */
   let data = {
     name: splitPath(imgPath),
-    width: dimensions.width,
-    height: dimensions.height,
+    width: sceneWidth,
+    height: sceneHeight,
     img: imgPath,
     grid: gridSize,
     folder: folderID,
@@ -102,7 +138,9 @@ async function createScene(imgPath, folderID, gridSize=70) {
     gridUnits: 'in',
     fogExploration: false,
     gridType: 1,
-    backgroundColor: "#424242"
+    backgroundColor: "#000000",
+    padding: "0",
+    gridAlpha: "0"
   };
 
   await Scene.create(data);

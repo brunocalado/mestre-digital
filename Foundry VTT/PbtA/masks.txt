@@ -1,6 +1,7 @@
+# Masks English - v1.3
+
 # Configure Rolls
 rollFormula = "2d6"
-statToggle = "Locked"
 
 # Define roll result ranges.
 [rollResults]
@@ -33,10 +34,6 @@ statToggle = "Locked"
     [character.attributesTop.heroName]
       type = "Text"
       label = "Hero Name"
-    [character.attributesTop.harm]
-      type = "Clock"
-      max = 6
-      default = 0
     [character.attributesTop.xp]
       type = "Xp"
       label = "Potential"
@@ -52,35 +49,36 @@ statToggle = "Locked"
     [character.attributesLeft.conditions]
       type = "ListMany"
       label = "Conditions"
+      condition = true
       description = "Choose all that apply:"
       options = [
-        "Afraid",
-        "Angry",
-        "Guilty",
-        "Hopeless",
-        "Insecure"
+        "Afraid (-2 to engage)",
+        "Angry (-2 to comfort or pierce)",
+        "Guilty (-2 to provoke or assess)",
+        "Hopeless (-2 to unleash)",
+        "Insecure (-2 to defend or reject)"
       ]
+    [character.attributesLeft.abilities]
+      type = "LongText"
+      label = "Abilities"      
     [character.attributesLeft.look]
       type = "LongText"
       label = "Look"
-    [character.attributesLeft.abilities]
-      type = "LongText"
-      label = "Abilities"
-    [character.attributesLeft.influence]
-      type = "LongText"
-      label = "Influence"
     [character.attributesLeft.moment]
       type = "LongText"
       label = "Moment of Truth"
 
   # Define groups for moves.
-  [character.moveTypes]
+  [character.moveTypes]    
     basic = "Basic Moves"
     playbook = "Playbook Moves"
     team = "Team Moves"
     adult = "Adult Moves"
+    influence = "Influence"
 
   # Define groups for equipment.
+  [character.equipmentTypes]
+    gear = "Gear"
 
 ########################################
 ## NPCS ################################
@@ -92,10 +90,10 @@ statToggle = "Locked"
     [npc.attributesTop.realName]
       type = "Text"
       label = "Real Name"
-    [npc.attributesTop.harm]
-      type = "Resource"
-      label = "Harm"
-
+    [npc.attributesTop.generation]
+      type = "Text"
+      label = "Generation"
+      
   [npc.attributesLeft]
     [npc.attributesLeft.conditions]
       type = "ListMany"
@@ -107,17 +105,18 @@ statToggle = "Locked"
         "Guilty",
         "Hopeless",
         "Insecure"
-      ]  
+      ]
     [npc.attributesLeft.drive]
       type = "LongText"
       label = "Drive"
     [npc.attributesLeft.abilities]
       type = "LongText"
       label = "Abilities"
-    [npc.attributesLeft.generation]
-      type = "Text"
-      label = "Generation"  
 
   # Define logical groups for moves.
   [npc.moveTypes]
     villain = "Villain Moves"
+    condition = "Condition Moves"
+
+  [npc.equipmentTypes]
+    gear = "Gear"

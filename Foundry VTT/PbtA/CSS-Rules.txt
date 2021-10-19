@@ -1,0 +1,36 @@
+/* pc sheet background */
+.pbta.actor .window-content {
+  background-image: url("worlds/monstro-da-semana/assets/fundo.png");
+}
+
+/* npc sheet background */
+.pbta.actor.npc .window-content {
+  background-image: url("systems/pbta/assets/concrete-seamless.webp");
+}
+
+/* Stat color */
+.pbta.sheet .cell--stats .stat {
+  background: #bf0000;
+}
+
+/* Stat color hover */
+.pbta.sheet .cell--stats .stat:hover {
+  background: #ff0000;
+}  
+
+/* Hide ui advanced */
+.pbta.sheet .sheet-resources .cell--roll-mode {
+  display: none;
+}
+
+/* Invert the colors for the selected tab */
+.pbta.sheet .tabs .item.active {
+  background: #000;
+}
+.pbta.sheet .tabs .item {
+  background: #999;
+}
+.pbta.sheet .tabs .item.active:hover, .pbta.sheet .tabs .item.active:focus {
+  background: #000;
+  color: #fff;
+}
