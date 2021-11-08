@@ -1,4 +1,4 @@
-# Masks English - v1.3
+# Masks English - v1.4
 
 # Configure Rolls
 rollFormula = "2d6"
@@ -43,7 +43,10 @@ rollFormula = "2d6"
       label = "Moment of Truth"
       checkboxLabel = "Unlocked"
       default = false
-
+    [character.attributesTop.hold]
+      type = "Resource"
+      label = "Hold"
+      
   # Define sidebar details.
   [character.attributesLeft]
     [character.attributesLeft.conditions]
@@ -52,18 +55,15 @@ rollFormula = "2d6"
       condition = true
       description = "Choose all that apply:"
       options = [
-        "Afraid (-2 to engage)",
-        "Angry (-2 to comfort or pierce)",
-        "Guilty (-2 to provoke or assess)",
-        "Hopeless (-2 to unleash)",
-        "Insecure (-2 to defend or reject)"
+        "Afraid (-2 engage)",
+        "Angry (-2 comfort/pierce)",
+        "Guilty (-2 provoke/assess)",
+        "Hopeless (-2 unleash)",
+        "Insecure (-2 defend/reject)"
       ]
     [character.attributesLeft.abilities]
       type = "LongText"
       label = "Abilities"      
-    [character.attributesLeft.look]
-      type = "LongText"
-      label = "Look"
     [character.attributesLeft.moment]
       type = "LongText"
       label = "Moment of Truth"

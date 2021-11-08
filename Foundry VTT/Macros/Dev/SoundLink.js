@@ -1,27 +1,30 @@
 /**
- * Sound Link Builder v2.0
+ * Sound Link Builder v2.1
  * Thanks to @brunocalado
  * Macro for: https://github.com/superseva/sound-link
  * Icon: 
  //https://github.com/superseva/sound-link/issues/1
  */
 
-main()
+const version = 'v2.1';
+main();
 
 function main() {
 	let choices = new Object();
 	for (let playlist of game.playlists) {
 		let playlistName = playlist.name;
-		choices[playlistName] = new Array();
-
+		choices[playlistName] = new Array(); // replace for []
+ 
 		for (let sound of playlist.sounds) {
 			let soundName = sound.name;
-			choices[playlistName].push(soundName);
+      console.log(sound.name)
+      console.log(sound)
+			choices[playlistName].push(`${soundName}`);
 		}
 	}
 
 	new Dialog({
-		title: "Sound Link Builder v2.0",
+		title: `Sound Link Builder - ${version}`,
 		content: generateContent(choices),
 		buttons: {
 			ok: {
@@ -37,11 +40,14 @@ function main() {
 
 function generateContent(choices) {
 	let playlists = new String();
+  console.log('--------------------------------------------------');
 	for (let pl in choices) {
+    console.log(choices[pl])
 		let sounds = JSON.stringify(choices[pl]);
 		playlists += `\n<option data-sounds='${sounds}'>${pl}</option>`;
 	}
-
+console.log(playlists)
+console.log('--------------------------------------------------');
 	let script = `
 		<script>
 			function switchSounds(select) {

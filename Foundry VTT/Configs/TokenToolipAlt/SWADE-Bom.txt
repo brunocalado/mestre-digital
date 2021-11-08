@@ -1,0 +1,1108 @@
+{
+  "gmSettings": {
+    "default": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "let val = \"\";\nif (data.wildcard) {\n\tval = \"🃏 \";\n}\nif (data.bennies.max > 0 || data.bennies.value > 0) {\n\tval += data.bennies.value + \"/\" + data.bennies.max;\n}\nreturn val;",
+              "icon": "$Bennies:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#383838"
+            },
+            {
+              "value": "{stats.speed.value} (d{stats.speed.runningDie})",
+              "icon": "$Pace:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#575757"
+            },
+            {
+              "value": "{stats.parry.value}",
+              "icon": "$Parry:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "{stats.toughness.value} { \n\ta=<stats.toughness.armor>; \n\ta == 0 ? \"\" : concat(\"(\", string(a), \")\")\n}",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "{ \n\tw=<wounds.value>; \n\twm=<wounds.max>; \n\twi=<wounds.ignored>; \n\tw == 0 ? \"\" : concat(\n\t\t string(w), \"/\", string(wm), \n\t\t wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\"))\n}",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{\n\tf=<fatigue.value>; \n\tfm=<fatigue.max>; \n\tf == 0 ? \"\" : concat(string(f), \"/\", string(fm))\n}",
+              "icon": "$Fatigue:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#947b00"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"\" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "$Power:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "return data.status.isShaken ? \"yes\" : \"\"",
+              "icon": "$Shaken",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#000000"
+            },
+            {
+              "value": "return data.status.isDistracted ? \"yes\" : \"\"",
+              "icon": "$Distracted",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#303030"
+            },
+            {
+              "value": "return data.status.isVulnerable ? \"yes\" : \"\"",
+              "icon": "$Vulnerable",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#3b3b3b"
+            },
+            {
+              "value": "return data.status.isStunned ? \"yes\" : \"\"",
+              "icon": "$Stunned",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#293a1d"
+            },
+            {
+              "value": "return data.status.isBound ? \"yes\" : \"\"",
+              "icon": "$Bound",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#510057"
+            },
+            {
+              "value": "return data.status.isEntangled ? \"yes\" : \"\"",
+              "icon": "$Entangled",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#590001"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": [
+            {
+              "value": "let val = \"\";\nif (data.wildcard) {\n\tval = \"🃏 \";\n}\nif (data.bennies.max > 0 || data.bennies.value > 0) {\n\tval += data.bennies.value + \"/\" + data.bennies.max;\n}\nreturn val;",
+              "icon": "$Bennies:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#383838"
+            },
+            {
+              "value": "{stats.speed.value} (d{stats.speed.runningDie})",
+              "icon": "$Pace:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#575757"
+            },
+            {
+              "value": "{stats.parry.value}",
+              "icon": "$Parry:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "{stats.toughness.value} { \n\ta=<stats.toughness.armor>; \n\ta == 0 ? \"\" : concat(\"(\", string(a), \")\")\n}",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "{ \n\tw=<wounds.value>; \n\twm=<wounds.max>; \n\twi=<wounds.ignored>; \n\tw == 0 ? \"\" : concat(\n\t\t string(w), \"/\", string(wm), \n\t\t wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\"))\n}",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{\n\tf=<fatigue.value>; \n\tfm=<fatigue.max>; \n\tf == 0 ? \"\" : concat(string(f), \"/\", string(fm))\n}",
+              "icon": "$Fatigue:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#947b00"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"\" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "$Power:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "return data.status.isShaken ? \"yes\" : \"\"",
+              "icon": "$Shaken",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#000000"
+            },
+            {
+              "value": "return data.status.isDistracted ? \"yes\" : \"\"",
+              "icon": "$Distracted",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#303030"
+            },
+            {
+              "value": "return data.status.isVulnerable ? \"yes\" : \"\"",
+              "icon": "$Vulnerable",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#3b3b3b"
+            },
+            {
+              "value": "return data.status.isStunned ? \"yes\" : \"\"",
+              "icon": "$Stunned",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#293a1d"
+            },
+            {
+              "value": "return data.status.isBound ? \"yes\" : \"\"",
+              "icon": "$Bound",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#510057"
+            },
+            {
+              "value": "return data.status.isEntangled ? \"yes\" : \"\"",
+              "icon": "$Entangled",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#590001"
+            }
+          ]
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": [
+            {
+              "value": "let val = \"\";\nif (data.wildcard) {\n\tval = \"🃏 \";\n}\nif (data.bennies.max > 0 || data.bennies.value > 0) {\n\tval += data.bennies.value + \"/\" + data.bennies.max;\n}\nreturn val;",
+              "icon": "$Bennies:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#383838"
+            },
+            {
+              "value": "{stats.speed.value} (d{stats.speed.runningDie})",
+              "icon": "$Pace:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#575757"
+            },
+            {
+              "value": "{stats.parry.value}",
+              "icon": "$Parry:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "{stats.toughness.value} { \n\ta=<stats.toughness.armor>; \n\ta == 0 ? \"\" : concat(\"(\", string(a), \")\")\n}",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "{ \n\tw=<wounds.value>; \n\twm=<wounds.max>; \n\twi=<wounds.ignored>; \n\tw == 0 ? \"\" : concat(\n\t\t string(w), \"/\", string(wm), \n\t\t wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\"))\n}",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{\n\tf=<fatigue.value>; \n\tfm=<fatigue.max>; \n\tf == 0 ? \"\" : concat(string(f), \"/\", string(fm))\n}",
+              "icon": "$Fatigue:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#947b00"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"\" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "$Power:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "return data.status.isShaken ? \"yes\" : \"\"",
+              "icon": "$Shaken",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#000000"
+            },
+            {
+              "value": "return data.status.isDistracted ? \"yes\" : \"\"",
+              "icon": "$Distracted",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#303030"
+            },
+            {
+              "value": "return data.status.isVulnerable ? \"yes\" : \"\"",
+              "icon": "$Vulnerable",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#3b3b3b"
+            },
+            {
+              "value": "return data.status.isStunned ? \"yes\" : \"\"",
+              "icon": "$Stunned",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#293a1d"
+            },
+            {
+              "value": "return data.status.isBound ? \"yes\" : \"\"",
+              "icon": "$Bound",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#510057"
+            },
+            {
+              "value": "return data.status.isEntangled ? \"yes\" : \"\"",
+              "icon": "$Entangled",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#590001"
+            }
+          ]
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "useAccentEverywhere": false,
+        "accentColor": "#573805",
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    },
+    "character": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "accentColor": "#5d088",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "npc": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "accentColor": "#19dc5a",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "vehicle": {
+      "items": [
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "topspeed",
+              "icon": "$Top Speed:",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#467010"
+            },
+            {
+              "value": "handling",
+              "icon": "$Handling",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#595d56"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "topspeed",
+              "icon": "$Top Speed:",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#467010"
+            },
+            {
+              "value": "handling",
+              "icon": "$Handling",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#595d56"
+            }
+          ]
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "topspeed",
+              "icon": "$Top Speed:",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#467010"
+            },
+            {
+              "value": "handling",
+              "icon": "$Handling",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#595d56"
+            }
+          ]
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": true,
+        "useAccentEverywhere": false,
+        "accentColor": "#2bf2ff",
+        "tokenDispositions": [
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    }
+  },
+  "playerSettings": {
+    "default": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": [
+            {
+              "value": "let val = \"\";\nif (data.wildcard) {\n\tval = \"🃏 \";\n}\nif (data.bennies.max > 0 || data.bennies.value > 0) {\n\tval += data.bennies.value + \"/\" + data.bennies.max;\n}\nreturn val;",
+              "icon": "$Bennies:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#383838"
+            },
+            {
+              "value": "{stats.speed.value} (d{stats.speed.runningDie})",
+              "icon": "$Pace:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#575757"
+            },
+            {
+              "value": "{stats.parry.value}",
+              "icon": "$Parry:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "{stats.toughness.value} { \n\ta=<stats.toughness.armor>; \n\ta == 0 ? \"\" : concat(\"(\", string(a), \")\")\n}",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "{ \n\tw=<wounds.value>; \n\twm=<wounds.max>; \n\twi=<wounds.ignored>; \n\tw == 0 ? \"\" : concat(\n\t\t string(w), \"/\", string(wm), \n\t\t wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\"))\n}",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{\n\tf=<fatigue.value>; \n\tfm=<fatigue.max>; \n\tf == 0 ? \"\" : concat(string(f), \"/\", string(fm))\n}",
+              "icon": "$Fatigue:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#947b00"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"\" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "$Power:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "return data.status.isShaken ? \"yes\" : \"\"",
+              "icon": "$Shaken",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#000000"
+            },
+            {
+              "value": "return data.status.isDistracted ? \"yes\" : \"\"",
+              "icon": "$Distracted",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#303030"
+            },
+            {
+              "value": "return data.status.isVulnerable ? \"yes\" : \"\"",
+              "icon": "$Vulnerable",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#3b3b3b"
+            },
+            {
+              "value": "return data.status.isStunned ? \"yes\" : \"\"",
+              "icon": "$Stunned",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#293a1d"
+            },
+            {
+              "value": "return data.status.isBound ? \"yes\" : \"\"",
+              "icon": "$Bound",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#510057"
+            },
+            {
+              "value": "return data.status.isEntangled ? \"yes\" : \"\"",
+              "icon": "$Entangled",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#590001"
+            }
+          ]
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "let val = \"\";\nif (data.wildcard) {\n\tval = \"🃏 \";\n}\nif (data.bennies.max > 0 || data.bennies.value > 0) {\n\tval += data.bennies.value + \"/\" + data.bennies.max;\n}\nreturn val;",
+              "icon": "$Bennies:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#383838"
+            },
+            {
+              "value": "{stats.speed.value} (d{stats.speed.runningDie})",
+              "icon": "$Pace:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#575757"
+            },
+            {
+              "value": "{stats.parry.value}",
+              "icon": "$Parry:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "{stats.toughness.value} { \n\ta=<stats.toughness.armor>; \n\ta == 0 ? \"\" : concat(\"(\", string(a), \")\")\n}",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "{ \n\tw=<wounds.value>; \n\twm=<wounds.max>; \n\twi=<wounds.ignored>; \n\tw == 0 ? \"\" : concat(\n\t\t string(w), \"/\", string(wm), \n\t\t wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\"))\n}",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{\n\tf=<fatigue.value>; \n\tfm=<fatigue.max>; \n\tf == 0 ? \"\" : concat(string(f), \"/\", string(fm))\n}",
+              "icon": "$Fatigue:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#947b00"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"\" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "$Power:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "return data.status.isShaken ? \"yes\" : \"\"",
+              "icon": "$Shaken",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#000000"
+            },
+            {
+              "value": "return data.status.isDistracted ? \"yes\" : \"\"",
+              "icon": "$Distracted",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#303030"
+            },
+            {
+              "value": "return data.status.isVulnerable ? \"yes\" : \"\"",
+              "icon": "$Vulnerable",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#3b3b3b"
+            },
+            {
+              "value": "return data.status.isStunned ? \"yes\" : \"\"",
+              "icon": "$Stunned",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#293a1d"
+            },
+            {
+              "value": "return data.status.isBound ? \"yes\" : \"\"",
+              "icon": "$Bound",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#510057"
+            },
+            {
+              "value": "return data.status.isEntangled ? \"yes\" : \"\"",
+              "icon": "$Entangled",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#590001"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": [
+            {
+              "value": "{stats.speed.value} (d{stats.speed.runningDie})",
+              "icon": "$Pace:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#575757"
+            },
+            {
+              "value": "{stats.parry.value}",
+              "icon": "$Parry:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#0161df"
+            },
+            {
+              "value": "{stats.toughness.value} { \n\ta=<stats.toughness.armor>; \n\ta == 0 ? \"\" : concat(\"(\", string(a), \")\")\n}",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "{ \n\tw=<wounds.value>; \n\twm=<wounds.max>; \n\twi=<wounds.ignored>; \n\tw == 0 ? \"\" : concat(\n\t\t string(w), \"/\", string(wm), \n\t\t wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\"))\n}",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{\n\tf=<fatigue.value>; \n\tfm=<fatigue.max>; \n\tf == 0 ? \"\" : concat(string(f), \"/\", string(fm))\n}",
+              "icon": "$Fatigue:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#947b00"
+            },
+            {
+              "value": "const pplist = [];\nif (data.powerPoints.value && data.powerPoints.max) {\n   pplist.push(\"\" + data.powerPoints.value + \"/\" + data.powerPoints.max);\n}\nfor (let arcane in data.powerPoints) {\n\tif (arcane != \"value\" && arcane != \"max\" &&\n\t\t    data.powerPoints[arcane].max &&\n\t\t    data.powerPoints[arcane].value) {\n\t\tpplist.push(arcane + \": \" +\n\t\t\t\t\tdata.powerPoints[arcane].value +\n\t\t\t\t\t\"/\" + data.powerPoints[arcane].max)\n\t}\t\n}\n\t\t\nreturn pplist.join(\", \");",
+              "icon": "$Power:",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#03b300"
+            },
+            {
+              "value": "return data.status.isShaken ? \"yes\" : \"\"",
+              "icon": "$Shaken",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#000000"
+            },
+            {
+              "value": "return data.status.isDistracted ? \"yes\" : \"\"",
+              "icon": "$Distracted",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#303030"
+            },
+            {
+              "value": "return data.status.isVulnerable ? \"yes\" : \"\"",
+              "icon": "$Vulnerable",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#3b3b3b"
+            },
+            {
+              "value": "return data.status.isStunned ? \"yes\" : \"\"",
+              "icon": "$Stunned",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#293a1d"
+            },
+            {
+              "value": "return data.status.isBound ? \"yes\" : \"\"",
+              "icon": "$Bound",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#510057"
+            },
+            {
+              "value": "return data.status.isEntangled ? \"yes\" : \"\"",
+              "icon": "$Entangled",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#590001"
+            }
+          ]
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": [
+            {
+              "value": "{ \n\tw=<wounds.value>; \n\twm=<wounds.max>; \n\twi=<wounds.ignored>; \n\tw == 0 ? \"\" : concat(\n\t\t string(w), \"/\", string(wm), \n\t\t wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\"))\n}",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{\n\tf=<fatigue.value>; \n\tfm=<fatigue.max>; \n\tf == 0 ? \"\" : concat(string(f), \"/\", string(fm))\n}",
+              "icon": "$Fatigue:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#947b00"
+            },
+            {
+              "value": "return data.status.isShaken ? \"yes\" : \"\"",
+              "icon": "$Shaken",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#000000"
+            },
+            {
+              "value": "return data.status.isDistracted ? \"yes\" : \"\"",
+              "icon": "$Distracted",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#303030"
+            },
+            {
+              "value": "return data.status.isVulnerable ? \"yes\" : \"\"",
+              "icon": "$Vulnerable",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#3b3b3b"
+            },
+            {
+              "value": "return data.status.isStunned ? \"yes\" : \"\"",
+              "icon": "$Stunned",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#293a1d"
+            },
+            {
+              "value": "return data.status.isBound ? \"yes\" : \"\"",
+              "icon": "$Bound",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#510057"
+            },
+            {
+              "value": "return data.status.isEntangled ? \"yes\" : \"\"",
+              "icon": "$Entangled",
+              "isFunction": true,
+              "expression": false,
+              "isNumber": false,
+              "color": "#590001"
+            }
+          ]
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "NEUTRAL",
+        "useAccentEverywhere": false,
+        "accentColor": "#779e7e",
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    },
+    "character": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": []
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "FRIENDLY",
+        "accentColor": "#a547bf",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "npc": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": []
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": []
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": []
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": []
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "FRIENDLY",
+        "accentColor": "#1c2c80",
+        "useAccentColorForEverything": false,
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ]
+      }
+    },
+    "vehicle": {
+      "items": [
+        {
+          "disposition": "OWNED",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "topspeed",
+              "icon": "$Top Speed:",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#467010"
+            },
+            {
+              "value": "handling",
+              "icon": "$Handling",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#595d56"
+            }
+          ]
+        },
+        {
+          "disposition": "FRIENDLY",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            },
+            {
+              "value": "{toughness.total} { a=<toughness.armor>; a == 0 ? \"\" : concat(\"(\", string(a), \")\") }",
+              "icon": "$Tough:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#6001d5"
+            },
+            {
+              "value": "topspeed",
+              "icon": "$Top Speed:",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#467010"
+            },
+            {
+              "value": "handling",
+              "icon": "$Handling",
+              "isFunction": false,
+              "expression": false,
+              "isNumber": false,
+              "color": "#595d56"
+            }
+          ]
+        },
+        {
+          "disposition": "NEUTRAL",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            }
+          ]
+        },
+        {
+          "disposition": "HOSTILE",
+          "items": [
+            {
+              "value": "{ w=<wounds.value>; wm=<wounds.max>; wi=<wounds.ignored>; w == 0 ? \"\" : concat(string(w), \"/\", string(wm), wi == 0 ? \"\" : concat(\"(ignore \", string(wi), \")\")) }",
+              "icon": "$Wounds:",
+              "isFunction": false,
+              "expression": true,
+              "isNumber": false,
+              "color": "#a70101"
+            }
+          ]
+        }
+      ],
+      "static": {
+        "displayNameInTooltip": "FRIENDLY",
+        "useAccentEverywhere": false,
+        "accentColor": "#11377b",
+        "tokenDispositions": [
+          "OWNED",
+          "FRIENDLY",
+          "NEUTRAL",
+          "HOSTILE"
+        ],
+        "useAccentColorForEverything": false
+      }
+    }
+  }
+}

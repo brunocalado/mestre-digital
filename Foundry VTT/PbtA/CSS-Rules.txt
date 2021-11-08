@@ -34,3 +34,13 @@
   background: #000;
   color: #fff;
 }
+
+.pbta.sheet .cell__title {
+  margin: 5px 0 5px;
+  height: 24px;
+}
+
+/* reduce list space*/
+ul, ol {
+  padding: 0 0 0 0.5em;
+}

@@ -1,0 +1,811 @@
+# The Between - v 0.1
+# Configure Rolls
+rollFormula = "2d6"
+ 
+ 
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Miss"
+  [rollResults.partial]
+    range = "7-9"
+    label = "Hit"
+  [rollResults.success]
+    range = "10-11"
+    label = "10+"
+  [rollResults.critsucess]
+    range = "12+"
+    label = "12+"
+ 
+ 
+########################################
+## CHARACTERS ##########################
+########################################
+# Define the character group.
+[character]
+ 
+ # Define stats.
+  [character.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reason"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [character.attributesTop]
+    [character.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [character.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+      [character.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+     [character.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "Mark the first unmarked box"
+      condition = true
+      options = ["1"]
+ 
+    [character.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "If no boxes are marked, you can retire to safety or obscurity instead of putting on this mask; tell the other hunters what the future holds for you. Otherwise, mark any box you wish. "
+      condition = true
+      options = ["THE GILDED DOOR: ",
+"THE MOSS-COVERED GATE: ",
+"THE DARKENED THRESHOLD: ",
+"THE COSMIC PASSAGE: ",
+"THE BLOOD-SOAKED PORTAL:"
+]
+      
+  # Define sidebar details.
+  [character.attributesLeft]
+     [character.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [character.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "Aftfter 5 XP erase them and mark an advance."
+      condition = true
+      options = ["1"]
+      
+      [character.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions "
+      description = "The first three are always marked. Mark two more."
+      condition = true
+      options = ["Did the hunters answer a Question?",
+      "Did the hunters resolve a Threat?",
+      "Did you experience an Echo in the Night?"
+      ]
+  # Define groups for moves.
+  [character.moveTypes]
+ 
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+   
+    
+ 
+  # Define groups for equipment.
+  [character.equipmentTypes]
+    room = "Personal Quarters"
+    
+ 
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.harm]
+      type = "Resource"
+      label = "Harm"
+    [npc.attributesTop.damage]
+      type = "Roll"
+      label = "Damage"
+      default = "d6"
+    [npc.attributesTop.loot]
+      type = "Text"
+      label = "Loot"
+  [npc.attributesLeft]
+    [npc.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [npc.attributesLeft.drive]
+      type = "LongText"
+      label = "Drive"
+ 
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    gm = "GM Moves"
+    
+  [explorer]
+ baseType = 'character'
+ # Define stats.
+  [explorer.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reson"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [explorer.attributesTop]
+    [explorer.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [explorer.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+    [explorer.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+    [explorer.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "The Explorer’s Mask of the Past tells the story of a young man, called the Boy, whose village was occupied for a time by the Explorer and their expeditionary forces. Mark the first unmarked box."
+      condition = true
+      options = ["Narrate a flashback to the time when the Explorer first arrived at your village. Was it a joyous moment? Was there something ominous about it?",
+"Narrate a flashback that shows your friendship with the Explorer. What kind of relationship was it? Parent and child? Teacher and pupil? Master and servant?",
+"Narrate a flashback to when your village suffered an atrocity at the hands of the Explorer. How did you help inflict this atrocity?", 
+"Narrate a flashback showing how you faced a reckoning for the crimes you helped the Explorer commit against your village.", 
+"Narrate a flashback to the recent past showing how the village still suffers the consequences of the Explorer’s occupation.",
+"Narrate a flashback showing your arrival in London.",
+"Narrate a flashback to the time when you first met the Mastermind."
+]
+ 
+[explorer.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "Mark any box you wish."
+      condition = true
+      options = ["THE GILDED DOOR: Take the following Condition: Most-Beloved. Tell the other hunters they can no longer choose The Gilded Door on their own playbook (this does not count as being marked for them). You can never clear Most-Beloved. ",
+"THE MOSS-COVERED GATE: You receive a significant inheritance frfrom a recently deceased relative. Who were they? What is your favorite memory of them? Unmark two checkboxes on The Royal Explorers Club.",
+"THE DARKENED THRESHOLD: Narrate a scene in which you inflict violence on someone and the authorities look the other way. ",
+"THE COSMIC PASSAGE: Increase your Sensitivity by 1 (Max +3) and reduce your Reason by 2. ",
+"THE BLOOD-SOAKED PORTAL: The Keeper narrates a scene in which the Boy physically destroys you; you stay alive long enough for the Mastermind to gloat over their victory. "]
+   
+  # Define sidebar details.
+  [explorer.attributesLeft]
+      [explorer.attributesLeft.RSE]
+      type = "Xp"
+      label = "REC"
+      max = 6
+      default = 0
+     [explorer.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [explorer.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "After 5 XP erase them and mark an advance."
+      condition = true
+      options = ["Increase an ability modifier by 1 (max +3)",
+"Increase an ability modifier by 1 (max +3)",
+"Increase an ability modifier by 1 (max +3)", 
+"Unlock two checkboxes on The REC.", 
+"Unlock two checkboxes on The REC.",
+"Write a custom move for your character.", 
+"Unmark all checkboxes on The REC."
+]
+     [explorer.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions"
+      description = "The first three are always marked. Mark two more."
+      condition = true
+      options = ["Did the hunters answer a Question?", 
+"Did the hunters resolve a Threat?", 
+"Did you experience an Echo in the Night?", 
+"Did you use your loyalty to Her Majesty to justify your brutal actions?", 
+"Did you engage in a secret sexual rendezvous with a commoner?", 
+"Did you leverage your social status to gain the upper hand?", 
+"Did you deliver a chilling, dead-eyed monologue about the horrors of the world?",
+"Did you have a face-to-face encounter with the Mastermind?"
+]
+   
+ 
+  # Define groups for moves.
+  [explorer.moveTypes]
+ 
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+    
+    
+ 
+  # Define groups for equipment.
+  [explorer.equipmentTypes]
+    room = "Personal Quarters"
+
+ [vessel]
+ baseType = 'character'
+ # Define stats.
+  [vessel.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reson"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [vessel.attributesTop]
+    [vessel.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [vessel.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+    [vessel.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+    [vessel.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "Mark the first unmarked box."
+      condition = true
+      options = ["Narrate a flashback to the time when you were in your mother’s womb that shows, even then, dark entities were interested in you.",
+"Narrate a flashback to your childhood that shows the first time you encountered a dark entity.", 
+"Narrate a flashback to your young adulthood that shows your first sexual encounter with a dark entity.", 
+"Narrate a flashback to your young adulthood that shows a time when you used your supernatural affinities for selfish purposes.", 
+"Narrate a flashback to your young adulthood that shows when you first met the leader of the coven. Name them.", 
+"Narrate a flashback to your young adulthood that shows part of your initiation into the coven. Name the coven.", 
+"Narrate a flashback to an event that influenced you to leave the coven for good."
+]
+ 
+[vessel.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "If no boxes are marked, you can retire to safety or obscurity instead of putting on this mask; tell the other hunters what the future holds for you. Otherwise, mark any box you wish."
+      condition = true
+      options = ["THE GILDED DOOR: Take the following Condition: Most-Beloved. Tell the other hunters they can no longer choose The Gilded Door on their own playbook (this does not count as being marked for them). You can never clear Most-Beloved.",
+"THE MOSS-COVERED GATE: Tell the Keeper to put The Coven in play. ThThe Keeper should immediately frame a scene showing that the coven has arrived in London.",
+"THE DARKENED THRESHOLD: Narrate a scene in which, possessed by a dark entity, you harm an innocent. ",
+"THE COSMIC PASSAGE: Increase your Sensitivity by 1 (Max +3) and reduce your Reason by 2. ",
+"THE BLOOD-SOAKED PORTAL: Narrate a scene in which you are physically destroyed. This character is now retired."]
+   
+  # Define sidebar details.
+  [vessel.attributesLeft]
+     [vessel.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [vessel.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "After 5 XP erase them and mark an advance."
+      condition = true
+      options = ["Increase an ability modifier by 1 (max +3)",
+"Increase an ability modifier by 1 (max +3)", 
+"Increase an ability modifier by 1 (max +3)", 
+"Choose an additional move from your playbook.", 
+"Choose an additional move from your playbook.", 
+"Write a custom move for your character.", 
+"Unmark everything in your Personal Quarters." 
+ ]
+     [vessel.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions"
+      description = "The first three are always marked. Mark two more. "
+      condition = true
+      options = ["Did the hunters answer a Question?", 
+"Did the hunters resolve a Threat?",
+"Did you experience an Echo in the Night?", 
+"Did you have a face-to-face encounter with a dark entity?", 
+"Did you counsel someone using your supernatural affinities as the basis for that advice?",
+"Did you perform a ritual?", 
+"Did you make love to a human in order to forget the darkness?", 
+"Did you make love to a dark entity because it felt good?" 
+]
+   
+  # Define groups for moves.
+  [vessel.moveTypes]
+ 
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+
+  # Define groups for equipment.
+  [vessel.equipmentTypes]
+    room = "Personal Quarters"
+
+ [undeniable]
+ baseType = 'character'
+ # Define stats.
+  [undeniable.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reson"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [undeniable.attributesTop]
+    [undeniable.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [undeniable.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+    [undeniable.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+    [undeniable.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "Mark the first unmarked box."
+      condition = true
+      options = ["Narrate a flashback to your childhood that shows how, even then, people were willing to suffer in order to make you happy.", 
+"Narrate a flashback to your young adulthood that shows the first time you met the artist who fell in love with you.", 
+"Narrate a flashback that shows when you cruelly discarded the artist.", 
+"Narrate a flashback to a scene when the artist destroyed themselves because of your rejection. How did the masterwork change in order to reflect your cold indifference?", 
+"Narrate a flashback to when you first met the person you fell madly in love with.",
+"Narrate a flashback that shows why you started to become jealous of the person you fell madly in love with. How did the masterwork change to reflect this simmering resentment?", 
+"Narrate a flashback to when you finally destroyed the person you fell madly in love with. How did the masterwork change to reflect your wrath" 
+]
+ 
+[undeniable.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "If no boxes are marked, you can retire to safety or obscurity instead of putting on this mask; tell the other hunters what the future holds for you. Otherwise, mark any box you wish."
+      condition = true
+      options = ["THE GILDED DOOR: Take the following Condition: Most-Beloved. Increase your Presence by 1. Tell the other hunters they can no longer choose The Gilded Door on their own playbook (this does not count as being marked for them). Most-Beloved can only be cleared via the Taketh Away move.", 
+"THE MOSS-COVERED GATE: Narrate a scene in which you express private regret for the harm you have caused.", 
+"THE DARKENED THRESHOLD: Narrate a scene during which people treat you like you’re nothing special.", 
+"THE COSMIC PASSAGE: Whenever you gaze upon the masterwork in an attempt to uncover something hidden in the world, roll with Sensitivity. On a 10+, the masterwork reveals a Clue or a Mastermind Clue, your choice. On a 7-9, as above, but you also scar your Reflection. ",
+"THE BLOOD-SOAKED PORTAL: Narrate a scene in which you are physically destroyed. This character is now retired."
+]
+   
+  # Define sidebar details.
+  [undeniable.attributesLeft]
+    [undeniable.attributesLeft.reflection]
+      type = "Xp"
+      label = "Reflection"
+      max = 12
+      default = 0
+     [undeniable.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [undeniable.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "After 5 XP erase them and mark an advance."
+      condition = true
+      options = ["Increase an ability modifier by 1 (max +3)",
+ "Increase an ability modifier by 1 (max +3)", 
+"Increase an ability modifier by 1 (max +3)", 
+"Choose an additional move from your playbook.", 
+"Choose an additional move from your playbook.", 
+"Write a custom move for your character.", 
+"Unmark all the boxes on The Reflection (the masterwork itself is unchanged)." 
+ ]
+     [undeniable.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions"
+      description = "The first three are always marked. Mark two more."
+      condition = true
+      options = ["Did the hunters answer a Question?", 
+"Did the hunters resolve a Threat?",
+"Did you experience an Echo in the Night?", 
+"Did you express a clear preference for the beautiful over the mundane?", 
+"Did you secretly show a vulnerable side to someone?", 
+"Did you create an ornate, over-the-top erotic experience for someone else’s pleasure?", 
+"Did you appear in London society wearing risque or avant-garde fashion?", 
+"Did you let someone touch you and then make them pay a price for doing so?" 
+]
+   
+  # Define groups for moves.
+  [undeniable.moveTypes]
+ 
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+
+  # Define groups for equipment.
+  [undeniable.equipmentTypes]
+    room = "Personal Quarters"
+
+[mother]
+ baseType = 'character'
+ # Define stats.
+  [mother.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reson"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [mother.attributesTop]
+    [mother.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [mother.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+    [mother.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+    [mother.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "Mark the first unmarked box."
+      condition = true
+      options = ["You lost someone very important to you. Who were they? Name them.", 
+"Narrate a flashback to the first time you experienced love for the person you lost.", 
+"Narrate a flashback to the happiest day you shared with the person you lost. ",
+"Narrate a flashback to the time you had a terrible fight with the person you lost. ",
+"Narrate a flashback to the time when you first realized you and the person you lost weren’t going to be together forever. ",
+"Narrate a flashback to the time when the person you lost was slipping away from you.", 
+"Narrate a flashback to the time when you finally said goodbye to the person you lost." 
+]
+ 
+[mother.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "If no boxes are marked, you can retire to safety or obscurity instead of putting on this mask; tell the other hunters what the future holds for you. Otherwise, mark any box you wish."
+      condition = true
+      options = ["THE GILDED DOOR: Take the following Condition: Most-Beloved. Tell the other hunters they can no longer choose The Gilded Door on their own playbook (this does not count as being marked for them). You can never clear Most-Beloved.", 
+"THE MOSS-COVERED GATE: You must attempt to bring the Child to life.", 
+"THE DARKENED THRESHOLD: Narrate a scene in which you destroy a professional rival.", 
+"THE COSMIC PASSAGE: Increase your Sensitivity by 1 (Max +3).", 
+"THE BLOOD-SOAKED PORTAL: Narrate a scene in which you are physically destroyed. This character is now retired."
+]
+   
+  # Define sidebar details.
+      
+  [mother.attributesLeft]
+     [mother.attributesLeft.child]
+      type = "ListMany"
+      label = "The Child"
+      Condition = true
+      options = ["Hair", "Head", "Eyes", "Blood", "Torso", "Heart",
+            "Lungs", "Guts", "Sex organs", "Arms", "Hands", "Legs",
+            "Feet"]
+     [mother.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [mother.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "After 5 XP erase them and mark an advance."
+      condition = true
+      options = ["Increase an ability modifier by 1 (max +3)",
+"Increase an ability modifier by 1 (max +3)", 
+"Increase an ability modifier by 1 (max +3)", 
+"Choose an additional move from your playbook.", 
+"Choose an additional move from your playbook.", 
+"Write a custom move for your character.", 
+"Unmark everything in your Personal Quarters." 
+ ]
+     [mother.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions"
+      description = "The first three are always marked. Mark two more."
+      condition = true
+      options = ["Did the hunters answer a Question?", 
+"Did the hunters resolve a Threat?",
+"Did you experience an Echo in the Night?", 
+"Did you dismiss the possibility of a supernatural explanation despite everything you’ve experienced?", 
+"Did you secretly engage in romantic or emotional behavior at odds with your aloof, logical exterior?", 
+"Did you put your hands in a pile of guts and love every moment of it?", 
+"Did you show physical affection toward the Child while someone else was looking?", 
+"Did you have a conversation with the Child while no one was looking?" 
+]
+   
+  # Define groups for moves.
+  [mother.moveTypes]
+ 
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+
+  # Define groups for equipment.
+  [mother.equipmentTypes]
+    room = "Personal Quarters"
+
+[american]
+ baseType = 'character'
+ # Define stats.
+  [american.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reson"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [american.attributesTop]
+    [american.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [american.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+    [american.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+    [american.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "Mark the first unmarked box."
+      condition = true
+      options = ["Narrate a flashback to your childhood that shows the high level of privilege you were born into.", 
+"Narrate a flashback to your youth showing what an arrogant, willful brat you were.", 
+"Narrate a flashback to your young adulthood that shows the incident that made you start to resent, even despise, your parents.", 
+"Narrate a flashback to the time after you finally went West that shows you happy and free.", 
+"Narrate a flashback to the incident that caused you to receive the quickening curse.", 
+"Narrate a flashback to the time when the quickening curse caused you to hurt someone you care about. ",
+"Narrate a flashback showing the incident that caused you to go on the run." 
+]
+ 
+[american.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "If no boxes are marked, you can retire to safety or obscurity instead of putting on this mask; tell the other hunters what the future holds for you. Otherwise, mark any box you wish."
+      condition = true
+      options = ["THE GILDED DOOR: Take the following Condition: Most-Beloved. Tell the other hunters they can no longer choose The Gilded Door on their own playbook (this does not count as being marked for them). You can never clear Most-Beloved.", 
+"THE MOSS-COVERED GATE: Narrate a scene in which you receive a letter from one of your parents urging you to return home. What does the letter say? Then tell the Keeper to put The Pinkerton in play.", 
+"THE DARKENED THRESHOLD: Narrate a scene in which you hurt an innocent because of your curse.", 
+"THE COSMIC PASSAGE: Increase your Sensitivity by 1 (Max +3) and reduce your Reason by 2.", 
+"THE BLOOD-SOAKED PORTAL: Narrate a scene in which you are physically destroyed. This character is now retired." 
+]
+   
+  # Define sidebar details.
+      
+  [american.attributesLeft]
+     [american.attributesLeft.diguise]
+      type = "Xp"
+      label = "Disguise Kit"
+      max = 5
+      default = 0
+     [american.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [american.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "After 5 XP erase them and mark an advance."
+      condition = true
+      options = ["Increase an ability modifier by 1 (max +3)",
+"Increase an ability modifier by 1 (max +3)", 
+"Increase an ability modifier by 1 (max +3)", 
+"Choose an additional move from your playbook.", 
+"Choose an additional move from your playbook.", 
+"Write a custom move for your character.", 
+"Unmark everything in your Personal Quarters." 
+ ]
+     [american.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions"
+      description = "The first three are always marked. Mark two more."
+      condition = true
+      options = ["Did the hunters answer a Question?", 
+"Did the hunters resolve a Threat?",
+"Did you experience an Echo in the Night?", 
+"Did you stick out in London society for all the wrong reasons?", 
+"Did you use violence to solve a problem?", 
+"Did you encourage a fellow hunter to let loose for a change?", 
+"Did you have a raw, passionate sexual encounter during which your feral nature manifested?", 
+"Did you share a treasured memory from the States during an intimate moment with another character?" 
+]
+   
+  # Define groups for moves.
+  [american.moveTypes]
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+
+  # Define groups for equipment.
+  [american.equipmentTypes]
+    room = "Personal Quarters"
+
+ [factotum]
+ baseType = 'character'
+ # Define stats.
+  [factotum.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reson"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [factotum.attributesTop]
+    [factotum.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [factotum.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+    [factotum.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+    [factotum.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "Mark the first unmarked box."
+      condition = true
+      options = ["Narrate a flashback to your young adulthood, before you were a servant, that shows your most significant professional triumph.", 
+"Narrate a flashback to your young adulthood, before you were a servant, that shows what a charmed life you lived. ",
+"Narrate a flashback to the event that eventually forced you into servitude. ",
+"Narrate a flashback to when you were more of a family member to your employer than someone of their own flesh and blood.", 
+"Narrate a flashback to when your employer behaved in a way that was utterly indifferent to your dignity.", 
+"Narrate a flashback that shows how you had to engage in emotional labor in order to please or soothe your employer.", 
+"Narrate a flashback to the first time you saved your employer’s life." 
+]
+ 
+[factotum.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "If no boxes are marked, you can retire to safety or obscurity instead of putting on this mask; tell the other hunters what the future holds for you. Otherwise, mark any box you wish."
+      condition = true
+      options = ["THE GILDED DOOR: Take the following Condition: Most-Beloved. Tell the other hunters they can no longer choose The Gilded Door on their own playbook (this does not count as being marked for them). You can never clear Most-Beloved. ",
+"THE MOSS-COVERED GATE: Unmark the first two boxes on your Mask of the Past.", 
+"THE DARKENED THRESHOLD: Narrate a scene in which you commit a terrible act of violence in order to help your employer or punish one of their enemies. ",
+"THE COSMIC PASSAGE: Increase your Sensitivity by 1 (Max +3) and reduce your Reason by 2.", 
+"THE BLOOD-SOAKED PORTAL: Narrate a scene in which you are physically destroyed. ThThis character is now retired." 
+]
+   
+  # Define sidebar details.
+  [factotum.attributesLeft]
+
+     [factotum.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [factotum.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "After 5 XP erase them and mark an advance."
+      condition = true
+      options = ["Increase an ability modifier by 1 (max +3)",
+ "Increase an ability modifier by 1 (max +3)", 
+"Increase an ability modifier by 1 (max +3)", 
+"Choose an additional move from your playbook.", 
+"Choose an additional move from your playbook.", 
+"Write a custom move for your character.", 
+"Unmark everything in your Personal Quarters." 
+ ]
+     [factotum.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions"
+      description = "The first three are always marked. Mark two more."
+      condition = true
+      options = ["Did the hunters answer a Question?", 
+"Did the hunters resolve a Threat?",
+"Did you experience an Echo in the Night?", 
+"Did you ensure your employer got credit for your triumphs?", 
+"Did you demonstrate obsequious behavior toward your employer in front of others?",
+"Did you subtly express sexual desire for your employer in the way you dressed them or served them?", 
+"Did you engage in a petty reprisal of someone who angered your employer?", 
+"Did you have a scene showing your secret, private life in London?" 
+]
+   
+  # Define groups for moves.
+  [factotum.moveTypes]
+ 
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+
+  # Define groups for equipment.
+  [factotum.equipmentTypes]
+    room = "Personal Quarters"
+
+ [orphan]
+ baseType = 'character'
+ # Define stats.
+  [orphan.stats]
+    vit = "Vitality"
+    com = "Composure"
+    rea = "Reson"
+    pre = "Presence"
+    sen = "Sensitivity"
+ 
+  # Define attributes.
+  [orphan.attributesTop]
+    [orphan.attributesTop.look]
+      type = "LongText"
+      label = "Look"
+    [orphan.attributesTop.vice]
+      type = "LongText"
+      label = "Vice"
+    [orphan.attributesTop.Conditions]
+      type = "LongText"
+      label = "Conditions"
+    
+    [orphan.attributesTop.YanusPast]
+      type = "ListMany"
+      label = "The Mask of the Past"
+      description = "You don’t have a true past. Instead, the spirits attached to the body parts you are constructed from stir up memories that are not yours. You can live with these memories or learn to quiet them. "
+      condition = true
+      options = ["Narrate a flashback to someone’s childhood in which they are showered with love. Then, if you wish, describe how you quiet this part of you.", 
+"Narrate a flashback to someone’s wedding day. Then, if you wish, describe how you quiet this part of you. ",
+"Narrate a flashback to when someone’s first child was born. Then, if you wish, describe how you quiet this part of you.", 
+"Narrate a flashback to the time someone lost their mother. Then, if you wish, describe how you quiet this part of you.", 
+"Narrate a flashback to the first time someone journeyed across the sea. Then, if you wish, describe how you quiet this part of you.", 
+"Narrate a flashback to the time someone lost all hope. Then, if you wish, describe how you quiet this part of you.", 
+"Narrate a flashback to the moment someone was brutally murdered. Then, if you wish, describe how you quiet this part of you."]
+ 
+     [orphan.attributesTop.YanusFuture]
+      type = "ListMany"
+      label = "The Mask of the Future"
+      description = "If no boxes are marked, you can retire to safety or obscurity instead of putting on this mask; tell the other hunters what the future holds for you. Otherwise, mark any box you wish."
+      condition = true
+      options = ["THE DARKENED THRESHOLD: Narrate a scene in which you engage in self-destructive behavior because of the way society treats you. ",
+"THE COSMIC PASSAGE: Increase your Sensitivity by 1 (Max +3).", 
+"THE BLOOD-SOAKED PORTAL: Narrate a scene in which you are physically destroyed. This character is now retired."]
+   
+  # Define sidebar details.
+  [orphan.attributesLeft]
+     [orphan.attributesLeft.eye]
+      type = "Xp"
+      label = "The Burning Aperture"
+      max = 3
+      default = 0
+      [orphan.attributesLeft.family]
+      type = "Xp"
+      label = "Family"
+      max = 3
+      default = 0
+     [orphan.attributesLeft.xp]
+      type = "Xp"
+      label = "Xp"
+      max = 5
+      default = 0
+     [orphan.attributesLeft.advance]
+      type = "ListMany"
+      label = "Advancements"
+      description = "After 5 XP erase them and mark an advance."
+      condition = true
+      options = ["Increase an ability modifier by 1 (max +3)",
+ "Increase an ability modifier by 1 (max +3)", 
+"Increase an ability modifier by 1 (max +3)", 
+"Choose an additional move from your playbook.", 
+"Choose an additional move from your playbook.", 
+"Write a custom move for your character.", 
+"Unmark everything in your Personal Quarters." 
+ ]
+     [orphan.attributesLeft.questions]
+      type = "ListMany"
+      label = "Dawn Questions"
+      description = "The first three are always marked. Mark two more."
+      condition = true
+      options = ["Did the hunters answer a Question?", 
+"Did the hunters resolve a Threat?","Did you experience an Echo in the Night?", 
+"Did you watch someone from the shadows, your heart filled with longing?", 
+"Did you use brute strength to get your way?", 
+"Did you deliver an embittered monologue about being abandoned by your creator?", 
+"Were you extra gentle with someone or something because you know how strong you are?", 
+"Did you openly walk among people during the day?" 
+]
+   
+  # Define groups for moves.
+  [orphan.moveTypes]
+ 
+    basic = "Basic Moves"
+    Char = "Playbook Moves"
+
+  # Define groups for equipment.
+  [orphan.equipmentTypes]
+    room = "Personal Quarters"

@@ -9,7 +9,7 @@ await Folder.createDocuments([{name: "Test", type: "Scene"}])
 so lets say you type for Folder Name: Meadows then that becomes a string variable via html.find(blah blah)[0].value... which you can then find... let folder = game.folders.getName(variable) followed by if(!folder) await Folder.createDocuments([{name: "Test", type: "Scene"}]) so if the folder is undefined, it makes it. then continue as you would in your macro
 */
 
-const version = '1.2';
+const version = '1.3';
 const debug = true;
 
 main();
@@ -31,14 +31,20 @@ async function main() {
       <p>Folder Path: </p>
       <input type="text" id="folderPath" value='modules/mymaps/animated/AnimatedDungeon'/>
     </div>    
-    <div>
-      <p>Width: </p>
-      <input type="number" id="width" value='1920'/>
-    </div>
-    <div>
-      <p>Height: </p>
-      <input type="number" id="height" value='1080'/>
-    </div>    
+    
+    <p>Set to 0 to auto detect images. If you're using videos you need to define the size: 1920x1080</p>
+    <table>
+    <tbody>
+      <tr>
+        <td>Width</td>
+        <td>Height</td>
+      </tr>
+      <tr>
+        <td><input type="number" id="width" value='1920'/></td>
+        <td> <input type="number" id="height" value='1080'/></td>
+      </tr>
+    </tbody>
+    </table>    
     `,
     buttons: {
       roll: {
@@ -92,17 +98,6 @@ async function getDimensions(path) {
   });
 }
 
-function Video(src, append) {
-  var v = document.createElement("video");
-  if (src != "") {
-    v.src = src;
-  }
-  if (append == true) {
-    document.body.appendChild(v);
-  }
-  return v;
-}
-
 async function createScene(imgPath, folderID, gridSize=70, widthCustom=0, heightCustom=0) {
   //const imgPath = "assets/art/map/Fey Woods.jpg";
   let dimensions;
@@ -139,8 +134,8 @@ async function createScene(imgPath, folderID, gridSize=70, widthCustom=0, height
     fogExploration: false,
     gridType: 1,
     backgroundColor: "#000000",
-    padding: "0",
-    gridAlpha: "0"
+    padding: 0,
+    gridAlpha: 0
   };
 
   await Scene.create(data);
