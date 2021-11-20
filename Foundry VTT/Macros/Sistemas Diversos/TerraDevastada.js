@@ -2,6 +2,7 @@
 
 // CONFIGURAÇÕES
 let dice = 1; // coloque a quantidade de dados que deseja usar
+const volumeDoSom = 0.7;
 const sorte = true; // true: ativa sorte || false: desativa a sorte
 const secreto = false; // true: rolagem é secreta para o mestre || false: todos veem a rolagem
 const chatImagem = 'https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/TerraDevastada.webp'; 
@@ -9,7 +10,7 @@ const som = 'https://raw.githubusercontent.com/brunocalado/mestre-digital/master
 
 // ---------------------------------------------------------------
 // NÃO MEXA COM O QUE ESTÁ ABAIXO
-const macroVersion = 'v1.1';
+const macroVersion = 'v1.2';
 /* Terra Devastada
 ## Features
 - dice so nice
@@ -39,7 +40,8 @@ icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
   let chatData; 
   
   for (var i = 0; i < truedice; i++) {
-    roll3d = new Roll('1d6').roll();    
+    roll3d = new Roll('1d6').roll({ async : false });    
+    await roll3d.toMessage(); //rola o 3d
     roll = roll3d.total;
     rolagens.push(roll);
     rolagens3D.push(roll3d);
@@ -55,7 +57,8 @@ icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
 
   if (sorte) {
     for (var i = 0; i<sortedice; i++) {
-      roll3d = new Roll('1d6').roll();    
+      roll3d = new Roll('1d6').roll({ async : false });    
+      await roll3d.toMessage(); //rola o 3d
       roll = roll3d.total;
       rolagenssorte.push(roll);
       rolagens3D.push(roll3d);
@@ -103,14 +106,13 @@ icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
   } 
   
   if (som) {
-    AudioHelper.play({src: som, volume: 1.0, autoplay: true, loop: false}, true);
+    AudioHelper.play({src: som, volume: volumeDoSom, autoplay: true, loop: false}, true);
   }
   
   ChatMessage.create(chatData, {});  
-  
+  /*
   for (var i = 0; i<rolagens3D.length; i++) {    
     let tempChatData = {
-      type: CHAT_MESSAGE_TYPES.ROLL,
       roll: rolagens3D[i],
       rollMode: game.settings.get("core", "rollMode"),
       content: `<p>Normal: ${rolagens3D[i].total}</p>`
@@ -120,12 +122,13 @@ icon: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundr
 
   for (var i = 0; i<rolagens3Dsorte.length; i++) {    
     let tempChatData = {
-      type: CHAT_MESSAGE_TYPES.ROLL,
       roll: rolagens3Dsorte[i],
       rollMode: game.settings.get("core", "rollMode"),      
       content: `<p>Sorte: ${rolagens3D[i].total}</p>`
     };     
     ChatMessage.create(tempChatData);  
   }  
-
+*/
 })(); // fim async
+
+

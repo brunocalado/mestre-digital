@@ -1,0 +1,134 @@
+# v1.1
+
+# Configure Rolls
+rollFormula = "2d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.success]
+    range = "10+"
+    label = "Sucesso!"
+  [rollResults.partial]
+    range = "7-9"
+    label = "Sucesso Parcial."
+  [rollResults.failure]
+    range = "6-"
+    label = "Falha..."
+
+########################################
+## CHARACTERS ##########################
+########################################
+# Define the character group.
+[character]
+
+  # Define stats.
+  [character.stats]
+    cool = "Firmeza"
+    tough = "Braveza"
+    charm = "Sutileza"
+    sharp = "Esperteza"
+    weird = "Estranheza"
+
+  # Define attributes.
+  [character.attributesTop]
+    [character.attributesTop.armour]
+      type = "Clock"
+      label = "Armadura"
+      default = 0
+      description = "Reduzem o dano sofrido segundo a classificação."  
+      max = 3
+    [character.attributesTop.harm]
+      type = "Clock"
+      label = "Ferimento"
+      description = "Quando você chegar em 4 de dano, marque Instável."
+      max = 7
+    [character.attributesTop.unstable]
+        type = "Checkbox"
+        label = "Instável"
+        checkboxLabel = "Lesões instáveis"
+        description = "(Lesões instáveis pioraram com o tempo)"
+        default = false
+    [character.attributesTop.luck]
+      type = "Clock"
+      label = "Sorte"
+      description = "Marque para mudar a rolagem para 12 ou evitar todo o dano."
+      max = 7
+      default = 0
+   
+
+  # Define sidebar details.
+  [character.attributesLeft]
+    [character.attributesLeft.reserva]
+      type = "Resource"
+      label = "Reserva"
+      description = "Cada ponto pode ser gasto para obter um efeito específico."
+    [character.attributesLeft.xp]
+      type = "Xp"
+      label = "Experiência"
+      description = "Quando rolar falha ou um movimento disser, marque Xp."
+      max = 5
+      default = 0        
+    [character.attributesLeft.improvements]
+      type = "LongText"
+      label = "Melhorias"
+      description = "Coloque aqui as melhorias que pegou."
+    [character.attributesLeft.advancedimprovements]
+      type = "LongText"
+      label = "Melhorias Avançadas"
+      description = "Coloque aqui as melhorias avançada que pegou."
+      
+  # Define groups for moves.
+  [character.moveTypes]
+    basic = "Básicos"
+    class = "Arquétipo"
+    relationships = "Relacionamentos"
+
+  # Define groups for equipment.
+  [character.equipmentTypes]
+    gear = "Equipamento"
+    weapon = "Armas"
+    transport = "Transporte"
+    armour = "Armadura"
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.harm]
+        type = "Resource"
+        label = "Ferimentos"
+    [npc.attributesTop.armour]
+        type = "Number"
+        label = "Armadura"
+        default = 0
+      
+  [npc.attributesLeft]
+    [npc.attributesLeft.type]
+        type = "ListMany"
+        label = "Tipo de NPC"
+        options = [
+          "Monstro",
+          "Lacaio",
+          "Espectador",
+          "Local"
+        ]
+    [npc.attributesLeft.tipo]
+      type = "LongText"
+      label = "Tipo"        
+    [npc.attributesLeft.motivation]
+      type = "LongText"
+      label = "Motivação"
+    [npc.attributesLeft.weakness]
+      type = "LongText"
+      label = "Fraqueza"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    attacks = "Ataques e Poderes"
+
+  # Define groups for equipment.
+  [npc.equipmentTypes]
+    items = "Itens"

@@ -1,0 +1,905 @@
+# Configure Rolls
+rollFormula = "2d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Miss..."
+  [rollResults.partial]
+    range = "7-9"
+    label = "Soft Hit"
+  [rollResults.success]
+    range = "10-12"
+    label = "Success!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+# Blank Character Group, ignored in favour of unique groups per playbook.
+[character]
+
+
+  # Define stats.
+  [character.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+
+
+
+  # Define attributes.
+  [character.attributesTop]
+
+
+  # Define sidebar details.
+  [character.attributesLeft]
+   
+
+  # Define groups for moves.
+  [character.moveTypes]
+    basic = "Basic Moves"
+    peripheral = "Balance Moves"
+    playbook = "Playbook Moves"
+    combat = "Approaches"
+    basic_techs = "Basic techniques"
+    mastered_techs = "Mastered techniques"
+
+########################################
+## THE BOLD ########################
+########################################
+# Define the Bold playbook group.
+[bold]
+  # Define stats.
+  [bold.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+    balance_black = "Loyalty"
+    balance_white = "Confidence"
+
+  # Define attributes.
+  [bold.attributesTop]
+    [bold.attributesTop.training]
+      type = "LongText"
+      label = "Training"
+      description = "Choose 1, unless a move gives you more."
+    [bold.attributesTop.background]
+      type = "LongText"
+      label = "Background"
+      description = "Choose 2"
+    [bold.attributesTop.fatigue]
+      type = "Clock"
+      label = "Fatigue"
+      max = 5
+      default = 0
+    [bold.attributesTop.centerofbalance]
+      type = "Resource"
+      label = "Center (same order as stats)"
+
+  # Define sidebar details.
+  [bold.attributesLeft]
+    [bold.attributesLeft.style]
+      type = "LongText"
+      label = "Fighting Style"
+    [bold.attributesLeft.demeanor]
+      type = "LongText"
+      label = "Demeanors"
+    [bold.attributesLeft.Conditions]
+      type = "ListMany"
+      label = "Conditions"
+      condition = true
+      options = [
+          "Afraid (-2 to intimidate/call someone out) 
+          \nClear: running from danger/difficulty ",
+          "Angry (-2 to comfort or support and assess a situation)
+          \nClear: breaking something important/putting others in danger",
+          "Foolish (-2 to trick and resist shifting your balance)
+          \nClear: taking foolhardy action without talking to your companions",
+          "Guilty (-2 to push your luck and deny a callout)
+          \nClear: making a personal sacrifice to absolve your guilt",
+          "Insecure (-2 to plead and rely on your skills or training)
+          \nClear: offering aid/support to someone competent"
+      ]
+    [bold.attributesLeft.Statuses]
+      type = "ListMany"
+      label = "Statuses"
+      condition = true
+      options = [
+          "Doomed: mark one fatigue every few seconds (or each exchange) until you free yourself.",
+          "Impaired: mark one fatigue or take a -2 to all physical actions (PCs)",
+          "Trapped: mark a combination of three fatigue or conditions to escape.",
+          "Stunned: you can’t act or respond for a few seconds until you steady yourself.",
+          "Empowered: clear one fatigue at the end of each exchange.",
+          "Favored: choose an additional basic or mastered technique in the next exchange, even on a miss.",
+          "Inspired: clear to shift your balance toward a principle of your choice.",
+          "Prepared: clear to take +2 to an appropriate roll or avoid marking a condition."
+      ]
+    [bold.attributesLeft.feature]
+      type = "ListMany"
+      label = "Drives"
+      options = [
+          "stand up to someone who doesn't respect you",
+          "openly outperform an authority figure",
+          "save a friend's life",
+          "pull off a ridiculous stunt"
+      ]
+    [bold.attributesLeft.xp]
+      type = "Xp"
+      label = "Growth"
+      max = 4
+    [bold.attributesLeft.playbookmove]
+      type = "Clock"
+      label = "New move from your playbook"
+      max = 2
+      default = 0
+    [bold.attributesLeft.newmove]
+      type = "Clock"
+      label = "New move from other playbook"
+      max = 2
+      default = 0
+    [bold.attributesLeft.statUp]
+      type = "Number"
+      label = "Raise a stat by +1"
+      description = "(maximum of +2 in any given stat, pick any number of times"
+      default = 0
+    [bold.attributesLeft.balanceShift]
+      type = "Clock"
+      label = "Shift your center one step"
+      max = 2
+      default = 0
+    [bold.attributesLeft.unlockMoment]
+      type = "Clock"
+      label = "Unlock your Moment of Balance"
+      max = 2
+      default = 0
+    [bold.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [bold.attributesLeft.history]
+      type = "LongText"
+      label = "History"
+    [bold.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+    [bold.attributesLeft.moment]
+      type = "LongText"
+      label = "Moment of Balance"
+    [bold.attributesLeft.growthqs]
+      type = "LongText"
+      label = "Growth Question"
+
+  # Define groups for moves.
+  [bold.moveTypes]
+    basic = "Basic Moves"
+    peripheral = "Balance Moves"
+    playbook = "Playbook Moves"
+    combat = "Approaches"
+    basic_techs = "Basic techniques"
+    mastered_techs = "Mastered techniques"
+
+  # Define groups for equipment.
+  [bold.equipmentTypes]
+    gear = "Gear"
+
+########################################
+## THE GUARDIAN ########################
+########################################
+# Define the guardian group.
+[guardian]
+
+  # Define stats.
+  [guardian.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+    balance_black = "Self-Reliance"
+    balance_white = "Trust"
+
+  # Define attributes.
+  [guardian.attributesTop]
+    [guardian.attributesTop.training]
+      type = "LongText"
+      label = "Training"
+      description = "Choose 1, unless a move gives you more."
+    [guardian.attributesTop.background]
+      type = "LongText"
+      label = "Background"
+      description = "Choose 2"
+    [guardian.attributesTop.fatigue]
+      type = "Clock"
+      label = "Fatigue"
+      max = 5
+      default = 0
+    [guardian.attributesTop.centerofbalance]
+      type = "Resource"
+      label = "Center (same order as stats)"
+
+  # Define sidebar details.
+  [guardian.attributesLeft]
+    [guardian.attributesLeft.style]
+      type = "LongText"
+      label = "Fighting Style"
+    [guardian.attributesLeft.demeanor]
+      type = "LongText"
+      label = "Demeanors"
+    [guardian.attributesLeft.Conditions]
+      type = "ListMany"
+      label = "Conditions"
+      condition = true
+      options = [
+          "Afraid (-2 to intimidate/call someone out) 
+          \nClear: running from danger/difficulty ",
+          "Angry (-2 to comfort or support and assess a situation)
+          \nClear: breaking something important/putting others in danger",
+          "Foolish (-2 to trick and resist shifting your balance)
+          \nClear: taking foolhardy action without talking to your companions",
+          "Guilty (-2 to push your luck and deny a callout)
+          \nClear: making a personal sacrifice to absolve your guilt",
+          "Insecure (-2 to plead and rely on your skills or training)
+          \nClear: offering aid/support to someone competent"
+      ]
+    [guardian.attributesLeft.Statuses]
+      type = "ListMany"
+      label = "Statuses"
+      condition = true
+      options = [
+          "Doomed: mark one fatigue every few seconds (or each exchange) until you free yourself.",
+          "Impaired: mark one fatigue or take a -2 to all physical actions (PCs)",
+          "Trapped: mark a combination of three fatigue or conditions to escape.",
+          "Stunned: you can’t act or respond for a few seconds until you steady yourself.",
+          "Empowered: clear one fatigue at the end of each exchange.",
+          "Favored: choose an additional basic or mastered technique in the next exchange, even on a miss.",
+          "Inspired: clear to shift your balance toward a principle of your choice.",
+          "Prepared: clear to take +2 to an appropriate roll or avoid marking a condition."
+      ]
+    [guardian.attributesLeft.feature]
+      type = "Text"
+      label = "Ward"
+    [guardian.attributesLeft.xp]
+      type = "Xp"
+      label = "Growth"
+      max = 4
+    [guardian.attributesLeft.playbookmove]
+      type = "Clock"
+      label = "New move from your playbook"
+      max = 2
+      default = 0
+    [guardian.attributesLeft.newmove]
+      type = "Clock"
+      label = "New move from other playbook"
+      max = 2
+      default = 0
+    [guardian.attributesLeft.statUp]
+      type = "Number"
+      label = "Raise a stat by +1"
+      description = "(maximum of +2 in any given stat, pick any number of times"
+      default = 0
+    [guardian.attributesLeft.balanceShift]
+      type = "Clock"
+      label = "Shift your center one step"
+      max = 2
+      default = 0
+    [guardian.attributesLeft.unlockMoment]
+      type = "Clock"
+      label = "Unlock your Moment of Balance"
+      max = 2
+      default = 0
+    [guardian.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [guardian.attributesLeft.history]
+      type = "LongText"
+      label = "History"
+    [guardian.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+    [guardian.attributesLeft.moment]
+      type = "LongText"
+      label = "Moment of Balance"
+    [guardian.attributesLeft.growthqs]
+      type = "LongText"
+      label = "Growth Question"
+
+  # Define groups for moves.
+  [guardian.moveTypes]
+    basic = "Basic Moves"
+    peripheral = "Balance Moves"
+    playbook = "Playbook Moves"
+    combat = "Approaches"
+    basic_techs = "Basic techniques"
+    mastered_techs = "Mastered techniques"
+
+  # Define groups for equipment.
+  [guardian.equipmentTypes]
+    gear = "Gear"
+
+########################################
+## THE HAMMER ##########################
+########################################
+# Define the hammer group.
+[hammer]
+
+  # Define stats.
+  [hammer.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+    balance_black = "Care"
+    balance_white = "Force"
+
+  # Define attributes.
+  [hammer.attributesTop]
+    [hammer.attributesTop.training]
+      type = "LongText"
+      label = "Training"
+      description = "Choose 1, unless a move gives you more."
+    [hammer.attributesTop.background]
+      type = "LongText"
+      label = "Background"
+      description = "Choose 2"
+    [hammer.attributesTop.fatigue]
+      type = "Clock"
+      label = "Fatigue"
+      max = 5
+      default = 0
+    [hammer.attributesTop.centerofbalance]
+      type = "Resource"
+      label = "Center (same order as stats)"
+
+  # Define sidebar details.
+  [hammer.attributesLeft]
+    [hammer.attributesLeft.style]
+      type = "LongText"
+      label = "Fighting Style"
+    [hammer.attributesLeft.demeanor]
+      type = "LongText"
+      label = "Demeanors"
+    [hammer.attributesLeft.Conditions]
+      type = "ListMany"
+      label = "Conditions"
+      condition = true
+      options = [
+          "Afraid (-2 to intimidate/call someone out) 
+          \nClear: running from danger/difficulty ",
+          "Angry (-2 to comfort or support and assess a situation)
+          \nClear: breaking something important/putting others in danger",
+          "Foolish (-2 to trick and resist shifting your balance)
+          \nClear: taking foolhardy action without talking to your companions",
+          "Guilty (-2 to push your luck and deny a callout)
+          \nClear: making a personal sacrifice to absolve your guilt",
+          "Insecure (-2 to plead and rely on your skills or training)
+          \nClear: offering aid/support to someone competent"
+      ]
+    [hammer.attributesLeft.Statuses]
+      type = "ListMany"
+      label = "Statuses"
+      condition = true
+      options = [
+          "Doomed: mark one fatigue every few seconds (or each exchange) until you free yourself.",
+          "Impaired: mark one fatigue or take a -2 to all physical actions (PCs)",
+          "Trapped: mark a combination of three fatigue or conditions to escape.",
+          "Stunned: you can’t act or respond for a few seconds until you steady yourself.",
+          "Empowered: clear one fatigue at the end of each exchange.",
+          "Favored: choose an additional basic or mastered technique in the next exchange, even on a miss.",
+          "Inspired: clear to shift your balance toward a principle of your choice.",
+          "Prepared: clear to take +2 to an appropriate roll or avoid marking a condition."
+      ]
+    [hammer.attributesLeft.feature]
+      type = "Text"
+      label = ""
+      customLabel = true
+      description = "ADVERSARY: Name your adversary above and your goal below."
+    [hammer.attributesLeft.xp]
+      type = "Xp"
+      label = "Growth"
+      max = 4
+    [hammer.attributesLeft.playbookmove]
+      type = "Clock"
+      label = "New move from your playbook"
+      max = 2
+      default = 0
+    [hammer.attributesLeft.newmove]
+      type = "Clock"
+      label = "New move from other playbook"
+      max = 2
+      default = 0
+    [hammer.attributesLeft.statUp]
+      type = "Number"
+      label = "Raise a stat by +1"
+      description = "(maximum of +2 in any given stat, pick any number of times"
+      default = 0
+    [hammer.attributesLeft.balanceShift]
+      type = "Clock"
+      label = "Shift your center one step"
+      max = 2
+      default = 0
+    [hammer.attributesLeft.unlockMoment]
+      type = "Clock"
+      label = "Unlock your Moment of Balance"
+      max = 2
+      default = 0
+    [hammer.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [hammer.attributesLeft.history]
+      type = "LongText"
+      label = "History"
+    [hammer.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+    [hammer.attributesLeft.moment]
+      type = "LongText"
+      label = "Moment of Balance"
+    [hammer.attributesLeft.growthqs]
+      type = "LongText"
+      label = "Growth Question"
+
+  # Define groups for moves.
+  [hammer.moveTypes]
+    basic = "Basic Moves"
+    peripheral = "Balance Moves"
+    playbook = "Playbook Moves"
+    combat = "Approaches"
+    basic_techs = "Basic techniques"
+    mastered_techs = "Mastered techniques"
+
+  # Define groups for equipment.
+  [hammer.equipmentTypes]
+    gear = "Gear"
+
+########################################
+## THE ICON ########################
+########################################
+# Define the icon group.
+[icon]
+
+  # Define stats.
+  [icon.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+    balance_black = "Role"
+    balance_white = "Freedom"
+
+  # Define attributes.
+  [icon.attributesTop]
+    [icon.attributesTop.training]
+      type = "LongText"
+      label = "Training"
+      description = "Choose 1, unless a move gives you more."
+    [icon.attributesTop.background]
+      type = "LongText"
+      label = "Background"
+      description = "Choose 2"
+    [icon.attributesTop.fatigue]
+      type = "Clock"
+      label = "Fatigue"
+      max = 5
+      default = 0
+    [icon.attributesTop.centerofbalance]
+      type = "Resource"
+      label = "Center (same order as stats)"
+
+  # Define sidebar details.
+  [icon.attributesLeft]
+    [icon.attributesLeft.style]
+      type = "LongText"
+      label = "Fighting Style"
+    [icon.attributesLeft.demeanor]
+      type = "LongText"
+      label = "Demeanors"
+    [icon.attributesLeft.Conditions]
+      type = "ListMany"
+      label = "Conditions"
+      condition = true
+      options = [
+          "Afraid (-2 to intimidate/call someone out) 
+          \nClear: running from danger/difficulty ",
+          "Angry (-2 to comfort or support and assess a situation)
+          \nClear: breaking something important/putting others in danger",
+          "Foolish (-2 to trick and resist shifting your balance)
+          \nClear: taking foolhardy action without talking to your companions",
+          "Guilty (-2 to push your luck and deny a callout)
+          \nClear: making a personal sacrifice to absolve your guilt",
+          "Insecure (-2 to plead and rely on your skills or training)
+          \nClear: offering aid/support to someone competent"
+      ]
+    [icon.attributesLeft.Statuses]
+      type = "ListMany"
+      label = "Statuses"
+      condition = true
+      options = [
+          "Doomed: mark one fatigue every few seconds (or each exchange) until you free yourself.",
+          "Impaired: mark one fatigue or take a -2 to all physical actions (PCs)",
+          "Trapped: mark a combination of three fatigue or conditions to escape.",
+          "Stunned: you can’t act or respond for a few seconds until you steady yourself.",
+          "Empowered: clear one fatigue at the end of each exchange.",
+          "Favored: choose an additional basic or mastered technique in the next exchange, even on a miss.",
+          "Inspired: clear to shift your balance toward a principle of your choice.",
+          "Prepared: clear to take +2 to an appropriate roll or avoid marking a condition."
+      ]
+    [icon.attributesLeft.feature]
+      type = "LongText"
+      label = "Responsibilites"
+      description = "Choose 3."
+    [icon.attributesLeft.feature2]
+      type = "LongText"
+      label = "Prohibitions"
+      description = "Choose 3."
+    [icon.attributesLeft.xp]
+        type = "Xp"
+        label = "Growth"
+        max = 4
+    [icon.attributesLeft.playbookmove]
+      type = "Clock"
+      label = "New move from your playbook"
+      max = 2
+      default = 0
+    [icon.attributesLeft.newmove]
+      type = "Clock"
+      label = "New move from other playbook"
+      max = 2
+      default = 0
+    [icon.attributesLeft.statUp]
+      type = "Number"
+      label = "Raise a stat by +1"
+      description = "(maximum of +2 in any given stat, pick any number of times"
+      default = 0
+    [icon.attributesLeft.balanceShift]
+      type = "Clock"
+      label = "Shift your center one step"
+      max = 2
+      default = 0
+    [icon.attributesLeft.unlockMoment]
+      type = "Clock"
+      label = "Unlock your Moment of Balance"
+      max = 2
+      default = 0
+    [icon.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [icon.attributesLeft.history]
+      type = "LongText"
+      label = "History"
+    [icon.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+    [icon.attributesLeft.moment]
+      type = "LongText"
+      label = "Moment of Balance"
+    [icon.attributesLeft.growthqs]
+      type = "LongText"
+      label = "Growth Question"
+
+  # Define groups for moves.
+  [icon.moveTypes]
+    basic = "Basic Moves"
+    peripheral = "Balance Moves"
+    playbook = "Playbook Moves"
+    combat = "Approaches"
+    basic_techs = "Basic techniques"
+    mastered_techs = "Mastered techniques"
+
+  # Define groups for equipment.
+  [icon.equipmentTypes]
+    gear = "Gear"
+
+########################################
+## THE IDEALIST ########################
+########################################
+# Define the idealist group.
+[idealist]
+
+  # Define stats.
+  [idealist.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+    balance_black = "Forgiveness"
+    balance_white = "Action"
+
+  # Define attributes.
+  [idealist.attributesTop]
+    [idealist.attributesTop.training]
+      type = "LongText"
+      label = "Training"
+     description = "Choose 1, unless a move gives you more."
+    [idealist.attributesTop.background]
+      type = "LongText"
+      label = "Background"
+      description = "Choose 2"
+    [idealist.attributesTop.fatigue]
+      type = "Clock"
+      label = "Fatigue"
+      max = 5
+      default = 0
+    [idealist.attributesTop.centerofbalance]
+      type = "Resource"
+      label = "Center (same order as stats)"
+
+  # Define sidebar details.
+  [idealist.attributesLeft]
+    [idealist.attributesLeft.style]
+      type = "LongText"
+      label = "Fighting Style"
+    [idealist.attributesLeft.demeanor]
+      type = "LongText"
+      label = "Demeanors"
+    [idealist.attributesLeft.Conditions]
+      type = "ListMany"
+      label = "Conditions"
+      condition = true
+      options = [
+          "Afraid (-2 to intimidate/call someone out) 
+          \nClear: running from danger/difficulty ",
+          "Angry (-2 to comfort or support and assess a situation)
+          \nClear: breaking something important/putting others in danger",
+          "Foolish (-2 to trick and resist shifting your balance)
+          \nClear: taking foolhardy action without talking to your companions",
+          "Guilty (-2 to push your luck and deny a callout)
+          \nClear: making a personal sacrifice to absolve your guilt",
+          "Insecure (-2 to plead and rely on your skills or training)
+          \nClear: offering aid/support to someone competent"
+      ]
+    [idealist.attributesLeft.Statuses]
+      type = "ListMany"
+      label = "Statuses"
+      condition = true
+      options = [
+          "Doomed: mark one fatigue every few seconds (or each exchange) until you free yourself.",
+          "Impaired: mark one fatigue or take a -2 to all physical actions (PCs)",
+          "Trapped: mark a combination of three fatigue or conditions to escape.",
+          "Stunned: you can’t act or respond for a few seconds until you steady yourself.",
+          "Empowered: clear one fatigue at the end of each exchange.",
+          "Favored: choose an additional basic or mastered technique in the next exchange, even on a miss.",
+          "Inspired: clear to shift your balance toward a principle of your choice.",
+          "Prepared: clear to take +2 to an appropriate roll or avoid marking a condition."
+      ]
+    [idealist.attributesLeft.feature]
+      type = "LongText"
+      label = "Ideals"
+      description = "Choose 3."
+    [idealist.attributesLeft.feature2]
+      type = "LongText"
+      label = "Allies"
+      description = "Add names as you make allies here."
+    [idealist.attributesLeft.xp]
+        type = "Xp"
+        label = "Growth"
+        max = 4
+    [idealist.attributesLeft.playbookmove]
+      type = "Clock"
+      label = "New move from your playbook"
+      max = 2
+      default = 0
+    [idealist.attributesLeft.newmove]
+      type = "Clock"
+      label = "New move from other playbook"
+      max = 2
+      default = 0
+    [idealist.attributesLeft.statUp]
+      type = "Number"
+      label = "Raise a stat by +1"
+      description = "(maximum of +2 in any given stat, pick any number of times"
+      default = 0
+    [idealist.attributesLeft.balanceShift]
+      type = "Clock"
+      label = "Shift your center one step"
+      max = 2
+      default = 0
+    [idealist.attributesLeft.unlockMoment]
+      type = "Clock"
+      label = "Unlock your Moment of Balance"
+      max = 2
+      default = 0
+    [idealist.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [idealist.attributesLeft.history]
+      type = "LongText"
+      label = "History"
+    [idealist.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+    [idealist.attributesLeft.moment]
+      type = "LongText"
+      label = "Moment of Balance"
+    [idealist.attributesLeft.growthqs]
+      type = "LongText"
+      label = "Growth Question"
+
+  # Define groups for moves.
+  [idealist.moveTypes]
+    basic = "Basic Moves"
+    peripheral = "Balance Moves"
+    playbook = "Playbook Moves"
+    combat = "Approaches"
+    basic_techs = "Basic techniques"
+    mastered_techs = "Mastered techniques"
+
+  # Define groups for equipment.
+  [idealist.equipmentTypes]
+    gear = "Gear"
+
+########################################
+## THE SUCCESSOR #######################
+########################################
+# Define the successor group.
+[successor]
+
+  # Define stats.
+  [successor.stats]
+    creativity = "Creativity"
+    focus = "Focus"
+    harmony = "Harmony"
+    passion = "Passion"
+    balance_black = "Tradition"
+    balance_white = "Progress"
+
+  # Define attributes.
+  [successor.attributesTop]
+    [successor.attributesTop.training]
+      type = "LongText"
+      label = "Training"
+      description = "Choose 1, unless a move gives you more."
+    [successor.attributesTop.background]
+      type = "LongText"
+      label = "Background"
+      description = "Choose 2"
+    [successor.attributesTop.fatigue]
+      type = "Clock"
+      label = "Fatigue"
+      max = 5
+      default = 0
+    [successor.attributesTop.centerofbalance]
+      type = "Resource"
+      label = "Center (same order as stats)"
+    
+  # Define sidebar details.
+  [successor.attributesLeft]
+  [successor.attributesLeft.style]
+      type = "LongText"
+      label = "Fighting Style"
+    [successor.attributesLeft.demeanor]
+      type = "LongText"
+      label = "Demeanors"
+    [successor.attributesLeft.Conditions]
+      type = "ListMany"
+      label = "Conditions"
+      condition = true
+      options = [
+          "Afraid (-2 to intimidate/call someone out) 
+          \nClear: running from danger/difficulty ",
+          "Angry (-2 to comfort or support and assess a situation)
+          \nClear: breaking something important/putting others in danger",
+          "Foolish (-2 to trick and resist shifting your balance)
+          \nClear: taking foolhardy action without talking to your companions",
+          "Guilty (-2 to push your luck and deny a callout)
+          \nClear: making a personal sacrifice to absolve your guilt",
+          "Insecure (-2 to plead and rely on your skills or training)
+          \nClear: offering aid/support to someone competent"
+      ]
+    [successor.attributesLeft.Statuses]
+      type = "ListMany"
+      label = "Statuses"
+      condition = true
+      options = [
+          "Doomed: mark one fatigue every few seconds (or each exchange) until you free yourself.",
+          "Impaired: mark one fatigue or take a -2 to all physical actions (PCs)",
+          "Trapped: mark a combination of three fatigue or conditions to escape.",
+          "Stunned: you can’t act or respond for a few seconds until you steady yourself.",
+          "Empowered: clear one fatigue at the end of each exchange.",
+          "Favored: choose an additional basic or mastered technique in the next exchange, even on a miss.",
+          "Inspired: clear to shift your balance toward a principle of your choice.",
+          "Prepared: clear to take +2 to an appropriate roll or avoid marking a condition."
+      ]
+    [successor.attributesLeft.fightingstyle]
+      type = "LongText"
+      label = "Lineage Resources"
+      description = "Choose 2 stores of resources."
+    [successor.attributesLeft.feature]
+      type = "LongText"
+      label = "Lineage Domains"
+      description = "Choose 1 source domain & 1 target domain."
+    [successor.attributesLeft.feature2]
+      type = "LongText"
+      label = "Lineage Resources"
+      description = "Choose 2 stores of resources."
+    
+    [successor.attributesLeft.xp]
+      type = "Xp"
+      label = "Growth"
+      max = 4
+    [successor.attributesLeft.playbookmove]
+      type = "Clock"
+      label = "New move from your playbook"
+      max = 2
+      default = 0
+    [successor.attributesLeft.newmove]
+      type = "Clock"
+      label = "New move from other playbook"
+      max = 2
+      default = 0
+    [successor.attributesLeft.statUp]
+      type = "Number"
+      label = "Raise a stat by +1"
+      description = "(maximum of +2 in any given stat, pick any number of times"
+      default = 0
+    [successor.attributesLeft.balanceShift]
+      type = "Clock"
+      label = "Shift your center one step"
+      max = 2
+      default = 0
+    [successor.attributesLeft.unlockMoment]
+      type = "Clock"
+      label = "Unlock your Moment of Balance"
+      max = 2
+      default = 0
+    [successor.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [successor.attributesLeft.history]
+      type = "LongText"
+      label = "History"
+    [successor.attributesLeft.connections]
+      type = "LongText"
+      label = "Connections"
+    [successor.attributesLeft.moment]
+      type = "LongText"
+      label = "Moment of Balance"
+    [successor.attributesLeft.growthqs]
+      type = "LongText"
+      label = "Growth Question"
+
+  # Define groups for moves.
+  [successor.moveTypes]
+    basic = "Basic Moves"
+    peripheral = "Balance Moves"
+    playbook = "Playbook Moves"
+    combat = "Approaches"
+    basic_techs = "Basic techniques"
+    mastered_techs = "Mastered techniques"
+
+  # Define groups for equipment.
+  [successor.equipmentTypes]
+    gear = "Gear"
+
+
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.fatigue]
+      type = "Clock"
+      label = "Fatigue"
+      max = 10
+      default = 0
+    [npc.attributesTop.gender]
+      type = "Text"
+      label = "Gender"
+    [npc.attributesTop.age]
+      type = "Text"
+      label = "Age"
+      
+  [npc.attributesLeft]
+    [npc.attributesLeft.look]
+      type = "LongText"
+      label = "Look"
+    [npc.attributesLeft.drive]
+      type = "LongText"
+      label = "Drive"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    mc = "MC Moves"
