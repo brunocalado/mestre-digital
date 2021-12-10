@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.28"
+VERSION="v1.29"
 echo "========================================"
 case "$1" in
     ligar)
@@ -30,6 +30,13 @@ case "$1" in
     reiniciar)
         echo "Encerra o FVTT e Inicia o FVTT em seguida"        
         ./jarbas ligar        
+    ;;    
+    horacerta)
+      echo "A hora do servidor vai ser acertada para America/Sao_Paulo. Se quer algo diferente digite:"
+      echo "sudo dpkg-reconfigure tzdata"
+      echo "O comando acima permite escolher o que quiser."
+      echo "America/Sao_Paulo" | sudo tee /etc/timezone
+      sudo dpkg-reconfigure --frontend noninteractive tzdata
     ;;    
     suporte)
         echo "Dados da Maquina"        
@@ -263,7 +270,7 @@ case "$1" in
     ;;
     *)
         echo "Jarbas Versao ${VERSION}" 
-        echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|swap|caddy|hardware|status|update|node|sobre|suporte}"
+        echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|swap|caddy|hardware|status|update|node|sobre|suporte|horacerta}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "- admin: funcoes administrativas."  
@@ -271,13 +278,14 @@ case "$1" in
         echo "- compactar: aprenda a compactar seus arquivos para ser facil baixar."          
         echo "- desligar: Para o Foundry VTT"
         echo "- hardware: mostra dados de hardware"        
-        echo "- swap: Apenas para maquina com pouca memoria RAM. Nao faca isso para a maquina ARM."
-        echo "- reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
+        echo "- horacerta: Permite arrumar a hora desse servidor."
         echo "- ligar: Inicia o Foundry VTT"
         echo "- node: atualiza o NODE para a ultima versao LTS (recomendado)."        
+        echo "- reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
         echo "- sobre: sobre o desenvolvedor desse script"        
         echo "- status: Verifica se o Foundry VTT está rodando"
         echo "- suporte: Mostra dados da maquina"
+        echo "- swap: Apenas para maquina com pouca memoria RAM. Nao faca isso para a maquina ARM."
         echo "- update: atualiza o jarbas."                
         echo
         exit 1
