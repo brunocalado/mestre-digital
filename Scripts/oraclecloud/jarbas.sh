@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.27"
+VERSION="v1.28"
 echo "========================================"
 case "$1" in
     ligar)
@@ -187,6 +187,8 @@ case "$1" in
             echo "Opcoes: $0 {status|ativar}"            
             echo "Exemplo de uso: ./jarbas swap status"
             echo
+            echo "IMPORTANTE: APENAS PARA MAQUINA COM POUCA RAM. NAO FACA ISSO PARA MAQUINA ARM. "
+            echo "NOTA: VOCE TERA UMA REDUCAO DE 2GB DE ESPACO DE DISCO COM ESSE PROCESSO. ESSE ESPACO SERA USADO PARA OFERECER UMA MELHORIA DE DESEMPENHO."
             echo "- status: reporta situacao da swap."  
             echo "- ativar: cria e ativa a swap. APENAS UMA VEZ!"  
             echo
