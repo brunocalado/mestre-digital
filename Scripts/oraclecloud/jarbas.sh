@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.29"
+VERSION="v1.30"
 echo "========================================"
 case "$1" in
     ligar)
@@ -35,6 +35,8 @@ case "$1" in
       echo "A hora do servidor vai ser acertada para America/Sao_Paulo. Se quer algo diferente digite:"
       echo "sudo dpkg-reconfigure tzdata"
       echo "O comando acima permite escolher o que quiser."
+      echo
+      echo "== Timezone Atual =="
       echo "America/Sao_Paulo" | sudo tee /etc/timezone
       sudo dpkg-reconfigure --frontend noninteractive tzdata
     ;;    
