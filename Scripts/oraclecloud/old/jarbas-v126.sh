@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.27"
+VERSION="v1.26"
 echo "========================================"
 case "$1" in
     ligar)
@@ -169,30 +169,6 @@ case "$1" in
             exit 1
         esac
     ;;       
-    swap)               
-        case "$2" in
-            status)
-              echo "Estado da SWAP"
-              free -mh | grep Swap
-            ;;
-            ativar)
-              echo "Criando e Ativando SWAP. Aguarde! Tempo esperado: 5 minutos."
-              sudo dd if=/dev/zero of=/swapfile count=2048 bs=1M
-              sudo chmod 600 /swapfile
-              sudo mkswap /swapfile
-              sudo swapon /swapfile
-              echo '/swapfile   none    swap    sw    0   0' | sudo tee -a /etc/fstab
-            ;;        
-            *)
-            echo "Opcoes: $0 {status|ativar}"            
-            echo "Exemplo de uso: ./jarbas swap status"
-            echo
-            echo "- status: reporta situacao da swap."  
-            echo "- ativar: cria e ativa a swap. APENAS UMA VEZ!"  
-            echo
-            exit 1
-        esac
-    ;;    
     caddy)
       case "$2" in
         instalar)
@@ -261,7 +237,7 @@ case "$1" in
     ;;
     *)
         echo "Jarbas Versao ${VERSION}" 
-        echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|swap|caddy|hardware|status|update|node|sobre|suporte}"
+        echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|caddy|hardware|status|update|node|sobre|suporte}"
         echo "Exemplo de uso: ./jarbas ligar"
         echo
         echo "- admin: funcoes administrativas."  
@@ -269,7 +245,6 @@ case "$1" in
         echo "- compactar: aprenda a compactar seus arquivos para ser facil baixar."          
         echo "- desligar: Para o Foundry VTT"
         echo "- hardware: mostra dados de hardware"        
-        echo "- swap: Apenas para maquina com pouca memoria RAM. Nao faca isso para a maquina ARM."
         echo "- reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
         echo "- ligar: Inicia o Foundry VTT"
         echo "- node: atualiza o NODE para a ultima versao LTS (recomendado)."        

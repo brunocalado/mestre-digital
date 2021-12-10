@@ -1,7 +1,9 @@
-/* - v1.2
+/* - v1.3
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Forged%20in%20the%20Dark/scum-villainy_work.js
 Icon: 
 */
+
+const folderName = 'Trabalhos';
 
 (async () => {
   const faction1 = await drawFromTable('Facções');
@@ -29,23 +31,27 @@ Icon:
   msg+= await createPeople();  
   
   let message=msg;
+  let msgId = randomID(); // Foundry VTT function 
   message += `<p>Personagens serão criados dentro do registro criado.</p>`; // vai para o chat
 
   let data = {
     name: `${task}`,
     content: msg
   };
-  addEventListenerOnHtmlElement("#createNPC", 'click', (e) => {    
-    createNPC(data);    
-  });          
-  
-  message+=`<button style="background:#d10000;color:white" id="createNPC">Criar</button>`;
+ 
+  message+=`<button style="background:#d10000;color:white" id="createJob-`
+  message+=msgId;
+  message+=`">Criar Registro</button>`;
   
   let chatData = {
     content: message,
     whisper : ChatMessage.getWhisperRecipients("GM")
   };  
   ChatMessage.create(chatData, {});  
+
+  addEventListenerOnHtmlElement("#createJob-" + msgId, 'click', (e) => {
+    createJob(data);    
+  });
 
 })()
 
@@ -66,12 +72,25 @@ async function drawFromTable(tableName) {
 }
 
 function addEventListenerOnHtmlElement(element, event, func){    
-    Hooks.once("renderChatMessage", (chatItem, html) => { // Use Hook to add event to chat message html element
-        html[0].querySelector(element).addEventListener(event, func);        
-    });
-} // end addEventListenerOnHtmlElement
+  Hooks.on("renderChatMessage", (chatItem, html, data) => {
+    if( html[0].querySelector(element) !== null ) {
+      html[0].querySelector(element).addEventListener(event, func);
+    }
+  });
+}
 
-async function createNPC(data) {  
+async function createJob(data) {
+  let folder;
+  if( game.folders.find( f => f.name === folderName) === undefined ) {
+    folder = await Folder.create( {
+      name: folderName,
+      type: "JournalEntry"
+    } );
+  } else {
+    folder = game.folders.find( f => f.name === folderName);
+  }
+  data.folder = folder;
+
   const instantAdventure = await JournalEntry.create(data);
   await instantAdventure.sheet.render(true);    
 }

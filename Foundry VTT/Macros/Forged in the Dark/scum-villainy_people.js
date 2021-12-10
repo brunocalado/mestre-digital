@@ -1,7 +1,8 @@
-/* - v1.1
+/* - v1.2
 Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Forged%20in%20the%20Dark/scum-villainy_people.js
 Icon: 
 */
+const folderName = 'PNJs';
 
 (async () => {
   const name1 = await drawFromTable('Nomes');
@@ -15,28 +16,30 @@ Icon:
   msg += `<li>Aparência: <b>${aparen2}</b></li></ul>`;
   
   let message=msg;
-
+  let msgId = randomID(); // Foundry VTT function 
   let data = {
     name: `${name1}`,
     content: msg
   };
-  addEventListenerOnHtmlElement("#createNPC", 'click', (e) => {    
-    createNPC(data);    
-  });          
-  
-  message+=`<button style="background:#d10000;color:white" id="createNPC">Criar</button>`;
+         
+  message+=`<button style="background:#d10000;color:white" id="createNPC-`
+  message+=msgId;
+  message+=`">Criar Registro</button>`;
   
   let chatData = {
     content: message,
     whisper : ChatMessage.getWhisperRecipients("GM")
   };  
   ChatMessage.create(chatData, {});  
-
+  
+  addEventListenerOnHtmlElement("#createNPC-" + msgId, 'click', (e) => {
+    createNPC(data);    
+  });
+  
 })()
 
 /* Functions */
 async function drawFromTable(tableName) {
-
   let list_compendium = await game.packs.filter(p=>p.documentName=='RollTable');      
   let inside = await list_compendium.filter( p=>p.metadata.label=='Tabelas' )[0].getDocuments();      
   const table = await inside.filter( p=>p.name==tableName )[0];          
@@ -51,13 +54,25 @@ async function drawFromTable(tableName) {
 }
 
 function addEventListenerOnHtmlElement(element, event, func){    
-    Hooks.once("renderChatMessage", (chatItem, html) => { // Use Hook to add event to chat message html element
-        html[0].querySelector(element).addEventListener(event, func);        
-    });
-} // end addEventListenerOnHtmlElement
-
-async function createNPC(data) {  
-  const instantAdventure = await JournalEntry.create(data);
-  await instantAdventure.sheet.render(true);    
+  Hooks.on("renderChatMessage", (chatItem, html, data) => {
+    if( html[0].querySelector(element) !== null ) {
+      html[0].querySelector(element).addEventListener(event, func);
+    }
+  });
 }
 
+async function createNPC(data) {
+  let folder;
+  if( game.folders.find( f => f.name === folderName) === undefined ) {
+    folder = await Folder.create( {
+      name: folderName,
+      type: "JournalEntry"
+    } );
+  } else {
+    folder = game.folders.find( f => f.name === folderName);
+  }
+  data.folder = folder;
+
+  const instantAdventure = await JournalEntry.create(data);
+  await instantAdventure.sheet.render(true);      
+}
