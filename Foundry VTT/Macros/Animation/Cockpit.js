@@ -4,21 +4,18 @@ icon: icons/tools/navigation/spyglass-telescope-brass.webp
 */
 
 // 
-const version = 'v0.1';
+const version = 'v0.2';
 
 main ();
 
 async function main() {
   let currentTile = await Tagger.getByTag("cockpit");  
-  let alpha = currentTile[0].data.alpha;    
-  
-  console.log(currentTile[0])
-  console.log(alpha)
+  let alpha = currentTile[0].data.alpha;  
+  unHideTile(currentTile[0]);
+}
 
-  if (alpha=='1') {
-    await currentTile[0].document.update({'alpha': 0});
-  } else {
-    await currentTile[0].document.update({'alpha': 1});
-  }  
-
+async function unHideTile(tile) {
+  tile.update({
+    "alpha": tile.data.alpha === 0 ? 1.0 : 0.0
+  });
 }

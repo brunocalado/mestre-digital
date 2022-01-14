@@ -1,0 +1,117 @@
+# version 0.3
+rollFormula = "2d6"
+
+# dano
+[statToggle]
+  label = "Dano"
+  modifier = "-1"
+  
+[rollResult]
+  [rollResults.failure]
+  range = "6-"
+  label = "FALHA"
+  [rollResults.partial]
+  range = "7-9"
+  label = "Sucesso Parcial"
+  [rollResults.Success]
+  range = "10+"
+  label = "Sucesso Total!"
+
+####################################
+## FAMILY ##########################
+####################################
+
+# atributos
+[family.stats]
+  alcance = "Alcance"
+  controle = "Controle"
+  intriga = "Intriga"
+
+[family.attributesTop]
+  [family.attributesTop.disposicao]
+    type = "Number"
+    label = "Disposição"
+  [family.attributesTop.info]
+    type = "Number"
+    label = "Info"
+  [family.attributesTop.tech]
+    type = "Number"
+    label = "Tech"
+
+# barra lateral
+[family.attributesLeft]
+  [family.attributesLeft.excedentes]
+    type = "LongText"
+    label = "Excedentes"
+  [family.attributesLeft.necessidades]
+    type = "LongText"
+    label = "Necessidades"
+
+# movimentos
+[family.moveTypes]
+  basic = "Movimentos Básicos"
+  family = "Movimentos de Família"
+  pactos = "Pactos de Facção"
+
+########################################
+## CHARACTERS ##########################
+########################################
+
+# atributos
+  [character.stats]
+    forca = "Força"
+    sabedoria = "Sabedoria"
+    determinacao = "Determinação"
+    influencia = "Influência"
+
+# barra lateral
+[character.attributesLeft]
+  [character.attributesLeft.dano]
+    type = "ListMany"
+    label = "Dano"
+    condition = true
+    options = [
+      "Fer. cosméticos",
+      "Irritado",
+      "Em choque",
+      "Sangrando",
+      "Morto"
+    ]  
+  [character.attributesLeft.movimentospapel]
+    type = "Xp"
+    label = "Movimentos de Papel"
+    max = 4         
+  [character.attributesLeft.heranca]
+    type = "LongText"
+    label = "Herança"
+  [character.attributesLeft.movimentomorte]
+    type = "LongText"
+    label = "Mov. de Morte"
+
+# movimentos
+[character.moveTypes]
+  basic = "Movimentos Básicos"
+  character = "Movimentos de Personagem"
+  
+[character.equipmentTypes]
+  weapon = "Arma"
+  armor = "Armadura"
+  vehicle = "Veículo"
+  
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.ameaca]
+      type = "LongText"
+      label = "Ameaça"
+    [npc.attributesTop.consequencia]
+      type = "LongText"
+      label = "Consequência"
+          
+  #npc move
+  [npc.moveTypes]
+    mc = "MC Move"

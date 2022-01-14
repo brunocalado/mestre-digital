@@ -1,18 +1,28 @@
-const version = '1.0';
+const version = '1.1';
 
 /*
-source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Sistemas%20Diversos/BladesintheDark-XpBar.js
+Source: https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/Macros/Forged%20in%20the%20Dark/BladesintheDark-XpBar.js
 icon: icons/sundries/misc/lock-open-yellow.webp
 */
+
+let tokenD;
 
 if (canvas.tokens.controlled[0]===undefined){
   ui.notifications.warn("You must select a token!");    
 } else {
+  tokenD = canvas.tokens.controlled[0].actor;
   main();
 }
 
 async function main() {
-  let attribute = ['Insight', 'Prowess', 'Resolve', 'Class'];
+  let attribute = [];
+  if(tokenD.type === 'character'){
+    attribute = Object.keys( game.system.model.Actor.character.attributes );
+    attribute.push("class");
+    attribute.push("stress");
+  } else if(tokenD.type === 'ship'){
+    attribute = ["crew"];
+  }
 
   let attributeList = ``;
   attribute.map((t) => {
@@ -20,13 +30,15 @@ async function main() {
   });
   
   new Dialog({
-    title: `XP Bar - Manager - v${version}`,
+    title: `XP/Stress Bar - Manager - v${version}`,
     content: `
-    <h2>XP Bar Size</h2>
+    <h2>Bar Size</h2>
+    <p>This will be the new max size.      
+    </p>
     <p>      
-      <input type="number" min=-5 max=+5 id="xpBarSize" value="1"/>
+      <input type="number" min=1 max=12 id="xpBarSize" value="6"/>
     </p><br>
-    <h2>Choose the Experience Bar</h2>
+    <h2>Choose Bar</h2>
     <p>    
       <select id="attribute" type="text" style="width: 100px;">
         ${attributeList}
@@ -37,7 +49,7 @@ async function main() {
       roll: {
         label: "Change",
         callback: (html) => {
-          createImageFolder(html);
+          changeActorSheetBar(html);
         }
       }, 
       cancel: {
@@ -47,21 +59,25 @@ async function main() {
   }).render(true)
 }
 
-async function createImageFolder(html) {
+async function changeActorSheetBar(html) {
   const xpBarSize = parseInt( html.find("#xpBarSize")[0].value );  
   let attribute = html.find("#attribute")[0].value;  
- 
-  let tokenD = canvas.tokens.controlled[0].actor;
+   
+  console.log('--------------');
+  console.log(xpBarSize);
+  console.log(attribute);
+  console.log('--------------');
   
   //attribute=''
-  if (attribute=='Insight') {
-    let updated = await Actor.updateDocuments([{_id: tokenD.id, "data.attributes.insight.expMax": xpBarSize}]);
-  } else if (attribute=='Prowess') {
-    let updated = await Actor.updateDocuments([{_id: tokenD.id, "data.attributes.prowess.expMax": xpBarSize}]);
-  } else if (attribute=='Resolve') {
-    let updated = await Actor.updateDocuments([{_id: tokenD.id, "data.attributes.resolve.expMax": xpBarSize}]);
-  } else if (attribute=='Class') {
+  if (attribute==='class') {
     let updated = await Actor.updateDocuments([{_id: tokenD.id, "data.experienceMax": xpBarSize}]);
+  } else if (attribute==='crew') {
+    let updated = await Actor.updateDocuments([{_id: tokenD.id, "data.crew_experienceMax": xpBarSize}]);
+  } else if (attribute==='stress') { // Stress   
+    let updated = await Actor.updateDocuments([{_id: tokenD.id, "data.stress.max_default": xpBarSize}]);
+  } else {
+    let key = "data.attributes." + attribute + ".expMax"; 
+    let updated = await Actor.updateDocuments([{_id: tokenD.id, [key]: xpBarSize}]);
   }
-
 }
+
