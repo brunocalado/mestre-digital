@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.30"
+VERSION="v1.31"
 echo "========================================"
 case "$1" in
     ligar)
@@ -105,7 +105,7 @@ case "$1" in
     compactar)
       echo "Para salvar os seus arquivos a melhor forma e compacta-los antes em um arquivo ZIP. Isso permite que a transferencia de seu computador para nuvem ou vice versa seja muito mais rapida."
       echo 
-      echo "Compactar: o comando abaixo bai copiar tudo que você tem em data (systems, worlds e modules) e transformar em um arquivo chamado data.zip"
+      echo "Compactar: o comando abaixo vai copiar tudo que você tem em data (systems, worlds e modules) e transformar em um arquivo chamado data.zip"
       echo "zip -r data.zip data/"
       echo
       echo "Descompactar: o comando abaixo vai pegar tudo que tem no arquivo data.zip e descompactar dentro do diretorio atual. IMPORTANTE: voce deve saber o diretorio certo para executar isso."

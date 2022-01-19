@@ -1,5 +1,6 @@
 const assetPath = 'worlds/scum-and-villainy/images/assets-scifi/datapad-template-wanted-700w.png'
 const portraitDemo = 'worlds/scum-and-villainy/images/assets-scifi/faye-valentine-200x200.webp';
+const folderName = 'Datapads';
 
 create_bounty_journal();
 
@@ -70,10 +71,19 @@ async function create_bounty_journal() {
     </table>
 </div>
   `;
-  
+
+  let folderID;
+  if ( game.folders.filter( p => p.name === folderName )[0]==undefined ) {
+    const createdFolder = await Folder.createDocuments([{name: folderName, type: "JournalEntry"}]);
+    folderID = createdFolder[0].id;
+  } else {
+    const existingFolder = await game.folders.filter( p => p.name === folderName ); 
+    folderID = existingFolder[0].id;
+  }
+
   let data = {
     "name": 'Bounty',
-    "folder": 0,
+    "folder": folderID,
     "content": template,
   };
 
