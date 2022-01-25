@@ -1,0 +1,14 @@
+The NarratorTools object in window has all the funcionalities of the module.
+
+Send simple narration:
+window.NarratorTools.chatMessage.narrate("Awesome message!")
+
+Concatenate several narrations together:
+window.NarratorTools.chatMessage.narrate(["Awesome message!","Awesomer still!!"])
+
+Open/close the scenery:
+window.NarratorTools.scenery(true | false)
+
+Hooks:
+narration - when a narration opens..
+narration_closes - when a narration closes...

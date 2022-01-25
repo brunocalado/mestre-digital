@@ -1,0 +1,135 @@
+# Configurar testes
+rollFormula = "2d6"
+statToggle = "Marcar"
+
+# Definir resultados de testes.
+[rollResults]
+  [rollResults.sucesso]
+    range = "10+"
+    label = "Sucesso Forte!"
+  [rollResults.parcial]
+    range = "7-9"
+    label = "Sucesso Fraco"
+  [rollResults.falha]
+    range = "6-"
+    label = "Falha..."
+
+########################################
+## PERSONAGENS #########################
+########################################
+# Definir personagens.
+[character]
+
+  # Definir Estatísticas.
+  [character.stats]
+    sangue = "Sangue"
+    coracao = "Coração"
+    mente = "Mente"
+    espirito = "Espírito"
+    mortais = "Mortais"
+        noturnos = "Noturnos"
+    potentes = "Potentes"
+    selvagens = "Selvagens"
+
+  # Definir atributos do cabeçalho.
+  [character.attributesTop]
+    [character.attributesTop.ferimentos]
+      type = "Clock"
+      label = "Ferimentos"
+      description = "Você marca um número de caixas igual ao ferimento. 1: Leve; 2-3: Grave; 4-5: Crítico"
+      max = 5
+    [character.attributesTop.blindagem]
+        type = "Number"
+        label = "Blindagem"
+        default = 0
+        description = "Armadura reduz o dano sofrido pelo valor do seu nível."
+    [character.attributesTop.corrupcao]
+      type = "Clock"
+      label = "Corrupção"
+      description = "Quando marcar as 5 caixas de Corrupção, escolha um movimento e limpe as caixas."
+      max = 5
+      default = 0
+
+  # Definir barra lateral.
+  [character.attributesLeft]
+        [character.attributesLeft.cicatrizes]
+          type = "ListMany"
+          label = "Cicatrizes"
+          description = "Você pode marcar uma cicatriz para ignorar todo o ferimento que você sofreria"
+          condition = true
+          options = [
+            "Destruído (-1 Sangue)",
+            "Esmagado (-1 Coração)",
+            "Fraturado (-1 Mente)",
+            "Quebrado (-1 Espírito)"
+          ]
+    [character.attributesLeft.perguntas]
+        type = "LongText"
+        label = "Perguntas Introdutórias"
+    [character.attributesLeft.look]
+        type = "LongText"
+        label = "Aparência"
+    [character.attributesLeft.melhorias]
+        type = "LongText"
+        label = "Melhorias"
+    [character.attributesLeft.melhoriasavancadas]
+        type = "LongText"
+        label = "Melhorias Avançadas"
+    [character.attributesLeft.dividas]
+        type = "LongText"
+        label = "Dívidas"
+    
+  # Define groups for moves.
+  [character.moveTypes]
+    basic = "Movimentos Básicos"
+    class = "Movimentos de Cartilhas"
+
+  # Define groups for equipment.
+  [character.equipmentTypes]
+    gear = "Equipamento"
+    weapon = "Armas"
+    transport = "Transporte"
+    armour = "Armadura"
+
+########################################
+## PNJs ################################
+########################################
+# Definir Estatísticas.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.ferimentos]
+        type = "Resource"
+        label = "Ferimentos"
+    [npc.attributesTop.armour]
+        type = "Number"
+        label = "Blindagem"
+        default = 0
+    [npc.attributesTop.type]
+        type = "ListMany"
+        label = "Tipo de PNJ"
+        options = [
+            "Importante",
+            "Capanga"
+        ]
+      
+  [npc.attributesLeft]
+    [npc.attributesLeft.motivacao]
+      type = "LongText"
+      label = "Motivação"      
+    [npc.attributesLeft.ataques]
+      type = "LongText"
+      label = "Ataques"
+    [npc.attributesLeft.fraquezas]
+      type = "LongText"
+      label = "Fraquezas"
+    [npc.attributesLeft.desc]
+      type = "LongText"
+      label = "Descrição"
+    [npc.attributesLeft.dividas]
+      type = "LongText"
+      label = "Dívidas"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    custom = "Movimentos Personalizados"
