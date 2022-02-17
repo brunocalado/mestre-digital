@@ -1,0 +1,133 @@
+# Configure Rolls
+rollFormula = "2d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.success]
+    range = "10+"
+    label = "Success!"
+  [rollResults.partial]
+    range = "7-9"
+    label = "Partial success"
+  [rollResults.failure]
+    range = "6-"
+    label = "Miss..."
+
+########################################
+## CHARACTERS ##########################
+########################################
+# Define the character group.
+[character]
+
+  # Define stats.
+  [character.stats]
+    intelligence = "Intelligence"
+    empathy = "empathy"
+    willpower = "Willpower"
+    might = "Might"
+    speed = "Speed"
+
+  # Define attributes.
+  [character.attributesTop]
+    [character.attributesTop.money]
+      type = "Clock"
+      label = "Money"
+      max = 8
+    [character.attributesTop.look]
+        type = "LongText"
+        label = "Look"
+     [character.attributesTop.passion]
+        type = "LongText"
+        label = "Passion"
+       
+    [character.attributesTop.xp]
+      type = "Text"
+      label = "Experience"
+      
+    
+
+  # Define sidebar details.
+  [character.attributesLeft]
+    [character.attributesLeft.armour]
+        type = "Number"
+        label = "Wealth"
+        default = 0
+    
+    [character.attributesLeft.mentaldisorder]
+    	type = "ListMany"
+        label = "Mental Disorder"
+     
+        options =[
+        	"Minor",
+          "Moderate",
+          "Serious",
+          "Critical"
+        ]
+  [character.attributesLeft.Injurypoisondisease]
+    	type = "ListMany"
+        label = "Injury, Poison and Disease"
+     
+        options =[
+        	"Minor",
+          "Moderate",
+          "Serious",
+          "Critical"
+        ]
+  
+    
+  # Define groups for moves.
+  [character.moveTypes]
+    basic = "Basic Moves"
+    class = "Playbook Moves"
+
+  # Define groups for equipment.
+  [character.equipmentTypes]
+    gear = "Gear"
+    weapon = "Weapons"
+    transport = "Transport"
+    armour = "Armour"
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.harm]
+        type = "Resource"
+        label = "Harm Capacity"
+    [npc.attributesTop.armour]
+        type = "Number"
+        label = "Armour"
+        default = 0
+    [npc.attributesTop.type]
+        type = "ListMany"
+        label = "NPC Type"
+        options = [
+            "Monster",
+            "Minion",
+            "Bystander",
+            "Location"
+        ]
+      
+  [npc.attributesLeft]
+    [npc.attributesLeft.powers]
+      type = "LongText"
+      label = "Drive"
+    [npc.attributesLeft.attacks]
+      type = "LongText"
+      label = "Attacks"
+    [npc.attributesLeft.weakness]
+      type = "LongText"
+      label = "Weakness"
+    [npc.attributesLeft.desc]
+      type = "LongText"
+      label = "Description"
+    [npc.attributesLeft.motivation]
+      type = "LongText"
+      label = "Motivation"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    custom = "Custom Moves"
