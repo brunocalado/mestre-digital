@@ -1,4 +1,4 @@
-# v0.2
+# v0.1
 
 # Configure Rolls
 rollFormula = "2d6"
@@ -7,7 +7,7 @@ rollFormula = "2d6"
 [rollResults]
   [rollResults.failure]
     range = "6-"
-    label = "Ocorrerá Complicações..."
+    label = "Complicações..."
   [rollResults.partial]
     range = "7-9"
     label = "Sucesso Parcial"
@@ -16,10 +16,10 @@ rollFormula = "2d6"
     label = "Sucesso!"
 
 ########################################
-## CHARACTERS ##########################
+## The Bold ############################
 ########################################
 # Define the character group.
-[character]
+[ousado]
 
   # Define stats.
   [character.stats]
@@ -27,11 +27,14 @@ rollFormula = "2d6"
     focus = "Foco"
     harmony = "Harmonia"
     passion = "Paixão"
-    balance_white = "Yang"
-    balance_black = "Yin"
+    balance_white = "Lealdade"
+    balance_black = "Confiança"
     
   # Define attributes.
-  [character.attributesTop]  
+  [character.attributesTop]
+    [character.attributesTop.estilo]
+      type = "Text"
+      label = "Estilo de Luta"
     [character.attributesTop.fadiga]
       type = "Clock"
       max = 5
@@ -39,76 +42,83 @@ rollFormula = "2d6"
     [character.attributesTop.growth]
       type = "Xp"
       label = "Crescimento"
-      max = 4   
-    [character.attributesTop.hold]
-      type = "Resource"
-      label = "Reserva"  
-      value = 0
-      max = 3
-      default = 0        
+      max = 4      
   # Define sidebar details.
   [character.attributesLeft]
     [character.attributesLeft.conditions]
-      type = "LongText"
-      label = "Condições"
-      description = "Efeitos das condições"
-    [character.attributesLeft.clean_conditions]
-      type = "LongText"
-      label = "Remover Condições"      
-      description = "Como remover condições"
+      type = "ListMany"
+      label = "Condição"
+      condition = true
+      options = [
+        "Medo (-2)",
+        "Zangado (-2)",
+        "Tolo (-2)",
+        "Culpado (-2)",
+        "Inseguro (-2)"
+      ]  
     [character.attributesLeft.treinamento]
+      type = "Text"
+      label = "Treinamento"
+    [character.attributesLeft.connections]
       type = "LongText"
-      label = "Treinamento e Estilo"
-      description = "Treinamento e Estilo de Luta"
+      label = "Conexões"
     [character.attributesLeft.moment]
       type = "LongText"
       label = "Momento de Equilíbrio"
-    [character.attributesLeft.demeanor]
-      type = "LongText"
-      label = "Comportamentos"
-    [character.attributesLeft.balance]
-      type = "LongText"
-      label = "Balanço"
-      description = "Identifique o seu balanço"
-      
+
   # Define groups for moves.
-  [character.moveTypes]    
+  [character.moveTypes]
     basic = "Básicos"
+    basic_fighting_techniques = "Técnicas Básicas de Luta"
+    fighting_techniques = "Técnicas de Luta"
     playbook = "Arquétipo"    
     balance = "Balanço"
-    basic_fighting_techniques = "Técnicas Básicas de Luta"
-    fighting_techniques = "Técnicas de Luta"    
-    connections = "Conexões"
+    advances = "Avanços"
 
   # Define groups for equipment.
 
 ########################################
-## NPCs ################################
+## NPCS ################################
 ########################################
 # Define stats.
 [npc]
+
   # Define attributes.
   [npc.attributesTop]
     [npc.attributesTop.guia]
       type = "Text"
-      label = "Motivação"
+      label = "Guia"
     [npc.attributesTop.fadiga]
-      type = "Resource"
-      value = 0
+      type = "Clock"
       max = 10
       default = 0
   [npc.attributesLeft]
-		[npc.attributesLeft.principle]
-      type = "LongText"
+		[npc.attributesLeft.status]
+      type = "ListMany"
       label = "Princípio"
+      condition = true
+      options = [
+        "Menor (+1)",
+        "Moderado (+2)",
+        "Maior (+3)",
+      ]
     [npc.attributesLeft.conditions]
-      type = "LongText"
+      type = "ListMany"
       label = "Condição"
-    [npc.attributesLeft.training]
+      condition = true
+      options = [
+        "Medo (-2)",
+        "Zangado (-2)",
+        "Tolo (-2)",
+        "Culpado (-2)",
+        "Inseguro (-2)"
+      ]
+    [npc.attributesLeft.demeanors]
       type = "LongText"
-      label = "Treinamento"
-
+      label = "Apararência"
+    [npc.attributesLeft.background]
+      type = "LongText"
+      label = "Histórico"   
   # Define logical groups for moves.
   [npc.moveTypes]
-    basic_fighting_techniques = "Técnicas Básicas de Luta"
     fighting_techniques = "Técnicas de Luta"

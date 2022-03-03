@@ -1,0 +1,85 @@
+# v1.0
+
+# Configure Rolls
+rollFormula = "1d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.success]
+    range = "3"
+    label = "Sucesso"
+  [rollResults.failure]
+    range = "2-"
+    label = "Falha..."
+
+########################################
+## CHARACTERS ##########################
+########################################
+# Define the character group.
+[character]
+
+  # Define stats.
+  [character.stats]
+    vontade = "Vontade"
+    
+  # Define attributes.
+  [character.attributesTop]
+
+  # Define sidebar details.
+  [character.attributesLeft]
+    [character.attributesLeft.vontade]
+      type = "Number"
+      label = "Vontade"
+      description = ""  
+    [character.attributesLeft.obsessoes]
+      type = "LongText"
+      label = "Obsessões"
+      description = ""
+    [character.attributesLeft.habilidades]
+      type = "LongText"
+      label = "Habilidades"
+      description = ""
+      
+  # Define groups for moves.
+  [character.moveTypes]
+    basic = "Básicos"
+
+  # Define groups for equipment.
+  [character.equipmentTypes]
+    gear = "Equipamento"
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+      
+  [npc.attributesLeft]
+    [npc.attributesLeft.type]
+        type = "ListMany"
+        label = "Tipo de NPC"
+        options = [
+          "Monstro",
+          "Lacaio",
+          "Espectador",
+          "Local"
+        ]
+    [npc.attributesLeft.tipo]
+      type = "LongText"
+      label = "Tipo"        
+    [npc.attributesLeft.motivation]
+      type = "LongText"
+      label = "Motivação"
+    [npc.attributesLeft.weakness]
+      type = "LongText"
+      label = "Fraqueza"
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    attacks = "Ataques e Poderes"
+
+  # Define groups for equipment.
+  [npc.equipmentTypes]
+    items = "Itens"
