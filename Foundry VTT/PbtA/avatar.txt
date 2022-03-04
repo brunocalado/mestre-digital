@@ -1,4 +1,4 @@
-# v0.2
+# v0.3
 
 # Configure Rolls
 rollFormula = "2d6"
@@ -45,31 +45,46 @@ rollFormula = "2d6"
       label = "Reserva"  
       value = 0
       max = 3
-      default = 0        
+      default = 0   
+    [character.attributesTop.balance]
+      type = "Text"
+      label = "Balanço"
   # Define sidebar details.
   [character.attributesLeft]
     [character.attributesLeft.conditions]
-      type = "LongText"
+      type = "ListMany"
       label = "Condições"
-      description = "Efeitos das condições"
+      condition = true
+      options = [
+        "Medo: -2 Intimidar/Viva com seu Princípio!",
+        "Raiva: -2 Orientar e Confortar/Analisar a Situação",
+        "Culpa: -2 Testar a Sorte/Negar uma Chamada",
+        "Inseguro: -2 Truque/Resistir a Mudança de Balanço",
+        "Perturbado: -2 Pleitear/Confiar em suas Habilidades e Treinamento"      
+      ]  
     [character.attributesLeft.clean_conditions]
       type = "LongText"
-      label = "Remover Condições"      
-      description = "Como remover condições"
+      label = "Remover Condições" 
+    [character.attributesLeft.status]
+      type = "ListMany"
+      label = "Status"
+      options = [
+        "Atordoado: não pode agir/responder por alguns segundos até se estabilizar",
+        "Condenado: marque 1 de fadiga a cada poucos segundos (ou a cada troca)",
+        "Favorecido: uma técnica básica/dominada extra na próxima troca, mesmo se errar",
+        "Fortalecido: limpe 1-fadiga no final de cada troca",
+        "Inspirado: pode mudar seu balanço em direção a um princípio de sua escolha",
+        "Prejudicado: marque 1 em fadiga ou receba -2 em todas as ações físicas",
+        "Preparado: +1 em uma rolagem apropriada (após a rolagem) ou evitar uma condição",
+        "Preso: saia com uma combinação de 3 (fadiga ou condições)"
+      ]  
     [character.attributesLeft.treinamento]
       type = "LongText"
       label = "Treinamento e Estilo"
       description = "Treinamento e Estilo de Luta"
-    [character.attributesLeft.moment]
-      type = "LongText"
-      label = "Momento de Equilíbrio"
     [character.attributesLeft.demeanor]
       type = "LongText"
       label = "Comportamentos"
-    [character.attributesLeft.balance]
-      type = "LongText"
-      label = "Balanço"
-      description = "Identifique o seu balanço"
       
   # Define groups for moves.
   [character.moveTypes]    
