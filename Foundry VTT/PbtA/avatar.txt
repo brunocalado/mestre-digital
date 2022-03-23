@@ -1,4 +1,4 @@
-# v0.3
+# v0.4
 
 # Configure Rolls
 rollFormula = "2d6"
@@ -46,9 +46,12 @@ rollFormula = "2d6"
       value = 0
       max = 3
       default = 0   
-    [character.attributesTop.balance]
+    [character.attributesTop.center]
+      type = "Number"
+      label = "Centro"
+    [character.attributesTop.principle]
       type = "Text"
-      label = "Balanço"
+      label = "Princípios"      
   # Define sidebar details.
   [character.attributesLeft]
     [character.attributesLeft.conditions]
@@ -62,29 +65,31 @@ rollFormula = "2d6"
         "Inseguro: -2 Truque/Resistir a Mudança de Balanço",
         "Perturbado: -2 Pleitear/Confiar em suas Habilidades e Treinamento"      
       ]  
-    [character.attributesLeft.clean_conditions]
-      type = "LongText"
-      label = "Remover Condições" 
-    [character.attributesLeft.status]
+    [character.attributesLeft.statuspositive]
       type = "ListMany"
-      label = "Status"
+      label = "Status Positivos"
       options = [
-        "Atordoado: não pode agir/responder por alguns segundos até se estabilizar",
-        "Condenado: marque 1 de fadiga a cada poucos segundos (ou a cada troca)",
         "Favorecido: uma técnica básica/dominada extra na próxima troca, mesmo se errar",
         "Fortalecido: limpe 1-fadiga no final de cada troca",
         "Inspirado: pode mudar seu balanço em direção a um princípio de sua escolha",
-        "Prejudicado: marque 1 em fadiga ou receba -2 em todas as ações físicas",
         "Preparado: +1 em uma rolagem apropriada (após a rolagem) ou evitar uma condição",
+      ]      
+    [character.attributesLeft.statusnegative]
+      type = "ListMany"
+      label = "Status Negativos"
+      options = [
+        "Atordoado: não pode agir/responder por alguns segundos até se estabilizar",
+        "Condenado: marque 1 de fadiga a cada poucos segundos (ou a cada troca)",
+        "Prejudicado: marque 1 em fadiga ou receba -2 em todas as ações físicas",
         "Preso: saia com uma combinação de 3 (fadiga ou condições)"
-      ]  
+      ]      
     [character.attributesLeft.treinamento]
       type = "LongText"
       label = "Treinamento e Estilo"
       description = "Treinamento e Estilo de Luta"
     [character.attributesLeft.demeanor]
       type = "LongText"
-      label = "Comportamentos"
+      label = "Comportamento"
       
   # Define groups for moves.
   [character.moveTypes]    
@@ -114,11 +119,32 @@ rollFormula = "2d6"
       default = 0
   [npc.attributesLeft]
 		[npc.attributesLeft.principle]
-      type = "LongText"
-      label = "Princípio"
+      type = "Text"
+      label = "Princípios"
+    [npc.attributesLeft.center]
+      type = "Number"
+      label = "Centro"      
     [npc.attributesLeft.conditions]
       type = "LongText"
       label = "Condição"
+    [npc.attributesLeft.statuspositive]
+      type = "ListMany"
+      label = "Status Positivos"
+      options = [
+        "Favorecido: uma técnica básica/dominada extra na próxima troca, mesmo se errar",
+        "Fortalecido: limpe 1-fadiga no final de cada troca",
+        "Inspirado: pode mudar seu balanço em direção a um princípio de sua escolha",
+        "Preparado: +1 em uma rolagem apropriada (após a rolagem) ou evitar uma condição",
+      ]      
+    [npc.attributesLeft.statusnegative]
+      type = "ListMany"
+      label = "Status Negativos"
+      options = [
+        "Atordoado: não pode agir/responder por alguns segundos até se estabilizar",
+        "Condenado: marque 1 de fadiga a cada poucos segundos (ou a cada troca)",
+        "Prejudicado: marque 1 em fadiga ou receba -2 em todas as ações físicas",
+        "Preso: saia com uma combinação de 3 (fadiga ou condições)"
+      ]         
     [npc.attributesLeft.training]
       type = "LongText"
       label = "Treinamento"
