@@ -1,4 +1,4 @@
-# v0.4
+# v0.5
 
 # Configure Rolls
 rollFormula = "2d6"
@@ -109,24 +109,29 @@ rollFormula = "2d6"
 [npc]
   # Define attributes.
   [npc.attributesTop]
-    [npc.attributesTop.guia]
-      type = "Text"
-      label = "Motivação"
-    [npc.attributesTop.fadiga]
-      type = "Resource"
-      value = 0
-      max = 10
-      default = 0
-  [npc.attributesLeft]
-		[npc.attributesLeft.principle]
+		[npc.attributesTop.principle]
       type = "Text"
       label = "Princípios"
-    [npc.attributesLeft.center]
+    [npc.attributesTop.center]
       type = "Number"
-      label = "Centro"      
+      label = "Centro"        
+    [npc.attributesTop.balance]
+      label = "Balanço"
+      type = "Resource"
+      value = 0
+      default = 0      
+    [npc.attributesTop.fadiga]
+      label = "Fadiga"
+      type = "Resource"
+      value = 0
+      default = 0
+  [npc.attributesLeft]
+    [npc.attributesLeft.guia]
+      type = "LongText"
+      label = "Motivação"  
     [npc.attributesLeft.conditions]
       type = "LongText"
-      label = "Condição"
+      label = "Condições"
     [npc.attributesLeft.statuspositive]
       type = "ListMany"
       label = "Status Positivos"
