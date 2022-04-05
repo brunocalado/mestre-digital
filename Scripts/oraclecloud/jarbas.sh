@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.31"
+VERSION="v1.32"
 echo "========================================"
 case "$1" in
     ligar)
@@ -45,6 +45,13 @@ case "$1" in
         cat dadossuporte
         echo "IP: " $(curl -s ifconfig.me)        
         echo "Dominio: " $(grep hostname config/options.json | awk '{print $2}' | sed 's/\"//g' | sed 's/,//g')
+        echo         
+        FILE=/home/ubuntu/foundry/resources/app/main.js
+        if test -f "$FILE"; then
+          echo "O Foundry VTT esta instalado."
+        else
+          echo "Houve um erro na sua instalacao do Foundry VTT. Reinstale."
+        fi        
         echo 
         echo "== Solucao de Problemas =="
         echo "1. Reinicie a maquina no oracle."
