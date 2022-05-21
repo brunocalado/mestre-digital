@@ -1,0 +1,92 @@
+# Version: 0.1
+
+# Configure Rolls
+rollFormula = "2d6"
+
+# Define roll result ranges.
+[rollResults]
+  [rollResults.failure]
+    range = "6-"
+    label = "Failure"
+  [rollResults.partial]
+    range = "7-9"
+    label = "Partial Success"
+  [rollResults.success]
+    range = "10+"
+    label = "Success!"
+
+########################################
+## CHARACTERS ##########################
+########################################
+[character]
+
+  [character.stats]
+
+  [character.attributesTop]
+    [character.attributesTop.armadura]
+      type = "Clock"
+      label = "Armadura"
+      max = 5
+      default = 0  
+    [character.attributesTop.ferimentos]
+      type = "Clock"
+      max = 5
+      default = 0
+      label = "Fer. Leves"      
+    [character.attributesTop.ferimentosseveros]
+      type = "Clock"
+      max = 5
+      default = 0
+      label = "Fer. Severos"            
+    [character.attributesTop.recursos]
+      type = "Number"
+      default = 0    
+      label = "Recursos"   
+    [character.attributesTop.ouro]
+      type = "Number"
+      default = 0            
+      label = "Ouro"         
+
+  [character.attributesLeft]
+    [character.attributesLeft.intimidade]
+      type = "LongText"
+      label = "Movimento de Intimidade"  
+    [character.attributesLeft.tributo]
+      type = "LongText"
+      label = "Movimento de Tributo"  
+    [character.attributesLeft.historia]
+      type = "LongText"
+      label = "Movimento de História"  
+      
+  [character.moveTypes]
+    basicos = "Básicos"
+    especificos = "Específicos"
+    segredos = "Segredos"
+
+  [character.equipmentTypes]
+    equipamento = "Equipamento"
+    propriedade = "Propriedade"
+    forca = "Força"
+
+########################################
+## NPCS ################################
+########################################
+# Define stats.
+[npc]
+  # Define attributes.
+  [npc.attributesTop]
+    [npc.attributesTop.armadura]
+      type = "Clock"
+      max = 5
+      default = 0        
+      label = "Armadura"      
+    [npc.attributesTop.ferimentos]
+      type = "Clock"
+      max = 5
+      default = 0        
+      label = "Ferimentos" 
+  [npc.attributesLeft]
+
+  # Define logical groups for moves.
+  [npc.moveTypes]
+    segredos = "Segredos"

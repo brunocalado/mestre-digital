@@ -1,4 +1,3 @@
-
 /*
 source: 
 icon: icons/sundries/gaming/rune-card.webp
@@ -9,7 +8,7 @@ await Folder.createDocuments([{name: "Test", type: "Scene"}])
 so lets say you type for Folder Name: Meadows then that becomes a string variable via html.find(blah blah)[0].value... which you can then find... let folder = game.folders.getName(variable) followed by if(!folder) await Folder.createDocuments([{name: "Test", type: "Scene"}]) so if the folder is undefined, it makes it. then continue as you would in your macro
 */
 
-const version = '1.3';
+const version = '1.4';
 const debug = true;
 
 main();
@@ -22,16 +21,17 @@ async function main() {
     <ul>
       <li>To get the folder path right, you can drop a tile from it in the canvas and copy the path.</li>
     </ul>
-    <h3>Form</h3>
+    <h2>Configuration</h2>
     <div>
-      <p>Folder Name: </p>
+      <p><b>Folder Name:</b> </p>
       <input type="text" id="folderName" value='Cenas'/>
     </div>
     <div>
-      <p>Folder Path: </p>
-      <input type="text" id="folderPath" value='modules/mymaps/animated/AnimatedDungeon'/>
+      <p><b>Folder Path:</b> </p>
+      <input type="text" id="folderPath" value='modules/mymaps/animatedmaps'/>
     </div>    
     
+    <p><b>Dimensions:</b> </p>
     <p>Set to 0 to auto detect images. If you're using videos you need to define the size: 1920x1080</p>
     <table>
     <tbody>
@@ -87,7 +87,9 @@ async function createImageFolder(html) {
 // Functions
 async function getDimensions(path) {
   const fileExtension = path.split('.').pop(); 
-  console.log( fileExtension );
+  if (debug) {
+    console.log( fileExtension );
+  }
   
   let img = new Image();
   return await new Promise(resolve => { 
@@ -113,15 +115,26 @@ async function createScene(imgPath, folderID, gridSize=70, widthCustom=0, height
     sceneHeight = parseInt(heightCustom);
   }  
 
+  // Name Cleaning
+  var splitPath = function (str) {
+    let imageName = str.split('\\').pop().split('/').pop(); // remove path
+    imageName = imageName.split('.').slice(0, -1).join('.'); // remove extension
+    imageName = imageName.replace(/_/g, " ");
+    imageName = imageName.replace(/-/g, " ");
+    imageName = decodeURI( imageName )
+    return imageName;
+  }
+/*
   var splitPath = function (str) {
     let imageName = str.split('\\').pop().split('/').pop(); // remove path
     imageName = imageName.split('.').slice(0, -1).join('.'); // remove extension
     imageName = imageName.replaceAll("%20", " ").replaceAll("-", " ").replaceAll("_", " ");
     return imageName;
   }  
-    
-  /* gridType 1: square
-  */
+*/    
+  
+  // --------------------------
+  // Scene Optons
   let data = {
     name: splitPath(imgPath),
     width: sceneWidth,
@@ -135,7 +148,8 @@ async function createScene(imgPath, folderID, gridSize=70, widthCustom=0, height
     gridType: 1,
     backgroundColor: "#000000",
     padding: 0,
-    gridAlpha: 0
+    gridAlpha: 0,
+    navigation: false
   };
 
   await Scene.create(data);
