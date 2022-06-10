@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.33"
+VERSION="v1.34"
 echo "========================================"
 case "$1" in
     ligar)
@@ -97,8 +97,13 @@ case "$1" in
     node)
         echo "======================"
         echo "Atualizando o NODE para a ultima versao LTS"        
+        echo "Apos o processo seu sistema será reiniciado e voce sera desconectado. Aguarde o sistema iniciar e se conecte novamente."
+        read -p "Pressione qualquer tecla para continuar"
         ./jarbas desligar     
-        # curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+        # https://github.com/nodesource/distributions
+        # Using Ubuntu
+        curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+        sudo apt-get install -y nodejs
         sudo apt update && sudo apt -y upgrade
         ./jarbas ligar     
         echo "======================"        
@@ -215,10 +220,10 @@ case "$1" in
       case "$2" in
         instalar)
           echo "===== Instala Caddy ====="                    
+          # https://caddyserver.com/docs/install#debian-ubuntu-raspbian
           sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
-          curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo apt-key add -
-          curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
           curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+          curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list 
           sudo apt update
           sudo apt install -y caddy
           

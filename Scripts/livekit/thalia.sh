@@ -16,20 +16,21 @@ case "$1" in
     ;;    
     start)
       echo "Starting Livekit"                
-      echo "Press Control + C to stop."
-      LIVEKIT_KEYS="$(cat keys)" ~/livekit-server/bin/livekit-server --config config.yaml
+      systemctl start livekit-docker
     ;;
-    readconfig)
-        echo "Config file is located at: ~/livekit-server/config.yaml"        
-        cat ~/config.yaml
-    ;;  
+    stop)
+      echo "Stopping Livekit"                
+      systemctl stop livekit-docker
+    ;;    
+    restart)
+      echo "Restarting Livekit"                
+      systemctl restart livekit-docker
+    ;;        
     version)
         echo "== Version =="        
-        echo "$(~/livekit-server/bin/livekit-server --version)"
+        echo "$(~/livekit/bin/livekit-server --version)"
         echo "thalia: ${VERSION}"
         echo "OS: $(cat /etc/os-release | grep PRETTY_NAME)"
-        echo "== GO =="        
-        go version
     ;;
     support)
         echo "== Machine Data =="        
@@ -46,33 +47,34 @@ case "$1" in
     ;;
     admin)               
         case "$2" in
-            generatekeys)
-              echo "== Generating new keys for livekit =="
-              ~/livekit-server/bin/livekit-server generate-keys > keys
-              APIKEY="$(grep 'API Key' keys | awk '{print $3}')"
-              APISECRET="$(grep 'API Secret' keys | awk '{print $3}')"
-              cat "$APIKEY: $APISECRET" > keys
+            installdocker)
+              echo "== Install Docker =="
+              echo "This will reboot the system. You will need to connect again."
+              sudo apt update && sudo apt -y upgrade
+              sudo apt -y install docker.io
+              echo "This will reboot the system. You will need to connect again."
+              sudo reboot
             ;;
-            showkeys)
-              echo "== Keys =="
-              cat keys
+            installlivekit)
+              echo "== Install Livekit Installer =="
+              sudo docker run --rm -it -v$PWD:/output livekit/generate
+              sudo reboot
+            ;;            
+            iptablessetup)
+              echo "== IP Tables Setup =="
+              sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 80,443,7881 -j ACCEPT
+              sudo iptables -I INPUT 6 -m state --state NEW -p udp --match multiport --dports 443,50000:60000 -j ACCEPT
+              sudo netfilter-persistent save
             ;;
-            showiptables)
+            iptablesshow)
               echo "== IP Tables =="
               sudo iptables -L
             ;;              
-            flushiptables)
+            iptablesflush)
               echo "== Flush IP Tables =="
               sudo iptables --flush
             ;;                          
             *)
-            echo "Options: $0 {generatekeys|showkeys|showiptables|flushiptables}"            
-            echo "Example: ./thalia admin showkeys"
-            echo
-            echo "- generatekeys: This you generate a new key and store it at keys file."  
-            echo "- showkeys: This will show current keys."  
-            echo
-            exit 1
         esac
     ;;       
     swap)               
@@ -98,72 +100,6 @@ case "$1" in
             echo
             exit 1
         esac
-    ;;
-    caddy)
-      case "$2" in
-        instalar)
-          echo "===== Instala Caddy ====="                    
-          sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
-          curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo apt-key add -
-          curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-          sudo apt update
-          sudo apt install -y caddy
-          
-          ./jarbas caddy config
-        ;;
-        config)
-          echo "===== Configura o Caddy ====="
-          ./jarbas desligar
-          sudo service caddy stop
-          
-          echo "Digite o seu Dominio e pressione Enter: "
-          read dominio
-          
-          curl -o Caddyfile https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/caddy/Caddyfile.txt
-          sed -i 's+MEUDOMINIOFOUNDRY+'$dominio'+g' Caddyfile  
-          sudo mv Caddyfile /etc/caddy/Caddyfile
-          
-          cp config/options.json config/`date +"%H%M-%d%m%Y"`options.json.bkp
-          sed -i 's+"hostname": null+"hostname": "'$dominio'"+g' config/options.json
-          sed -i 's+"proxySSL": false+"proxySSL": "true"+g' config/options.json
-          sed -i 's+"proxyPort": null+"proxyPort": "443"+g' config/options.json
-          
-          sudo service caddy start
-          ./jarbas ligar          
-        ;;
-        arquivo)          
-          echo "-------------------------------"
-          echo "Arquivo do Caddy"
-          cat /etc/caddy/Caddyfile
-          echo "-------------------------------"
-          echo
-          echo "Se quiser editar manualmente use o comando: nano /etc/caddy/Caddyfile"
-          echo
-          echo "-------------------------------"         
-          echo "Arquivo de configuracao do Foundry VTT"
-          cat config/options.json
-          echo "-------------------------------"
-        ;;        
-        start)
-          echo "== Iniciando o Caddy"
-          sudo service caddy start
-        ;;
-        status)
-          echo "== Para sair pressione a tecla q de quit =="
-          sudo service caddy status
-        ;;
-        stop)
-          echo "== Encerrando o Caddy"
-          sudo service caddy stop
-        ;;
-        restart)
-          echo "== Reiniciando o Caddy"
-          sudo service caddy restart
-        ;;                  
-        *)
-          echo "Opcoes: {instalar|start|restart|stop|status|config|arquivo}"            
-          exit 1
-      esac        
     ;;
     *)
         echo "thalia ${VERSION}" 

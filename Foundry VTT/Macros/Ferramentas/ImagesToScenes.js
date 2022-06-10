@@ -1,3 +1,5 @@
+const basePath = 'modules/mymaps/animatedmaps/cavern'; // 'modules/mymaps/animatedmaps'
+
 /*
 source: 
 icon: icons/sundries/gaming/rune-card.webp
@@ -28,7 +30,7 @@ async function main() {
     </div>
     <div>
       <p><b>Folder Path:</b> </p>
-      <input type="text" id="folderPath" value='modules/mymaps/animatedmaps'/>
+      <input type="text" id="folderPath" value=${basePath}/>
     </div>    
     
     <p><b>Dimensions:</b> </p>
