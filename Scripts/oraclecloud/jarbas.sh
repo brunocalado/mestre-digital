@@ -96,7 +96,7 @@ case "$1" in
     ;;
     node)
         echo "======================"
-        echo "Atualizando o NODE para a ultima versao LTS"        
+        echo "Atualizando o NODE para a ultima versao Recomendada: 16"        
         echo "Apos o processo seu sistema será reiniciado e voce sera desconectado. Aguarde o sistema iniciar e se conecte novamente."
         read -p "Pressione qualquer tecla para continuar"
         ./jarbas desligar     
@@ -106,6 +106,7 @@ case "$1" in
         sudo apt-get install -y nodejs
         sudo apt update && sudo apt -y upgrade
         ./jarbas ligar     
+        sudo reboot
         echo "======================"        
     ;;   
     sobre)
