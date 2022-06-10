@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.34"
+VERSION="v1.35"
 echo "========================================"
 case "$1" in
     ligar)
@@ -98,7 +98,7 @@ case "$1" in
         echo "======================"
         echo "Atualizando o NODE para a ultima versao Recomendada: 16"        
         echo "Apos o processo seu sistema será reiniciado e voce sera desconectado. Aguarde o sistema iniciar e se conecte novamente."
-        read -p "Pressione qualquer tecla para continuar"
+        read -p "Pressione qualquer tecla para continuar ou pressione Control + C para cancelar."
         ./jarbas desligar     
         # https://github.com/nodesource/distributions
         # Using Ubuntu
