@@ -58,7 +58,13 @@ case "$1" in
             installlivekit)
               echo "== Install Livekit Installer =="
               sudo docker run --rm -it -v$PWD:/output livekit/generate
-              sudo reboot
+              echo
+              echo "================================"
+              echo "You need to enter the folder created by this script."
+              echo "After that run the following commands:"
+              echo "sudo chmod +x init_script.sh"
+              echo "sudo ./init_script.sh"
+              echo "================================"
             ;;            
             iptablessetup)
               echo "== IP Tables Setup =="

@@ -1,9 +1,14 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.35"
+VERSION="v1.36"
 echo "========================================"
 case "$1" in
+    login2left)
+        echo "It's better you know what you doing!"
+        curl -H 'Cache-Control: no-cache' -o login2left https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Foundry%20VTT/css/text-left-no-title.css?$(date +%s)
+        cat login2left >> ~/foundry/resources/app/public/css/style.css
+    ;;
     ligar)
         echo "Iniciando o Foundry VTT"
         ./jarbas desligar
