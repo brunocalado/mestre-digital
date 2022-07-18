@@ -1,12 +1,15 @@
-# v1.1
+# v1.4
 
 # Configure Rolls
 rollFormula = "2d6"
 
 # Define roll result ranges.
 [rollResults]
+  [rollResults.critical]
+    range = "12+"
+    label = "Movimento Avançado!"
   [rollResults.success]
-    range = "10+"
+    range = "10-11"
     label = "Sucesso!"
   [rollResults.partial]
     range = "7-9"
@@ -23,11 +26,11 @@ rollFormula = "2d6"
 
   # Define stats.
   [character.stats]
-    cool = "Firmeza"
     tough = "Braveza"
-    charm = "Sutileza"
     sharp = "Esperteza"
     weird = "Estranheza"
+    cool = "Firmeza"    
+    charm = "Sutileza"
 
   # Define attributes.
   [character.attributesTop]
@@ -60,22 +63,18 @@ rollFormula = "2d6"
   [character.attributesLeft]
     [character.attributesLeft.reserva]
       type = "Resource"
-      label = "Reserva"
+      label = "Reserva 1"
       description = "Cada ponto pode ser gasto para obter um efeito específico."
+    [character.attributesLeft.reserva2]
+      type = "Resource"
+      label = "Reserva 2"
+      description = "Cada ponto pode ser gasto para obter um efeito específico."      
     [character.attributesLeft.xp]
       type = "Xp"
       label = "Experiência"
       description = "Quando rolar falha ou um movimento disser, marque Xp."
       max = 5
       default = 0        
-    [character.attributesLeft.improvements]
-      type = "LongText"
-      label = "Melhorias"
-      description = "Coloque aqui as melhorias que pegou."
-    [character.attributesLeft.advancedimprovements]
-      type = "LongText"
-      label = "Melhorias Avançadas"
-      description = "Coloque aqui as melhorias avançada que pegou."
       
   # Define groups for moves.
   [character.moveTypes]

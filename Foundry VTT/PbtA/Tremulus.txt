@@ -1,4 +1,4 @@
-# Version: 0.5
+# Version: 0.7
 
 # Configure Rolls
 rollFormula = "2d6"
@@ -12,9 +12,11 @@ rollFormula = "2d6"
     range = "7-9"
     label = "Partial Success"
   [rollResults.success]
-    range = "10+"
+    range = "10-11"
     label = "Success!"
-
+  [rollResults.critical]
+    range = "12+"
+    label = "Dark Insight!"
 ########################################
 ## CHARACTERS ##########################
 ########################################
@@ -33,18 +35,19 @@ rollFormula = "2d6"
       label = "Armor"
       description = "Remove this from damage"
       default = 0  
-    [character.attributesTop.health]
-      type = "Clock"
-      max = 6
-      default = 0
-    [character.attributesTop.sanity]
-      type = "Clock"
-      max = 6
-      default = 0    
     [character.attributesTop.hold]
       type = "Clock"
       max = 3
       default = 0             
+    [character.attributesTop.lore]
+      type = "Number"
+      label = "Lore"          
+    [character.attributesTop.wealth]
+      type = "Number"
+      label = "Wealth" 
+    [character.attributesTop.advances]
+      type = "Number"
+      label = "Advances"  
       
   [character.attributesLeft]
     [character.attributesLeft.physicaldebilities]
@@ -59,28 +62,34 @@ rollFormula = "2d6"
         "Unfortunate: -1 Luck",
         "Disfigured: -1 Affinity"
       ]  
-    [character.attributesLeft.lore]
-      type = "Number"
-      label = "Lore"          
-    [character.attributesLeft.wealth]
-      type = "Number"
-      label = "Wealth" 
+    [character.attributesLeft.health]
+      type = "ListMany"
+      label = "Health"
+      description = "Will go away naturally with time: Scuffed/Bruised. Will neither worsen, nor improve without treatment: Battered. Will get worse if untreated or not stablized. Requires treatment for improvement: Broken, Grievous, Dying."      
+      options = [
+        "[Scuffed, Bruised]|2",
+        "[Battered]|1",
+        "[Broken, Grievous, Dying]|3"
+      ]         
+    [character.attributesLeft.sanity]
+      type = "ListMany"
+      label = "Sanity"
+      description = "Will go away naturally with time: Startled/Shocked. Will neither worsen, nor improve without treatment: Disturbed. Will get worse if untreated or not stablized. Requires treatment for improvement: Traumatized, Hysteric, Deranged."
+      options = [
+        "[Startled, Shocked]|2",
+        "[Disturbed]|1",
+        "[Traumatized, Hysteric, Deranged]|3"
+      ]     
     [character.attributesLeft.trust]
       type = "LongText"
       label = "Trust"   
-    [character.attributesLeft.advances]
-      type = "Number"
-      label = "Advances"       
-    [character.attributesLeft.look]
-      type = "LongText"
-      label = "Look"  
 
   [character.moveTypes]
     basic = "Basic Moves"
     extra = "Extra Moves"
     advanced = "Lore Moves"
-    mentaldisorders = "Mental Disorders"
     class = "Special Moves"        
+    mentaldisorders = "Mental Disorders"    
 
   [character.equipmentTypes]
     gear = "Gear"

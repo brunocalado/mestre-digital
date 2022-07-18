@@ -9,12 +9,12 @@
 }
 
 /* Stat color */
-.pbta.sheet .cell--stats .stat {
+.pbta.sheet .sheet-attributes .cell--stats .stat {
   background: #bf0000;
 }
 
 /* Stat color hover */
-.pbta.sheet .cell--stats .stat:hover {
+.pbta.sheet .sheet-attributes .cell--stats .stat:hover {
   background: #ff0000;
 }  
 
