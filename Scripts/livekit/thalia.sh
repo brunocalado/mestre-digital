@@ -130,6 +130,8 @@ case "$1" in
         echo "Options:"
         echo "Example: ./thalia start"
         echo
+        echo "- updatesystem: this will update the os and packages"     
+        echo "- updatethalia: this will update thalia"     
         echo "- start: start livekit"     
         echo "- stop: stop livekit"     
         echo "- restart: restart livekit"  
