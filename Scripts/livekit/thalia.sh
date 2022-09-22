@@ -1,7 +1,7 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.01"
+VERSION="v1.02"
 echo "========================================"
 case "$1" in
     updatesystem)
@@ -16,15 +16,15 @@ case "$1" in
     ;;    
     start)
       echo "Starting Livekit"                
-      systemctl start livekit-docker
+      sudo systemctl start livekit-docker
     ;;
     stop)
       echo "Stopping Livekit"                
-      systemctl stop livekit-docker
+      sudo systemctl stop livekit-docker
     ;;    
     restart)
       echo "Restarting Livekit"                
-      systemctl restart livekit-docker
+      sudo systemctl restart livekit-docker
     ;;       
     status)
       systemctl status livekit-docker
@@ -47,6 +47,10 @@ case "$1" in
         echo
         echo "== CPU =="        
         lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'
+        echo
+        echo "== Firewall (should be: inactive) =="        
+        sudo ufw status
+        echo                
     ;;
     admin)               
         case "$2" in
@@ -64,7 +68,7 @@ case "$1" in
               sudo docker run --rm -it -v$PWD:/output livekit/generate
               echo
               echo "================================"
-              echo "You need to enter the folder created by this script."
+              echo "You need to enter the folder created by this script. It's the same name of your domain. Type ls to check it out."
               echo "After that run the following commands:"
               echo "sudo chmod +x init_script.sh"
               echo "sudo ./init_script.sh"
