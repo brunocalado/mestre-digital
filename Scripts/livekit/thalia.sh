@@ -11,7 +11,7 @@ case "$1" in
     updatethalia)
       echo "== thalia will be updated =="
       rm thalia
-      curl -H 'Cache-Control: no-cache' -o jarbas https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/livekit/thalia.sh?$(date +%s)
+      curl -H 'Cache-Control: no-cache' -o thalia https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/livekit/thalia.sh?$(date +%s)
       chmod +x thalia
     ;;    
     start)
@@ -50,6 +50,7 @@ case "$1" in
             installdocker)
               echo "== Install Docker =="
               echo "This will reboot the system. You will need to connect again."
+              read -p "Press any key to continue or press Control + C to abort."
               sudo apt update && sudo apt -y upgrade
               sudo apt -y install docker.io
               echo "This will reboot the system. You will need to connect again."
