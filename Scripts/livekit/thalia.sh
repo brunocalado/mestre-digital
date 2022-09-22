@@ -1,7 +1,7 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.02"
+VERSION="v1.03"
 echo "========================================"
 case "$1" in
     updatesystem)
@@ -77,7 +77,7 @@ case "$1" in
             iptablessetup)
               echo "== IP Tables Setup =="
               sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 80,443,7881 -j ACCEPT
-              sudo iptables -I INPUT 6 -m state --state NEW -p udp --match multiport --dports 443,50000:60000 -j ACCEPT
+              sudo iptables -I INPUT 6 -m state --state NEW -p udp --match multiport --dports 443,7882,50000:60000 -j ACCEPT
               sudo netfilter-persistent save
             ;;
             iptablesshow)
