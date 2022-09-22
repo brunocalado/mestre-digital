@@ -1,7 +1,7 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.00"
+VERSION="v1.01"
 echo "========================================"
 case "$1" in
     updatesystem)
@@ -25,7 +25,10 @@ case "$1" in
     restart)
       echo "Restarting Livekit"                
       systemctl restart livekit-docker
-    ;;        
+    ;;       
+    status)
+      systemctl status livekit-docker
+    ;;      
     version)
         echo "== Version =="        
         echo "$(~/livekit/bin/livekit-server --version)"
@@ -80,34 +83,19 @@ case "$1" in
             iptablesflush)
               echo "== Flush IP Tables =="
               sudo iptables --flush
-            ;;                          
-            *)
-        esac
-    ;;    
-    livekit)               
-        case "$2" in   
+            ;;  
             upgrade)
               echo "The file docker-compose.yaml must have the image field set to livekit/livekit-server:latest to this work."
               docker pull livekit/livekit-server
-            ;;       
-            status)
-              systemctl status livekit-docker
-            ;;       
-            logs)
-              echo "Type: sudo docker-compose logs"
-              echo "This will show the logs. You need to grep or less to read the data."
-              cd /opt/livekit
-              sudo docker-compose logs            
-            ;;
+            ;;              
             *)
-            echo "Options: $0 {status|activate}"            
-            echo "Example: ./thalia swap status"
-            echo
-            echo "- status: swap status"  
-            echo "- activate: Create swap."  
-            echo
-            exit 1
         esac
+    ;;  
+    logs)
+      echo "Type: sudo docker-compose logs"
+      echo "This will show the logs. You need to grep or less to read the data."
+      cd /opt/livekit
+      sudo docker-compose logs            
     ;;    
     swap)               
         case "$2" in
@@ -135,10 +123,18 @@ case "$1" in
     ;;
     *)
         echo "thalia ${VERSION}" 
-        echo "Options: $0 {start|admin}"
+        echo "Options:"
         echo "Example: ./thalia start"
         echo
-        echo "- admin: livekit admin"     
+        echo "- start: start livekit"     
+        echo "- stop: stop livekit"     
+        echo "- restart: restart livekit"  
+        echo "- status: show livekit status"  
+        echo "- logs: show livekit logs"          
+        echo "- version: show version"     
+        echo "- support: show system information"             
+        echo "- admin: livekit installation and configuration"                     
+        echo "- swap: install and configuration swap"                             
         echo
         exit 1
 esac
