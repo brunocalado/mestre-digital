@@ -1,0 +1,21 @@
+{
+  "port": 30000,
+  "upnp": true,
+  "fullscreen": false,
+  "hostname": null,
+  "localHostname": null,
+  "routePrefix": null,
+  "sslCert": null,
+  "sslKey": null,
+  "awsConfig": null,
+  "dataPath": "C:/Users/Bruno/Documents/VTT/FoundryVTT",
+  "passwordSalt": null,
+  "proxySSL": false,
+  "proxyPort": null,
+  "serviceConfig": null,
+  "updateChannel": "stable",
+  "language": "en.core",
+  "upnpLeaseDuration": null,
+  "compressStatic": "true",
+  "world": null
+}

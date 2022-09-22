@@ -82,7 +82,32 @@ case "$1" in
             ;;                          
             *)
         esac
-    ;;       
+    ;;    
+    livekit)               
+        case "$2" in   
+            upgrade)
+              echo "The file docker-compose.yaml must have the image field set to livekit/livekit-server:latest to this work."
+              docker pull livekit/livekit-server
+            ;;       
+            status)
+              systemctl status livekit-docker
+            ;;       
+            logs)
+              echo "Type: sudo docker-compose logs"
+              echo "This will show the logs. You need to grep or less to read the data."
+              cd /opt/livekit
+              sudo docker-compose logs            
+            ;;
+            *)
+            echo "Options: $0 {status|activate}"            
+            echo "Example: ./thalia swap status"
+            echo
+            echo "- status: swap status"  
+            echo "- activate: Create swap."  
+            echo
+            exit 1
+        esac
+    ;;    
     swap)               
         case "$2" in
             status)
