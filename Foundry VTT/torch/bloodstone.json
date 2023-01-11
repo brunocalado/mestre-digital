@@ -1,0 +1,23 @@
+{
+  "simpleworld": {
+    "topology": "standard",
+    "aliases": {
+      "Lantern (Bullseye)": "Bullseye Lantern",
+      "Lantern (Hooded)": "Hooded Lantern"
+    }
+    "sources": {
+      "HandLantern": {
+        "name": "Hand Lantern",
+        "type": "equipment",
+        "states": 2,
+        "light": [
+          { 
+            "bright": 10, "dim": 15, "angle": 360, "color": "#ff9329", "alpha": 0.5,
+            "animation": { "type": "torch", "speed": 5, "intensity": 5, "reverse": false } 
+          }
+        ]
+      }
+    }
+    
+  }
+}

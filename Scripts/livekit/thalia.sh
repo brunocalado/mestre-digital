@@ -1,7 +1,7 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.04"
+VERSION="v1.05"
 echo "========================================"
 case "$1" in
     updatesystem)
@@ -61,6 +61,7 @@ case "$1" in
               sudo apt update && sudo apt -y upgrade
               sudo apt -y install docker.io
               echo "This will reboot the system. You will need to connect again."
+              echo
               sudo reboot
             ;;
             installlivekit)

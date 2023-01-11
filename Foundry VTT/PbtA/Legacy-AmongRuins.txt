@@ -1,4 +1,4 @@
-# version 0.3
+# version 0.4
 rollFormula = "2d6"
 
 # dano
@@ -50,40 +50,41 @@ rollFormula = "2d6"
 # movimentos
 [family.moveTypes]
   basic = "Movimentos Básicos"
+  perifericos = "Movimentos Periféricos"  
   family = "Movimentos de Família"
   pactos = "Pactos de Facção"
 
 ########################################
 ## CHARACTERS ##########################
 ########################################
-
 # atributos
   [character.stats]
-    forca = "Força"
-    sabedoria = "Sabedoria"
     determinacao = "Determinação"
+    forca = "Força"
     influencia = "Influência"
+    sabedoria = "Sabedoria"
 
 # barra lateral
 [character.attributesLeft]
   [character.attributesLeft.dano]
     type = "ListMany"
     label = "Dano"
-    condition = true
     options = [
-      "Fer. cosméticos",
-      "Irritado",
-      "Em choque",
-      "Sangrando",
-      "Morto"
+      "[Text]|1",
+      "[Text]|1",
+      "[Text]|1",
+      "[Text]|1",
+      "[Text]|1"
     ]  
   [character.attributesLeft.movimentospapel]
-    type = "Xp"
+    type = "ListMany"
     label = "Movimentos de Papel"
-    max = 4         
-  [character.attributesLeft.heranca]
-    type = "LongText"
-    label = "Herança"
+    options = [
+      "[Líder]|1",
+      "[Agente]|1",
+      "[Rebelde]|1",
+      "[Pária]|1"
+    ]      
   [character.attributesLeft.movimentomorte]
     type = "LongText"
     label = "Mov. de Morte"
@@ -91,13 +92,15 @@ rollFormula = "2d6"
 # movimentos
 [character.moveTypes]
   basic = "Movimentos Básicos"
+  perifericos = "Movimentos Periféricos"
   character = "Movimentos de Personagem"
+  heranca = "Herança"
   
 [character.equipmentTypes]
   weapon = "Arma"
   armor = "Armadura"
   vehicle = "Veículo"
-  
+ 
 ########################################
 ## NPCS ################################
 ########################################
