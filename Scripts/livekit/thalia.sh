@@ -1,13 +1,14 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.06"
+VERSION="v1.07"
 echo "========================================"
 case "$1" in
     updatesystem)
       echo "== The system will be updated =="
+      echo "After update the system will reboot. You will need to connect again."
+      read -p "Press any key to continue or Control + C to abort this update."
       sudo apt update && sudo apt -y upgrade
-      echo "WARNING: It s recommended to reboot the system."
     ;;
     updatethalia)
       echo "== thalia will be updated =="
@@ -91,6 +92,7 @@ case "$1" in
             ;;              
             iptablesflush)
               echo "== Flush IP Tables =="
+              echo "Test purposes only."
               sudo iptables --flush
             ;;  
             upgrade)
@@ -99,6 +101,16 @@ case "$1" in
               docker pull livekit/livekit-server
             ;;              
             *)
+            echo "Options: $0 {installdocker|installlivekit|iptablessetup|iptablesshow|iptablesflush|upgrade}"
+            echo
+            echo "- installdocker: install docker"  
+            echo "- installlivekit: install livekit"  
+            echo "- iptablessetup: set iptables to livekit"  
+            echo "- iptablesshow: show iptables"  
+            echo "- iptablesflush: "  
+            echo "- upgrade: update livekit to last version"  
+            echo
+            exit 1            
         esac
     ;;  
     logs)
@@ -108,7 +120,7 @@ case "$1" in
       echo "You can do this going to cd /opt/livekit and typing sudo less docker-compose logs"
       echo "This will show the logs. You need to grep or less to read the data."
     ;;    
-    connection-test)
+    connectiontest)
       echo "You can go to https://livekit.io/connection-test and test"
     ;;            
     swap)               
@@ -151,7 +163,7 @@ case "$1" in
         echo "- support: show system information"             
         echo "- admin: livekit installation and configuration"                     
         echo "- swap: install and configuration swap"                             
-        echo "- connection-test: show link to test your server"                                     
+        echo "- connectiontest: show link to test your server"                                     
         echo
         exit 1
 esac
