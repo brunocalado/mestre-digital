@@ -1,12 +1,13 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.05"
+VERSION="v1.06"
 echo "========================================"
 case "$1" in
     updatesystem)
       echo "== The system will be updated =="
       sudo apt update && sudo apt -y upgrade
+      echo "WARNING: It s recommended to reboot the system."
     ;;
     updatethalia)
       echo "== thalia will be updated =="
@@ -34,6 +35,9 @@ case "$1" in
         echo "$(~/livekit/bin/livekit-server --version)"
         echo "thalia: ${VERSION}"
         echo "OS: $(cat /etc/os-release | grep PRETTY_NAME)"
+        echo
+        cd /opt/livekit;
+        sudo docker-compose logs | grep livekit-livekit | grep version
     ;;
     support)
         echo "== Machine Data =="        
@@ -91,17 +95,22 @@ case "$1" in
             ;;  
             upgrade)
               echo "The file docker-compose.yaml must have the image field set to livekit/livekit-server:latest to this work."
+              echo "You can access the docker-compose.yaml inside your domain folder."              
               docker pull livekit/livekit-server
             ;;              
             *)
         esac
     ;;  
     logs)
-      echo "Type: sudo docker-compose logs"
-      echo "This will show the logs. You need to grep or less to read the data."
       cd /opt/livekit
       sudo docker-compose logs            
+      echo "=========================="
+      echo "You can do this going to cd /opt/livekit and typing sudo less docker-compose logs"
+      echo "This will show the logs. You need to grep or less to read the data."
     ;;    
+    connection-test)
+      echo "You can go to https://livekit.io/connection-test and test"
+    ;;            
     swap)               
         case "$2" in
             status)
@@ -142,6 +151,7 @@ case "$1" in
         echo "- support: show system information"             
         echo "- admin: livekit installation and configuration"                     
         echo "- swap: install and configuration swap"                             
+        echo "- connection-test: show link to test your server"                                     
         echo
         exit 1
 esac

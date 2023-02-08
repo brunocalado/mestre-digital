@@ -1,0 +1,34 @@
+"swade": {
+  "system": "swade",
+  "topology": "standard",
+  "sources": {
+    "Candle": {
+      "name": "Candle",
+      "states": 2,
+      "light": [
+        {"bright": 0, "dim": 2, "angle": 360}
+      ]
+    },
+    "Flashlight": {
+      "name": "Flashlight",
+      "states": 2,
+      "light": [
+        {"bright": 10, "dim": 10, "angle": 3}
+      ]
+    },
+    "Lantern": {
+      "name": "Lantern",
+      "states": 2,
+      "light": [
+        {"bright": 4, "dim": 4, "angle": 360}
+      ]
+    },
+    "Torch": {
+      "name": "Torch",
+      "states": 2,
+      "light": [
+        {"bright": 4, "dim": 4, "angle": 360}
+      ]
+    }    
+  }
+}
