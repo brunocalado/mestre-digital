@@ -1,7 +1,7 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.08"
+VERSION="v1.09"
 echo "========================================"
 case "$1" in
     updatesystem)
@@ -97,9 +97,13 @@ case "$1" in
               sudo iptables --flush
             ;;  
             upgrade)
+              echo "----------------------------------------"
               echo "The file docker-compose.yaml must have the image field set to livekit/livekit-server:latest to this work."
               echo "You can access the docker-compose.yaml inside your domain folder."              
+              echo "----------------------------------------"
+              ./thalia stop
               sudo docker pull livekit/livekit-server
+              ./thalia start
             ;;              
             *)
             echo "Options: $0 {installdocker|installlivekit|iptablessetup|iptablesshow|iptablesflush|upgrade}"
