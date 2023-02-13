@@ -1,7 +1,7 @@
 #######################################################
 ## thalia Oracle Cloud - livekit assistant ############
 #! /bin/sh
-VERSION="v1.07"
+VERSION="v1.08"
 echo "========================================"
 case "$1" in
     updatesystem)
@@ -9,6 +9,7 @@ case "$1" in
       echo "After update the system will reboot. You will need to connect again."
       read -p "Press any key to continue or Control + C to abort this update."
       sudo apt update && sudo apt -y upgrade
+      sudo reboot
     ;;
     updatethalia)
       echo "== thalia will be updated =="
@@ -98,7 +99,7 @@ case "$1" in
             upgrade)
               echo "The file docker-compose.yaml must have the image field set to livekit/livekit-server:latest to this work."
               echo "You can access the docker-compose.yaml inside your domain folder."              
-              docker pull livekit/livekit-server
+              sudo docker pull livekit/livekit-server
             ;;              
             *)
             echo "Options: $0 {installdocker|installlivekit|iptablessetup|iptablesshow|iptablesflush|upgrade}"
