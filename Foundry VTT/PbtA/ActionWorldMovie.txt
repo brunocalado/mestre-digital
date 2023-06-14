@@ -1,23 +1,23 @@
-# Version: 0.1
+# Version: 0.2
 
 # Configure Rolls
 rollFormula = "2d6"
 
 # Configure stat toggle label and formula modifier.
 [statToggle]
-  label = "Star Power"
+  label = "Marcação"
   
 # Define roll result ranges.
 [rollResults]
   [rollResults.failure]
     range = "6-"
-    label = "Failure"
+    label = "Falha"
   [rollResults.partial]
     range = "7-9"
-    label = "Partial Success"
+    label = "Sucesso Parcial"
   [rollResults.success]
     range = "10+"
-    label = "Success!"
+    label = "Sucesso!"
 
 ########################################
 ## CHARACTERS ##########################
@@ -25,47 +25,42 @@ rollFormula = "2d6"
 [character]
 
   [character.stats]
-    agility = "Agility"
+    agility = "Agilidade"
     drama = "Drama"
-    muscles = "Muscles"
-    magnetism = "Magnetism"
-    swagger = "Swagger"
+    muscles = "Músculos"
+    magnetism = "Magnetismo"
+    swagger = "Presunção"
 
   [character.attributesTop]
     [character.attributesTop.charactername]
       type = "Text"
-      label = "Character Name"  
+      label = "Protagonista"  
     [character.attributesTop.harm]
+      label = "Dano"  
       type = "Clock"
       max = 5
       default = 0
     [character.attributesTop.xp]
       type = "Xp"
-      label = "Experience"
+      label = "Experiência"
       max = 5 
-    [character.attributesTop.hold]
-      type = "Clock"
-      max = 3
-      default = 0             
 
   [character.attributesLeft]  
     [character.attributesLeft.starpower]
+      type = "Number"
+      label = "Poder de Estrela"  
+    [character.attributesLeft.moviename]
       type = "Text"
-      label = "Star Power"  
-  [character.attributesLeft.lead]
-    type = "Checkbox"
-    label = "Lead"
-    checkboxLabel = "Untreated wounds"
-    default = false      
-
-  [character.moveTypes]
-    basic = "Basic Moves"
-    extra = "Extra Moves"
-    script = "Script Moves"
-    
-  [character.equipmentTypes]
-    gear = "Gear"
-    loot = "Loot"
+      label = "Nome do Filme"  
+      
+    [character.moveTypes]
+      basic = "Básicos"
+      extra = "Manual"
+      script = "Roteiro"
+      camaradagem = "Camaradagem"
+      
+    [character.equipmentTypes]
+      gear = "Equipamentos"
   
 ########################################
 ## NPCS ################################
@@ -74,50 +69,8 @@ rollFormula = "2d6"
 [npc]
   # Define attributes.
   [npc.attributesTop]
-    [npc.attributesTop.armor]
-      type = "ListMany"
-      label = "Armor"      
-      options = [
-        "None",
-        "Light",
-        "Medium",
-        "Heavy",
-        "Incredible",
-        "Monstrous"
-      ]  
-    [npc.attributesTop.shock]
-      type = "ListMany"
-      label = "Shock"      
-      options = [
-        "None",
-        "Spooky",
-        "Scary",
-        "Frightening",
-        "Terrifying",
-        "Horrifying"
-      ]    
-    [npc.attributesTop.harm]
-      type = "ListMany"
-      label = "Harm"      
-      options = [
-        "No attack/grappling",
-        "Fist/kick/head-butt",
-        "Small claws/bites",
-        "Acid/claws/tentacles/strength",
-        "Fangs/strong tentacles/great strength",
-        "Great claws/powerful tentacles/incredible strength"
-      ] 
+
   [npc.attributesLeft]
-    [npc.attributesLeft.damage]
-      type = "Clock"
-      max = 5
-      default = 0      
-    [npc.attributesLeft.look]
-      type = "LongText"
-      label = "Look"
-    [npc.attributesLeft.extra]
-      type = "LongText"
-      label = "Extra"
 
   # Define logical groups for moves.
   [npc.moveTypes]

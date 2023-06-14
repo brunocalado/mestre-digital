@@ -222,6 +222,31 @@ case "$1" in
             exit 1
         esac
     ;;    
+    enrolar)
+        case "$2" in
+            instalar)
+              sudo apt -y install stress
+              sudo apt -y install gcc
+            ;;
+            compilar)              
+              echo "#include <stdlib.h>" > aloca.c
+              echo "int main() {size_t size = (size_t)12 * 1024 * 1024 * 1024;void *p = malloc(size);while (1);return 0;}" >> aloca.c
+              gcc -o aloca aloca.c
+            ;;            
+            ligararm)
+              echo "Esse deve ser usado para a maquina ARM com 4 CPUs e 24 de RAM."              
+              stress --cpu 2 --vm-bytes 12GB
+            ;;        
+            *)
+            echo "Opcoes: $0 {status|ativar}"            
+            echo "Cria uma atividade de uso no computador para a maquina nao ser considerada ociosa."
+            echo
+            echo "- status: reporta situacao da swap."  
+            echo "- ativar: cria e ativa a swap. APENAS UMA VEZ!"  
+            echo
+            exit 1
+        esac
+    ;;       
     caddy)
       case "$2" in
         instalar)
