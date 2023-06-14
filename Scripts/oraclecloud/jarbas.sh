@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.38"
+VERSION="v1.39"
 echo "========================================"
 case "$1" in
     login2left)
@@ -72,6 +72,9 @@ case "$1" in
         timeout 1 bash -c "</dev/tcp/$MYIP/443 &>/dev/null" &&  echo "Porta 443 ABERTA"
         timeout 1 bash -c "</dev/tcp/$MYIP/30000 &>/dev/null" &&  echo "Porta 30000 ABERTA"        
         echo "=== Fim do Teste de Portas ==="
+        echo
+        echo "O NODE instalado deve ser o 18."
+        echo "Versao do NODE: $(node --version)"        
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;; 
@@ -307,6 +310,7 @@ case "$1" in
         echo "- status: Verifica se o Foundry VTT está rodando"
         echo "- suporte: Mostra dados da maquina"
         echo "- swap: Apenas para maquina com pouca memoria RAM. Nao faca isso para a maquina ARM."
+        echo "- versao: mostra as versoes instaladas"
         echo "- update: atualiza o jarbas."                
         echo
         exit 1
