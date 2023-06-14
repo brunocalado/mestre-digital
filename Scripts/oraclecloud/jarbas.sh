@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.39"
+VERSION="v1.40"
 echo "========================================"
 case "$1" in
     login2left)
@@ -31,6 +31,8 @@ case "$1" in
         echo "Versao do PM2: $(pm2 --version)"
         echo "Versao do jarbas: ${VERSION}"
         echo "Versao do SO: $(cat /etc/os-release | grep PRETTY_NAME)"
+        echo "Versao do Foundry VTT:"
+        cat package.json | grep generation | awk -F: '{print $2}' | awk '{print $1}' | tr -d ','
     ;;
     reiniciar)
         echo "Encerra o FVTT e Inicia o FVTT em seguida"        
