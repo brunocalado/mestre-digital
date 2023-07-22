@@ -1,7 +1,7 @@
 #######################################################
 ## assistente Oracle Cloud ################################
 #!/bin/bash
-#version v1.00
+#version v1.01
 
 if [ $# -eq 1 ]; then  
   DOWNLOAD=$1
@@ -34,7 +34,7 @@ if [ $# -eq 1 ]; then
   # Instala NODE
   echo "===== Instala NODE e Gerenciador de Processos ====="
   cd ~
-  curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - 
   sudo apt-get install -y nodejs
   
   # Auto inicia com a vm
