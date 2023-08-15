@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.41"
+VERSION="v1.42"
 echo "========================================"
 case "$1" in
     login2left)
@@ -114,6 +114,7 @@ case "$1" in
         # https://github.com/nodesource/distributions
         # Using Ubuntu
         curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - 
+        sudo apt update
         sudo apt-get install -y nodejs        
         sudo apt update && sudo apt -y upgrade
         ./jarbas ligar     
