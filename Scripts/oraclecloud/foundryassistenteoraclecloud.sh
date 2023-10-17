@@ -47,6 +47,7 @@ if [ $# -eq 1 ]; then
   sudo apt-get install -y nodejs
   
   # Auto inicia com a vm
+  sudo apt install npm -y
   sudo npm install pm2 -g
   pm2 startup
   sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
