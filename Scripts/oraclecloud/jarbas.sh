@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.43"
+VERSION="v1.44"
 echo "========================================"
 case "$1" in
     login2left)
@@ -76,7 +76,7 @@ case "$1" in
         timeout 1 bash -c "</dev/tcp/$MYIP/30000 &>/dev/null" &&  echo "Porta 30000 ABERTA"        
         echo "=== Fim do Teste de Portas ==="
         echo
-        echo "O NODE instalado deve ser o 18."
+        echo "O NODE instalado deve ser o 20."
         echo "Versao do NODE: $(node --version)"        
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
@@ -112,13 +112,14 @@ case "$1" in
         read -p "Pressione qualquer tecla para continuar ou pressione Control + C para cancelar."
         ./jarbas desligar     
         # https://github.com/nodesource/distributions
+        # https://medium.com/@nsidana123/before-the-birth-of-of-node-js-15ee9262110c
         # Using Ubuntu
         sudo apt-get update
         sudo apt-get install -y ca-certificates curl gnupg
         sudo mkdir -p /etc/apt/keyrings
         curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg        
         
-        NODE_MAJOR=18
+        NODE_MAJOR=20
         echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
  
         sudo apt-get update
