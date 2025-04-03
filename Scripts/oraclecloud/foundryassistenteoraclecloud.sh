@@ -1,14 +1,19 @@
 #######################################################
 ## assistente Oracle Cloud ################################
 #!/bin/bash
-#version v1.01
+#version v1.02
 
 if [ $# -eq 1 ]; then  
   DOWNLOAD=$1
 
-  # Open Ports in iptables
-  sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 80,443,30000 -j ACCEPT
-  sudo netfilter-persistent save
+  # Open Ports in ufw
+  sudo apt install ufw
+  sudo ufw allow 80/tcp
+  sudo ufw allow 443/tcp
+  sudo ufw allow 30000/tcp  
+  sudo ufw enable  
+  #sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 80,443,30000 -j ACCEPT
+  #sudo netfilter-persistent save
   
   # Instala ZIP
   echo "===== Instala ZIP ====="

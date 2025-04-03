@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.44"
+VERSION="v1.45"
 echo "========================================"
 case "$1" in
     login2left)
@@ -76,7 +76,7 @@ case "$1" in
         timeout 1 bash -c "</dev/tcp/$MYIP/30000 &>/dev/null" &&  echo "Porta 30000 ABERTA"        
         echo "=== Fim do Teste de Portas ==="
         echo
-        echo "O NODE instalado deve ser o 20."
+        echo "O NODE instalado deve ser o 22."
         echo "Versao do NODE: $(node --version)"        
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
@@ -114,13 +114,17 @@ case "$1" in
         # https://github.com/nodesource/distributions
         # https://medium.com/@nsidana123/before-the-birth-of-of-node-js-15ee9262110c
         # Using Ubuntu
-        sudo apt-get update
-        sudo apt-get install -y ca-certificates curl gnupg
-        sudo mkdir -p /etc/apt/keyrings
-        curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg        
+        sudo apt-get update        
+        sudo apt-get install -y curl
+        curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+        sudo -E bash nodesource_setup.sh
+
+        #sudo apt-get install -y ca-certificates curl gnupg
+        #sudo mkdir -p /etc/apt/keyrings
+        #curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg        
         
-        NODE_MAJOR=20
-        echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+        #NODE_MAJOR=20
+        #echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
  
         sudo apt-get update
         sudo apt-get install nodejs -y 
@@ -238,6 +242,27 @@ case "$1" in
             exit 1
         esac
     ;;    
+    firewall)               
+        case "$2" in
+            status)
+              echo "Estado do Firewall"
+              sudo ufw status numbered
+            ;;
+            ativar)
+              echo "O firewall ufw vai ser instalado e configurado."
+              sudo apt install ufw
+              sudo ufw allow 80/tcp
+              sudo ufw allow 443/tcp
+              sudo ufw allow 30000/tcp  
+              sudo ufw enable  
+            ;;        
+            *)
+            echo "Opcoes: $0 {status|ativar}"            
+            echo "Exemplo de uso: ./jarbas firewall status"
+            echo
+            exit 1
+        esac
+    ;;      
     caddy)
       case "$2" in
         instalar)
