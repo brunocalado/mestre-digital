@@ -343,6 +343,7 @@ case "$1" in
         echo "- horacerta: Permite arrumar a hora desse servidor."
         echo "- ligar: Inicia o Foundry VTT"
         echo "- node: atualiza o NODE para a ultima versao LTS (recomendado)."        
+        echo "- firewall: libera acesso as portas"                
         echo "- reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
         echo "- sobre: sobre o desenvolvedor desse script"        
         echo "- status: Verifica se o Foundry VTT está rodando"
