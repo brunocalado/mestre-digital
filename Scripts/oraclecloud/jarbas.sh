@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.47"
+VERSION="v1.48"
 echo "========================================"
 case "$1" in
     login2left)
@@ -259,6 +259,8 @@ case "$1" in
               sudo ufw allow 443/tcp
               sudo ufw allow 30000/tcp  
               sudo ufw enable  
+              echo
+              echo "Reinicie a maquina virtual se nao funcionar."              
             ;;        
             *)
             echo "Opcoes: $0 {status|ativar}"            
