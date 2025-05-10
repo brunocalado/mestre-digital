@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.46"
+VERSION="v1.47"
 echo "========================================"
 case "$1" in
     login2left)
@@ -79,6 +79,8 @@ case "$1" in
         echo "O NODE instalado deve ser o 22."
         echo "Versao do NODE: $(node --version)"        
         echo
+        echo "Situacao do Firewall do OS"
+        ./jarbas firewall status | grep Status
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;; 
     update)
