@@ -81,6 +81,7 @@ case "$1" in
         echo
         echo "Situacao do Firewall do OS"
         ./jarbas firewall status | grep Status
+        echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;; 
     update)
