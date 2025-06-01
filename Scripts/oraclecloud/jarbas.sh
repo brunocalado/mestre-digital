@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.48"
+VERSION="v1.49"
 echo "========================================"
 case "$1" in
     login2left)
@@ -58,7 +58,7 @@ case "$1" in
         if test -f "$FILE"; then
           echo "O Foundry VTT esta instalado."
         else
-          echo "Houve um erro na sua instalacao do Foundry VTT. Reinstale."
+          echo "Houve um erro na sua instalacao do Foundry VTT. Reinstale. Tenha certeza de escolher a versao Linux do site do Foundry VTT."
         fi        
         echo 
         echo "== Solucao de Problemas =="
