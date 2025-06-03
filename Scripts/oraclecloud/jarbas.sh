@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.50"
+VERSION="v1.51"
 echo "========================================"
 case "$1" in
     login2left)
@@ -239,7 +239,7 @@ case "$1" in
             instalar)
               echo "===== Instala Foundry VTT ====="
               ./jarbas desligar
-              echo "Cole o link de download temporario da instalacao Node.js do site do Foundry VTT "
+              echo "Cole o link de download temporario da instalacao LINUX do site do Foundry VTT "
               read linkdownloadfoundry              
               cd ~
               rm -rf foundry
