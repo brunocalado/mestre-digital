@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.53"
+VERSION="v1.54"
 echo "========================================"
 case "$1" in
     login2left)
@@ -50,7 +50,12 @@ case "$1" in
     ;;    
     suporte)
         echo "Dados da Maquina"        
-        cat dadossuporte
+
+        # Dados de Consulta
+        echo "Usuario: $(whoami)"
+        echo "Maquina: $(hostname)"
+        echo "Pasta de logs do fondry vtt: logs/"
+      
         echo "IP: " $(curl -s ifconfig.me)        
         echo "Dominio: " $(grep hostname config/options.json | awk '{print $2}' | sed 's/\"//g' | sed 's/,//g')
         echo         
@@ -193,7 +198,7 @@ case "$1" in
       
       # Final
       curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt && cat md && rm md
-      
+    
       # reboot
       echo "Sua maquina vai ser reiniciada. Aguarde alguns minutos e volte a se conectar."
       read -p "Pressione qualquer tecla para continuar."
