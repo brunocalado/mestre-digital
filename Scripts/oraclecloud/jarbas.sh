@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.52"
+VERSION="v1.53"
 echo "========================================"
 case "$1" in
     login2left)
@@ -197,6 +197,7 @@ case "$1" in
       # reboot
       echo "Sua maquina vai ser reiniciada. Aguarde alguns minutos e volte a se conectar."
       read -p "Pressione qualquer tecla para continuar."
+      sudo reboot
     ;;      
     admin)               
         case "$2" in
