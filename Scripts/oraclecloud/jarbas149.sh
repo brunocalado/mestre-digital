@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.42"
+VERSION="v1.49"
 echo "========================================"
 case "$1" in
     login2left)
@@ -58,7 +58,7 @@ case "$1" in
         if test -f "$FILE"; then
           echo "O Foundry VTT esta instalado."
         else
-          echo "Houve um erro na sua instalacao do Foundry VTT. Reinstale."
+          echo "Houve um erro na sua instalacao do Foundry VTT. Reinstale. Tenha certeza de escolher a versao Linux do site do Foundry VTT."
         fi        
         echo 
         echo "== Solucao de Problemas =="
@@ -76,8 +76,11 @@ case "$1" in
         timeout 1 bash -c "</dev/tcp/$MYIP/30000 &>/dev/null" &&  echo "Porta 30000 ABERTA"        
         echo "=== Fim do Teste de Portas ==="
         echo
-        echo "O NODE instalado deve ser o 18."
+        echo "O NODE instalado deve ser o 22."
         echo "Versao do NODE: $(node --version)"        
+        echo
+        echo "Situacao do Firewall do OS"
+        ./jarbas firewall status | grep Status
         echo
         echo "Mais ajuda no link: https://www.mestredigital.online/post/guia-de-instalacao-do-foundry-vtt-na-oracle-cloud"
     ;; 
@@ -112,11 +115,24 @@ case "$1" in
         read -p "Pressione qualquer tecla para continuar ou pressione Control + C para cancelar."
         ./jarbas desligar     
         # https://github.com/nodesource/distributions
+        # https://medium.com/@nsidana123/before-the-birth-of-of-node-js-15ee9262110c
         # Using Ubuntu
-        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - 
-        sudo apt update
-        sudo apt-get install -y nodejs        
+        sudo apt-get update        
+        sudo apt-get install -y curl
+        curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+        sudo -E bash nodesource_setup.sh
+
+        #sudo apt-get install -y ca-certificates curl gnupg
+        #sudo mkdir -p /etc/apt/keyrings
+        #curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg        
+        
+        #NODE_MAJOR=20
+        #echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+ 
+        sudo apt-get update
+        sudo apt-get install nodejs -y 
         sudo apt update && sudo apt -y upgrade
+        
         ./jarbas ligar     
         sudo reboot
         echo "======================"        
@@ -229,6 +245,30 @@ case "$1" in
             exit 1
         esac
     ;;    
+    firewall)               
+        case "$2" in
+            status)
+              echo "Estado do Firewall"
+              sudo ufw status numbered
+            ;;
+            ativar)
+              echo "O firewall ufw vai ser instalado e configurado."
+              sudo apt install ufw
+              sudo ufw allow 22/tcp
+              sudo ufw allow 80/tcp
+              sudo ufw allow 443/tcp
+              sudo ufw allow 30000/tcp  
+              sudo ufw enable  
+              echo
+              echo "Reinicie a maquina virtual se nao funcionar."              
+            ;;        
+            *)
+            echo "Opcoes: $0 {status|ativar}"            
+            echo "Exemplo de uso: ./jarbas firewall status"
+            echo
+            exit 1
+        esac
+    ;;      
     caddy)
       case "$2" in
         instalar)
@@ -309,6 +349,7 @@ case "$1" in
         echo "- horacerta: Permite arrumar a hora desse servidor."
         echo "- ligar: Inicia o Foundry VTT"
         echo "- node: atualiza o NODE para a ultima versao LTS (recomendado)."        
+        echo "- firewall: libera acesso as portas"                
         echo "- reiniciar: Encerra o FVTT e Inicia o FVTT em seguida"
         echo "- sobre: sobre o desenvolvedor desse script"        
         echo "- status: Verifica se o Foundry VTT está rodando"

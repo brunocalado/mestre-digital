@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.49"
+VERSION="v1.50"
 echo "========================================"
 case "$1" in
     login2left)
@@ -134,7 +134,7 @@ case "$1" in
         sudo apt update && sudo apt -y upgrade
         
         ./jarbas ligar     
-        sudo reboot
+        echo "Se encontrar problemas reinicia a VM com: sudo reboot"
         echo "======================"        
     ;;   
     sobre)
@@ -152,6 +152,48 @@ case "$1" in
       echo "Descompactar: o comando abaixo vai pegar tudo que tem no arquivo data.zip e descompactar dentro do diretorio atual. IMPORTANTE: voce deve saber o diretorio certo para executar isso."
       echo "unzip data.zip"
     ;;     
+    setup)
+      echo "CONFIGURACOES INICIAIS"
+      echo 
+      
+      # Open Ports in ufw
+      sudo apt install ufw
+      sudo ufw allow 22/tcp
+      sudo ufw allow 80/tcp
+      sudo ufw allow 443/tcp
+      sudo ufw allow 30000/tcp  
+      sudo ufw enable        
+
+      # Instala ZIP
+      echo "===== Instala ZIP ====="
+      sudo apt -y install zip unzip vim
+      
+      # Instala Foundry VTT
+      ./jarbas admin instalar
+    
+      # Cria Atalhos
+      echo "===== Cria Atalhos ====="  
+      ln -s ~/.local/share/FoundryVTT/Data/ data
+      ln -s ~/.local/share/FoundryVTT/Config/ config
+      ln -s ~/.local/share/FoundryVTT/Logs/ logs
+  
+      # Instala NODE
+      echo "===== Instala NODE e Gerenciador de Processos ====="
+      cd ~      
+      ./jarbas node
+      
+      # Auto inicia com a vm
+      sudo apt install npm -y
+      sudo npm install pm2 -g
+      pm2 startup
+      sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
+      # Configura o auto inicio do Foundry VTT
+      pm2 start "node /home/ubuntu/foundry/resources/app/main.js" --name foundry    
+      pm2 save
+      
+      # Final
+      curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt && cat md && rm md
+    ;;      
     admin)               
         case "$2" in
             removesenha)
@@ -204,8 +246,7 @@ case "$1" in
               unzip fvtt.zip
               sudo chmod +x ~/foundry/resources/app/main.js    
               rm fvtt.zip
-              cd ~
-              ./jarbas ligar             
+              cd ~              
             ;;            
             *)
             echo "Opcoes: $0 {instalar|instalarzip|removesenha|resetaconfig}"            
