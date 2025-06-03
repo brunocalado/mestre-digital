@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.51"
+VERSION="v1.52"
 echo "========================================"
 case "$1" in
     login2left)
@@ -110,9 +110,9 @@ case "$1" in
     ;;
     node)
         echo "======================"
-        echo "Atualizando o NODE para a ultima versao Recomendada: 18"        
+        echo "Atualizando o NODE para a ultima versao Recomendada: 22"        
         echo "Apos o processo seu sistema será reiniciado e voce sera desconectado. Aguarde o sistema iniciar e se conecte novamente."
-        read -p "Pressione qualquer tecla para continuar ou pressione Control + C para cancelar."
+        read -p "Pressione qualquer tecla para continuar."
         ./jarbas desligar     
         # https://github.com/nodesource/distributions
         # https://medium.com/@nsidana123/before-the-birth-of-of-node-js-15ee9262110c
