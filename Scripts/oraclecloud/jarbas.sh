@@ -157,7 +157,7 @@ case "$1" in
       echo 
       
       # Open Ports in ufw
-      sudo apt install ufw
+      sudo apt -y install ufw
       sudo ufw allow 22/tcp
       sudo ufw allow 80/tcp
       sudo ufw allow 443/tcp
