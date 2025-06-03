@@ -193,6 +193,10 @@ case "$1" in
       
       # Final
       curl -o md https://raw.githubusercontent.com/brunocalado/mestre-digital/master/Scripts/logo.txt && cat md && rm md
+      
+      # reboot
+      echo "Sua maquina vai ser reiniciada. Aguarde alguns minutos e volte a se conectar."
+      read -p "Pressione qualquer tecla para continuar."
     ;;      
     admin)               
         case "$2" in
