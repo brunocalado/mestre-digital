@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.54"
+VERSION="v1.55"
 echo "========================================"
 case "$1" in
     login2left)
@@ -49,13 +49,10 @@ case "$1" in
       sudo dpkg-reconfigure --frontend noninteractive tzdata
     ;;    
     suporte)
-        echo "Dados da Maquina"        
-
         # Dados de Consulta
+        echo "# Dados da Maquina"        
         echo "Usuario: $(whoami)"
         echo "Maquina: $(hostname)"
-        echo "Pasta de logs do fondry vtt: logs/"
-      
         echo "IP: " $(curl -s ifconfig.me)        
         echo "Dominio: " $(grep hostname config/options.json | awk '{print $2}' | sed 's/\"//g' | sed 's/,//g')
         echo         
@@ -166,6 +163,7 @@ case "$1" in
       sudo ufw allow 22/tcp
       sudo ufw allow 80/tcp
       sudo ufw allow 443/tcp
+      sudo ufw allow 443/udp
       sudo ufw allow 30000/tcp  
       sudo ufw enable        
 
@@ -304,10 +302,11 @@ case "$1" in
             ;;
             ativar)
               echo "O firewall ufw vai ser instalado e configurado."
-              sudo apt install ufw
+              sudo apt -y install ufw
               sudo ufw allow 22/tcp
               sudo ufw allow 80/tcp
               sudo ufw allow 443/tcp
+              sudo ufw allow 443/udp
               sudo ufw allow 30000/tcp  
               sudo ufw enable  
               echo
