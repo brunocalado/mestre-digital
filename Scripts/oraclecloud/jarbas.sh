@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.55"
+VERSION="v1.56"
 echo "========================================"
 case "$1" in
     login2left)
@@ -159,13 +159,7 @@ case "$1" in
       echo 
       
       # Open Ports in ufw
-      sudo apt -y install ufw
-      sudo ufw allow 22/tcp
-      sudo ufw allow 80/tcp
-      sudo ufw allow 443/tcp
-      sudo ufw allow 443/udp
-      sudo ufw allow 30000/tcp  
-      sudo ufw enable        
+      ./jarbas firewall ativar
 
       # Instala ZIP
       echo "===== Instala ZIP ====="
