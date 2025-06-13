@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.56"
+VERSION="v1.57"
 echo "========================================"
 case "$1" in
     login2left)
@@ -339,7 +339,8 @@ case "$1" in
           sudo mv Caddyfile /etc/caddy/Caddyfile
           
           cp config/options.json config/`date +"%H%M-%d%m%Y"`options.json.bkp
-          sed -i 's+"hostname": null+"hostname": "'$dominio'"+g' config/options.json
+          #sed -i 's+"hostname": null+"hostname": "'$dominio'"+g' config/options.json
+          sed -i 's+"hostname":.*,+"hostname": "'$dominio'",+g' config/options.json
           sed -i 's+"proxySSL": false+"proxySSL": "true"+g' config/options.json
           sed -i 's+"proxyPort": null+"proxyPort": "443"+g' config/options.json
           
