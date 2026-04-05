@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.57"
+VERSION="v1.58"
 echo "========================================"
 case "$1" in
     login2left)
@@ -78,7 +78,7 @@ case "$1" in
         timeout 1 bash -c "</dev/tcp/$MYIP/30000 &>/dev/null" &&  echo "Porta 30000 ABERTA"        
         echo "=== Fim do Teste de Portas ==="
         echo
-        echo "O NODE instalado deve ser o 22."
+        echo "O NODE instalado deve ser o 24."
         echo "Versao do NODE: $(node --version)"        
         echo
         echo "Situacao do Firewall do OS"
@@ -112,7 +112,7 @@ case "$1" in
     ;;
     node)
         echo "======================"
-        echo "Atualizando o NODE para a ultima versao Recomendada: 22"        
+        echo "Atualizando o NODE para a ultima versao Recomendada: 24"        
         echo "Apos o processo seu sistema será reiniciado e voce sera desconectado. Aguarde o sistema iniciar e se conecte novamente."
         read -p "Pressione qualquer tecla para continuar."
         ./jarbas desligar     
@@ -121,15 +121,8 @@ case "$1" in
         # Using Ubuntu
         sudo apt-get update        
         sudo apt-get install -y curl
-        curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+        curl -fsSL https://deb.nodesource.com/setup_24.x -o nodesource_setup.sh
         sudo -E bash nodesource_setup.sh
-
-        #sudo apt-get install -y ca-certificates curl gnupg
-        #sudo mkdir -p /etc/apt/keyrings
-        #curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg        
-        
-        #NODE_MAJOR=20
-        #echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
  
         sudo apt-get update
         sudo apt-get install nodejs -y 
