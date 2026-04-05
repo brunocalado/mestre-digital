@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.58"
+VERSION="v1.59"
 echo "========================================"
 case "$1" in
     login2left)
@@ -17,8 +17,10 @@ case "$1" in
     ;;
     desligar)
         echo "Encerrando o Foundry VTT"                
-        pm2 stop foundry
-        pm2 delete all
+        #pm2 stop foundry
+        #pm2 delete all
+        pm2 stop foundry > /dev/null 2>&1
+        pm2 delete all > /dev/null 2>&1        
     ;;
     status)
         echo "Verificando se o Foundry VTT esta executando"        
