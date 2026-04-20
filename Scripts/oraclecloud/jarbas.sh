@@ -1,7 +1,7 @@
 #######################################################
 ## jarbas Oracle Cloud ################################
 #! /bin/sh
-VERSION="v1.59"
+VERSION="v1.60"
 echo "========================================"
 case "$1" in
     login2left)
@@ -376,6 +376,81 @@ case "$1" in
           exit 1
       esac        
     ;;
+    customlogin)
+        case "$2" in
+            ativar)
+                echo "===== Ativando redirect /login no Caddy ====="
+                echo
+                echo "ATENCAO: Esta funcao so tem efeito se o modulo custom-login estiver"
+                echo "instalado e ativado no seu mundo do Foundry VTT."
+                echo "Modulo: https://github.com/brunocalado/custom-login"
+                echo                
+                CADDYFILE=/etc/caddy/Caddyfile
+
+                # Verifica se já existe para não duplicar
+                if grep -q "redir /login" "$CADDYFILE"; then
+                    echo "Redirect /login ja esta configurado no Caddyfile."
+                else
+                    # Insere o redir antes da linha reverse_proxy
+                    sudo sed -i 's+reverse_proxy+redir /login /modules/custom-login/assets/screens/index.html\n    reverse_proxy+' "$CADDYFILE"
+                    echo "Redirect adicionado com sucesso!"
+                fi
+
+                caddy validate --config "$CADDYFILE" && sudo service caddy restart
+                echo "Pronto! Acesse: https://$(grep -m1 '{' $CADDYFILE | tr -d ' {')/login"
+            ;;
+            ajuda)
+                echo "====================================================="
+                echo "= customlogin - Ajuda                               ="
+                echo "====================================================="
+                echo
+                echo "Este comando cria um link curto para a tela de login"
+                echo "do modulo custom-login."
+                echo
+                echo "Exemplo: https://seudominio.com/login"
+                echo
+                echo "-----------------------------------------------------"
+                echo "REQUISITO 1 - DOMINIO CUSTOMIZADO"
+                echo "-----------------------------------------------------"
+                echo "Este comando so funciona se voce tiver configurado um"
+                echo "dominio customizado no seu servidor e instalado o"
+                echo "Caddy como proxy reverso."
+                echo "Se voce nao fez isso, use: ./jarbas caddy instalar"
+                echo
+                echo "-----------------------------------------------------"
+                echo "REQUISITO 2 - MODULO CUSTOM-LOGIN"
+                echo "-----------------------------------------------------"
+                echo "O link curto /login so tem efeito visual se o modulo"
+                echo "custom-login estiver instalado e ativado no seu mundo"
+                echo "do Foundry VTT."
+                echo "Modulo: https://github.com/brunocalado/custom-login"
+                echo
+                echo "-----------------------------------------------------"
+                echo "COMO USAR"
+                echo "-----------------------------------------------------"
+                echo "Ativar o link curto:   ./jarbas customlogin ativar"
+                echo "Desativar o link curto: ./jarbas customlogin desativar"
+                echo "====================================================="
+            ;;            
+            desativar)
+                echo "===== Removendo redirect /login do Caddy ====="
+                CADDYFILE=/etc/caddy/Caddyfile
+
+                sudo sed -i '/redir \/login/d' "$CADDYFILE"
+                echo "Redirect removido."
+
+                caddy validate --config "$CADDYFILE" && sudo service caddy restart
+                echo "Pronto!"
+            ;;
+            *)
+                echo "Opcoes: $0 customlogin {ativar|desativar}"
+                echo "Exemplo de uso: ./jarbas customlogin ativar"
+                echo
+                echo "- ativar: adiciona o redirect /login no Caddyfile e reinicia o Caddy."
+                echo "- desativar: remove o redirect /login do Caddyfile e reinicia o Caddy."
+                exit 1
+        esac
+    ;;    
     *)
         echo "Jarbas Versao ${VERSION}" 
         echo "Opcoes: $0 {ligar|desligar|reiniciar|admin|swap|caddy|hardware|status|update|node|sobre|suporte|horacerta}"
